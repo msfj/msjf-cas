@@ -16,5 +16,8 @@ public class OrganInfoFacadeTest   extends SpringTestCase{
     @Test
     public  void  queryOrganInfoList(){
         System.out.println("--------------------------"+organInfoFacade.queryOrganInfoList());
+        while (true){
+
+        }
     }
 }
