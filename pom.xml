@@ -12,6 +12,17 @@
         <module>cas-api</module>
         <module>cas-core</module>
     </modules>
-
+    <distributionManagement>
+        <repository>
+            <id>msjf-releases</id>
+            <name>msjf Release Repository</name>
+            <url>http://49.4.91.18:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>msjf-releases</id>
+            <name>msjf Snapshot Repository</name>
+            <url>http://49.4.91.18:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
