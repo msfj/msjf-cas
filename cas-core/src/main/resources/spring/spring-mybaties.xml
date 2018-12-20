@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="GBK"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- é…ç½®æ•°æ®æº -->
+    <!-- ÅäÖÃÊý¾ÝÔ´ -->
     <bean name="dataSource"
           class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
           destroy-method="close">
@@ -19,47 +19,47 @@
         <property name="url" value="${jdbc_url}" />
         <property name="username" value="${jdbc_username}" />
         <property name="password" value="${jdbc_password}" />
-        <!-- åˆå§‹åŒ–è¿žæŽ¥å¤§å° -->
+        <!-- ³õÊ¼»¯Á¬½Ó´óÐ¡ -->
         <property name="initialSize" value="100" />
-        <!-- è¿žæŽ¥æ± æœ€å¤§ä½¿ç”¨è¿žæŽ¥æ•°é‡ -->
+        <!-- Á¬½Ó³Ø×î´óÊ¹ÓÃÁ¬½ÓÊýÁ¿ -->
         <property name="maxActive" value="500" />
-        <!-- è¿žæŽ¥æ± æœ€å°ç©ºé—² -->
+        <!-- Á¬½Ó³Ø×îÐ¡¿ÕÏÐ -->
         <property name="minIdle" value="1" />
-        <!-- èŽ·å–è¿žæŽ¥æœ€å¤§ç­‰å¾…æ—¶é—´ -->
+        <!-- »ñÈ¡Á¬½Ó×î´óµÈ´ýÊ±¼ä -->
         <property name="maxWait" value="60000" />
         <property name="validationQuery" value="${validationQuery}" />
         <property name="testOnBorrow" value="true" />
         <property name="testOnReturn" value="true" />
         <property name="testWhileIdle" value="true" />
-        <!-- é…ç½®é—´éš”å¤šä¹…æ‰è¿›è¡Œä¸€æ¬¡æ£€æµ‹ï¼Œæ£€æµ‹éœ€è¦å…³é—­çš„ç©ºé—²è¿žæŽ¥ï¼Œå•ä½æ˜¯æ¯«ç§’ -->
+        <!-- ÅäÖÃ¼ä¸ô¶à¾Ã²Å½øÐÐÒ»´Î¼ì²â£¬¼ì²âÐèÒª¹Ø±ÕµÄ¿ÕÏÐÁ¬½Ó£¬µ¥Î»ÊÇºÁÃë -->
         <property name="timeBetweenEvictionRunsMillis" value="60000" />
-        <!-- é…ç½®ä¸€ä¸ªè¿žæŽ¥åœ¨æ± ä¸­æœ€å°ç”Ÿå­˜çš„æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’ -->
+        <!-- ÅäÖÃÒ»¸öÁ¬½ÓÔÚ³ØÖÐ×îÐ¡Éú´æµÄÊ±¼ä£¬µ¥Î»ÊÇºÁÃë -->
         <property name="minEvictableIdleTimeMillis" value="25200000" />
-        <!-- æ‰“å¼€removeAbandonedåŠŸèƒ½ -->
+        <!-- ´ò¿ªremoveAbandoned¹¦ÄÜ -->
         <property name="removeAbandoned" value="true" />
-        <!-- 1800ç§’ï¼Œä¹Ÿå°±æ˜¯30åˆ†é’Ÿ -->
+        <!-- 1800Ãë£¬Ò²¾ÍÊÇ30·ÖÖÓ -->
         <property name="removeAbandonedTimeout" value="1800" />
-        <!-- å…³é—­abandedè¿žæŽ¥æ—¶è¾“å‡ºé”™è¯¯æ—¥å¿— -->
+        <!-- ¹Ø±ÕabandedÁ¬½ÓÊ±Êä³ö´íÎóÈÕÖ¾ -->
         <property name="logAbandoned" value="true" />
-        <!-- ç›‘æŽ§æ•°æ®åº“ -->
+        <!-- ¼à¿ØÊý¾Ý¿â -->
         <!-- <property name="filters" value="stat" /> -->
         <property name="filters" value="mergeStat" />
     </bean>
 
-    <!-- myBatisçš„å·¥åŽ‚ç±» -->
+    <!-- myBatisµÄ¹¤³§Àà -->
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <!-- é…ç½®æ•°æ®åº“è¡¨å¯¹åº”çš„javaå®žä½“ç±» -->
+        <!-- ÅäÖÃÊý¾Ý¿â±í¶ÔÓ¦µÄjavaÊµÌåÀà -->
         <property name="typeAliasesPackage" value="com.msjf.finance.cas" />
-        <!-- è‡ªåŠ¨æ‰«æentityç›®å½•, çœæŽ‰Configuration.xmlé‡Œçš„æ‰‹å·¥é…ç½® -->
+        <!-- ×Ô¶¯É¨ÃèentityÄ¿Â¼, Ê¡µôConfiguration.xmlÀïµÄÊÖ¹¤ÅäÖÃ -->
         <property name="mapperLocations"
                   value="classpath*:mybaties/mappings/**/*Mapper.xml" />
         <property name="configLocation"
                   value="classpath:mybaties/mybatis-config.xml" />
     </bean>
 
-    <!-- æ‰«æbasePackageä¸‹æ‰€æœ‰ä»¥@MyBatisDaoæ³¨è§£çš„æŽ¥å£ -->
+    <!-- É¨ÃèbasePackageÏÂËùÓÐÒÔ@MyBatisDao×¢½âµÄ½Ó¿Ú -->
    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.msjf.finance.cas"/>
@@ -72,7 +72,7 @@
         </property>
  </bean>
 
-    <!-- é…ç½®äº‹åŠ¡ç®¡ç†ç»„ä»¶ -->
+    <!-- ÅäÖÃÊÂÎñ¹ÜÀí×é¼þ -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
@@ -84,6 +84,6 @@
         <constructor-arg ref="sqlSessionFactory" />
     </bean>
 
-    <!-- æ³¨è§£äº‹åŠ¡ -->
+    <!-- ×¢½âÊÂÎñ -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

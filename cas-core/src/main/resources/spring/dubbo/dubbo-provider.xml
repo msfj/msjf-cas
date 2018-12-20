@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="GBK"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
 	   xmlns="http://www.springframework.org/schema/beans"
@@ -6,13 +6,13 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 
-	<!-- åº”ç”¨å -->
+	<!-- Ó¦ÓÃÃû -->
 	<dubbo:application name="${application}"/>
-	<!-- è¿žæŽ¥åˆ°å“ªä¸ªæ³¨å†Œä¸­å¿ƒï¼ˆè¿žæŽ¥åˆ°æœ¬æœºçš„2181ç«¯å£zookeeperï¼‰ -->
+	<!-- Á¬½Óµ½ÄÄ¸ö×¢²áÖÐÐÄ£¨Á¬½Óµ½±¾»úµÄ2181¶Ë¿Úzookeeper£© -->
 	<dubbo:registry address="${registry}"/>
-	<!-- æ¶ˆè´¹æ–¹ç”¨ä»€ä¹ˆåè®®èŽ·å–æœåŠ¡ï¼ˆç”¨dubboåè®®åœ¨20880ç«¯å£æš´éœ²æœåŠ¡ï¼‰ -->
+	<!-- Ïû·Ñ·½ÓÃÊ²Ã´Ð­Òé»ñÈ¡·þÎñ£¨ÓÃdubboÐ­ÒéÔÚ20880¶Ë¿Ú±©Â¶·þÎñ£© -->
 	<dubbo:protocol port="${protocol}"/>
 
-	<!-- åŠ è½½æœåŠ¡ -->
+	<!-- ¼ÓÔØ·þÎñ -->
 	<import resource="classpath*:/dubbo-services/provider-services/*.xml"/>
 </beans>

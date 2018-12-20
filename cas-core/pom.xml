@@ -252,6 +252,30 @@
     </dependencies>
 
     <build>
+        <finalName>cas-core-server</finalName>
+        <resources>
+            <!--recources文件夹下的所有文件都打进jar包-->
+            <resource>
+                <targetPath>${project.build.directory}/classes</targetPath>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <!-- 上文有说过，由于我的applicationContext.xml文件不是在META-INF下，这一段代码的作用就是将 applicationContext.xml文件拷贝到META-INF目录下-->
+            <resource>
+                <targetPath>${project.build.directory}/classes/META-INF/spring</targetPath>
+                <directory>src/main/resources/</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>applicationContext.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
+
         <plugins>
             <!-- Compiler 插件, 设定JDK版本 -->
             <plugin>
@@ -277,6 +301,47 @@
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>${versions_maven_plugin_version}</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <classesDirectory>target/classes/</classesDirectory>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.alibaba.dubbo.container.Main</mainClass>
+                            <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <type>jar</type>
+                            <includeTypes>jar</includeTypes>
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <outputDirectory>
+                                ${project.build.directory}/lib
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 

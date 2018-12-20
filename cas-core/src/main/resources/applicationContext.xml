@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="GBK"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:context="http://www.springframework.org/schema/context"
 	   xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
@@ -16,17 +16,17 @@
 
 	<description>Loan App Configuration</description>
 
-	<!-- åŠ è½½èµ„æºæ–‡ä»¶ -->
+	<!-- ¼ÓÔØ×ÊÔ´ÎÄ¼þ -->
 	<context:property-placeholder
 			location="classpath*:/properties/*.properties" />
 
-	<!-- æ”¯æŒspringæ³¨è§£ -->
+	<!-- Ö§³Öspring×¢½â -->
 	<context:annotation-config/>
 
-	<!-- ï¼Œæ‰«ææ³¨è§£å…¨åŒ…æ‰«æç±»(é™¤äº†æŽ§åˆ¶å±‚) -->
+	<!-- £¬É¨Ãè×¢½âÈ«°üÉ¨ÃèÀà(³ýÁË¿ØÖÆ²ã) -->
 	<context:component-scan base-package="com.msjf.finance.cas">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-	<!-- ç»„ä»¶åŠ è½½ -->
+	<!-- ×é¼þ¼ÓÔØ -->
 	<import resource="classpath*:/spring/**/*.xml"/>
 </beans>
