@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.modules.employee.dao.EmployeeInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.msjf.finance.cas.modules.employee.entity.EmployeeInfoEntity" >
+        <result column="customerno" property="customerno" jdbcType="VARCHAR" />
+        <result column="employeename" property="employeename" jdbcType="VARCHAR" />
+        <result column="loginname" property="loginname" jdbcType="VARCHAR" />
+        <result column="branchid" property="branchid" jdbcType="VARCHAR" />
+        <result column="certificatetype" property="certificatetype" jdbcType="VARCHAR" />
+        <result column="certificateno" property="certificateno" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="insertdate" property="insertdate" jdbcType="VARCHAR" />
+        <result column="inserttime" property="inserttime" jdbcType="VARCHAR" />
+        <result column="updatedate" property="updatedate" jdbcType="VARCHAR" />
+        <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >customerno,employeename,loginname,branchid,certificatetype,certificateno,mobile,email,status,insertdate,inserttime,updatedate,updatetime</sql>
+    <select id="getEmployeeInfoList"  resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM cif_employee limit 1
+    </select>
+</mapper>

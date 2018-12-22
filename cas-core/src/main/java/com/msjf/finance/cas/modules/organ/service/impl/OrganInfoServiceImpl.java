@@ -17,22 +17,22 @@ import java.util.List;
  */
 @Service("organInfoService")
 public class OrganInfoServiceImpl implements OrganInfoService {
-    @Resource
-    OrganInfoDao organInfoDao;
-    public List queryOrganInfoList() {
-       try {
-            List<OrganInfoEntity> organInfoEntityList = organInfoDao.queryOrganInfoList();
-            List<OrganInfoDomain> organInfoDomainList = new ArrayList();
-            organInfoEntityList.stream().forEach(organInfoEntity ->
-                    {
-                        OrganInfoDomain organInfoDomain = new OrganInfoDomain();
-                        BeanUtils.copyProperties(organInfoEntity, organInfoDomain);
-                        organInfoDomainList.add(organInfoDomain);
-                    }
-            );
-            return organInfoDomainList;
-        }catch (Exception e){
-               //打印错误日志
+           @Resource
+           OrganInfoDao organInfoDao;
+        public List queryOrganInfoList() {
+            try {
+                List<OrganInfoEntity> organInfoEntityList = organInfoDao.queryOrganInfoList();
+                List<OrganInfoDomain> organInfoDomainList = new ArrayList();
+                organInfoEntityList.stream().forEach(organInfoEntity ->
+                        {
+                            OrganInfoDomain organInfoDomain = new OrganInfoDomain();
+                            BeanUtils.copyProperties(organInfoEntity, organInfoDomain);
+                            organInfoDomainList.add(organInfoDomain);
+                        }
+                );
+                return organInfoDomainList;
+            }catch (Exception e){
+                //打印错误日志
            e.printStackTrace();
         }
         return null;

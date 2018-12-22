@@ -7,5 +7,10 @@ import java.util.List;
  * Created by 11509 on 2018/12/18.
  */
 public interface OrganInfoFacade {
-    public Response<List<OrganInfoDomain>> queryOrganInfoList();
+    /**
+     * 查询企业信息
+     * @param organInfoDomain
+     * @return
+     */
+    public Response<List<OrganInfoDomain>> queryOrganInfoList(OrganInfoDomain  organInfoDomain);
 }

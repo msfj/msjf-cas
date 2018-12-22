@@ -12,4 +12,6 @@ public interface OrganInfoService {
       * @return
       */
      List queryOrganInfoList();
+
+
 }
