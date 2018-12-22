@@ -4,6 +4,7 @@ import com.msjf.finance.cas.common.response.BaseDomain;
 
 /**
  * Created by 11509 on 2018/12/18.
+ * 向外使用的domain
  */
 public class OrganInfoDomain  extends BaseDomain {
 
