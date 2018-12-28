@@ -3,6 +3,7 @@ package com.msjf.finance.cas.modules.organ.facade;
 import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.facade.organ.OrganInfoFacade;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
+import com.msjf.finance.cas.modules.organ.emun.OrganInfoEmun;
 import com.msjf.finance.cas.modules.organ.service.OrganInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -23,13 +24,13 @@ public class OrganInfoFacadeImpl implements OrganInfoFacade {
     public Response<List<OrganInfoDomain>> queryOrganInfoList(OrganInfoDomain  organInfoDomain) {
         try {
             if(ObjectUtils.isEmpty(organInfoDomain)){
-                return new Response<>().fail();
+                return new Response<>().fail(OrganInfoEmun.MSG_PARAM_ERROR);
             }
             List<OrganInfoDomain> organInfoDomainList = organInfoService.queryOrganInfoList();
             return new Response<>().success(organInfoDomainList);
         } catch (Exception e) {
             e.printStackTrace();
-            return new Response<>().fail();
+            return new Response<>().fail(OrganInfoEmun.MSG_SYS_ERROR);
         }
     }
 }
