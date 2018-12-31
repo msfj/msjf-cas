@@ -9,4 +9,14 @@ import java.util.List;
 @MyBatisDao
 public interface OrganInfoDao{
     List<OrganInfoEntity> queryOrganInfoList();
+
+    /**
+     * 查询企业基本信息
+     */
+    List<OrganInfoEntity> getOrganInfo(OrganInfoEntity organInfoEntity);
+
+    /**
+     * 写企业基本信息表
+     */
+    void insOrganInfo(OrganInfoEntity organInfoEntity);
 }

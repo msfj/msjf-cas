@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.modules.organRollin.dao.OrganRollinDao">
+    <!--企业迁入基本信息表cif_organ_rollin 按实体查询-->
+    <select id="getOrganRollin" parameterType="com.msjf.finance.cas.modules.organRollin.entity.OrganRollinEntity"
+            resultType="com.msjf.finance.cas.modules.organRollin.entity.OrganRollinEntity">
+        <![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			companyname "companyname",
+			businessno "businessno",
+			leader "leader",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			servicecustomerno "servicecustomerno",
+			businessscope "businessscope",
+			companyintro "companyintro",
+			workaddress "workaddress",
+			registeraddress "registeraddress",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from kpfsp.cif_organ_rollin
+	]]>
+        <where>
+            <if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+            <if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+            <if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+            <if test="businessno != null and businessno!= '' "><![CDATA[ and businessno=#{businessno}]]></if>
+            <if test="leader != null and leader!= '' "><![CDATA[ and leader=#{leader}]]></if>
+            <if test="regicapital != null and regicapital!= '' "><![CDATA[ and regicapital=#{regicapital}]]></if>
+            <if test="regicapitalbz != null and regicapitalbz!= '' "><![CDATA[ and regicapitalbz=#{regicapitalbz}]]></if>
+
+            <if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+            <if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+            <if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
+            <if test="businessscope != null and businessscope!= '' "><![CDATA[ and businessscope=#{businessscope}]]></if>
+            <if test="companyintro != null and companyintro!= '' "><![CDATA[ and companyintro=#{companyintro}]]></if>
+            <if test="workaddress != null and workaddress!= '' "><![CDATA[ and workaddress=#{workaddress}]]></if>
+            <if test="registeraddress != null and registeraddress!= '' "><![CDATA[ and registeraddress=#{registeraddress}]]></if>
+            <if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+            <if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+            <if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+            <if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.modules.person.dao.PersonInfoDao">
+    <!--个人基本信息表person_info 按实体新增记录 mysql-->
+    <insert id="insPersonInfo" parameterType="com.msjf.finance.cas.modules.person.entity.PersonInfoEntity" databaseId="mysql">
+        <![CDATA[
+		insert into cas.person_info(
+			customerno,membername,education,workexp,investexp,
+			idcard,isamac,amacno,insertdate,inserttime,
+			updatedate,updatetime
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{membername, jdbcType=VARCHAR},#{education, jdbcType=VARCHAR},#{workexp, jdbcType=CLOB},#{investexp, jdbcType=CLOB},
+			#{idcard, jdbcType=CLOB},#{isamac, jdbcType=VARCHAR},#{amacno, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+    </insert>
+
+</mapper>
