@@ -108,9 +108,9 @@
     </select>
 
     <!--企业基本信息表cif_organ_info 按实体新增记录 mysql-->
-    <insert id="insOrganInfo" parameterType="com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity" databaseId="mysql">
+    <insert id="insOrganInfo" parameterType="java.util.Map">
         <![CDATA[
-		insert into kpfsp.cif_organ_info(
+		insert into cas.organ_info(
 			customerno,version,membername,organtype,organclass,
 			organstatus,startcustomerno,servicecustomerno,dealflow,managelimit,
 			paydatelimit,registerprovince,registercity,registercounty,registertreet,

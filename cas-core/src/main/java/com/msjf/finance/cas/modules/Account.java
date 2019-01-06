@@ -29,6 +29,23 @@ public abstract class Account {
     /** 否 */
     public static final String NO = "0";
 
+
+    /** 企业*/
+    public static final String company = "1";
+
+    /** 个人 */
+    public static final String person = "0";
+
+    /** 步骤1*/
+    public static final String step_1 = "1";
+
+
+    /** 步骤2*/
+    public static final String step_2 = "2";
+
+    /** 步骤3*/
+    public static final String step_3 = "3";
+
     /** 短信认证类型 服务平台注册 */
     public static final String VERIFICATE_TYPE_0 = "0";
 

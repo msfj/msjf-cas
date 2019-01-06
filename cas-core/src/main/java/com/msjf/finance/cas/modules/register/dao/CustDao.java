@@ -5,6 +5,7 @@ import com.msjf.finance.cas.common.dao.MyBatisDao;
 import com.msjf.finance.cas.modules.register.entity.CustEntity;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lzp on 2018/12/25.
@@ -26,5 +27,5 @@ public interface CustDao {
     /**
      * 新增用户
      */
-    void insCust(CustEntity custEntity);
+    void insCust(Map<String, Object> mapParams);
 }

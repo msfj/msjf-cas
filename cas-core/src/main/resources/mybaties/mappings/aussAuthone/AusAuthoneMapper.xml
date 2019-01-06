@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao">
+    <!--个人基本信息表person_info 按实体新增记录 mysql-->
+    <insert id="inrAusAuthone" parameterType="java.util.Map">
+        <![CDATA[
+		insert into cas.aus_authone(
+			customerno,password,failcount,registersource,insertdate,
+			inserttime,updatedate,updatetime,source
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},#{failcount, jdbcType=INTEGER},
+			#{registersource, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
+			#{inserttime, jdbcType=CLOB},#{updatedate, jdbcType=VARCHAR},
+			#{updatetime, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR}
+	)]]>
+    </insert>
+
+</mapper>

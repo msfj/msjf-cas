@@ -6,6 +6,7 @@ import com.msjf.finance.cas.common.test.SpringTestCase;
 import com.msjf.finance.cas.facade.employee.EmployeeInfoFacade;
 import com.msjf.finance.cas.facade.organ.OrganInfoFacade;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
+import com.msjf.finance.cas.facade.register.RegisterFacade;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import org.junit.Test;
 
@@ -18,24 +19,29 @@ import java.util.HashMap;
  */
 
 public class OrganInfoFacadeTest   extends SpringTestCase{
-   @Resource
-   SendVerificationCodeFacade sendVerificationCodeFacade;
+   /*@Resource
+   SendVerificationCodeFacade sendVerificationCodeFacade;*/
 /*@Resource
     EmployeeInfoFacade employeeInfoFacade;*/
+   @Resource
+    RegisterFacade registerFacade;
 
     @Test
     public  void  queryOrganInfoList(){
-
-     //   System.out.println(  employeeInfoFacade.queryEmployeeInfoList())
-      try {
-            Thread.sleep(3000);
-          //  System.out.println("-------------queryOrganInfoList-------------" + organInfoFacade.queryOrganInfoList(new OrganInfoDomain()));
-          System.out.println( "****************************:"+sendVerificationCodeFacade.SendRegisterVerificationCode(new HashMap<>()));
-        }catch (Exception e){
-
-        }
-/*        while (true){
-
-        }*/
+        HashMap<String, Object> mapParam = new HashMap<>();
+        mapParam.put("membertype","1");
+        mapParam.put("registersource","0");
+       /* mapParam.put("mobile","13574768695");*/
+        mapParam.put("step","3");
+        mapParam.put("membername","镇魂街漫画有限公司");
+        mapParam.put("certificatetype","A");
+        mapParam.put("certificateno","qwwe343535353533");
+        /*mapParam.put("cardno","22123314412");
+        mapParam.put("bank","中国银行1");
+        mapParam.put("corcardtype","0");
+        mapParam.put("corcardno","324242412421");
+        mapParam.put("corname","郑国1");*/
+        mapParam.put("password","123456");
+        registerFacade.inserRegister(mapParam);
     }
 }

@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -768,5 +769,11 @@ public class StringUtil {
         Writer result = new StringWriter();
         PrintWriter printWriter = new PrintWriter(result);
         aThrowable.printStackTrace(printWriter);return result.toString();
+    }
+
+    public static String getUUID(){
+        String uuid = UUID.randomUUID().toString();
+        //去掉“-”符号
+        return uuid.replaceAll("-", "");
     }
 }

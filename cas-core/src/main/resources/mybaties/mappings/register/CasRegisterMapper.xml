@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.modules.register.dao.CasRegisterDao">
+
+
+
+    <!--用户基本信息表cif_cust 按实体查询-->
+    <select id="queryCasRegisterList" parameterType="java.util.Map"   resultType="java.util.LinkedHashMap">
+        <![CDATA[
+		select
+			id "id",
+			registersource "registersource",
+			membertype "membertype",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			cardno  "cardno",
+			bank    "bank",
+		    companyname "companyname",
+			status "status",
+			insertdate "insertdate",
+			updatedate "updatedate",
+            corname     "corname",
+            corcardtype     "corcardtype",
+            corcardno     "corcardno",
+            membername     "membername"
+		from cas.cas_register_info
+	]]>
+        <where>
+            <if test="id != null and id!= '' "><![CDATA[ and id=#{id}]]></if>
+            <if test="registersource != null and registersource!= '' "><![CDATA[ and registersource=#{registersource}]]></if>
+            <if test="membertype != null and membertype!= '' "><![CDATA[ and membertype=#{membertype}]]></if>
+            <if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+            <if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+            <if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+            <if test="cardno != null and cardno!= '' "><![CDATA[ and cardno=#{cardno}]]></if>
+            <if test="bank != null and bank!= '' "><![CDATA[ and bank=#{bank}]]></if>
+            <if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+            <if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+            <if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+            <if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+            <if test="corname != null and corname!= '' "><![CDATA[ and corname=#{corname}]]></if>
+            <if test="corcardtype != null and corcardtype!= '' "><![CDATA[ and corcardtype=#{corcardtype}]]></if>
+            <if test="corcardno != null and corcardno!= '' "><![CDATA[ and corcardno=#{corcardno}]]></if>
+            <if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+        </where>
+    </select>
+
+    <!--用户基本信息表cust 按实体新增记录 mysql-->
+    <insert id="insCasRegister" parameterType="java.util.Map">
+    <![CDATA[
+		insert into cas.cas_register_info(
+			id,membertype,registersource,
+			certificatetype,certificateno,mobile,cardno,bank,
+			companyname,status,insertdate,
+			updatedate,corname,corcardtype,corcardno,membername
+		) values(
+			#{id, jdbcType=VARCHAR},#{membertype, jdbcType=VARCHAR},#{registersource, jdbcType=VARCHAR},
+			#{certificatetype, jdbcType=VARCHAR},#{certificateno, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},
+			#{cardno, jdbcType=VARCHAR},#{bank, jdbcType=VARCHAR},#{companyname, jdbcType=VARCHAR},
+			#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
+			#{updatedate, jdbcType=VARCHAR},#{corname, jdbcType=VARCHAR},#{corcardtype, jdbcType=VARCHAR},
+			#{corcardno, jdbcType=VARCHAR},#{membername, jdbcType=VARCHAR}
+	)]]>
+    </insert>
+
+
+    <update id="updCasRegister" parameterType="java.util.Map"  >
+        update  cas.cas_register_info t
+        <trim prefix="set" suffixOverrides=",">
+            <if test="registersource != null and registersource!= '' "><![CDATA[ registersource=#{registersource},]]></if>
+            <if test="membertype != null and membertype!= '' "><![CDATA[ membertype=#{membertype},]]></if>
+            <if test="certificatetype != null and certificatetype!= '' "><![CDATA[ certificatetype=#{certificatetype},]]></if>
+            <if test="certificateno != null and certificateno!= '' "><![CDATA[certificateno=#{certificateno},]]></if>
+            <if test="mobile != null and mobile!= '' "><![CDATA[ mobile=#{mobile},]]></if>
+            <if test="cardno != null and cardno!= '' "><![CDATA[cardno=#{cardno},]]></if>
+            <if test="bank != null and bank!= '' "><![CDATA[bank=#{bank},]]></if>
+            <if test="companyname != null and companyname!= '' "><![CDATA[ companyname=#{companyname},]]></if>
+            <if test="status != null and status!= '' "><![CDATA[ status=#{status},]]></if>
+            <if test="insertdate != null and insertdate!= '' "><![CDATA[ insertdate=#{insertdate},]]></if>
+            <if test="updatedate != null and updatedate!= '' "><![CDATA[updatedate=#{updatedate},]]></if>
+            <if test="corname != null and corname!= '' "><![CDATA[corname=#{corname},]]></if>
+            <if test="corcardtype != null and corcardtype!= '' "><![CDATA[ corcardtype=#{corcardtype},]]></if>
+            <if test="corcardno != null and corcardno!= '' "><![CDATA[corcardno=#{corcardno},]]></if>
+            <if test="membername != null and membername!= '' "><![CDATA[membername=#{membername},]]></if>
+        </trim>
+        <where>
+            <if test=" id != null and id != '' "><![CDATA[ and t.id=#{id} ]]></if>
+        </where>
+    </update>
+</mapper>

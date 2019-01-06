@@ -12,12 +12,15 @@ import com.msjf.finance.cas.modules.organRollin.dao.OrganRollinDao;
 import com.msjf.finance.cas.modules.organRollin.entity.OrganRollinEntity;
 import com.msjf.finance.cas.modules.person.dao.PersonInfoDao;
 import com.msjf.finance.cas.modules.person.entity.PersonInfoEntity;
+import com.msjf.finance.cas.modules.register.dao.CasRegisterDao;
 import com.msjf.finance.cas.modules.register.dao.CustDao;
 import com.msjf.finance.cas.modules.register.dao.RegisterDao;
+import com.msjf.finance.cas.modules.register.entity.CasRegisterInfoEntity;
 import com.msjf.finance.cas.modules.register.entity.CustEntity;
-import com.msjf.finance.cas.modules.register.service.RegisterService;
 import com.msjf.finance.cas.modules.util.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
@@ -30,12 +33,8 @@ import java.util.Map;
  * Created by lzp on 2018/12/25.
  */
 @Service("registerFacade")
+@Transactional(propagation=Propagation.REQUIRED)
 public class RegisterFacadeImpl extends Account implements RegisterFacade{
-    @Resource
-    RegisterService registerService;
-
-    @Resource
-    RegisterDao registerDao;
 
     @Resource
     CustDao custDao;
@@ -55,6 +54,10 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
     @Resource
     AusAuthoneDao  ausAuthoneDao;
 
+
+    @Resource
+    CasRegisterDao casRegisterDao;
+
     /**
      * 用户类型
      */
@@ -65,10 +68,7 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
      */
     private String registersource;
 
-    /**
-     * 来源：0-个人服务平台注册；1-企业注册服务平台；2-企业三方会签
-     */
-    private String source;
+
 
     /**
      * 用户名称
@@ -76,7 +76,7 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
     private String membername;
 
     /**
-     * 证件类型 0-身份证 1-护照 D-营业执照
+     * 证件类型 0-身份证 1-护照 A-营业执照
      */
     private String certificatetype;
 
@@ -110,15 +110,6 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
      */
     private String password;
 
-    /**
-     * 邀请码
-     */
-    private String invitecode;
-
-    /**
-     * 联系邮箱
-     */
-    private String email;
 
     /**
      * 就职单位
@@ -126,19 +117,29 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
     private String companyname;
 
     /**
-     * 企业类型
+     * 法人名称
      */
-    private String organtype;
+    private String corname;
+
 
     /**
-     * 企业分类
+     * 法人证件类型
      */
-    private String organclass;
+    private String corcardtype;
+
 
     /**
-     * 联系人姓名
+     * 法人证件号码
      */
-    private String linkmanname;
+    private String corcardno;
+
+
+    /**
+     * 法注册步骤
+     */
+    private String step;
+
+
 
     /**
      * 客户代码
@@ -164,23 +165,63 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
         try{
             getParam(mapParam);//获取入参
             preCheck();//入参校验
-            checkCustCertificateno(); //证件号在cust表校验唯一性
-            checkCustLoginName();//登陆账号唯一
-            checkCustMembertypeAndMobile();//用户类型+手机号码在cust表校验唯一性
-            //短信验证码检查
-            //企业名称唯一检查
-            if (membertype.equals(YES)) {
-                checkOrganName();
+
+            if(step.equals(step_1)){
+                if (membertype.equals(company)) {
+                    /**
+                     * 1、企业名称以及企业营业执照校验
+                     * 2、校验成功后生成custno并记录相关数据
+                     */
+                    //企业名称唯一检查
+                    checkOrganName();
+                    checkCustCertificateno(); //证件号在cust表校验唯一性
+                }else if(membertype.equals(person)){
+                    /**
+                     * 1、先做手机验证码校验；
+                     * 2、校验成功生成custno并记录手机号码
+                     */
+                    checkCustMembertypeAndMobile();//用户类型+手机号码在cust表校验唯一性
+                    checkCustMembertypeAndMobile();
+                }
+                String  id =  StringUtil.getUUID();//生成
+                addCasRegisterInfo(id);//写用户注册基本信息表
+            }else if(step.equals(step_2)){
+                if (membertype.equals(company)) {
+                    /**
+                     * 需校验验证码
+                     */
+                }
+                Map<String,Object> entity = new HashMap<>();
+                entity = getCasRegister();
+                if(ObjectUtils.isEmpty(entity)){
+                    return new Response<>().fail();
+                }
+                mapParam.put("id",entity.get("id"));
+                updCasRegisterInfo(mapParam);
+            }else if(step.equals(step_3)){
+                Map<String,Object> entity = new HashMap<>();
+                entity = getCasRegister();
+                if(ObjectUtils.isEmpty(entity)){
+                    return new Response<>().fail();
+                }
+                addCust(entity);
+                if (membertype.equals(company)) {
+                addOrganInfo(entity);
+                }else{
+                addPersonInfo(entity);
+                }
+                addAuthone(entity);
             }
-           customerno =  CommonUtil.generatorCustid();//生成customerno/appSerialno
+/*
+
             appSerialno = DateUtil.getUserDate(DATE_FMT_DATE + DATE_FMT_TIME) + CommonUtil.getRandomCode(1, 6);
-            addCust();//写用户基本信息表
-            if (membertype.equals(NO)) {//个人
+
+            if (membertype.equals(person)) {//个人
                 addPersonInfo();
             } else {//企业
                 addOrganInfo();
             }
-            addAuthone();
+            */
         }catch (Exception e){
             return new Response<>().fail();
         }
@@ -194,7 +235,6 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
     private void getParam(HashMap<String, Object> mapParam) {
         membertype = StringUtil.valueOf(mapParam.get("membertype"));
         registersource = StringUtil.valueOf(mapParam.get("registersource"));
-        source = StringUtil.valueOf(mapParam.get("source"));
         membername = StringUtil.valueOf(mapParam.get("membername"));
         certificatetype = StringUtil.valueOf(mapParam.get("certificatetype"));
         certificateno = StringUtil.valueOf(mapParam.get("certificateno"));
@@ -203,12 +243,11 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
         bank = StringUtil.valueOf(mapParam.get("bank"));
         msgcode = StringUtil.valueOf(mapParam.get("msgcode"));
         password = StringUtil.valueOf(mapParam.get("password"));
-        invitecode = StringUtil.valueOf(mapParam.get("invitecode"));
-        email = StringUtil.valueOf(mapParam.get("email"));
         companyname = StringUtil.valueOf(mapParam.get("companyname"));
-        organtype = StringUtil.valueOf(mapParam.get("organtype"));
-        organclass = StringUtil.valueOf(mapParam.get("organclass"));
-        linkmanname = StringUtil.valueOf(mapParam.get("linkmanname"));
+        corname = StringUtil.valueOf(mapParam.get("corname"));
+        corcardtype = StringUtil.valueOf(mapParam.get("corcardtype"));
+        corcardno = StringUtil.valueOf(mapParam.get("corcardno"));
+        step = StringUtil.valueOf(mapParam.get("step"));
     }
 
     /**
@@ -219,54 +258,99 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
         if(ObjectUtils.isEmpty(membertype)){
             return new Response<>().fail();
         }
+        if(ObjectUtils.isEmpty(step)){
+            return new Response<>().fail();
+        }
+
         if(ObjectUtils.isEmpty(registersource)){
             return new Response<>().fail();
         }
-        if(ObjectUtils.isEmpty(source)){
-            return new Response<>().fail();
+
+        if(membertype.equals(company)){
+            /**
+             * 企业
+             */
+            if(step.equals(step_1)){
+                if(ObjectUtils.isEmpty(membername)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(certificatetype)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(certificateno)){
+                    return new Response<>().fail();
+                }
+            }else if(step.equals(step_2)){
+
+                if(ObjectUtils.isEmpty(corname)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(corcardtype)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(corcardno)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(mobile)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(msgcode)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(cardno)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(bank)){
+                    return new Response<>().fail();
+                }
+            }else if(step.equals(step_3)){
+                if(ObjectUtils.isEmpty(password)){
+                    return new Response<>().fail();
+                }
+            }else{
+                return new Response<>().fail("0","注册步骤不正确！");
+            }
+        }else if(membertype.equals(person)){
+            /**
+             * 个人
+             */
+            if(step.equals(step_1)){
+                if(ObjectUtils.isEmpty(mobile)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(msgcode)){
+                    return new Response<>().fail();
+                }
+            }else if(step.equals(step_2)){
+                if(ObjectUtils.isEmpty(membername)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(certificatetype)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(certificateno)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(cardno)){
+                    return new Response<>().fail();
+                }
+                if(ObjectUtils.isEmpty(bank)){
+                    return new Response<>().fail();
+                }
+            }else if(step.equals(step_3)){
+                /**
+                 * 验证密码
+                 */
+                if(ObjectUtils.isEmpty(password)){
+                    return new Response<>().fail();
+                }
+            }else{
+                return new Response<>().fail("0","注册步骤不正确！");
+            }
+        }else{
+            return new Response<>().fail("0","用户类型不正确！");
         }
-        if(ObjectUtils.isEmpty(membername)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(certificatetype)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(certificateno)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(mobile)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(cardno)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(bank)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(msgcode)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(password)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(invitecode)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(email)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(companyname)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(organtype)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(organclass)){
-            return new Response<>().fail();
-        }
-        if(ObjectUtils.isEmpty(linkmanname)){
-            return new Response<>().fail();
-        }
+
         return new Response<>().success();
     }
 
@@ -287,6 +371,27 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
             return new Response<>().fail();//检查失败
     }
         return new Response<>().success();
+    }
+
+    /**
+     * 用户信息：证件号唯一性检查
+     * 忽略大小写
+     * @return
+     */
+    private Map getCasRegister(){
+        Map<String,Object> entity = new HashMap<>();
+        entity.put("membertype",membertype);
+        if(membertype.equals(company)){
+            entity.put("membername",membername);
+            entity.put("certificateno",certificateno);
+        }else {
+            entity.put("mobile",mobile);
+        }
+        List<Map> list = casRegisterDao.queryCasRegisterList(entity);
+        if(ObjectUtils.isEmpty(list)){
+            return null;
+        }
+        return list.get(0);
     }
 
     /**
@@ -317,13 +422,12 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
             f.setMobile(mobile);
             List<CustEntity> flist = custDao.queryCustEntityList(f);
             if(!ObjectUtils.isEmpty(flist)){
-                if ("0".equals(membertype) && flist.size() >= init_phone_count_person) {
+                if (person.equals(membertype) && flist.size() >= init_phone_count_person) {
                     return new Response<>().fail();//手机号已使用
                 }
-                if ("1".equals(membertype) && flist.size() >= init_phone_count_organ) {
+                if (company.equals(membertype) && flist.size() >= init_phone_count_organ) {
                     return new Response<>().fail();//手机号已使用
                 }
-                return new Response<>().fail();//证件号码已经使用
             }
         }catch (Exception e){
             return new Response<>().fail();//检查失败
@@ -338,8 +442,9 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
         //企业基本信息表检查
         OrganInfoEntity c = new OrganInfoEntity();
         c.setMembername(membername);
+        c.setOrganstatus("");
         List<OrganInfoEntity> clist = organInfoDao.getOrganInfo(c);
-        if(ObjectUtils.isEmpty(clist)){
+        if(!ObjectUtils.isEmpty(clist)){
             return new Response<>().fail();//企业名称已存在
         }
         //企业变更记录表最新插入的一条变更记录 检查
@@ -351,14 +456,14 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
         }catch (Exception e){
             return new Response<>().fail();//查询失败
         }
-        if(ObjectUtils.isEmpty(ls)){
+        if(!ObjectUtils.isEmpty(ls)){
             return new Response<>().fail();//企业名称已存在
         }
         //企业迁入表检查
         OrganRollinEntity cor = new OrganRollinEntity();
         cor.setCompanyname(companyname);
         List<OrganRollinEntity> dlist =  organRollinDao.getOrganRollin(cor);
-        if(ObjectUtils.isEmpty(dlist)){
+        if(!ObjectUtils.isEmpty(dlist)){
             return new Response<>().fail();//企业名称已存在
         }
         return new Response<>().success();
@@ -367,29 +472,18 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
     /**
      *写客户信息表
      */
-    private Response addCust(){
+    private Response addCust(Map<String, Object> mapParam){
         try {
-            CustEntity cifCustEntity = new CustEntity();
-            cifCustEntity.setCustomerno(customerno);
-            cifCustEntity.setLoginname(certificateno);
-            cifCustEntity.setMembertype(membertype);
-            cifCustEntity.setCertificatetype(certificatetype);
-            cifCustEntity.setCertificateno(certificateno);
-            cifCustEntity.setLinkmanname(linkmanname);
-            cifCustEntity.setMobile(mobile);
-            cifCustEntity.setCardno(cardno);
-            cifCustEntity.setBank(bank);
-            cifCustEntity.setCompanyname(companyname);
-            cifCustEntity.setEmail(email);
-            cifCustEntity.setStatus("0");
-            cifCustEntity.setInsertdate(DateUtil.getUserDate(DATE_FMT_DATE));
-            cifCustEntity.setInserttime(DateUtil.getUserDate(DATE_FMT_TIME));
-            cifCustEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
-            cifCustEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
-            cifCustEntity.setSource(source);
-            custDao.insCust(cifCustEntity);
+            mapParam.put("customerno",mapParam.get("id"));
+            mapParam.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATE));
+            mapParam.put("inserttime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATE));
+            mapParam.put("updatetime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("status","0");
+
+            custDao.insCust(mapParam);
         } catch (Exception e) {
-            return new Response<>().fail();//cif_cust表写失败
+            e.printStackTrace();
         }
         return new Response<>().success();
     }
@@ -397,18 +491,72 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
     /**
      * 写个人基本信息表
      */
-    private Response addPersonInfo(){
+    private Response addPersonInfo(Map<String, Object> mapParam){
         try {
-            PersonInfoEntity cifPersonInfoEntity = new PersonInfoEntity();
-            cifPersonInfoEntity.setCustomerno(customerno);
-            cifPersonInfoEntity.setMembername(membername);
-            cifPersonInfoEntity.setInsertdate(DateUtil.getUserDate(DATE_FMT_DATE));
-            cifPersonInfoEntity.setInserttime(DateUtil.getUserDate(DATE_FMT_TIME));
-            cifPersonInfoEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
-            cifPersonInfoEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
-            personInfoDao.insPersonInfo(cifPersonInfoEntity);
+
+            mapParam.put("customerno",mapParam.get("id"));
+            mapParam.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATE));
+            mapParam.put("inserttime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATE));
+            mapParam.put("updatetime",DateUtil.getUserDate(DATE_FMT_TIME));
+            personInfoDao.insPersonInfo(mapParam);
         } catch (Exception e) {
-            return new Response<>().fail();//cif_cust表写失败
+            e.printStackTrace();
+        }
+        return new Response<>().success();
+    }
+
+    /**
+     * 查询s个人注册基本信息表
+     */
+    private List<Map> queryCasRegisterInfo(){
+             Map<String,Object> entity = new HashMap<>();
+            entity.put("membertype",membertype);
+            if(membertype.equals(company)){
+            entity.put("membername",membername);
+            entity.put("certificateno",certificateno);
+         }else {
+            entity.put("mobile",mobile);
+            }
+            List<Map> list = casRegisterDao.queryCasRegisterList(entity);
+        return list;
+    }
+
+
+    /**
+     * 写个人注册基本信息表
+     */
+    private Response addCasRegisterInfo( String id){
+        Map<String,Object> entity = new HashMap<>();
+        try {
+            entity.put("id",id);
+            entity.put("registersource",registersource);
+            entity.put("membertype",membertype);
+            if(membertype.equals(company)){
+                entity.put("membername",membername);
+                entity.put("certificatetype",certificatetype);
+                entity.put("certificateno",certificateno);
+            }else {
+                entity.put("mobile",mobile);
+            }
+            entity.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATETIME));
+            casRegisterDao.insCasRegister(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Response<>().success();
+    }
+
+
+    /**
+     * 修改个人注册基本信息表
+     */
+    private Response updCasRegisterInfo(Map<String, Object> mapParam){
+        try {
+            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATETIME));
+            casRegisterDao.updCasRegister(mapParam);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return new Response<>().success();
     }
@@ -416,23 +564,18 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
     /**
      * 写企业基本信息表
      */
-    private Response addOrganInfo(){
+    private Response addOrganInfo(Map<String, Object> mapParam){
         try {
-            OrganInfoEntity cifOrganInfoEntity = new OrganInfoEntity();
-            cifOrganInfoEntity.setCustomerno(customerno);
-            cifOrganInfoEntity.setVersion(1);
-            cifOrganInfoEntity.setMembername(membername);
-            cifOrganInfoEntity.setOrgantype(organtype);
-            cifOrganInfoEntity.setOrganclass(organclass);
-            cifOrganInfoEntity.setOrganstatus("1");
-            cifOrganInfoEntity.setInsertdate(DateUtil.getUserDate(DATE_FMT_DATE));
-            cifOrganInfoEntity.setInserttime(DateUtil.getUserDate(DATE_FMT_TIME));
-            cifOrganInfoEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
-            cifOrganInfoEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
-            cifOrganInfoEntity.setSource(source);//来源：0-个人服务平台注册；1-企业注册服务平台；2-企业三方会签
-            organInfoDao.insOrganInfo(cifOrganInfoEntity);
+            mapParam.put("customerno",mapParam.get("id"));
+            mapParam.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATE));
+            mapParam.put("inserttime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATE));
+            mapParam.put("updatetime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("organstatus","1");
+            mapParam.put("version",1);
+            organInfoDao.insOrganInfo(mapParam);
         } catch (Exception e) {
-            return new Response<>().fail();//cif_organ_info表写失败");
+            e.printStackTrace();
         }
         return new Response<>().success();
     }
@@ -440,21 +583,19 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
     /**
      * 写登陆认证表
      */
-    private  Response addAuthone(){
+    private  Response addAuthone(Map<String, Object> mapParam){
         try {
-            AusAuthoneEntity ausAuthoneEntity = new AusAuthoneEntity();
-            ausAuthoneEntity.setCustomerno(customerno);
-            ausAuthoneEntity.setPassword(parseSystemUtil.parseByte2HexStr(aDEncryp.encrypt(password, "MSJFmsjf")));
-            ausAuthoneEntity.setFailcount(0);
-            ausAuthoneEntity.setOnlinestatus("N");//N-不在线 Y-在线
-            ausAuthoneEntity.setRegistersource(registersource);//0-web 1-app
-            ausAuthoneEntity.setInsertdate(DateUtil.getUserDate(DATE_FMT_DATE));
-            ausAuthoneEntity.setInserttime(DateUtil.getUserDate(DATE_FMT_TIME));
-            ausAuthoneEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
-            ausAuthoneEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
-            ausAuthoneDao.inrAusAuthone(ausAuthoneEntity);
+            mapParam.put("customerno",mapParam.get("id"));
+            mapParam.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATE));
+            mapParam.put("inserttime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATE));
+            mapParam.put("updatetime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("password",parseSystemUtil.parseByte2HexStr(aDEncryp.encrypt(password, "MSJFmsjf")));
+            mapParam.put("failcount",0);
+            mapParam.put("registersource",registersource);
+            ausAuthoneDao.inrAusAuthone(mapParam);
         } catch (Exception e) {
-            return new Response<>().fail();
+            e.printStackTrace();
         }
         return new Response<>().success();
     }

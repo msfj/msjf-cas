@@ -81,19 +81,20 @@
     </select>
 
     <!--用户基本信息表cust 按实体新增记录 mysql-->
-    <insert id="insCust" parameterType="com.msjf.finance.cas.modules.register.entity.CustEntity" databaseId="mysql">
+    <insert id="insCust" parameterType="java.util.Map">
     <![CDATA[
 		insert into cas.cust(
-			customerno,loginname,membertype,
+			customerno,loginname,registersource,membertype,
 			certificatetype,certificateno,linkmanname,mobile,cardno,bank,companyname,
 			email,status,insertdate,inserttime,
-			updatedate,updatetime,issave,source
+			updatedate,updatetime,issave,source,corname,corcardtype,corcardno
 		) values(
 			#{customerno, jdbcType=VARCHAR},#{loginname, jdbcType=VARCHAR},#{registersource, jdbcType=VARCHAR},#{membertype, jdbcType=VARCHAR},
 			#{certificatetype, jdbcType=VARCHAR},#{certificateno, jdbcType=VARCHAR},#{linkmanname, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},
 			#{cardno, jdbcType=VARCHAR},#{bank, jdbcType=VARCHAR},#{companyname, jdbcType=VARCHAR},
 			#{email, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
-			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{issave, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR}
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{issave, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR},
+			#{corname, jdbcType=VARCHAR},#{corcardtype, jdbcType=VARCHAR},#{corcardno, jdbcType=VARCHAR}
 	)]]>
     </insert>
 </mapper>

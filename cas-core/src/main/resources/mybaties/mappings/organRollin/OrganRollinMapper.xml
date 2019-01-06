@@ -24,7 +24,7 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime"
-		from kpfsp.cif_organ_rollin
+		from cas.organ_rollin
 	]]>
         <where>
             <if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>

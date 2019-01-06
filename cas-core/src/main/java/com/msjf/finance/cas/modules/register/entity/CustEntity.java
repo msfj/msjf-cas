@@ -44,6 +44,17 @@ public class CustEntity {
     private String issave;
     //来源：0-个人服务平台注册；1-企业注册服务平台；2-企业三方会签
     private String source;
+
+    //法人名
+    private String corname;
+
+    //法人证件类型
+    private String corcardtype;
+
+
+    //法人证件号
+    private String corcardno;
+
     public void init() {
     }
     public String getCustomerno() {
@@ -159,6 +170,30 @@ public class CustEntity {
 
     public void setBank(String bank) {
         this.bank = bank;
+    }
+
+    public String getCorname() {
+        return corname;
+    }
+
+    public void setCorname(String corname) {
+        this.corname = corname;
+    }
+
+    public String getCorcardtype() {
+        return corcardtype;
+    }
+
+    public void setCorcardtype(String corcardtype) {
+        this.corcardtype = corcardtype;
+    }
+
+    public String getCorcardno() {
+        return corcardno;
+    }
+
+    public void setCorcardno(String corcardno) {
+        this.corcardno = corcardno;
     }
 
     public String getSource() {
