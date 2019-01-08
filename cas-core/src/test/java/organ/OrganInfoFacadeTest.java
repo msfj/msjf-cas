@@ -8,7 +8,6 @@ import com.msjf.finance.cas.facade.employee.EmployeeInfoFacade;
 import com.msjf.finance.cas.facade.organ.OrganInfoFacade;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.facade.register.RegisterFacade;
-import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import org.junit.Test;
 
 import javax.annotation.Resource;
