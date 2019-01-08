@@ -1,6 +1,7 @@
 
 package organ;
 
+import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.common.test.SpringTestCase;
 
 import com.msjf.finance.cas.facade.employee.EmployeeInfoFacade;
@@ -42,6 +43,12 @@ public class OrganInfoFacadeTest   extends SpringTestCase{
         mapParam.put("corcardno","324242412421");
         mapParam.put("corname","郑国1");*/
         mapParam.put("password","123456");
-        registerFacade.inserRegister(mapParam);
+        Response rs = new Response();
+        try{
+            registerFacade.inserRegister(mapParam,rs);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

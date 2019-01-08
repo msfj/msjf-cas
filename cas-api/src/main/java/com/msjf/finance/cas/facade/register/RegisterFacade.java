@@ -13,5 +13,5 @@ public interface RegisterFacade {
     /**
      * 业务用户注册
      */
-    public Response<List<Map<String,String>>>  inserRegister(HashMap<String,Object> mapParam);
+    public Response  inserRegister(HashMap<String,Object> mapParam,Response rs ) throws Exception;
 }
