@@ -1,6 +1,8 @@
 package com.msjf.finance.cas.modules.organ.dao;
 import com.msjf.finance.cas.common.dao.MyBatisDao;
 import com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity;
+import com.msjf.finance.cas.modules.organ.entity.OrganInfoKey;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +18,10 @@ public interface OrganInfoDao{
      */
     List<OrganInfoEntity> getOrganInfo(OrganInfoEntity organInfoEntity);
 
+    /**
+     * 查询企业基本信息
+     */
+    OrganInfoEntity getOrganInfoByKey(OrganInfoKey organInfoKey);
     /**
      * 写企业基本信息表
      */

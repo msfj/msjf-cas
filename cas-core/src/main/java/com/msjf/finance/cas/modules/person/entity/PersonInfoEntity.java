@@ -4,9 +4,7 @@ package com.msjf.finance.cas.modules.person.entity;
  * 个人基本信息表
  * Created by lzp on 2018/12/28.
  */
-public class PersonInfoEntity {
-    //客户代码
-    private String customerno;
+public class PersonInfoEntity extends PersonInfoKey{
     //客户姓名
     private String membername;
     //学历
@@ -30,12 +28,6 @@ public class PersonInfoEntity {
     //更新时间
     private String updatetime;
     public void init() {
-    }
-    public String getCustomerno() {
-        return this.customerno;
-    }
-    public void setCustomerno(String customerno) {
-        this.customerno = customerno;
     }
     public String getMembername() {
         return this.membername;

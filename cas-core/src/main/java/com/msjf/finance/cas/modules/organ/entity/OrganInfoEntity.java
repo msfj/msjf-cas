@@ -4,9 +4,7 @@ package com.msjf.finance.cas.modules.organ.entity;
  * 企业基本信息表
  * Created by lzp on 2018/12/26.
  */
-public class OrganInfoEntity {
-    //企业客户代码
-    private String customerno;
+public class OrganInfoEntity extends OrganInfoKey{
     //版本号（由小到大）
     private Integer version;
     //企业名称
@@ -88,12 +86,6 @@ public class OrganInfoEntity {
     //来源：1-企业注册服务平台；2-企业三方会签
     private String source;
     public void init() {
-    }
-    public String getCustomerno() {
-        return this.customerno;
-    }
-    public void setCustomerno(String customerno) {
-        this.customerno = customerno;
     }
     public Integer getVersion() {
         return this.version;

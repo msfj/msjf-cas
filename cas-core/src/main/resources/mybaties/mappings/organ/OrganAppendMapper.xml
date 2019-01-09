@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msjf.finance.cas.modules.login.dao.OrganAppendMapper">
+  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.modules.login.entity.OrganAppendEntity">
+    <id column="customerno" jdbcType="VARCHAR" property="customerno" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="isfiling" jdbcType="VARCHAR" property="isfiling" />
+    <result column="registerno" jdbcType="VARCHAR" property="registerno" />
+    <result column="employeenum" jdbcType="VARCHAR" property="employeenum" />
+    <result column="caremarkettype" jdbcType="VARCHAR" property="caremarkettype" />
+    <result column="projectphase" jdbcType="VARCHAR" property="projectphase" />
+    <result column="isfundfiling" jdbcType="VARCHAR" property="isfundfiling" />
+    <result column="fundfilingno" jdbcType="VARCHAR" property="fundfilingno" />
+    <result column="fundmanagername" jdbcType="VARCHAR" property="fundmanagername" />
+    <result column="fundmanagerno" jdbcType="VARCHAR" property="fundmanagerno" />
+    <result column="fundprojecttrade" jdbcType="VARCHAR" property="fundprojecttrade" />
+    <result column="fundprojectphase" jdbcType="VARCHAR" property="fundprojectphase" />
+    <result column="belonginvest" jdbcType="VARCHAR" property="belonginvest" />
+    <result column="annualrate" jdbcType="VARCHAR" property="annualrate" />
+    <result column="raisetype" jdbcType="VARCHAR" property="raisetype" />
+    <result column="invertcount" jdbcType="VARCHAR" property="invertcount" />
+    <result column="companytrade" jdbcType="VARCHAR" property="companytrade" />
+    <result column="companyname" jdbcType="VARCHAR" property="companyname" />
+    <result column="protrade" jdbcType="VARCHAR" property="protrade" />
+    <result column="investnum" jdbcType="VARCHAR" property="investnum" />
+    <result column="projecttrade" jdbcType="VARCHAR" property="projecttrade" />
+    <result column="blocname" jdbcType="VARCHAR" property="blocname" />
+    <result column="classify" jdbcType="VARCHAR" property="classify" />
+    <result column="businesstype" jdbcType="VARCHAR" property="businesstype" />
+    <result column="objecttype" jdbcType="VARCHAR" property="objecttype" />
+    <result column="specificbusinesstype" jdbcType="VARCHAR" property="specificbusinesstype" />
+    <result column="profitmodel" jdbcType="VARCHAR" property="profitmodel" />
+    <result column="capitalsource" jdbcType="VARCHAR" property="capitalsource" />
+    <result column="insertdate" jdbcType="VARCHAR" property="insertdate" />
+    <result column="inserttime" jdbcType="VARCHAR" property="inserttime" />
+    <result column="updatedate" jdbcType="VARCHAR" property="updatedate" />
+    <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+    <result column="profittype" jdbcType="LONGVARCHAR" property="profittype" />
+    <result column="fundmanagerintro" jdbcType="LONGVARCHAR" property="fundmanagerintro" />
+    <result column="fundprojectintro" jdbcType="LONGVARCHAR" property="fundprojectintro" />
+    <result column="companyinfo" jdbcType="LONGVARCHAR" property="companyinfo" />
+    <result column="prointro" jdbcType="LONGVARCHAR" property="prointro" />
+    <result column="projectintro" jdbcType="LONGVARCHAR" property="projectintro" />
+    <result column="mainworkexp" jdbcType="LONGVARCHAR" property="mainworkexp" />
+    <result column="othersintro" jdbcType="LONGVARCHAR" property="othersintro" />
+    <result column="partnerintro" jdbcType="LONGVARCHAR" property="partnerintro" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    customerno, version, isfiling, registerno, employeenum, caremarkettype, projectphase, 
+    isfundfiling, fundfilingno, fundmanagername, fundmanagerno, fundprojecttrade, fundprojectphase, 
+    belonginvest, annualrate, raisetype, invertcount, companytrade, companyname, protrade, 
+    investnum, projecttrade, blocname, classify, businesstype, objecttype, specificbusinesstype, 
+    profitmodel, capitalsource, insertdate, inserttime, updatedate, updatetime
+  </sql>
+  <sql id="Blob_Column_List">
+    profittype, fundmanagerintro, fundprojectintro, companyinfo, prointro, projectintro, 
+    mainworkexp, othersintro, partnerintro
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from organ_append
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from organ_append
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+    insert into organ_append (customerno, version, isfiling, 
+      registerno, employeenum, caremarkettype, 
+      projectphase, isfundfiling, fundfilingno, 
+      fundmanagername, fundmanagerno, fundprojecttrade, 
+      fundprojectphase, belonginvest, annualrate, 
+      raisetype, invertcount, companytrade, 
+      companyname, protrade, investnum, 
+      projecttrade, blocname, classify, 
+      businesstype, objecttype, specificbusinesstype, 
+      profitmodel, capitalsource, insertdate, 
+      inserttime, updatedate, updatetime, 
+      profittype, fundmanagerintro, fundprojectintro, 
+      companyinfo, prointro, projectintro, 
+      mainworkexp, othersintro, partnerintro
+      )
+    values (#{customerno,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{isfiling,jdbcType=VARCHAR}, 
+      #{registerno,jdbcType=VARCHAR}, #{employeenum,jdbcType=VARCHAR}, #{caremarkettype,jdbcType=VARCHAR}, 
+      #{projectphase,jdbcType=VARCHAR}, #{isfundfiling,jdbcType=VARCHAR}, #{fundfilingno,jdbcType=VARCHAR}, 
+      #{fundmanagername,jdbcType=VARCHAR}, #{fundmanagerno,jdbcType=VARCHAR}, #{fundprojecttrade,jdbcType=VARCHAR}, 
+      #{fundprojectphase,jdbcType=VARCHAR}, #{belonginvest,jdbcType=VARCHAR}, #{annualrate,jdbcType=VARCHAR}, 
+      #{raisetype,jdbcType=VARCHAR}, #{invertcount,jdbcType=VARCHAR}, #{companytrade,jdbcType=VARCHAR}, 
+      #{companyname,jdbcType=VARCHAR}, #{protrade,jdbcType=VARCHAR}, #{investnum,jdbcType=VARCHAR}, 
+      #{projecttrade,jdbcType=VARCHAR}, #{blocname,jdbcType=VARCHAR}, #{classify,jdbcType=VARCHAR}, 
+      #{businesstype,jdbcType=VARCHAR}, #{objecttype,jdbcType=VARCHAR}, #{specificbusinesstype,jdbcType=VARCHAR}, 
+      #{profitmodel,jdbcType=VARCHAR}, #{capitalsource,jdbcType=VARCHAR}, #{insertdate,jdbcType=VARCHAR}, 
+      #{inserttime,jdbcType=VARCHAR}, #{updatedate,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
+      #{profittype,jdbcType=LONGVARCHAR}, #{fundmanagerintro,jdbcType=LONGVARCHAR}, #{fundprojectintro,jdbcType=LONGVARCHAR}, 
+      #{companyinfo,jdbcType=LONGVARCHAR}, #{prointro,jdbcType=LONGVARCHAR}, #{projectintro,jdbcType=LONGVARCHAR}, 
+      #{mainworkexp,jdbcType=LONGVARCHAR}, #{othersintro,jdbcType=LONGVARCHAR}, #{partnerintro,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+    insert into organ_append
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerno != null">
+        customerno,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="isfiling != null">
+        isfiling,
+      </if>
+      <if test="registerno != null">
+        registerno,
+      </if>
+      <if test="employeenum != null">
+        employeenum,
+      </if>
+      <if test="caremarkettype != null">
+        caremarkettype,
+      </if>
+      <if test="projectphase != null">
+        projectphase,
+      </if>
+      <if test="isfundfiling != null">
+        isfundfiling,
+      </if>
+      <if test="fundfilingno != null">
+        fundfilingno,
+      </if>
+      <if test="fundmanagername != null">
+        fundmanagername,
+      </if>
+      <if test="fundmanagerno != null">
+        fundmanagerno,
+      </if>
+      <if test="fundprojecttrade != null">
+        fundprojecttrade,
+      </if>
+      <if test="fundprojectphase != null">
+        fundprojectphase,
+      </if>
+      <if test="belonginvest != null">
+        belonginvest,
+      </if>
+      <if test="annualrate != null">
+        annualrate,
+      </if>
+      <if test="raisetype != null">
+        raisetype,
+      </if>
+      <if test="invertcount != null">
+        invertcount,
+      </if>
+      <if test="companytrade != null">
+        companytrade,
+      </if>
+      <if test="companyname != null">
+        companyname,
+      </if>
+      <if test="protrade != null">
+        protrade,
+      </if>
+      <if test="investnum != null">
+        investnum,
+      </if>
+      <if test="projecttrade != null">
+        projecttrade,
+      </if>
+      <if test="blocname != null">
+        blocname,
+      </if>
+      <if test="classify != null">
+        classify,
+      </if>
+      <if test="businesstype != null">
+        businesstype,
+      </if>
+      <if test="objecttype != null">
+        objecttype,
+      </if>
+      <if test="specificbusinesstype != null">
+        specificbusinesstype,
+      </if>
+      <if test="profitmodel != null">
+        profitmodel,
+      </if>
+      <if test="capitalsource != null">
+        capitalsource,
+      </if>
+      <if test="insertdate != null">
+        insertdate,
+      </if>
+      <if test="inserttime != null">
+        inserttime,
+      </if>
+      <if test="updatedate != null">
+        updatedate,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="profittype != null">
+        profittype,
+      </if>
+      <if test="fundmanagerintro != null">
+        fundmanagerintro,
+      </if>
+      <if test="fundprojectintro != null">
+        fundprojectintro,
+      </if>
+      <if test="companyinfo != null">
+        companyinfo,
+      </if>
+      <if test="prointro != null">
+        prointro,
+      </if>
+      <if test="projectintro != null">
+        projectintro,
+      </if>
+      <if test="mainworkexp != null">
+        mainworkexp,
+      </if>
+      <if test="othersintro != null">
+        othersintro,
+      </if>
+      <if test="partnerintro != null">
+        partnerintro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerno != null">
+        #{customerno,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isfiling != null">
+        #{isfiling,jdbcType=VARCHAR},
+      </if>
+      <if test="registerno != null">
+        #{registerno,jdbcType=VARCHAR},
+      </if>
+      <if test="employeenum != null">
+        #{employeenum,jdbcType=VARCHAR},
+      </if>
+      <if test="caremarkettype != null">
+        #{caremarkettype,jdbcType=VARCHAR},
+      </if>
+      <if test="projectphase != null">
+        #{projectphase,jdbcType=VARCHAR},
+      </if>
+      <if test="isfundfiling != null">
+        #{isfundfiling,jdbcType=VARCHAR},
+      </if>
+      <if test="fundfilingno != null">
+        #{fundfilingno,jdbcType=VARCHAR},
+      </if>
+      <if test="fundmanagername != null">
+        #{fundmanagername,jdbcType=VARCHAR},
+      </if>
+      <if test="fundmanagerno != null">
+        #{fundmanagerno,jdbcType=VARCHAR},
+      </if>
+      <if test="fundprojecttrade != null">
+        #{fundprojecttrade,jdbcType=VARCHAR},
+      </if>
+      <if test="fundprojectphase != null">
+        #{fundprojectphase,jdbcType=VARCHAR},
+      </if>
+      <if test="belonginvest != null">
+        #{belonginvest,jdbcType=VARCHAR},
+      </if>
+      <if test="annualrate != null">
+        #{annualrate,jdbcType=VARCHAR},
+      </if>
+      <if test="raisetype != null">
+        #{raisetype,jdbcType=VARCHAR},
+      </if>
+      <if test="invertcount != null">
+        #{invertcount,jdbcType=VARCHAR},
+      </if>
+      <if test="companytrade != null">
+        #{companytrade,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null">
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="protrade != null">
+        #{protrade,jdbcType=VARCHAR},
+      </if>
+      <if test="investnum != null">
+        #{investnum,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttrade != null">
+        #{projecttrade,jdbcType=VARCHAR},
+      </if>
+      <if test="blocname != null">
+        #{blocname,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null">
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="businesstype != null">
+        #{businesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="objecttype != null">
+        #{objecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="specificbusinesstype != null">
+        #{specificbusinesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="profitmodel != null">
+        #{profitmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalsource != null">
+        #{capitalsource,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null">
+        #{insertdate,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null">
+        #{inserttime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="profittype != null">
+        #{profittype,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fundmanagerintro != null">
+        #{fundmanagerintro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fundprojectintro != null">
+        #{fundprojectintro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="companyinfo != null">
+        #{companyinfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="prointro != null">
+        #{prointro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectintro != null">
+        #{projectintro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mainworkexp != null">
+        #{mainworkexp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="othersintro != null">
+        #{othersintro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="partnerintro != null">
+        #{partnerintro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+    update organ_append
+    <set>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isfiling != null">
+        isfiling = #{isfiling,jdbcType=VARCHAR},
+      </if>
+      <if test="registerno != null">
+        registerno = #{registerno,jdbcType=VARCHAR},
+      </if>
+      <if test="employeenum != null">
+        employeenum = #{employeenum,jdbcType=VARCHAR},
+      </if>
+      <if test="caremarkettype != null">
+        caremarkettype = #{caremarkettype,jdbcType=VARCHAR},
+      </if>
+      <if test="projectphase != null">
+        projectphase = #{projectphase,jdbcType=VARCHAR},
+      </if>
+      <if test="isfundfiling != null">
+        isfundfiling = #{isfundfiling,jdbcType=VARCHAR},
+      </if>
+      <if test="fundfilingno != null">
+        fundfilingno = #{fundfilingno,jdbcType=VARCHAR},
+      </if>
+      <if test="fundmanagername != null">
+        fundmanagername = #{fundmanagername,jdbcType=VARCHAR},
+      </if>
+      <if test="fundmanagerno != null">
+        fundmanagerno = #{fundmanagerno,jdbcType=VARCHAR},
+      </if>
+      <if test="fundprojecttrade != null">
+        fundprojecttrade = #{fundprojecttrade,jdbcType=VARCHAR},
+      </if>
+      <if test="fundprojectphase != null">
+        fundprojectphase = #{fundprojectphase,jdbcType=VARCHAR},
+      </if>
+      <if test="belonginvest != null">
+        belonginvest = #{belonginvest,jdbcType=VARCHAR},
+      </if>
+      <if test="annualrate != null">
+        annualrate = #{annualrate,jdbcType=VARCHAR},
+      </if>
+      <if test="raisetype != null">
+        raisetype = #{raisetype,jdbcType=VARCHAR},
+      </if>
+      <if test="invertcount != null">
+        invertcount = #{invertcount,jdbcType=VARCHAR},
+      </if>
+      <if test="companytrade != null">
+        companytrade = #{companytrade,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null">
+        companyname = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="protrade != null">
+        protrade = #{protrade,jdbcType=VARCHAR},
+      </if>
+      <if test="investnum != null">
+        investnum = #{investnum,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttrade != null">
+        projecttrade = #{projecttrade,jdbcType=VARCHAR},
+      </if>
+      <if test="blocname != null">
+        blocname = #{blocname,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null">
+        classify = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="businesstype != null">
+        businesstype = #{businesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="objecttype != null">
+        objecttype = #{objecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="specificbusinesstype != null">
+        specificbusinesstype = #{specificbusinesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="profitmodel != null">
+        profitmodel = #{profitmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalsource != null">
+        capitalsource = #{capitalsource,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null">
+        insertdate = #{insertdate,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null">
+        inserttime = #{inserttime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        updatedate = #{updatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="profittype != null">
+        profittype = #{profittype,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fundmanagerintro != null">
+        fundmanagerintro = #{fundmanagerintro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fundprojectintro != null">
+        fundprojectintro = #{fundprojectintro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="companyinfo != null">
+        companyinfo = #{companyinfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="prointro != null">
+        prointro = #{prointro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectintro != null">
+        projectintro = #{projectintro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mainworkexp != null">
+        mainworkexp = #{mainworkexp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="othersintro != null">
+        othersintro = #{othersintro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="partnerintro != null">
+        partnerintro = #{partnerintro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+    update organ_append
+    set version = #{version,jdbcType=INTEGER},
+      isfiling = #{isfiling,jdbcType=VARCHAR},
+      registerno = #{registerno,jdbcType=VARCHAR},
+      employeenum = #{employeenum,jdbcType=VARCHAR},
+      caremarkettype = #{caremarkettype,jdbcType=VARCHAR},
+      projectphase = #{projectphase,jdbcType=VARCHAR},
+      isfundfiling = #{isfundfiling,jdbcType=VARCHAR},
+      fundfilingno = #{fundfilingno,jdbcType=VARCHAR},
+      fundmanagername = #{fundmanagername,jdbcType=VARCHAR},
+      fundmanagerno = #{fundmanagerno,jdbcType=VARCHAR},
+      fundprojecttrade = #{fundprojecttrade,jdbcType=VARCHAR},
+      fundprojectphase = #{fundprojectphase,jdbcType=VARCHAR},
+      belonginvest = #{belonginvest,jdbcType=VARCHAR},
+      annualrate = #{annualrate,jdbcType=VARCHAR},
+      raisetype = #{raisetype,jdbcType=VARCHAR},
+      invertcount = #{invertcount,jdbcType=VARCHAR},
+      companytrade = #{companytrade,jdbcType=VARCHAR},
+      companyname = #{companyname,jdbcType=VARCHAR},
+      protrade = #{protrade,jdbcType=VARCHAR},
+      investnum = #{investnum,jdbcType=VARCHAR},
+      projecttrade = #{projecttrade,jdbcType=VARCHAR},
+      blocname = #{blocname,jdbcType=VARCHAR},
+      classify = #{classify,jdbcType=VARCHAR},
+      businesstype = #{businesstype,jdbcType=VARCHAR},
+      objecttype = #{objecttype,jdbcType=VARCHAR},
+      specificbusinesstype = #{specificbusinesstype,jdbcType=VARCHAR},
+      profitmodel = #{profitmodel,jdbcType=VARCHAR},
+      capitalsource = #{capitalsource,jdbcType=VARCHAR},
+      insertdate = #{insertdate,jdbcType=VARCHAR},
+      inserttime = #{inserttime,jdbcType=VARCHAR},
+      updatedate = #{updatedate,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      profittype = #{profittype,jdbcType=LONGVARCHAR},
+      fundmanagerintro = #{fundmanagerintro,jdbcType=LONGVARCHAR},
+      fundprojectintro = #{fundprojectintro,jdbcType=LONGVARCHAR},
+      companyinfo = #{companyinfo,jdbcType=LONGVARCHAR},
+      prointro = #{prointro,jdbcType=LONGVARCHAR},
+      projectintro = #{projectintro,jdbcType=LONGVARCHAR},
+      mainworkexp = #{mainworkexp,jdbcType=LONGVARCHAR},
+      othersintro = #{othersintro,jdbcType=LONGVARCHAR},
+      partnerintro = #{partnerintro,jdbcType=LONGVARCHAR}
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntity">
+    update organ_append
+    set version = #{version,jdbcType=INTEGER},
+      isfiling = #{isfiling,jdbcType=VARCHAR},
+      registerno = #{registerno,jdbcType=VARCHAR},
+      employeenum = #{employeenum,jdbcType=VARCHAR},
+      caremarkettype = #{caremarkettype,jdbcType=VARCHAR},
+      projectphase = #{projectphase,jdbcType=VARCHAR},
+      isfundfiling = #{isfundfiling,jdbcType=VARCHAR},
+      fundfilingno = #{fundfilingno,jdbcType=VARCHAR},
+      fundmanagername = #{fundmanagername,jdbcType=VARCHAR},
+      fundmanagerno = #{fundmanagerno,jdbcType=VARCHAR},
+      fundprojecttrade = #{fundprojecttrade,jdbcType=VARCHAR},
+      fundprojectphase = #{fundprojectphase,jdbcType=VARCHAR},
+      belonginvest = #{belonginvest,jdbcType=VARCHAR},
+      annualrate = #{annualrate,jdbcType=VARCHAR},
+      raisetype = #{raisetype,jdbcType=VARCHAR},
+      invertcount = #{invertcount,jdbcType=VARCHAR},
+      companytrade = #{companytrade,jdbcType=VARCHAR},
+      companyname = #{companyname,jdbcType=VARCHAR},
+      protrade = #{protrade,jdbcType=VARCHAR},
+      investnum = #{investnum,jdbcType=VARCHAR},
+      projecttrade = #{projecttrade,jdbcType=VARCHAR},
+      blocname = #{blocname,jdbcType=VARCHAR},
+      classify = #{classify,jdbcType=VARCHAR},
+      businesstype = #{businesstype,jdbcType=VARCHAR},
+      objecttype = #{objecttype,jdbcType=VARCHAR},
+      specificbusinesstype = #{specificbusinesstype,jdbcType=VARCHAR},
+      profitmodel = #{profitmodel,jdbcType=VARCHAR},
+      capitalsource = #{capitalsource,jdbcType=VARCHAR},
+      insertdate = #{insertdate,jdbcType=VARCHAR},
+      inserttime = #{inserttime,jdbcType=VARCHAR},
+      updatedate = #{updatedate,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR}
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -131,4 +131,58 @@
             #{source, jdbcType=CLOB}
 	)]]>
     </insert>
+
+    <!--企业基本信息表cif_organ_info 按主键查询-->
+    <select id="getOrganInfoByKey" parameterType="com.msjf.finance.cas.modules.organ.entity.OrganInfoKey"
+            resultType="com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			membername "membername",
+			organtype "organtype",
+			organclass "organclass",
+			organstatus "organstatus",
+			startcustomerno "startcustomerno",
+			servicecustomerno "servicecustomerno",
+			dealflow "dealflow",
+			managelimit "managelimit",
+			paydatelimit "paydatelimit",
+			registerprovince "registerprovince",
+			registercity "registercity",
+			registercounty "registercounty",
+			registertreet "registertreet",
+			realprovince "realprovince",
+			realcity "realcity",
+			realcounty "realcounty",
+			realtreet "realtreet",
+			businessscope "businessscope",
+			partnertype "partnertype",
+			partnername "partnername",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			isboard "isboard",
+			issupervision "issupervision",
+			sparecontactname "sparecontactname",
+			sparecontactmobile "sparecontactmobile",
+			establishdate "establishdate",
+			companyintro "companyintro",
+			hanginfo "hanginfo",
+			companymodel "companymodel",
+			investsource "investsource",
+			businessfile "businessfile",
+			establishfile "establishfile",
+			modifyfile "modifyfile",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			iscomplete "iscomplete",
+			namefile "namefile",
+			addressfile "addressfile"
+		from kpfsp.cif_organ_info
+		where
+			customerno = #{customerno}
+	]]>
+	</select>
 </mapper>

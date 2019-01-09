@@ -11,4 +11,5 @@ public interface LoginFacade {
 
     Response<List<Map>> memberLogin(HashMap<String, Object> mapParam);
 
+    Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
 }

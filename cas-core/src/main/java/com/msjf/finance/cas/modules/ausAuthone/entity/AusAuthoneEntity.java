@@ -4,9 +4,8 @@ package com.msjf.finance.cas.modules.ausAuthone.entity;
  * 登录认证表
  * Created by lzp on 2018/12/28.
  */
-public class AusAuthoneEntity {
-    //客户代码
-    private  String customerno;
+public class AusAuthoneEntity extends AusAuthoneKey{
+
     //登录密码
     private String password;
     //认证累计失败次数
@@ -28,12 +27,6 @@ public class AusAuthoneEntity {
     //来源：0-个人服务平台注册；1-企业注册服务平台；2-企业三方会签
     private String source;
     public void init() {
-    }
-    public String getCustomerno() {
-        return this.customerno;
-    }
-    public void setCustomerno(String customerno) {
-        this.customerno = customerno;
     }
     public String getPassword() {
         return this.password;

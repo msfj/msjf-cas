@@ -6,5 +6,4 @@
 
          <!-- ¼ÓÔØ·þÎñ -->
 	<import resource="classpath*:/dubbo-services/provider-services/*.xml"/>
-	<dubbo:service interface="com.msjf.finance.cas.facade.register.RegisterFacade" ref="registerFacade" />
 </beans>

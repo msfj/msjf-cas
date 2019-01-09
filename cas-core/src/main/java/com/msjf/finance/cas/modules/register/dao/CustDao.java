@@ -28,4 +28,9 @@ public interface CustDao {
      * 新增用户
      */
     void insCust(Map<String, Object> mapParams);
+
+    /**
+     * 按实体更新
+     */
+    void update(CustEntity custEntity);
 }

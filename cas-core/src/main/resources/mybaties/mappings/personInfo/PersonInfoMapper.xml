@@ -15,4 +15,27 @@
 	)]]>
     </insert>
 
+    <!--个人基本信息表cif_person_info 按主键查询-->
+    <select id="selectByKey" parameterType="com.msjf.finance.cas.modules.person.entity.PersonInfoKey"
+            resultType="com.msjf.finance.cas.modules.person.entity.PersonInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			membername "membername",
+			education "education",
+			workexp "workexp",
+			investexp "investexp",
+			idcard "idcard",
+			isamac "isamac",
+			amacno "amacno",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from kpfsp.cif_person_info
+		where
+			customerno = #{customerno}
+	]]>
+	</select>
+
 </mapper>
