@@ -2,7 +2,6 @@ package com.msjf.finance.cas.modules.person.dao;
 
 import com.msjf.finance.cas.common.dao.MyBatisDao;
 import com.msjf.finance.cas.modules.person.entity.PersonInfoEntity;
-import com.msjf.finance.cas.modules.person.entity.PersonInfoKey;
 
 import java.util.Map;
 
@@ -19,4 +18,11 @@ public interface PersonInfoDao {
      * 查询实体
      */
     PersonInfoEntity selectByKey(PersonInfoKey personInfoKey);
+    void insPersonInfo(PersonInfoEntity personInfoEntity);
+
+    /**
+     * 查询个人基本信息
+     * @return
+     */
+    List queryPersonInfoList();
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="GBK" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.msjf.finance.cas.modules.person.dao.PersonInfoDao">
+
+
     <!--个人基本信息表person_info 按实体新增记录 mysql-->
-    <insert id="insPersonInfo" parameterType="java.util.Map">
+    <insert id="insPersonInfo" parameterType="com.msjf.finance.cas.modules.person.entity.PersonInfoEntity" databaseId="mysql">
         <![CDATA[
 		insert into cas.person_info(
 			customerno,membername,education,workexp,investexp,
@@ -37,5 +39,11 @@
 			customerno = #{customerno}
 	]]>
 	</select>
+
+    <!--个人基本信息表person_info 查询个人信息列表 mysql-->
+    <select id="queryPersonInfoList"  databaseId="mysql" resultType="com.msjf.finance.cas.modules.person.entity.PersonInfoEntity">
+      select customerno,membername,education,workexp,investexp,
+			idcard,isamac,amacno from cas.person_info
+    </select>
 
 </mapper>
