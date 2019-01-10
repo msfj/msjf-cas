@@ -8,8 +8,24 @@ import java.util.List;
 import java.util.Map;
 
 public interface LoginFacade {
-
+    /**
+     * 会员登陆
+     * @param mapParam
+     * @return
+     */
     Response<List<Map>> memberLogin(HashMap<String, Object> mapParam);
 
+    /**
+     * 法人登陆
+     * @param mapParam
+     * @return
+     */
     Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
+
+    /**
+     * 密码变更
+     * @param mapParam
+     * @return
+     */
+    Response<List<Map>> changePwd(HashMap<String, Object> mapParam);
 }

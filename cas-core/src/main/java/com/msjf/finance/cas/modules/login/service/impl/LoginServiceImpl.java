@@ -261,6 +261,17 @@ public class LoginServiceImpl extends Account implements LoginService {
         return rs;
     }
 
+    @Override
+    public Response<List<Map>> changePwd(HashMap<String, Object> mapParam) {
+        Response rs=new Response();
+        rs.fail();
+        String certificateno=StringUtil.valueOf(mapParam.get("certificateno"));
+        if(CheckUtil.checkNull(certificateno,"证件号码",rs)){
+            return rs;
+        }
+        return null;
+    }
+
     private void getParam(HashMap<String, Object> mapParam) {
         loginname = StringUtil.valueOf(mapParam.get("loginname"));
         password = StringUtil.valueOf(mapParam.get("password"));

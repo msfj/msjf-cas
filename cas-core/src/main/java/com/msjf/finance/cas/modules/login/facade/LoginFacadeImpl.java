@@ -37,4 +37,9 @@ public class LoginFacadeImpl implements LoginFacade {
         }
         return rs;
     }
+
+    @Override
+    public Response<List<Map>> changePwd(HashMap<String, Object> mapParam) {
+        return null;
+    }
 }
