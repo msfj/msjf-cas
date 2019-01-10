@@ -6,6 +6,7 @@ import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.modules.login.dao.SysParamsConfigEntityMapper;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -13,6 +14,7 @@ import java.util.*;
  * 公用参数
  * Created by lzp on 2018/12/26.
  */
+@Component
 public final class CommonUtil {
     /**
      * 认证类型 0-服务平台注册 1-管理平台登录 2-修改密码 3-手机换绑 4-登陆平台登陆

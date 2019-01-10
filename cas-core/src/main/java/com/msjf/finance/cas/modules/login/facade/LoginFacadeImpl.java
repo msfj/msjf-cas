@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-@Service("LoginFacade")
+@Service("loginFacade")
 public class LoginFacadeImpl implements LoginFacade {
     @Resource
     LoginService loginService;
