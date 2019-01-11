@@ -2,8 +2,6 @@
 //
 //import com.msjf.finance.cas.common.test.SpringTestCase;
 //import com.msjf.finance.cas.facade.imagevalidcode.ImageValidcodeFacade;
-//import com.msjf.finance.cas.modules.imagevalidcode.facade.ImageValidcodeFacadeImpl;
-//import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 //import org.junit.Test;
 //
 //import javax.annotation.Resource;

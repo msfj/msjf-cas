@@ -17,5 +17,5 @@ public interface LoginService {
      * @param mapParam
      * @return
      */
-    Response<List<Map>> changePwd(HashMap<String, Object> mapParam);
+    Response<Map> changePwd(HashMap<String, Object> mapParam);
 }

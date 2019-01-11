@@ -6,6 +6,7 @@ import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.modules.login.dao.SysParamsConfigEntityMapper;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
+import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -17,13 +18,19 @@ import java.util.*;
 @Component
 public final class CommonUtil {
     /**
-     * 认证类型 0-服务平台注册 1-管理平台登录 2-修改密码 3-手机换绑 4-登陆平台登陆
+     * 认证类型 0-服务平台注册 1-管理平台登录 2-修改密码 3-手机换绑 4-业务平台登陆
      */
     public static final String SMS_REGISTER_TYPE = "0";
     public static final String SMS_LOGIN_TYPE = "1";
     public static final String SMS_CHANGE_PWD_TYPE = "2";
     public static final String SMS_CHANGE_MOBILE_TYPE = "3";
     public static final String SMS_SERVICE_LOGIN_TYPE = "4";
+    /**
+     * 注册,忘记密码，登陆模板id
+     * //您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
+     * // 您的验证码是3212，在30分钟内有效。
+     */
+    public static final String SMS_REGISTER_TEMPLATE = "2031012026749";
     /**
      * 日期格式 yyyyMMdd
      */
@@ -91,6 +98,7 @@ public final class CommonUtil {
 
     @Resource
     SysParamsConfigEntityMapper sysParamsConfigEntityMapper;
+
     /**
      * 生成 pwdLength长度的随机码
      * @param a
@@ -202,4 +210,55 @@ public final class CommonUtil {
         }
         return true;
     }
+
+    /**
+     * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
+     */
+    public static boolean sendVerificationCode(String verificateType,String mobile){
+        com.msjf.finance.mcs.common.response.Response rs=null;
+        if(CheckUtil.isNull(verificateType)){
+            return false;
+        }
+        if(CheckUtil.isNull(mobile)){
+            return false;
+        }
+        if(verificateType.equals(SMS_REGISTER_TYPE)||verificateType.equals(SMS_CHANGE_PWD_TYPE)||verificateType.equals(SMS_LOGIN_TYPE)||verificateType.equals(SMS_SERVICE_LOGIN_TYPE)){
+            HashMap map=new HashMap();
+            map.put("verificateType",verificateType);
+            map.put("mobile",mobile);
+            map.put("templateId",SMS_REGISTER_TEMPLATE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
+            SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
+            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+        }else{
+            return false;
+        }
+        return rs.checkIfFail()?false:true;
+    }
+    /**
+     * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
+     */
+    public static Boolean isExistVerificationCode(String verificateType,String mobile,String msgCode){
+        com.msjf.finance.mcs.common.response.Response rs=null;
+        if(CheckUtil.isNull(verificateType)){
+            return false;
+        }
+        if(CheckUtil.isNull(mobile)){
+            return false;
+        }
+        if(CheckUtil.isNull(msgCode)){
+            return false;
+        }
+        if(verificateType.equals(SMS_REGISTER_TYPE)||verificateType.equals(SMS_CHANGE_PWD_TYPE)||verificateType.equals(SMS_LOGIN_TYPE)||verificateType.equals(SMS_SERVICE_LOGIN_TYPE)) {
+            HashMap map=new HashMap();
+            map.put("verificateType",verificateType);
+            map.put("mobile",mobile);
+            map.put("msgCode",msgCode);
+            SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
+            rs=sendVerificationCodeFacade.isExistVerificationCode(map);
+        }else{
+            return false;
+        }
+        return rs.checkIfFail()?false:true;
+    }
+
 }

@@ -14,5 +14,5 @@ public interface PersonInfoFacade {
      * 查询个人信息
      * @return
      */
-    public Response<List<PersonInfoDomain>> queryUserInfoList();
+    Response<List<PersonInfoDomain>> queryUserInfoList();
 }

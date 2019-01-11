@@ -1,9 +1,16 @@
 package com.msjf.finance.cas.modules;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Created by lzp on 2018/12/27.
  */
 public abstract class Account {
+    /**
+     * 日志记录类
+     */
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     /** 日期格式 yyyyMMdd */
     public static final String DATE_FMT_DATE = "yyyyMMdd";
 
@@ -46,14 +53,14 @@ public abstract class Account {
     /** 步骤3*/
     public static final String step_3 = "3";
 
-    /** 短信认证类型 服务平台注册 */
-    public static final String VERIFICATE_TYPE_0 = "0";
-
-    /** 短信认证类型 管理平台登录 */
-    public static final String VERIFICATE_TYPE_1 = "1";
-
-    /** 短信认证类型 服务平台换绑手机号码 */
-    public static final String VERIFICATE_TYPE_3 = "3";
+    /**
+     * 短信认证类型 0-服务平台注册 1-管理平台登录 2-修改密码 3-手机换绑 4-业务平台登陆
+     */
+    public static final String SMS_REGISTER_TYPE = "0";
+    public static final String SMS_LOGIN_TYPE = "1";
+    public static final String SMS_CHANGE_PWD_TYPE = "2";
+    public static final String SMS_CHANGE_MOBILE_TYPE = "3";
+    public static final String SMS_SERVICE_LOGIN_TYPE = "4";
 
     /** 业务类型 服务平台注册 */
     public static final String BUSINESSCODE_0 = "0";
