@@ -1,6 +1,5 @@
 package com.msjf.finance.cas.modules.login.service.impl;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.modules.Account;
 import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
@@ -21,6 +20,7 @@ import com.msjf.finance.cas.modules.util.*;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -95,19 +95,21 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param
      */
     @Override
-    public Response<List<Map>> memberLogin(HashMap<String, Object> mapParam) {
+    public Response<Map> memberLogin(HashMap<String, Object> mapParam) {
         Response rs=new Response();
         rs.fail("登录失败");
         //1.获取参数值
         getParam(mapParam);
         //2.检查数据不能为空
-        preCheck(rs);
+        if(!preCheck(rs)){
+            return rs;
+        }
         //3.查询数据库账户，校验是否合法
         CustEntity entity = new CustEntity();
         if("1".equals(loginType)){
             entity.setLoginname(loginname);
         }else if("2".equals(loginType)){
-            entity.setLoginname(mobile);
+            entity.setMobile(mobile);
         }
         List<CustEntity> entitys = custDao.queryCustEntityList(entity);
         if (CheckUtil.isNull(entitys)) {
@@ -138,7 +140,7 @@ public class LoginServiceImpl extends Account implements LoginService {
 //        String enPassword = KDEncodeUtil.getKingdomPasswrod(password, customerno);
         //4.根据不同登陆类型 校验不同参数
         if("1".equals(loginType)){
-             if ("0".equals(loginsource)) {
+             if (WEB.equals(loginsource)) {
                 if (!CommonUtil.checkImageValidecode(uniqueID, inputValidecode, rs)) {
                     return rs;
                 }
@@ -155,12 +157,9 @@ public class LoginServiceImpl extends Account implements LoginService {
                 return rs;
             }
         }else if("2".equals(loginType)){
-            HashMap map=new HashMap();
-            map.put("verificateType",CommonUtil.SMS_SERVICE_LOGIN_TYPE);
-            map.put("mobile",mobile);
-            map.put("msgCode",msgCode);
-            com.msjf.finance.mcs.common.response.Response mcsRs=sendVerificationCodeFacade.checkVerificationCode(map);
-            if(!mcsRs.checkIfSuccess()){
+            Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
+            if(!flag){
+                rs.fail("校验失败");
                 return rs;
             }
         }
@@ -191,7 +190,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     @Override
-    public Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam) {
+    public Response<Map> corporationLogin(HashMap<String, Object> mapParam) {
         Response rs=new Response();
         rs.fail("登录失败");
         //1.获取参数值
@@ -208,12 +207,9 @@ public class LoginServiceImpl extends Account implements LoginService {
             return rs;
         }
         if(CheckUtil.isNull(loginname)){
-            HashMap map=new HashMap();
-            map.put("verificateType",CommonUtil.SMS_SERVICE_LOGIN_TYPE);
-            map.put("mobile",mobile);
-            map.put("msgCode",msgCode);
-            com.msjf.finance.mcs.common.response.Response mcsRs=sendVerificationCodeFacade.checkVerificationCode(map);
-            if(!mcsRs.checkIfSuccess()){
+            Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
+            if(!flag){
+                rs.fail("校验失败");
                 return rs;
             }
             CustEntity entity = new CustEntity();
@@ -323,38 +319,38 @@ public class LoginServiceImpl extends Account implements LoginService {
         msgCode=StringUtil.valueOf(mapParam.get("msgCode"));
         mobile=StringUtil.valueOf(mapParam.get("mobile"));
     }
-    public Response preCheck(Response rs) {
+    public Boolean preCheck(Response rs) {
         if(CheckUtil.checkNull(loginType,"登陆方式",rs)){
-            return rs;
+            return false;
         }
         if("1".equals(loginType)){
             if (CheckUtil.checkNull(loginname, "登录账号", rs)) {
-                return rs;
+                return false;
             }
             if (CheckUtil.checkNull(password, "密码", rs)) {
-                return rs;
+                return false;
+            }
+            if ("0".equals(loginsource)) {
+                if (CheckUtil.checkNull(uniqueID, "uniqueID", rs)) {
+                    return false;
+                }
+                if (CheckUtil.checkNull(inputValidecode, "图形验证码", rs)) {
+                    return false;
+                }
             }
         }
         if("2".equals(loginType)){
-            if (CheckUtil.checkNull(loginname, "手机号码", rs)) {
-                return rs;
+            if (CheckUtil.checkNull(mobile, "手机号码", rs)) {
+                return false;
             }
-            if (CheckUtil.checkNull(password, "验证码", rs)) {
-                return rs;
+            if (CheckUtil.checkNull(msgCode, "验证码", rs)) {
+                return false;
             }
         }
         if (CheckUtil.checkNull(loginsource, "登录来源", rs)) {
-            return rs;
+            return false;
         }
-        if ("0".equals(loginsource)) {
-            if (CheckUtil.checkNull(uniqueID, "uniqueID", rs)) {
-                return rs;
-            }
-            if (CheckUtil.checkNull(inputValidecode, "图形验证码", rs)) {
-                return rs;
-            }
-        }
-        return rs;
+        return true;
     }
 
 //    public boolean check(IResult rs) {

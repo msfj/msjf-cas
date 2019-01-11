@@ -15,7 +15,7 @@ public class LoginFacadeImpl implements LoginFacade {
     @Resource
     LoginService loginService;
     @Override
-    public Response<List<Map>> memberLogin(HashMap<String, Object> mapParam) {
+    public Response<Map> memberLogin(HashMap<String, Object> mapParam) {
         Response rs=null;
         try {
             rs=loginService.memberLogin(mapParam);
@@ -27,7 +27,7 @@ public class LoginFacadeImpl implements LoginFacade {
     }
 
     @Override
-    public Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam) {
+    public Response<Map> corporationLogin(HashMap<String, Object> mapParam) {
         Response rs=null;
         try {
             rs=loginService.corporationLogin(mapParam);
@@ -39,7 +39,14 @@ public class LoginFacadeImpl implements LoginFacade {
     }
 
     @Override
-    public Response<List<Map>> changePwd(HashMap<String, Object> mapParam) {
-        return null;
+    public Response<Map> changePwd(HashMap<String, Object> mapParam) {
+        Response rs=null;
+        try {
+            rs=loginService.changePwd(mapParam);
+        }catch (Exception e){
+            rs.fail();
+            throw new RuntimeException(e.getMessage(),e);
+        }
+        return rs;
     }
 }

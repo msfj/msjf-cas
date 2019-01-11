@@ -20,6 +20,9 @@ public abstract class Account {
     /** 日期格式 yyyyMMddHHmmss */
     public static final String DATE_FMT_DATETIME = "yyyyMMddHHmmss";
 
+    /** 登录来源  0-web 1-app*/
+    public static final String WEB="0";
+    public static final String APP="1";
     /**
      * 个人手机号码允许重复数量
      */

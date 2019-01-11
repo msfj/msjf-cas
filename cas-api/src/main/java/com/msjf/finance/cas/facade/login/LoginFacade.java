@@ -13,19 +13,19 @@ public interface LoginFacade {
      * @param mapParam
      * @return
      */
-    Response<List<Map>> memberLogin(HashMap<String, Object> mapParam);
+    Response<Map> memberLogin(HashMap<String, Object> mapParam);
 
     /**
      * 法人登陆
      * @param mapParam
      * @return
      */
-    Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
+    Response<Map> corporationLogin(HashMap<String, Object> mapParam);
 
     /**
      * 密码变更
      * @param mapParam
      * @return
      */
-    Response<List<Map>> changePwd(HashMap<String, Object> mapParam);
+    Response<Map> changePwd(HashMap<String, Object> mapParam);
 }

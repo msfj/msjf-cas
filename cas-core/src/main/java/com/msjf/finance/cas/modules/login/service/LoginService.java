@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface LoginService {
-    Response<List<Map>> memberLogin(HashMap<String, Object> mapParam);
+    Response<Map> memberLogin(HashMap<String, Object> mapParam);
 
-    Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
+    Response<Map> corporationLogin(HashMap<String, Object> mapParam);
 
     /**
      * 密码变更

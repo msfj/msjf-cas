@@ -5,10 +5,11 @@
     <insert id="inrAusAuthone" parameterType="java.util.Map">
         <![CDATA[
 		insert into cas.aus_authone(
-			customerno,password,failcount,registersource,insertdate,
+			customerno,password,failcount,onlinestatus,loginsource,registersource,insertdate,
 			inserttime,updatedate,updatetime,source
 		) values(
 			#{customerno, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},#{failcount, jdbcType=INTEGER},
+			#{onlinestatus, jdbcType=VARCHAR},#{loginsource, jdbcType=VARCHAR},
 			#{registersource, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
 			#{inserttime, jdbcType=CLOB},#{updatedate, jdbcType=VARCHAR},
 			#{updatetime, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR}
