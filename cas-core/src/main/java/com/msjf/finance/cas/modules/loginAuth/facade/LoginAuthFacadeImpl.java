@@ -28,7 +28,7 @@ public class LoginAuthFacadeImpl implements LoginAuthFacade {
             return  loginAuthService.selectLoginInfo(mapParam);
         }catch (Exception e){
               //打印错误日志log4j
-            return new Response<>().fail();
+            return new Response<>().fail(LoginAuthEmun.MSG_USER_EXCEPTION);
         }
     }
 }
