@@ -10,6 +10,9 @@ import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.util.*;
 /**
  * 公用参数
@@ -17,6 +20,10 @@ import java.util.*;
  */
 @Component
 public final class CommonUtil {
+
+
+    private static final String MAC_NAME = "HmacSHA1";
+    private static final String ENCODING = "UTF-8";
     /**
      * 认证类型 0-服务平台注册 1-管理平台登录 2-修改密码 3-手机换绑 4-业务平台登陆
      */
@@ -155,6 +162,34 @@ public final class CommonUtil {
     public static String decryptPassword(String password){
         byte[] bytes=ParseSystemUtil.parseHexStr2Byte(password);
         return ParseSystemUtil.parseByte2HexStr(ADEncrypUtil.decrypt(bytes,ADEncrypNo));
+    }
+
+    /**
+     * HMAC-SHA1
+     * @param   password 密码
+     * @param  customerno 客户代码
+     * @return
+     * @throws Exception
+     */
+    public static String HmacSHA1Encrypt(String password, String customerno) throws Exception
+    {
+        byte[] data=customerno.getBytes(ENCODING);
+        SecretKey secretKey = new SecretKeySpec(data, MAC_NAME);
+        Mac mac = Mac.getInstance(MAC_NAME);
+        mac.init(secretKey);
+        byte[] text = password.getBytes(ENCODING);
+        byte[] str = mac.doFinal(text);
+        // Create Hex String
+        StringBuffer hexString = new StringBuffer();
+        // 字节数组转换为十六进制数
+        for (int i = 0; i < str.length; i++) {
+            String shaHex = Integer.toHexString(str[i] & 0xFF);
+            if (shaHex.length() < 2) {
+                hexString.append(0);
+            }
+            hexString.append(shaHex);
+        }
+        return hexString.toString();
     }
 
     /**
@@ -373,6 +408,13 @@ public final class CommonUtil {
         }
         return rs.checkIfFail()?false:true;
     }
+    public static void main(String[] args){
+        try{
+            System.out.println(HmacSHA1Encrypt("123456","0008"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
+    }
 
 }

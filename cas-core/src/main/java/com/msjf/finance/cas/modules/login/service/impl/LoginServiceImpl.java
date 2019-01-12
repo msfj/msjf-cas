@@ -106,13 +106,16 @@ public class LoginServiceImpl extends Account implements LoginService {
             return rs;
         }
         //3.查询数据库账户，校验是否合法
+        List<CustEntity> entitys=null;
         CustEntity entity = new CustEntity();
         if("1".equals(loginType)){
             entity.setCertificateno(certificateno);
+            entitys = custDao.queryCustEntityList(entity);
         }else if("2".equals(loginType)){
             entity.setMobile(mobile);
+            entity.setMembertype(company);
+            entitys = custDao.queryCustEntityList(entity);
         }
-        List<CustEntity> entitys = custDao.queryCustEntityList(entity);
         if (CheckUtil.isNull(entitys)) {
             rs.fail("用户不存在");
             return rs;
