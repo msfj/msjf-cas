@@ -7,6 +7,9 @@ import com.msjf.finance.cas.modules.login.dao.SysParamsConfigEntityMapper;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
+import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -21,7 +24,7 @@ import java.util.*;
 @Component
 public final class CommonUtil {
 
-
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     private static final String MAC_NAME = "HmacSHA1";
     private static final String ENCODING = "UTF-8";
     /**
@@ -171,23 +174,27 @@ public final class CommonUtil {
      * @return
      * @throws Exception
      */
-    public static String HmacSHA1Encrypt(String password, String customerno) throws Exception
-    {
-        byte[] data=customerno.getBytes(ENCODING);
-        SecretKey secretKey = new SecretKeySpec(data, MAC_NAME);
-        Mac mac = Mac.getInstance(MAC_NAME);
-        mac.init(secretKey);
-        byte[] text = password.getBytes(ENCODING);
-        byte[] str = mac.doFinal(text);
-        // Create Hex String
+    public static String HmacSHA1Encrypt(String password, String customerno,Response rs) {
         StringBuffer hexString = new StringBuffer();
-        // 字节数组转换为十六进制数
-        for (int i = 0; i < str.length; i++) {
-            String shaHex = Integer.toHexString(str[i] & 0xFF);
-            if (shaHex.length() < 2) {
-                hexString.append(0);
+        try{
+            byte[] data=customerno.getBytes(ENCODING);
+            SecretKey secretKey = new SecretKeySpec(data, MAC_NAME);
+            Mac mac = Mac.getInstance(MAC_NAME);
+            mac.init(secretKey);
+            byte[] text = password.getBytes(ENCODING);
+            byte[] str = mac.doFinal(text);
+            // Create Hex String
+            // 字节数组转换为十六进制数
+            for (int i = 0; i < str.length; i++) {
+                String shaHex = Integer.toHexString(str[i] & 0xFF);
+                if (shaHex.length() < 2) {
+                    hexString.append(0);
+                }
+                hexString.append(shaHex);
             }
-            hexString.append(shaHex);
+        }catch (Exception e){
+            rs.fail("加密失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return hexString.toString();
     }
@@ -249,13 +256,15 @@ public final class CommonUtil {
     /**
      * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
      */
-    public static boolean sendVerificationCode(String verificateType,String mobile){
-        com.msjf.finance.mcs.common.response.Response rs=null;
+    public static com.msjf.finance.mcs.common.response.Response<VerificationCodeDomain> sendVerificationCode(String verificateType, String mobile){
+        com.msjf.finance.mcs.common.response.Response<VerificationCodeDomain> rs=null;
         if(CheckUtil.isNull(verificateType)){
-            return false;
+            rs.fail("校验类型不能为空");
+            return rs;
         }
         if(CheckUtil.isNull(mobile)){
-            return false;
+            rs.fail("校验类型不能为空");
+            return rs;
         }
         if(verificateType.equals(SMS_REGISTER_TYPE)||verificateType.equals(SMS_CHANGE_PWD_TYPE)||verificateType.equals(SMS_LOGIN_TYPE)||verificateType.equals(SMS_SERVICE_LOGIN_TYPE)){
             HashMap map=new HashMap();
@@ -265,23 +274,26 @@ public final class CommonUtil {
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
             rs=sendVerificationCodeFacade.SendRegisterVerificationCode(map);
         }else{
-            return false;
+            return rs;
         }
-        return rs.checkIfFail()?false:true;
+        return rs;
     }
     /**
      * 3-手机号码换绑 传customerno
      */
-    public static boolean sendChangeMobileCode(String customerno,String verificateType,String mobile){
+    public static com.msjf.finance.mcs.common.response.Response<VerificationCodeDomain> sendChangeMobileCode(String customerno,String verificateType,String mobile){
         com.msjf.finance.mcs.common.response.Response rs=null;
         if(CheckUtil.isNull(verificateType)){
-            return false;
+            rs.fail("校验类型不能为空");
+            return rs;
         }
         if(CheckUtil.isNull(mobile)){
-            return false;
+            rs.fail("校验类型不能为空");
+            return rs;
         }
         if(CheckUtil.isNull(customerno)){
-            return false;
+            rs.fail("客户代码不能为空");
+            return rs;
         }
         if(verificateType.equals(SMS_CHANGE_MOBILE_TYPE)){
             HashMap map=new HashMap();
@@ -292,9 +304,9 @@ public final class CommonUtil {
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
             rs=sendVerificationCodeFacade.SendRegisterVerificationCode(map);
         }else{
-            return false;
+            return rs;
         }
-        return rs.checkIfFail()?false:true;
+        return rs;
     }
     /**
      * 3-手机号码换绑 传customerno
@@ -410,7 +422,7 @@ public final class CommonUtil {
     }
     public static void main(String[] args){
         try{
-            System.out.println(HmacSHA1Encrypt("123456","0008"));
+//            System.out.println(HmacSHA1Encrypt("123456","0008"));
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -12,10 +12,5 @@ public interface LoginService {
 
     Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
 
-    /**
-     * 密码变更
-     * @param mapParam
-     * @return
-     */
-    Response<Map> changePwd(HashMap<String, Object> mapParam);
+
 }

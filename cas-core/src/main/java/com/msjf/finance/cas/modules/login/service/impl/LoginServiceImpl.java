@@ -149,7 +149,18 @@ public class LoginServiceImpl extends Account implements LoginService {
                     return rs;
                 }
             }
-            String enPassword = CommonUtil.encryptPassword(password);
+             try{
+
+             }catch (Exception e){
+                 rs.fail("加密失败");
+             }
+            String enPassword=null;
+             try{
+                 enPassword = CommonUtil.HmacSHA1Encrypt(password,customerno,rs);
+             }catch (Exception e){
+                 logger.error(e.getMessage());
+                 throw new RuntimeException(e.getMessage(),e);
+             }
             if (CheckUtil.isNull(enPassword)) {
                 rs.fail("密码加密对比失败");
                 return rs;
@@ -258,58 +269,6 @@ public class LoginServiceImpl extends Account implements LoginService {
             }
             mapList.add(rsmap);
             rs.success("登陆成功",mapList);
-        }
-        return rs;
-    }
-
-    @Override
-    public Response<Map> changePwd(HashMap<String, Object> mapParam) {
-        Response<Map> rs=new Response();
-        HashMap resMap=new HashMap();
-        rs.fail();
-        String certificateno=StringUtil.valueOf(mapParam.get("certificateno"));
-        String msgCode=StringUtil.valueOf(mapParam.get("msgCode"));
-        String step=StringUtil.valueOf(mapParam.get("step"));
-        String password=StringUtil.valueOf(mapParam.get("password"));
-        if(CheckUtil.checkNull(step,"步骤",rs)){
-            return rs;
-        }
-        if(CheckUtil.checkNull(certificateno,"证件号码",rs)){
-            return rs;
-        }
-        CustEntity custEntity=new CustEntity();
-        custEntity.setCertificateno(certificateno);
-        List<CustEntity> custEntityList= custDao.queryCustEntityList(custEntity);
-        if(CheckUtil.isNull(custEntityList)){
-            rs.fail("账户信息不存在");
-        }
-        mobile=custEntityList.get(0).getMobile();
-        if(step.equals(step_1)){
-            Boolean flag=CommonUtil.sendVerificationCode(SMS_CHANGE_PWD_TYPE,mobile);
-            if(flag){
-                resMap.put("mobile",mobile.replaceAll("(\\d{3})\\d{6}(\\d{2})", "$1****$2"));
-                rs.success("发送成功",resMap);
-            }else {
-                rs.fail("发送失败");
-            }
-        }
-        else if(step.equals(step_2)){
-            if(CheckUtil.checkNull(msgCode,"验证码",rs)){
-                return rs;
-            }
-            if(CheckUtil.checkNull(password,"密码",rs)){
-                return rs;
-            }
-            Boolean flag=CommonUtil.isExistVerificationCode(SMS_CHANGE_PWD_TYPE,mobile,msgCode);
-            if(flag){
-                AusAuthoneEntity ausAuthoneEntity=new AusAuthoneEntity();
-                ausAuthoneEntity.setCustomerno(custEntityList.get(0).getCustomerno());
-                ausAuthoneEntity.setPassword(CommonUtil.encryptPassword(password));
-                ausAuthoneDao.update(ausAuthoneEntity);
-                rs.success("修改成功");
-            }else{
-                rs.fail("修改失败");
-            }
         }
         return rs;
     }

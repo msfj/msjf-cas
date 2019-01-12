@@ -39,15 +39,5 @@ public class LoginFacadeImpl implements LoginFacade {
         return rs;
     }
 
-    @Override
-    public Response<Map> changePwd(HashMap<String, Object> mapParam) {
-        Response rs=null;
-        try {
-            rs=loginService.changePwd(mapParam);
-        }catch (Exception e){
-            rs.fail();
-            throw new RuntimeException(e.getMessage(),e);
-        }
-        return rs;
-    }
+
 }
