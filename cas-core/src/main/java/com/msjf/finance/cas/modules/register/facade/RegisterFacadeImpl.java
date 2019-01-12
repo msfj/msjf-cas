@@ -241,12 +241,14 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
                 rs.fail("0","当前信息不存在");
                 return rs;
             }
-            addCust(entity);
             if (membertype.equals(company)) {
                 addOrganInfo(entity);
+                entity.put("cormob",entity.get("mobile"));
+                entity.put("mobile","");
             }else{
                 addPersonInfo(entity);
             }
+            addCust(entity);
             addAuthone(entity);
         }
         return rs.success("1","操作成功","操作成功");

@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: com.msjf.finance:mcs-api:1.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/msjf/finance/mcs-api/1.0-SNAPSHOT/mcs-api-1.0-20190103.105838-5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/msjf/finance/mcs-api/1.0-SNAPSHOT/mcs-api-1.0-20190110.131825-13.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/com/msjf/finance/mcs-api/1.0-SNAPSHOT/mcs-api-1.0-20190103.105838-5-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/msjf/finance/mcs-api/1.0-SNAPSHOT/mcs-api-1.0-20190110.131825-13-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/msjf/finance/mcs-api/1.0-SNAPSHOT/mcs-api-1.0-20190103.105838-5-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/msjf/finance/mcs-api/1.0-SNAPSHOT/mcs-api-1.0-20190110.131825-13-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

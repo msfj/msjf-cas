@@ -53,14 +53,14 @@
 			id,membertype,registersource,
 			certificatetype,certificateno,mobile,cardno,bank,
 			companyname,status,insertdate,
-			updatedate,corname,corcardtype,corcardno,membername
+			updatedate,corname,corcardtype,corcardno,membername,cormob
 		) values(
 			#{id, jdbcType=VARCHAR},#{membertype, jdbcType=VARCHAR},#{registersource, jdbcType=VARCHAR},
 			#{certificatetype, jdbcType=VARCHAR},#{certificateno, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},
 			#{cardno, jdbcType=VARCHAR},#{bank, jdbcType=VARCHAR},#{companyname, jdbcType=VARCHAR},
 			#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
 			#{updatedate, jdbcType=VARCHAR},#{corname, jdbcType=VARCHAR},#{corcardtype, jdbcType=VARCHAR},
-			#{corcardno, jdbcType=VARCHAR},#{membername, jdbcType=VARCHAR}
+			#{corcardno, jdbcType=VARCHAR},#{membername, jdbcType=VARCHAR},#{cormob, jdbcType=VARCHAR}
 	)]]>
     </insert>
 
