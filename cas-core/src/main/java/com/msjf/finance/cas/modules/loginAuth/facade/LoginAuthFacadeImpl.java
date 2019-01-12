@@ -1,19 +1,17 @@
 package com.msjf.finance.cas.modules.loginAuth.facade;
 
 import com.msjf.finance.cas.common.response.Response;
-import com.msjf.finance.cas.facade.login.LoginFacade;
 import com.msjf.finance.cas.facade.loginAuth.LoginAuthFacade;
 import com.msjf.finance.cas.facade.loginAuth.domain.LoginAuthDomain;
 import com.msjf.finance.cas.modules.loginAuth.emun.LoginAuthEmun;
 import com.msjf.finance.cas.modules.loginAuth.service.LoginAuthService;
-import com.msjf.finance.cas.modules.util.CheckUtil;
 import com.msjf.finance.cas.modules.util.StringUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
-import java.util.Map;
+
 @Service("loginAuthFacade")
 public class LoginAuthFacadeImpl implements LoginAuthFacade {
     @Resource

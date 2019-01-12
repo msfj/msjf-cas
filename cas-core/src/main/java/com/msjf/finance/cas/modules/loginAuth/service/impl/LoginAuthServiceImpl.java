@@ -5,10 +5,9 @@ import com.msjf.finance.cas.facade.loginAuth.domain.LoginAuthDomain;
 import com.msjf.finance.cas.modules.AccountDao;
 import com.msjf.finance.cas.modules.loginAuth.emun.LoginAuthEmun;
 import com.msjf.finance.cas.modules.loginAuth.service.LoginAuthService;
-import com.msjf.finance.cas.modules.util.CheckUtil;
 import com.msjf.finance.cas.modules.util.StringUtil;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -32,7 +31,7 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         } else if ("1".equals(mapParam.get("loginType"))) {
             list = accountDao.selectEmployeeInfo(reqMap);
         }
-        if (CheckUtil.isNull(list)) {
+        if (CollectionUtils.isEmpty(list)) {
             //日志
             return new Response<>().fail(LoginAuthEmun.MSG_USER_NULL);
         }
