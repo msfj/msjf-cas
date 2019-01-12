@@ -156,7 +156,7 @@ public class LoginServiceImpl extends Account implements LoginService {
              }
             String enPassword=null;
              try{
-                 enPassword = CommonUtil.HmacSHA1Encrypt(password,customerno,rs);
+                 enPassword = CommonUtil.HmacSHA1Encrypt(password,customerno);
              }catch (Exception e){
                  logger.error(e.getMessage());
                  throw new RuntimeException(e.getMessage(),e);

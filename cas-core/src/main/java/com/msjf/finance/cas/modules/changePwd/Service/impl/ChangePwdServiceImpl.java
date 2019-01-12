@@ -82,7 +82,7 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
             if(flag){
                 AusAuthoneEntity ausAuthoneEntity=new AusAuthoneEntity();
                 ausAuthoneEntity.setCustomerno(custEntityList.get(0).getCustomerno());
-                ausAuthoneEntity.setPassword(CommonUtil.HmacSHA1Encrypt(password,customerno,rs));
+                ausAuthoneEntity.setPassword(CommonUtil.HmacSHA1Encrypt(password,customerno));
                 ausAuthoneDao.update(ausAuthoneEntity);
                 rs.success("修改成功");
             }else{

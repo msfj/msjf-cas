@@ -174,7 +174,7 @@ public final class CommonUtil {
      * @return
      * @throws Exception
      */
-    public static String HmacSHA1Encrypt(String password, String customerno,Response rs) {
+    public static String HmacSHA1Encrypt(String password, String customerno) {
         StringBuffer hexString = new StringBuffer();
         try{
             byte[] data=customerno.getBytes(ENCODING);
@@ -193,7 +193,6 @@ public final class CommonUtil {
                 hexString.append(shaHex);
             }
         }catch (Exception e){
-            rs.fail("加密失败");
             throw new RuntimeException(e.getMessage(),e);
         }
         return hexString.toString();
