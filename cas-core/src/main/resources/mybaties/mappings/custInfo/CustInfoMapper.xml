@@ -25,7 +25,8 @@
 			updatedate "updatedate",
 			updatetime "updatetime",
             issave     "issave",
-            source     "source"
+            source     "source",
+            cormob     "cormob"
 		from cas.cust
 		where certificateno=upper(#{certificateno}) or certificateno=lower(#{certificateno})
 	]]>
@@ -54,7 +55,8 @@
 			updatedate "updatedate",
 			updatetime "updatetime",
             issave     "issave",
-            source     "source"
+            source     "source",
+            cormob     "cormob"
 		from cas.cust
 	]]>
         <where>
@@ -80,6 +82,7 @@
             <if test="corname != null and corname!= '' "><![CDATA[ and corname=#{corname}]]></if>
             <if test="corcardtype != null and corcardtype!= '' "><![CDATA[ and corcardtype=#{corcardtype}]]></if>
             <if test="corcardno != null and corcardno!= '' "><![CDATA[ and corcardno=#{corcardno}]]></if>
+            <if test="cormob != null and cormob!= '' "><![CDATA[ and cormob=#{cormob}]]></if>
         </where>
     </select>
 
@@ -128,7 +131,7 @@
             <if test="corname != null and corname!= '' "><![CDATA[ and corname=#{corname}]]></if>
             <if test="corcardtype != null and corcardtype!= '' "><![CDATA[ and corcardtype=#{corcardtype}]]></if>
             <if test="corcardno != null and corcardno!= '' "><![CDATA[ and corcardno=#{corcardno}]]></if>
-
+            <if test="cormob != null and cormob!= '' "><![CDATA[ and cormob=#{cormob}]]></if>
         </set>
         <![CDATA[ where customerno = #{customerno}
 	]]>

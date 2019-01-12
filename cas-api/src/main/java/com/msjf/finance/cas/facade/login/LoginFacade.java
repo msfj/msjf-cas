@@ -20,7 +20,7 @@ public interface LoginFacade {
      * @param mapParam
      * @return
      */
-    Response<Map> corporationLogin(HashMap<String, Object> mapParam);
+    Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
 
     /**
      * 密码变更

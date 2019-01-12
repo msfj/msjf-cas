@@ -235,6 +235,63 @@ public final class CommonUtil {
         return rs.checkIfFail()?false:true;
     }
     /**
+     * 3-手机号码换绑 传customerno
+     */
+    public static boolean sendChangeMobileCode(String customerno,String verificateType,String mobile){
+        com.msjf.finance.mcs.common.response.Response rs=null;
+        if(CheckUtil.isNull(verificateType)){
+            return false;
+        }
+        if(CheckUtil.isNull(mobile)){
+            return false;
+        }
+        if(CheckUtil.isNull(customerno)){
+            return false;
+        }
+        if(verificateType.equals(SMS_CHANGE_MOBILE_TYPE)){
+            HashMap map=new HashMap();
+            map.put("customerno",customerno);
+            map.put("verificateType",verificateType);
+            map.put("mobile",mobile);
+            map.put("templateId",SMS_CHANGE_MOBILE_TYPE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
+            SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
+            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+        }else{
+            return false;
+        }
+        return rs.checkIfFail()?false:true;
+    }
+    /**
+     * 3-手机号码换绑 传customerno
+     */
+    public static Boolean isExistCodeChangeMobile(String customerno,String verificateType,String mobile,String msgCode){
+        com.msjf.finance.mcs.common.response.Response rs=null;
+        if(CheckUtil.isNull(verificateType)){
+            return false;
+        }
+        if(CheckUtil.isNull(mobile)){
+            return false;
+        }
+        if(CheckUtil.isNull(msgCode)){
+            return false;
+        }
+        if(CheckUtil.isNull(customerno)){
+            return false;
+        }
+        if(SMS_CHANGE_MOBILE_TYPE.equals(verificateType)) {
+            HashMap map=new HashMap();
+            map.put("verificateType",SMS_CHANGE_MOBILE_TYPE);
+            map.put("mobile",mobile);
+            map.put("msgCode",msgCode);
+            map.put("customerno",customerno);
+            SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
+            rs=sendVerificationCodeFacade.isExistVerificationCode(map);
+        }else{
+            return false;
+        }
+        return rs.checkIfFail()?false:true;
+    }
+    /**
      * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
      */
     public static Boolean isExistVerificationCode(String verificateType,String mobile,String msgCode){
@@ -286,5 +343,36 @@ public final class CommonUtil {
         }
         return rs.checkIfFail()?false:true;
     }
+    /**
+     * 3-手机号码换绑 传customerno
+     */
+    public static Boolean checkCodeChangeMobile(String customerno,String verificateType,String mobile,String msgCode){
+        com.msjf.finance.mcs.common.response.Response rs=null;
+        if(CheckUtil.isNull(verificateType)){
+            return false;
+        }
+        if(CheckUtil.isNull(mobile)){
+            return false;
+        }
+        if(CheckUtil.isNull(msgCode)){
+            return false;
+        }
+        if(CheckUtil.isNull(customerno)){
+            return false;
+        }
+        if(SMS_CHANGE_MOBILE_TYPE.equals(verificateType)) {
+            HashMap map=new HashMap();
+            map.put("verificateType",SMS_CHANGE_MOBILE_TYPE);
+            map.put("mobile",mobile);
+            map.put("msgCode",msgCode);
+            map.put("customerno",customerno);
+            SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
+            rs=sendVerificationCodeFacade.checkVerificationCode(map);
+        }else{
+            return false;
+        }
+        return rs.checkIfFail()?false:true;
+    }
+
 
 }

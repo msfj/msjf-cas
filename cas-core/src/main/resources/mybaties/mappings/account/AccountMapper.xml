@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.modules.AccountDao">
+    <!--个人基本信息表person_info 按实体新增记录 mysql-->
+    <select id="selectOrganInfoByMobile" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
+        <![CDATA[
+        select t.certificateno "certificateno",t1.membername "membername" from cas.cust t
+        inner join cas.organ_info t1 on t.customerno=t1.customerno
+        and t.cormob=#{mobile}
+	]]>
+    </select>
+
+    <select id="selectLoginInfo" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
+        <![CDATA[
+            SELECT
+                t.customerno "customerno",
+                t.loginname "loginname",
+                t.certificateno "certificateno",
+                t1.PASSWORD "password"
+            FROM
+                cas.cust t
+                INNER JOIN cas.aus_authone t1 ON t.customerno = t1.customerno
+            WHERE
+                t.certificateno = #{loginname}
+	]]>
+    </select>
+
+    <select id="selectEmployeeInfo" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
+        <![CDATA[
+            SELECT
+                t.customerno "customerno",
+                t.loginname "loginname",
+                t.certificateno "certificateno",
+                t1.PASSWORD "password"
+            FROM
+                cas.employee t
+                INNER JOIN cas.aus_authone t1 ON t.customerno = t1.customerno
+            WHERE
+                t.loginname =#{loginname}
+		]]>
+    </select>
+</mapper>

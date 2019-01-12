@@ -2,6 +2,7 @@ package com.msjf.finance.cas.modules.login.service.impl;
 
 import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.modules.Account;
+import com.msjf.finance.cas.modules.AccountDao;
 import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
 import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneEntity;
 import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneKey;
@@ -31,8 +32,8 @@ import java.util.Map;
 @Scope("prototype")
 public class LoginServiceImpl extends Account implements LoginService {
 
-    /** 登录账号*/
-    private String loginname;
+    /** 证件号码*/
+    private String certificateno;
 
     /** 密码*/
     private String password;
@@ -86,7 +87,7 @@ public class LoginServiceImpl extends Account implements LoginService {
     @Resource
     OrganAppendMapper organAppendMapper;
     @Resource
-    SendVerificationCodeFacade sendVerificationCodeFacade;
+    AccountDao accountDao;
     /**
      * 登录入口 包含以下两种情况
      * 1.企业和个人账户登陆
@@ -107,7 +108,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         //3.查询数据库账户，校验是否合法
         CustEntity entity = new CustEntity();
         if("1".equals(loginType)){
-            entity.setLoginname(loginname);
+            entity.setCertificateno(certificateno);
         }else if("2".equals(loginType)){
             entity.setMobile(mobile);
         }
@@ -173,7 +174,7 @@ public class LoginServiceImpl extends Account implements LoginService {
 //        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
         rsmap.put("membertype", membertype);
         rsmap.put("membername", membername);
-        rsmap.put("name", loginname);
+        rsmap.put("name", certificateno);
         if (CommonUtil.YES.equals(membertype)) {
             rsmap.put("organtype", organtype);
             rsmap.put("organclass", organclass);
@@ -190,12 +191,13 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     @Override
-    public Response<Map> corporationLogin(HashMap<String, Object> mapParam) {
-        Response rs=new Response();
+    public Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam) {
+        Response<List<Map>> rs=new Response();
         rs.fail("登录失败");
         //1.获取参数值
         getParam(mapParam);
-        if(!CheckUtil.isNull(loginname)){
+        List<Map> mapList=new ArrayList<>();
+        if(!CheckUtil.isNull(certificateno)){
             if (CheckUtil.checkNull(loginsource, "登录来源", rs)) {
                 return rs;
             }
@@ -206,29 +208,28 @@ public class LoginServiceImpl extends Account implements LoginService {
         if (CheckUtil.checkNull(msgCode, "验证码", rs)) {
             return rs;
         }
-        if(CheckUtil.isNull(loginname)){
+        if(CheckUtil.isNull(certificateno)){
             Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
             if(!flag){
                 rs.fail("校验失败");
                 return rs;
             }
-            CustEntity entity = new CustEntity();
-            entity.setMobile(mobile);
-            entity.setMembertype(company);
-            List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
-            List<HashMap> mapList=new ArrayList<>();
-            for(CustEntity custEntity:custEntityList){
-                HashMap custmap=new HashMap();
-                custmap.put("loginname",custEntity.getLoginname());
-                mapList.add(custmap);
+            HashMap reqmap=new HashMap();
+            reqmap.put("mobile",mobile);
+            List<Map> list=accountDao.selectOrganInfoByMobile(reqmap);
+            if(CheckUtil.isNull(list)){
+                rs.fail("查无该法人企业信息");
             }
-            if(CheckUtil.isNull(custEntityList)){
-                rs.fail("查无该法人信息");
+            for(Map map:list){
+                HashMap custmap=new HashMap();
+                custmap.put("certificateno",map.get("certificateno"));
+                custmap.put("membername",map.get("membername"));
+                mapList.add(custmap);
             }
             rs.success("登陆成功",mapList);
         }else{
             CustEntity entity = new CustEntity();
-            entity.setLoginname(loginname);
+            entity.setCertificateno(certificateno);
             entity.setMembertype(company);
             List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
             if(CheckUtil.isNull(custEntityList)){
@@ -247,12 +248,13 @@ public class LoginServiceImpl extends Account implements LoginService {
 //        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
             rsmap.put("membertype", membertype);
             rsmap.put("membername", membername);
-            rsmap.put("name", loginname);
+            rsmap.put("name", certificateno);
             if (CommonUtil.YES.equals(membertype)) {
                 rsmap.put("organtype", organtype);
                 rsmap.put("organclass", organclass);
             }
-            rs.success("登陆成功",rsmap);
+            mapList.add(rsmap);
+            rs.success("登陆成功",mapList);
         }
         return rs;
     }
@@ -310,7 +312,7 @@ public class LoginServiceImpl extends Account implements LoginService {
     }
 
     private void getParam(HashMap<String, Object> mapParam) {
-        loginname = StringUtil.valueOf(mapParam.get("loginname"));
+        certificateno = StringUtil.valueOf(mapParam.get("certificateno"));
         password = StringUtil.valueOf(mapParam.get("password"));
         loginsource = StringUtil.valueOf(mapParam.get("loginsource"));
         uniqueID = StringUtil.valueOf(mapParam.get("uniqueID"));
@@ -324,7 +326,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             return false;
         }
         if("1".equals(loginType)){
-            if (CheckUtil.checkNull(loginname, "登录账号", rs)) {
+            if (CheckUtil.checkNull(certificateno, "登录账号", rs)) {
                 return false;
             }
             if (CheckUtil.checkNull(password, "密码", rs)) {

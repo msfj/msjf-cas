@@ -5,6 +5,7 @@ import com.msjf.finance.cas.facade.login.LoginFacade;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.modules.login.service.LoginService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class LoginFacadeImpl implements LoginFacade {
     }
 
     @Override
-    public Response<Map> corporationLogin(HashMap<String, Object> mapParam) {
+    public Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam) {
         Response rs=null;
         try {
             rs=loginService.corporationLogin(mapParam);

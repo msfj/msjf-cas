@@ -10,7 +10,7 @@ import java.util.Map;
 public interface LoginService {
     Response<Map> memberLogin(HashMap<String, Object> mapParam);
 
-    Response<Map> corporationLogin(HashMap<String, Object> mapParam);
+    Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
 
     /**
      * 密码变更

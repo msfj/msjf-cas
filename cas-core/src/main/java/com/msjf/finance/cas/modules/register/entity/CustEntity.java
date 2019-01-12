@@ -55,6 +55,9 @@ public class CustEntity {
     //法人证件号
     private String corcardno;
 
+    //法人手机号
+    private String cormob;
+
     public void init() {
     }
     public String getCustomerno() {
@@ -202,5 +205,12 @@ public class CustEntity {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getCormob() {
+        return cormob;
+    }
+    public void setCormob(String cormob) {
+        this.cormob = cormob;
     }
 }

@@ -34,7 +34,7 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime"
-		from kpfsp.cif_person_info
+		from cas.person_info
 		where
 			customerno = #{customerno}
 	]]>
