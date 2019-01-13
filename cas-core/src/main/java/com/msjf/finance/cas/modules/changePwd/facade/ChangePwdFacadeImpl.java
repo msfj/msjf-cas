@@ -1,8 +1,7 @@
 package com.msjf.finance.cas.modules.changePwd.facade;
-
-import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.facade.changePwd.ChangePwdFacade;
 import com.msjf.finance.cas.modules.changePwd.Service.ChangePwdService;
+import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -237,6 +237,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.msjf.finance</groupId>
+            <artifactId>msjf-core</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <version>2.5.3</version>
