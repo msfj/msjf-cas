@@ -1,10 +1,12 @@
 package com.msjf.finance.cas.facade.person.domain;
 
+import com.msjf.finance.msjf.core.domian.BaseDomain;
+
 /**
  * Created by oumingwei on 2019/01/08.
  * 向外使用的domain
  */
-public class PersonInfoDomain {
+public class PersonInfoDomain extends BaseDomain{
 
     private String membername;//姓名
     private String cardType;//证件类型 0：身份证 1：港澳通行证 2：护照 3：台胞证

@@ -1,6 +1,8 @@
 package com.msjf.finance.cas.facade.loginAuth.domain;
 
-public class LoginAuthDomain {
+import com.msjf.finance.msjf.core.domian.BaseDomain;
+
+public class LoginAuthDomain extends BaseDomain{
     private String customerno;
     private String loginname;
     private String certificateno;

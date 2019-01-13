@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.facade.changePwd;
 
-import com.msjf.finance.cas.common.response.Response;
+
+import com.msjf.finance.msjf.core.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;

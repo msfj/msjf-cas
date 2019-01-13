@@ -1,7 +1,6 @@
 package com.msjf.finance.cas.facade.person;
-
-import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.facade.person.domain.PersonInfoDomain;
+import com.msjf.finance.msjf.core.response.Response;
 
 import java.util.List;
 

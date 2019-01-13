@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.facade.employee.domain;
 
-import com.msjf.finance.cas.common.response.BaseDomain;
+
+import com.msjf.finance.msjf.core.domian.BaseDomain;
 
 /**
  * Created by lzp on 2018/12/22.

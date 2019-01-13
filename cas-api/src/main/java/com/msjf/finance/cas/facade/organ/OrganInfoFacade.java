@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.facade.organ;
-import com.msjf.finance.cas.common.response.Response;
+
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
+import com.msjf.finance.msjf.core.response.Response;
 import java.util.List;
 
 /**
