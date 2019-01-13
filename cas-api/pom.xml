@@ -20,11 +20,6 @@
     <dependency>
         <groupId>com.msjf.finance</groupId>
         <artifactId>msjf-core</artifactId>
-        <version>1.0</version>
-    </dependency>
-    <dependency>
-        <groupId>com.msjf.finance</groupId>
-        <artifactId>msjf-core</artifactId>
         <version>1.0-SNAPSHOT</version>
         <scope>compile</scope>
     </dependency>
