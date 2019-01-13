@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.modules.login.entity;
 
-import com.msjf.finance.mcs.common.response.BaseEntity;
+
+import com.msjf.finance.msjf.core.entity.BaseEntity;
 
 public class SysParamsConfigEntityKey extends BaseEntity {
     private String exchangeId;

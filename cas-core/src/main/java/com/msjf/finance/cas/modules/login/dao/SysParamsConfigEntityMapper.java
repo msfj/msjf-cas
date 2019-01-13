@@ -1,8 +1,9 @@
 package com.msjf.finance.cas.modules.login.dao;
 
-import com.msjf.finance.cas.common.dao.MyBatisDao;
+
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
+import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 
 @MyBatisDao

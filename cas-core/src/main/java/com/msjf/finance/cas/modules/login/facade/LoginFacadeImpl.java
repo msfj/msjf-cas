@@ -1,9 +1,9 @@
 package com.msjf.finance.cas.modules.login.facade;
 
-import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.facade.login.LoginFacade;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.modules.login.service.LoginService;
+import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

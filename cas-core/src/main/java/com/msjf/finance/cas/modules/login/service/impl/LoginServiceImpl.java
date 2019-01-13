@@ -1,6 +1,5 @@
 package com.msjf.finance.cas.modules.login.service.impl;
 
-import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.modules.Account;
 import com.msjf.finance.cas.modules.AccountDao;
 import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
@@ -19,9 +18,11 @@ import com.msjf.finance.cas.modules.register.dao.CustDao;
 import com.msjf.finance.cas.modules.register.entity.CustEntity;
 import com.msjf.finance.cas.modules.util.*;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
+import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -116,7 +117,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             entity.setMembertype(company);
             entitys = custDao.queryCustEntityList(entity);
         }
-        if (CheckUtil.isNull(entitys)) {
+        if (StringUtils.isEmpty(entitys)) {
             rs.fail("用户不存在");
             return rs;
         }
@@ -137,7 +138,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         AusAuthoneKey ausAuthoneKey = new AusAuthoneKey();
         ausAuthoneKey.setCustomerno(customerno);
         AusAuthoneEntity ausAuthoneEntity = ausAuthoneDao.getAusAuthoneByKeyLock(ausAuthoneKey);
-        if (CheckUtil.isNull(ausAuthoneEntity)) {
+        if (StringUtils.isEmpty(ausAuthoneEntity)) {
             rs.fail("用户信息不存在");
             return rs;
         }
@@ -161,7 +162,7 @@ public class LoginServiceImpl extends Account implements LoginService {
                  logger.error(e.getMessage());
                  throw new RuntimeException(e.getMessage(),e);
              }
-            if (CheckUtil.isNull(enPassword)) {
+            if (StringUtils.isEmpty(enPassword)) {
                 rs.fail("密码加密对比失败");
                 return rs;
             }
@@ -211,7 +212,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         //1.获取参数值
         getParam(mapParam);
         List<Map> mapList=new ArrayList<>();
-        if(!CheckUtil.isNull(certificateno)){
+        if(!StringUtils.isEmpty(certificateno)){
             if (CheckUtil.checkNull(loginsource, "登录来源", rs)) {
                 return rs;
             }
@@ -222,7 +223,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         if (CheckUtil.checkNull(msgCode, "验证码", rs)) {
             return rs;
         }
-        if(CheckUtil.isNull(certificateno)){
+        if(StringUtils.isEmpty(certificateno)){
             Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
             if(!flag){
                 rs.fail("校验失败");
@@ -231,7 +232,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             HashMap reqmap=new HashMap();
             reqmap.put("mobile",mobile);
             List<Map> list=accountDao.selectOrganInfoByMobile(reqmap);
-            if(CheckUtil.isNull(list)){
+            if(StringUtils.isEmpty(list)){
                 rs.fail("查无该法人企业信息");
             }
             for(Map map:list){
@@ -246,7 +247,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             entity.setCertificateno(certificateno);
             entity.setMembertype(company);
             List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
-            if(CheckUtil.isNull(custEntityList)){
+            if(StringUtils.isEmpty(custEntityList)){
                 rs.fail("账户信息不存在");
                 return rs;
             }
@@ -423,37 +424,37 @@ public class LoginServiceImpl extends Account implements LoginService {
             PersonInfoKey personInfoKey=new PersonInfoKey();
             personInfoKey.setCustomerno(customerno);
             PersonInfoEntity e = personInfoDao.selectByKey(personInfoKey);
-            if (CheckUtil.isNull(e)) {
+            if (StringUtils.isEmpty(e)) {
                 rs.fail("未获取到基本信息");
                 throw new RuntimeException(rs.getMsg());
             }
             membername = e.getMembername();
-            if (CheckUtil.isNull(e.getMembername())) {
+            if (StringUtils.isEmpty(e.getMembername())) {
                 return false;
             }
-            if (CheckUtil.isNull(e.getEducation())) {
+            if (StringUtils.isEmpty(e.getEducation())) {
                 return false;
             }
-            if (CheckUtil.isNull(e.getWorkexp())) {
+            if (StringUtils.isEmpty(e.getWorkexp())) {
                 return false;
             }
-            if (CheckUtil.isNull(e.getInvestexp())) {
+            if (StringUtils.isEmpty(e.getInvestexp())) {
                 return false;
             }
-            if (CheckUtil.isNull(e.getIdcard())) {
+            if (StringUtils.isEmpty(e.getIdcard())) {
                 return false;
             }
-            if (CheckUtil.isNull(e.getIsamac())) {
+            if (StringUtils.isEmpty(e.getIsamac())) {
                 return false;
             }
-            if (CheckUtil.isNull(e.getAmacno())) {
+            if (StringUtils.isEmpty(e.getAmacno())) {
                 return false;
             }
         } else {
             OrganInfoKey organInfoKey=new OrganInfoKey();
             organInfoKey.setCustomerno(customerno);
             OrganInfoEntity c = organInfoDao.getOrganInfoByKey(organInfoKey);
-            if (CheckUtil.isNull(c)) {
+            if (StringUtils.isEmpty(c)) {
                 rs.fail("企业基本信息获取失败");
                 throw new RuntimeException(rs.getMsg());
             }
@@ -462,7 +463,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             membername = c.getMembername();
             //6类企业的基本信息差异字段 保存在 企业附属信息表
             OrganAppendEntityWithBLOBs entity = organAppendMapper.selectByPrimaryKey(customerno);
-            if (CheckUtil.isNull(entity)) {
+            if (StringUtils.isEmpty(entity)) {
                 return false;
             }
             //6类企业基本信息检查
@@ -497,58 +498,58 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     private boolean checkOrganInfoCommon(OrganInfoEntity c) {
-        if (CheckUtil.isNull(c.getSparecontactname())) {
+        if (StringUtils.isEmpty(c.getSparecontactname())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getSparecontactmobile())) {
+        if (StringUtils.isEmpty(c.getSparecontactmobile())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRegicapital())) {
+        if (StringUtils.isEmpty(c.getRegicapital())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getEstablishdate())) {
+        if (StringUtils.isEmpty(c.getEstablishdate())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRealprovince())) {
+        if (StringUtils.isEmpty(c.getRealprovince())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRealcity())) {
+        if (StringUtils.isEmpty(c.getRealcity())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRealcounty())) {
+        if (StringUtils.isEmpty(c.getRealcounty())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRealtreet())) {
+        if (StringUtils.isEmpty(c.getRealtreet())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRegisterprovince())) {
+        if (StringUtils.isEmpty(c.getRegisterprovince())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRegistercity())) {
+        if (StringUtils.isEmpty(c.getRegistercity())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRegistercounty())) {
+        if (StringUtils.isEmpty(c.getRegistercounty())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRegistertreet())) {
+        if (StringUtils.isEmpty(c.getRegistertreet())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getBusinessscope())) {
+        if (StringUtils.isEmpty(c.getBusinessscope())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getCompanyintro())) {
+        if (StringUtils.isEmpty(c.getCompanyintro())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getHanginfo())) {
+        if (StringUtils.isEmpty(c.getHanginfo())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getCompanymodel())) {
+        if (StringUtils.isEmpty(c.getCompanymodel())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getInvestsource())) {
+        if (StringUtils.isEmpty(c.getInvestsource())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getBusinessfile())) {
+        if (StringUtils.isEmpty(c.getBusinessfile())) {
             return false;
         }
         return true;
@@ -561,22 +562,22 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     private boolean checkOrganInfo0(OrganAppendEntityWithBLOBs c) {
-        if (CheckUtil.isNull(c.getIsfiling())) {
+        if (StringUtils.isEmpty(c.getIsfiling())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getRegisterno())) {
+        if (StringUtils.isEmpty(c.getRegisterno())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getEmployeenum())) {
+        if (StringUtils.isEmpty(c.getEmployeenum())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getCaremarkettype())) {
+        if (StringUtils.isEmpty(c.getCaremarkettype())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getProjectphase())) {
+        if (StringUtils.isEmpty(c.getProjectphase())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getProfittype())) {
+        if (StringUtils.isEmpty(c.getProfittype())) {
             return false;
         }
         return true;
@@ -589,16 +590,16 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     private boolean checkOrganInfo1(OrganAppendEntityWithBLOBs c) {
-        if (CheckUtil.isNull(c.getIsfundfiling())) {
+        if (StringUtils.isEmpty(c.getIsfundfiling())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getFundfilingno())) {
+        if (StringUtils.isEmpty(c.getFundfilingno())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getFundmanagername())) {
+        if (StringUtils.isEmpty(c.getFundmanagername())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getFundmanagerno())) {
+        if (StringUtils.isEmpty(c.getFundmanagerno())) {
             return false;
         }
         return true;
@@ -611,16 +612,16 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     private boolean checkOrganInfo2(OrganAppendEntityWithBLOBs c) {
-        if (CheckUtil.isNull(c.getCompanytrade())) {
+        if (StringUtils.isEmpty(c.getCompanytrade())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getCompanyname())) {
+        if (StringUtils.isEmpty(c.getCompanyname())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getCompanyinfo())) {
+        if (StringUtils.isEmpty(c.getCompanyinfo())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getInvestnum())) {
+        if (StringUtils.isEmpty(c.getInvestnum())) {
             return false;
         }
         return true;
@@ -633,13 +634,13 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     private boolean checkOrganInfo3(OrganAppendEntityWithBLOBs c) {
-        if (CheckUtil.isNull(c.getProjecttrade())) {
+        if (StringUtils.isEmpty(c.getProjecttrade())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getProjectintro())) {
+        if (StringUtils.isEmpty(c.getProjectintro())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getBlocname())) {
+        if (StringUtils.isEmpty(c.getBlocname())) {
             return false;
         }
         return true;
@@ -652,13 +653,13 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     private boolean checkOrganInfo4(OrganAppendEntityWithBLOBs c) {
-        if (CheckUtil.isNull(c.getClassify())) {
+        if (StringUtils.isEmpty(c.getClassify())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getBusinesstype())) {
+        if (StringUtils.isEmpty(c.getBusinesstype())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getObjecttype())) {
+        if (StringUtils.isEmpty(c.getObjecttype())) {
             return false;
         }
         return true;
@@ -671,13 +672,13 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @return
      */
     private boolean checkOrganInfo5(OrganAppendEntityWithBLOBs c) {
-        if (CheckUtil.isNull(c.getSpecificbusinesstype())) {
+        if (StringUtils.isEmpty(c.getSpecificbusinesstype())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getProfitmodel())) {
+        if (StringUtils.isEmpty(c.getProfitmodel())) {
             return false;
         }
-        if (CheckUtil.isNull(c.getCapitalsource())) {
+        if (StringUtils.isEmpty(c.getCapitalsource())) {
             return false;
         }
         return true;

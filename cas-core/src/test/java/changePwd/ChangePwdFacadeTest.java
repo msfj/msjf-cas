@@ -1,7 +1,8 @@
 package changePwd;
 
-import com.msjf.finance.cas.common.test.SpringTestCase;
+
 import com.msjf.finance.cas.facade.changePwd.ChangePwdFacade;
+import common.SpringTestCase;
 import org.junit.Test;
 
 import javax.annotation.Resource;

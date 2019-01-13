@@ -1,8 +1,9 @@
 package com.msjf.finance.cas.modules.login.dao;
 
-import com.msjf.finance.cas.common.dao.MyBatisDao;
 import com.msjf.finance.cas.modules.login.entity.OrganAppendEntity;
 import com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs;
+import com.msjf.finance.msjf.core.dao.MyBatisDao;
+
 @MyBatisDao
 public interface OrganAppendMapper {
     int deleteByPrimaryKey(String customerno);
