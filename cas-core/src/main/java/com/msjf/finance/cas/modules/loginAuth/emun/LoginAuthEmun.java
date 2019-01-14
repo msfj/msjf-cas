@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.modules.loginAuth.emun;
 
-import com.msjf.finance.cas.common.response.ResponseService;
+
+import com.msjf.finance.msjf.core.emun.ResponseService;
 
 public enum LoginAuthEmun implements ResponseService {
     MSG_PARAM_ERROR("GWS0001", "入参不合法"),

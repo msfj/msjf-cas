@@ -1,12 +1,12 @@
 package com.msjf.finance.cas.modules.employee.facade;
 
-import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.facade.employee.EmployeeInfoFacade;
 import com.msjf.finance.cas.facade.employee.domain.EmployeeInfoDomain;
 import com.msjf.finance.cas.facade.organ.OrganInfoFacade;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.modules.employee.service.EmployeeInfoService;
 import com.msjf.finance.cas.modules.organ.service.OrganInfoService;
+import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 

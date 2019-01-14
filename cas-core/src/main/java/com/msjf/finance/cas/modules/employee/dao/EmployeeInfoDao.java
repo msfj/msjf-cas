@@ -1,7 +1,7 @@
 package com.msjf.finance.cas.modules.employee.dao;
 
-import com.msjf.finance.cas.common.dao.MyBatisDao;
 import com.msjf.finance.cas.modules.employee.entity.EmployeeInfoEntity;
+import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.List;
 

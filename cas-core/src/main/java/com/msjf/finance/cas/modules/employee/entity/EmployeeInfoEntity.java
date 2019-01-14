@@ -1,11 +1,10 @@
 package com.msjf.finance.cas.modules.employee.entity;
 
-import com.msjf.finance.cas.common.response.BaseEntity;
 
 /**
  * Created by lzp on 2018/12/22.
  */
-public class EmployeeInfoEntity {
+public class EmployeeInfoEntity{
     private String customerno; //客户号
     private String employeename;  //员工名称
     private String loginname;  //登录账号

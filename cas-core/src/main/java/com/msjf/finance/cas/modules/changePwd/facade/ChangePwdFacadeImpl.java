@@ -1,5 +1,7 @@
 package com.msjf.finance.cas.modules.changePwd.facade;
 import com.msjf.finance.cas.facade.changePwd.ChangePwdFacade;
+import com.msjf.finance.cas.facade.changePwd.domain.ChangePwdDomain;
+import com.msjf.finance.cas.facade.changePwd.domain.RequestChangePwdDomain;
 import com.msjf.finance.cas.modules.changePwd.Service.ChangePwdService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,10 @@ public class ChangePwdFacadeImpl implements ChangePwdFacade {
     @Resource
     ChangePwdService changePwdService;
     @Override
-    public Response<Map> changePwd(HashMap<String, Object> mapParam) {
+    public Response<ChangePwdDomain> changePwd(RequestChangePwdDomain requestChangePwdDomain) {
         Response rs=null;
         try {
-            rs=changePwdService.changePwd(mapParam);
+            rs=changePwdService.changePwd(requestChangePwdDomain);
         }catch (Exception e){
             rs.fail();
             throw new RuntimeException(e.getMessage(),e);

@@ -1,6 +1,8 @@
 package com.msjf.finance.cas.modules.changePwd.Service;
 
-import com.msjf.finance.cas.common.response.Response;
+import com.msjf.finance.cas.facade.changePwd.domain.ChangePwdDomain;
+import com.msjf.finance.cas.facade.changePwd.domain.RequestChangePwdDomain;
+import com.msjf.finance.msjf.core.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +10,10 @@ import java.util.Map;
 public interface ChangePwdService {
     /**
      * 密码变更
-     * @param mapParam
+     * @param requestChangePwdDomain
      * @return
      */
-    Response<Map> changePwd(HashMap<String, Object> mapParam);
+    Response<ChangePwdDomain> changePwd(RequestChangePwdDomain requestChangePwdDomain);
 
     /**
      * 手机号码回显

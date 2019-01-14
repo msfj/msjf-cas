@@ -1,8 +1,8 @@
 package com.msjf.finance.cas.modules.imagevalidcode.facade;
 
 import com.msjf.finance.cas.modules.imagevalidcode.service.ImageValidcodeService;
+import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
-import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.facade.imagevalidcode.ImageValidcodeFacade;
 import com.msjf.finance.cas.facade.imagevalidcode.domain.ImageValidcodeDomain;
 import com.msjf.finance.cas.modules.imagevalidcode.service.impl.ImageValidcodeServiceImpl;

@@ -8,9 +8,11 @@ import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
+import com.msjf.finance.msjf.core.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.crypto.Mac;
@@ -207,11 +209,11 @@ public final class CommonUtil {
      * @return
      */
     public static boolean checkImageValidecode(String uniqueID, String inputValidecode, Response rs) {
-        if (CheckUtil.isNull(uniqueID)) {
+        if (StringUtils.isEmpty(uniqueID)) {
             rs.fail("入参uniqueID不能为空");
             return false;
         }
-        if (CheckUtil.isNull(inputValidecode)) {
+        if (StringUtils.isEmpty(inputValidecode)) {
             rs.fail("未传入输入的验证码");
             return false;
         }
@@ -255,13 +257,13 @@ public final class CommonUtil {
     /**
      * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
      */
-    public static com.msjf.finance.mcs.common.response.Response<VerificationCodeDomain> sendVerificationCode(String verificateType, String mobile){
-        com.msjf.finance.mcs.common.response.Response<VerificationCodeDomain> rs=null;
-        if(CheckUtil.isNull(verificateType)){
+    public static Response<VerificationCodeDomain> sendVerificationCode(String verificateType, String mobile){
+        Response<VerificationCodeDomain> rs=null;
+        if(StringUtils.isEmpty(verificateType)){
             rs.fail("校验类型不能为空");
             return rs;
         }
-        if(CheckUtil.isNull(mobile)){
+        if(StringUtils.isEmpty(mobile)){
             rs.fail("校验类型不能为空");
             return rs;
         }
@@ -280,17 +282,17 @@ public final class CommonUtil {
     /**
      * 3-手机号码换绑 传customerno
      */
-    public static com.msjf.finance.mcs.common.response.Response<VerificationCodeDomain> sendChangeMobileCode(String customerno,String verificateType,String mobile){
-        com.msjf.finance.mcs.common.response.Response rs=null;
-        if(CheckUtil.isNull(verificateType)){
+    public static Response<VerificationCodeDomain> sendChangeMobileCode(String customerno,String verificateType,String mobile){
+        Response rs=null;
+        if(StringUtils.isEmpty(verificateType)){
             rs.fail("校验类型不能为空");
             return rs;
         }
-        if(CheckUtil.isNull(mobile)){
+        if(StringUtils.isEmpty(mobile)){
             rs.fail("校验类型不能为空");
             return rs;
         }
-        if(CheckUtil.isNull(customerno)){
+        if(StringUtils.isEmpty(customerno)){
             rs.fail("客户代码不能为空");
             return rs;
         }
@@ -311,17 +313,17 @@ public final class CommonUtil {
      * 3-手机号码换绑 传customerno
      */
     public static Boolean isExistCodeChangeMobile(String customerno,String verificateType,String mobile,String msgCode){
-        com.msjf.finance.mcs.common.response.Response rs=null;
-        if(CheckUtil.isNull(verificateType)){
+        Response rs=null;
+        if(StringUtils.isEmpty(verificateType)){
             return false;
         }
-        if(CheckUtil.isNull(mobile)){
+        if(StringUtils.isEmpty(mobile)){
             return false;
         }
-        if(CheckUtil.isNull(msgCode)){
+        if(StringUtils.isEmpty(msgCode)){
             return false;
         }
-        if(CheckUtil.isNull(customerno)){
+        if(StringUtils.isEmpty(customerno)){
             return false;
         }
         if(SMS_CHANGE_MOBILE_TYPE.equals(verificateType)) {
@@ -342,13 +344,13 @@ public final class CommonUtil {
      */
     public static Boolean isExistVerificationCode(String verificateType,String mobile,String msgCode){
         com.msjf.finance.mcs.common.response.Response rs=null;
-        if(CheckUtil.isNull(verificateType)){
+        if(StringUtils.isEmpty(verificateType)){
             return false;
         }
-        if(CheckUtil.isNull(mobile)){
+        if(StringUtils.isEmpty(mobile)){
             return false;
         }
-        if(CheckUtil.isNull(msgCode)){
+        if(StringUtils.isEmpty(msgCode)){
             return false;
         }
         if(verificateType.equals(SMS_REGISTER_TYPE)||verificateType.equals(SMS_CHANGE_PWD_TYPE)||verificateType.equals(SMS_LOGIN_TYPE)||verificateType.equals(SMS_SERVICE_LOGIN_TYPE)) {
@@ -367,14 +369,14 @@ public final class CommonUtil {
      * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
      */
     public static Boolean checkVerificationCode(String verificateType,String mobile,String msgCode){
-        com.msjf.finance.mcs.common.response.Response rs=null;
-        if(CheckUtil.isNull(verificateType)){
+        Response rs=null;
+        if(StringUtils.isEmpty(verificateType)){
             return false;
         }
-        if(CheckUtil.isNull(mobile)){
+        if(StringUtils.isEmpty(mobile)){
             return false;
         }
-        if(CheckUtil.isNull(msgCode)){
+        if(StringUtils.isEmpty(msgCode)){
             return false;
         }
         if(verificateType.equals(SMS_REGISTER_TYPE)||verificateType.equals(SMS_CHANGE_PWD_TYPE)||verificateType.equals(SMS_LOGIN_TYPE)||verificateType.equals(SMS_SERVICE_LOGIN_TYPE)) {
@@ -393,17 +395,17 @@ public final class CommonUtil {
      * 3-手机号码换绑 传customerno
      */
     public static Boolean checkCodeChangeMobile(String customerno,String verificateType,String mobile,String msgCode){
-        com.msjf.finance.mcs.common.response.Response rs=null;
-        if(CheckUtil.isNull(verificateType)){
+        Response rs=null;
+        if(StringUtils.isEmpty(verificateType)){
             return false;
         }
-        if(CheckUtil.isNull(mobile)){
+        if(StringUtils.isEmpty(mobile)){
             return false;
         }
-        if(CheckUtil.isNull(msgCode)){
+        if(StringUtils.isEmpty(msgCode)){
             return false;
         }
-        if(CheckUtil.isNull(customerno)){
+        if(StringUtils.isEmpty(customerno)){
             return false;
         }
         if(SMS_CHANGE_MOBILE_TYPE.equals(verificateType)) {
