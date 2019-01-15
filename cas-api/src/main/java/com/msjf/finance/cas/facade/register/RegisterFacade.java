@@ -1,4 +1,5 @@
 package com.msjf.finance.cas.facade.register;
+import com.msjf.finance.cas.facade.register.domain.RegisterDomain;
 import com.msjf.finance.msjf.core.response.Response;
 
 import java.util.HashMap;
@@ -11,5 +12,5 @@ public interface RegisterFacade {
     /**
      * 业务用户注册
      */
-    Response inserRegister(HashMap<String,Object> mapParam ) throws Exception;
+    Response inserRegister(RegisterDomain res) throws Exception;
 }
