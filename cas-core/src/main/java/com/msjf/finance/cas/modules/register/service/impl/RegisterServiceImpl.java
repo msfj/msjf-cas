@@ -179,7 +179,8 @@ public class RegisterServiceImpl implements RegisterService {
                 msgMap.put("verificateType","1");
                 msgMap.put("templateId",msgcode);
                 msgMap.put("mobile",mobile);
-                Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(msgMap);
+                //TODO 这里入参有问题
+                Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(null);
                 if(msgRs.checkIfFail()){
                     return new Response().fail("0","短信验证码验证不通过！");
                 }
@@ -196,7 +197,8 @@ public class RegisterServiceImpl implements RegisterService {
                 msgMap.put("verificateType","1");
                 msgMap.put("templateId",msgcode);
                 msgMap.put("mobile",mobile);
-                Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(msgMap);
+                //TODO 这里入参错误
+                Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(null);
                 if(msgRs.checkIfFail()){
                     return new Response().fail("0","短信验证码验证不通过！");
                 }

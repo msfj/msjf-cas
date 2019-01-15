@@ -8,10 +8,10 @@ import com.msjf.finance.cas.modules.util.emun.CommonUtilEnum;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.crypto.Mac;
@@ -205,7 +205,7 @@ public final class CommonUtil {
      * @return
      */
     public static boolean checkImageValidecode(String uniqueID, String inputValidecode, Response rs) {
-        if (StringUtils.isEmpty(uniqueID)) {
+        if (StringUtils.isBlank(uniqueID)) {
             rs.fail(CommonUtilEnum.MSG_PARAM_ERROR);
             return false;
         }
@@ -266,7 +266,8 @@ public final class CommonUtil {
             map.put("mobile",mobile);
             map.put("templateId",SMS_REGISTER_TEMPLATE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
-            return sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+           //todo 这里入参错误 sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+            return sendVerificationCodeFacade.SendRegisterVerificationCode(null);
         }else{
             return new Response<>().fail();
         }
@@ -292,7 +293,8 @@ public final class CommonUtil {
             map.put("mobile",mobile);
             map.put("templateId",SMS_CHANGE_MOBILE_TYPE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
-            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+            //todo 这里入参错误 sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(null);
         }else{
             return rs;
         }

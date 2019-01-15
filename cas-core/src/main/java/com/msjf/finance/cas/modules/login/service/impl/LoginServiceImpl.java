@@ -98,7 +98,6 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param mapParam
      * @param
      */
-    @Override
     public Response<LoginDomain> memberLogin(HashMap<String, Object> mapParam) {
         Response rs=new Response();
         LoginDomain loginDomain=new LoginDomain();
@@ -193,7 +192,6 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param mapParam
      * @return
      */
-    @Override
     public Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam) {
         Response<List<Map>> rs=new Response();
         rs.fail(LoginEnum.LOGIN_FAILED);

@@ -1,6 +1,9 @@
 package com.msjf.finance.cas.modules.ausAuthone.entity;
 
-public class AusAuthoneKey {
+
+import com.msjf.finance.msjf.core.entity.BaseEntity;
+
+public class AusAuthoneKey  extends BaseEntity {
     //客户代码
     private  String customerno;
 
