@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.modules.login.facade;
 
 import com.msjf.finance.cas.facade.login.LoginFacade;
+import com.msjf.finance.cas.facade.login.domain.LoginDomain;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.modules.login.service.LoginService;
 import com.msjf.finance.msjf.core.response.Response;
@@ -16,7 +17,7 @@ public class LoginFacadeImpl implements LoginFacade {
     @Resource
     LoginService loginService;
     @Override
-    public Response<Map> memberLogin(HashMap<String, Object> mapParam) {
+    public Response<LoginDomain> memberLogin(HashMap<String, Object> mapParam) {
         Response rs=null;
         try {
             rs=loginService.memberLogin(mapParam);

@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.facade.login;
 
 
+import com.msjf.finance.cas.facade.login.domain.LoginDomain;
 import com.msjf.finance.msjf.core.response.Response;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public interface LoginFacade {
      * @param mapParam
      * @return
      */
-    Response<Map> memberLogin(HashMap<String, Object> mapParam);
+    Response<LoginDomain> memberLogin(HashMap<String, Object> mapParam);
 
     /**
      * 法人登陆

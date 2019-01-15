@@ -1,6 +1,5 @@
 package com.msjf.finance.cas.modules.register.facade;
 
-import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.facade.register.RegisterFacade;
 import com.msjf.finance.cas.modules.Account;
 import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
@@ -16,6 +15,7 @@ import com.msjf.finance.cas.modules.register.entity.CustEntity;
 import com.msjf.finance.cas.modules.util.*;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
+import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
@@ -164,8 +164,8 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
 
 
     @Override
-    public Response  inserRegister(HashMap<String,Object> mapParam,Response rs ) throws Exception{
-
+    public Response  inserRegister(HashMap<String,Object> mapParam) throws Exception{
+        Response rs=new Response();
         getParam(mapParam);//获取入参
         if(!preCheck(rs)){
             //入参校验
@@ -195,7 +195,7 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
                 msgMap.put("verificateType","1");
                 msgMap.put("templateId",msgcode);
                 msgMap.put("mobile",mobile);
-                com.msjf.finance.mcs.common.response.Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(msgMap);
+                Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(msgMap);
                 if(msgRs.checkIfFail()){
                     rs.fail("0","短信验证码验证不通过！");
                     return rs;
@@ -217,7 +217,7 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
                 msgMap.put("verificateType","1");
                 msgMap.put("templateId",msgcode);
                 msgMap.put("mobile",mobile);
-                com.msjf.finance.mcs.common.response.Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(msgMap);
+                Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(msgMap);
                 if(msgRs.checkIfFail()){
                     rs.fail("0","短信验证码验证不通过！");
                     return rs;
@@ -646,4 +646,5 @@ public class RegisterFacadeImpl extends Account implements RegisterFacade{
             e.printStackTrace();
         }
     }
+
 }

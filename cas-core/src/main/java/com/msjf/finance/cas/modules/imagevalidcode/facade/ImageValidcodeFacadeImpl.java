@@ -1,5 +1,6 @@
 package com.msjf.finance.cas.modules.imagevalidcode.facade;
 
+import com.msjf.finance.cas.modules.imagevalidcode.emun.ImageValidcodeEnum;
 import com.msjf.finance.cas.modules.imagevalidcode.service.ImageValidcodeService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
@@ -17,24 +18,16 @@ public class ImageValidcodeFacadeImpl implements ImageValidcodeFacade {
     @Resource
     ImageValidcodeService imageValidcodeService;
     @Override
-    public Response<ImageValidcodeDomain> getBase64ImageValidecode(HashMap mapParams) {
-        Response<ImageValidcodeDomain> rs=new Response<ImageValidcodeDomain>();
+    public Response<ImageValidcodeDomain> getBase64ImageValidecode() {
         try{
-            Response<Map> response=imageValidcodeService.getBase64ImageValidecode(mapParams);
-            Map map=response.getData();
-            ImageValidcodeDomain imageValidcodeDomain=new ImageValidcodeDomain();
-            imageValidcodeDomain.setUniqueID(StringUtil.valueOf(map.get("uniqueID")));
-            imageValidcodeDomain.setValidcode(StringUtil.valueOf(map.get("validcode")));
-            rs.success(response.getMsg(),imageValidcodeDomain);
+            return imageValidcodeService.getBase64ImageValidecode();
         }catch (Exception e){
-            return rs.fail(e.getMessage());
+            return new Response<ImageValidcodeDomain>().fail(ImageValidcodeEnum.IMAGE_GET_EXCEPTION);
         }
-        return rs;
     }
 
     @Override
-    public Response checkImageValidecode(HashMap mapParams) {
-        Response rs=imageValidcodeService.checkImageValidecode(mapParams);
-        return rs;
+    public Response checkImageValidecode(ImageValidcodeDomain imageValidcodeDomain) {
+        return  imageValidcodeService.checkImageValidecode(imageValidcodeDomain);
     }
 }

@@ -1,11 +1,11 @@
 package com.msjf.finance.cas.modules.loginAuth.service.impl;
 
-import com.msjf.finance.cas.common.response.Response;
 import com.msjf.finance.cas.facade.loginAuth.domain.LoginAuthDomain;
 import com.msjf.finance.cas.modules.AccountDao;
 import com.msjf.finance.cas.modules.loginAuth.emun.LoginAuthEmun;
 import com.msjf.finance.cas.modules.loginAuth.service.LoginAuthService;
 import com.msjf.finance.cas.modules.util.StringUtil;
+import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 

@@ -1,11 +1,10 @@
 package com.msjf.finance.cas.modules.util;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.msjf.finance.cas.common.response.Response;
+
 import com.msjf.finance.cas.modules.login.dao.SysParamsConfigEntityMapper;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
+import com.msjf.finance.cas.modules.util.emun.CommonUtilEnum;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
@@ -210,11 +209,11 @@ public final class CommonUtil {
      */
     public static boolean checkImageValidecode(String uniqueID, String inputValidecode, Response rs) {
         if (StringUtils.isEmpty(uniqueID)) {
-            rs.fail("入参uniqueID不能为空");
+            rs.fail(CommonUtilEnum.MSG_PARAM_ERROR);
             return false;
         }
         if (StringUtils.isEmpty(inputValidecode)) {
-            rs.fail("未传入输入的验证码");
+            rs.fail(CommonUtilEnum.MSG_PARAM_ERROR);
             return false;
         }
         String generateTime = "";
@@ -225,30 +224,30 @@ public final class CommonUtil {
                 generateTime = parts[0];
                 md5Validecode = parts[2];
             } else {
-                rs.fail("uniqueID格式非法");
+                rs.fail(CommonUtilEnum.MSG_PARAM_ERROR);
                 return false;
             }
         } else {
-            rs.fail("uniqueID格式非法");
+            rs.fail(CommonUtilEnum.MSG_PARAM_ERROR);
             return false;
         }
         if (generateTime != null && !"".equals(generateTime)) {
             long genTime = Long.parseLong(generateTime);
             if (System.currentTimeMillis() - genTime > 10 * 60 * 1000) {
-                rs.fail("图形码验证已经失效");
+                rs.fail(CommonUtilEnum.IMAGE_OVER_TIME);
                 return false;
             }
         } else {
-            rs.fail("图形码验证时间参数解析错误");
+            rs.fail(CommonUtilEnum.IMAGE_TIME_GET_ERROR);
             return false;
         }
         if (md5Validecode != null && !"".equals(md5Validecode)) {
             if (!md5Validecode.toLowerCase().equals(MD5Util.string2MD5(inputValidecode.toLowerCase()))) {
-                rs.fail("验证码校验失败");
+                rs.fail(CommonUtilEnum.IMAGE_CHECK_FAILED);
                 return false;
             }
         } else {
-            rs.fail("图形码验证MD5参数解析错误");
+            rs.fail(CommonUtilEnum.IMAGE_MD5_ERROR);
             return false;
         }
         return true;
@@ -258,14 +257,11 @@ public final class CommonUtil {
      * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
      */
     public static Response<VerificationCodeDomain> sendVerificationCode(String verificateType, String mobile){
-        Response<VerificationCodeDomain> rs=null;
         if(StringUtils.isEmpty(verificateType)){
-            rs.fail("校验类型不能为空");
-            return rs;
+            return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(StringUtils.isEmpty(mobile)){
-            rs.fail("校验类型不能为空");
-            return rs;
+            return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(verificateType.equals(SMS_REGISTER_TYPE)||verificateType.equals(SMS_CHANGE_PWD_TYPE)||verificateType.equals(SMS_LOGIN_TYPE)||verificateType.equals(SMS_SERVICE_LOGIN_TYPE)){
             HashMap map=new HashMap();
@@ -273,11 +269,10 @@ public final class CommonUtil {
             map.put("mobile",mobile);
             map.put("templateId",SMS_REGISTER_TEMPLATE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
-            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+            return sendVerificationCodeFacade.SendRegisterVerificationCode(map);
         }else{
-            return rs;
+            return new Response<>().fail();
         }
-        return rs;
     }
     /**
      * 3-手机号码换绑 传customerno
@@ -285,16 +280,13 @@ public final class CommonUtil {
     public static Response<VerificationCodeDomain> sendChangeMobileCode(String customerno,String verificateType,String mobile){
         Response rs=null;
         if(StringUtils.isEmpty(verificateType)){
-            rs.fail("校验类型不能为空");
-            return rs;
+            return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(StringUtils.isEmpty(mobile)){
-            rs.fail("校验类型不能为空");
-            return rs;
+            return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(StringUtils.isEmpty(customerno)){
-            rs.fail("客户代码不能为空");
-            return rs;
+            return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(verificateType.equals(SMS_CHANGE_MOBILE_TYPE)){
             HashMap map=new HashMap();
@@ -343,7 +335,7 @@ public final class CommonUtil {
      * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
      */
     public static Boolean isExistVerificationCode(String verificateType,String mobile,String msgCode){
-        com.msjf.finance.mcs.common.response.Response rs=null;
+        Response rs;
         if(StringUtils.isEmpty(verificateType)){
             return false;
         }

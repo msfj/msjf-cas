@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.modules.changePwd.Service;
 
 import com.msjf.finance.cas.facade.changePwd.domain.ChangePwdDomain;
+import com.msjf.finance.cas.facade.changePwd.domain.EchoMobileDomain;
 import com.msjf.finance.cas.facade.changePwd.domain.RequestChangePwdDomain;
 import com.msjf.finance.msjf.core.response.Response;
 
@@ -17,8 +18,8 @@ public interface ChangePwdService {
 
     /**
      * 手机号码回显
-     * @param mapParam
+     * @param
      * @return
      */
-    Response<Map> echoMobile(HashMap<String, Object> mapParam);
+    Response<EchoMobileDomain> echoMobile(String certificateno);
 }

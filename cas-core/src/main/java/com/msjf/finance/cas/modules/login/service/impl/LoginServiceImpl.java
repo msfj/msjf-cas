@@ -1,11 +1,13 @@
 package com.msjf.finance.cas.modules.login.service.impl;
 
+import com.msjf.finance.cas.facade.login.domain.LoginDomain;
 import com.msjf.finance.cas.modules.Account;
 import com.msjf.finance.cas.modules.AccountDao;
 import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
 import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneEntity;
 import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneKey;
 import com.msjf.finance.cas.modules.login.dao.OrganAppendMapper;
+import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs;
 import com.msjf.finance.cas.modules.login.service.LoginService;
 import com.msjf.finance.cas.modules.organ.dao.OrganInfoDao;
@@ -97,9 +99,10 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param
      */
     @Override
-    public Response<Map> memberLogin(HashMap<String, Object> mapParam) {
+    public Response<LoginDomain> memberLogin(HashMap<String, Object> mapParam) {
         Response rs=new Response();
-        rs.fail("登录失败");
+        LoginDomain loginDomain=new LoginDomain();
+        rs.fail(LoginEnum.LOGIN_FAILED);
         //1.获取参数值
         getParam(mapParam);
         //2.检查数据不能为空
@@ -183,18 +186,16 @@ public class LoginServiceImpl extends Account implements LoginService {
         updAuthone(rs);
         //基本信息是否完成填写 未完成时跳转到基本信息修改页面
         boolean isfinish = checkIsFinish(rs);
-        HashMap<String, Object> rsmap = new HashMap<String, Object>();
-        rsmap.put("customerno", customerno);
-        rsmap.put("isfinish", isfinish ? CommonUtil.YES : CommonUtil.NO);
-//        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
-        rsmap.put("membertype", membertype);
-        rsmap.put("membername", membername);
-        rsmap.put("name", certificateno);
+        loginDomain.setCustomerno(customerno);
+        loginDomain.setIsfinish(isfinish ? CommonUtil.YES : CommonUtil.NO);
+        loginDomain.setMembername(membername);
+        loginDomain.setMembertype(membertype);
+        loginDomain.setName(certificateno);
         if (CommonUtil.YES.equals(membertype)) {
-            rsmap.put("organtype", organtype);
-            rsmap.put("organclass", organclass);
+            loginDomain.setOrganclass(organclass);
+            loginDomain.setOrgantype(organtype);
         }
-        rs.success("登陆成功",rsmap);
+        rs.success(LoginEnum.LOGIN_SUCCESS,loginDomain);
         return rs;
     }
 

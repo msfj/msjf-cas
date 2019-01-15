@@ -1,5 +1,6 @@
 package com.msjf.finance.cas.modules.changePwd.Service.impl;
 import com.msjf.finance.cas.facade.changePwd.domain.ChangePwdDomain;
+import com.msjf.finance.cas.facade.changePwd.domain.EchoMobileDomain;
 import com.msjf.finance.cas.facade.changePwd.domain.RequestChangePwdDomain;
 import com.msjf.finance.cas.modules.Account;
 import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
@@ -95,11 +96,13 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
     }
 
     @Override
-    public Response<Map> echoMobile(HashMap<String, Object> mapParam) {
-        Response<Map> rs=new Response();
-        HashMap resMap=new HashMap();
+    public Response<EchoMobileDomain> echoMobile(String certificateno){
+        Response<EchoMobileDomain> rs=new Response();
+        EchoMobileDomain echoMobileDomain=new EchoMobileDomain();
         rs.fail();
-        String certificateno= StringUtil.valueOf(mapParam.get("certificateno"));
+        if(StringUtils.isEmpty(certificateno)){
+            return rs.fail(ChangePwdEnum.MSG_PARAM_ERROR);
+        }
         CustEntity custEntity=new CustEntity();
         custEntity.setCertificateno(certificateno);
         List<CustEntity> custEntityList= custDao.queryCustEntityList(custEntity);
@@ -107,8 +110,9 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
             return rs.fail(ChangePwdEnum.MSG_USER_NULL);
         }
         mobile=custEntityList.get(0).getMobile();
-        resMap.put("mobile",mobile.replaceAll("(\\d{3})\\d{6}(\\d{2})", "$1****$2"));
-        rs.success(ChangePwdEnum.QUERY_SUCCESS,resMap);
-        return rs;
+        mobile=mobile.replaceAll("(\\d{3})\\d{6}(\\d{2})", "$1****$2");
+        echoMobileDomain.setCertificateno(certificateno);
+        echoMobileDomain.setMobile(mobile);
+        return rs.success(ChangePwdEnum.QUERY_SUCCESS,echoMobileDomain);
     }
 }

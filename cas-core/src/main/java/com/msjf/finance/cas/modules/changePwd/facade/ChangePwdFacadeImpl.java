@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.modules.changePwd.facade;
 import com.msjf.finance.cas.facade.changePwd.ChangePwdFacade;
 import com.msjf.finance.cas.facade.changePwd.domain.ChangePwdDomain;
+import com.msjf.finance.cas.facade.changePwd.domain.EchoMobileDomain;
 import com.msjf.finance.cas.facade.changePwd.domain.RequestChangePwdDomain;
 import com.msjf.finance.cas.modules.changePwd.Service.ChangePwdService;
 import com.msjf.finance.msjf.core.response.Response;
@@ -15,18 +16,19 @@ public class ChangePwdFacadeImpl implements ChangePwdFacade {
     ChangePwdService changePwdService;
     @Override
     public Response<ChangePwdDomain> changePwd(RequestChangePwdDomain requestChangePwdDomain) {
-        Response rs=null;
         try {
-            rs=changePwdService.changePwd(requestChangePwdDomain);
+            return changePwdService.changePwd(requestChangePwdDomain);
         }catch (Exception e){
-            rs.fail();
-            throw new RuntimeException(e.getMessage(),e);
+            return new Response<>().fail();
         }
-        return rs;
     }
 
     @Override
-    public Response<Map> echoMobile(HashMap<String, Object> mapParam) {
-        return null;
+    public Response<EchoMobileDomain> echoMobile(String certificateno) {
+        try {
+            return changePwdService.echoMobile(certificateno);
+        }catch (Exception e){
+            return new Response<>().fail();
+        }
     }
 }

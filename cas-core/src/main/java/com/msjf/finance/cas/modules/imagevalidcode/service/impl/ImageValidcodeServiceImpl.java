@@ -1,9 +1,11 @@
 package com.msjf.finance.cas.modules.imagevalidcode.service.impl;
 
-import com.msjf.finance.cas.common.response.Response;
+import com.msjf.finance.cas.facade.imagevalidcode.domain.ImageValidcodeDomain;
+import com.msjf.finance.cas.modules.imagevalidcode.emun.ImageValidcodeEnum;
 import com.msjf.finance.cas.modules.imagevalidcode.service.ImageValidcodeService;
 import com.msjf.finance.cas.modules.util.MD5Util;
 import com.msjf.finance.cas.modules.util.VerifyCodeUtils;
+import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -14,7 +16,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
 import java.util.Random;
 @Service("imageValidcodeService")
 public class ImageValidcodeServiceImpl implements ImageValidcodeService {
@@ -28,8 +29,8 @@ public class ImageValidcodeServiceImpl implements ImageValidcodeService {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public Response<Map> getBase64ImageValidecode(HashMap mapParams) {
-        Response rs = new Response();
+    public Response<ImageValidcodeDomain> getBase64ImageValidecode() {
+        Response<ImageValidcodeDomain> rs = new Response();
         rs.fail();
         rs.setMsg("begin process...");
 //        rs.setErrorCode(Constant.WS_ERROR_FAILURE);
@@ -61,21 +62,15 @@ public class ImageValidcodeServiceImpl implements ImageValidcodeService {
 
         //select * from kifp.cif_send_phone_msg t
 
-
-        HashMap returnMap = new HashMap();
-        returnMap.put("validcode", validcode);
-        returnMap.put("uniqueID", uniqueID);
-
+        ImageValidcodeDomain imageValidcodeDomain=new ImageValidcodeDomain();
+        imageValidcodeDomain.setUniqueID(uniqueID);
+        imageValidcodeDomain.setValidcode(validcode);
 //        rs.setErrorCode(Constant.WS_ERROR_SUCCESS);
 //        rs.setResType(Constant.WS_TYPE_LISTMAP);
 //        ArrayList<Map> returnData = new ArrayList<Map>() ;
 //        returnData.add(returnMap);
 //        rs.setResult(returnData);
-        rs.setMsg("生成图形验证码成功");
-        rs.success(returnMap);
-//        rs.setErrorMessage("生成图形验证码成功");
-
-        return rs ;
+        return rs.success(ImageValidcodeEnum.IMAGE_MAKE_SUCCESS,imageValidcodeDomain);
     }
 
 
@@ -105,24 +100,20 @@ public class ImageValidcodeServiceImpl implements ImageValidcodeService {
 
     @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
     @Override
-    public Response checkImageValidecode(HashMap mapParams) {
+    public Response checkImageValidecode(ImageValidcodeDomain imageValidcodeDomain) {
         Response rs = new Response();
-//        rs.setErrorCode(Constant.WS_ERROR_FAILURE);
-//        rs.setErrorMessage("begin process...");
         rs.fail();
         rs.setMsg("begin process...");
-
         try {
-            String uniqueID = (String)mapParams.get("uniqueID");
-            String inputValidecode = (String)mapParams.get("inputValidecode");
+            String uniqueID = imageValidcodeDomain.getUniqueID();
+            String inputValidecode = imageValidcodeDomain.getValidcode();
 
             if ( uniqueID == null) {
-                rs.fail("入参uniqueID不能为空"); return rs;
+                 return rs.fail(ImageValidcodeEnum.MSG_PARAM_ERROR);
             }
             if ( inputValidecode == null )  {
-                rs.fail("未传入输入的验证码"); return rs;
+                return rs.fail(ImageValidcodeEnum.MSG_PARAM_ERROR);
             }
-
             String generateTime = "";
             String md5Validecode = "";
 
@@ -132,40 +123,34 @@ public class ImageValidcodeServiceImpl implements ImageValidcodeService {
                     generateTime = parts[0];
                     md5Validecode = parts[2];
                 } else {
-                    rs.fail("uniqueID格式非法"); return rs;
+                    return rs.fail(ImageValidcodeEnum.MSG_PARAM_ERROR);
                 }
             } else {
-                rs.fail("uniqueID格式非法"); return rs;
+                return rs.fail(ImageValidcodeEnum.MSG_PARAM_ERROR);
             }
 
             if ( generateTime != null && !"".equals(generateTime)) {
                 long genTime = Long.parseLong(generateTime) ;
                 if ( System.currentTimeMillis() - genTime > 10*60*1000 ) {
-                    rs.fail("图形码验证已经失效");return rs;
+                    return rs.fail(ImageValidcodeEnum.IMAGE_OVER_TIME);
                 }
             } else {
-                rs.fail("图形码验证时间参数解析错误");return rs;
+                return rs.fail(ImageValidcodeEnum.IMAGE_TIME_GET_ERROR);
             }
 
             if ( md5Validecode != null && !"".equals(md5Validecode)) {
                 if ( !md5Validecode.toLowerCase().equals( MD5Util.string2MD5(inputValidecode.toLowerCase()) )  )   {
-                    rs.fail("验证码校验失败"); return rs;
+                     return rs.fail(ImageValidcodeEnum.IMAGE_CHECK_FAILED);
                 }
             } else {
-                rs.fail("图形码验证MD5参数解析错误");return rs;
+                return rs.fail(ImageValidcodeEnum.IMAGE_MD5_ERROR);
             }
-
-            rs.success("验证成功");
+            return rs.success(ImageValidcodeEnum.CHECK_SUCCESS);
 
         } catch (Exception ex)  {
             ex.printStackTrace();
-            //	rs.setErrorCode(Constant.WS_ERROR_FAILURE);
-            //	rs.setErrorMessage(ex.toString());
-            rs.fail(ex.toString());
-
+            return rs.fail(ImageValidcodeEnum.IMAGE_CHECK_EXCEPTION);
         }
-
-        return rs ;
     }
 
 
