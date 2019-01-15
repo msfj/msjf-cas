@@ -1,8 +1,8 @@
 package com.msjf.finance.cas.modules.person.dao;
 
-import com.msjf.finance.cas.common.dao.MyBatisDao;
 import com.msjf.finance.cas.modules.person.entity.PersonInfoEntity;
 import com.msjf.finance.cas.modules.person.entity.PersonInfoKey;
+import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.List;
 import java.util.Map;

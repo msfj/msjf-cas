@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.modules;
 
-import com.msjf.finance.cas.common.dao.MyBatisDao;
+
+import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,9 +1,9 @@
 package loginAuth;
 
-import com.msjf.finance.cas.common.response.Response;
-import com.msjf.finance.cas.common.test.SpringTestCase;
 import com.msjf.finance.cas.facade.login.LoginFacade;
 import com.msjf.finance.cas.facade.loginAuth.LoginAuthFacade;
+import com.msjf.finance.msjf.core.response.Response;
+import common.SpringTestCase;
 import org.junit.Test;
 
 import javax.annotation.Resource;

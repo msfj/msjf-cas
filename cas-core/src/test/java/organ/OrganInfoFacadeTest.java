@@ -1,21 +1,16 @@
 
 package organ;
 
-import com.msjf.finance.cas.common.response.Response;
-import com.msjf.finance.cas.common.test.SpringTestCase;
 
-import com.msjf.finance.cas.facade.register.RegisterFacade;
+import common.SpringTestCase;
 import org.junit.Test;
-
-import javax.annotation.Resource;
-import java.util.HashMap;
 
 
 /**
 * Created by 11509 on 2018/12/18.
  */
 
-public class OrganInfoFacadeTest   extends SpringTestCase{
+public class OrganInfoFacadeTest   extends SpringTestCase {
 /*  @Resource
    SendVerificationCodeFacade sendVerificationCodeFacade;
 @Resource

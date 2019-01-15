@@ -1,8 +1,9 @@
 package com.msjf.finance.cas.modules.organ.emun;
 
-import com.msjf.finance.cas.common.response.ResponseService;
 
-public enum  OrganInfoEmun implements ResponseService{
+import com.msjf.finance.msjf.core.emun.ResponseService;
+
+public enum  OrganInfoEmun implements ResponseService {
     MSG_PARAM_ERROR("CAS0001", "入参不合法"),
     MSG_SYS_ERROR("CAS0002", "系统调用异常！");
 

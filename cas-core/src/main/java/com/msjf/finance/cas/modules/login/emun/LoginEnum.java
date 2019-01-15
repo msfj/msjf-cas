@@ -8,23 +8,23 @@ import com.msjf.finance.msjf.core.emun.ResponseService;
 public enum  LoginEnum implements ResponseService {
     MSG_PARAM_ERROR("CAS0001", "入参不合法"),
     MSG_USER_NULL("CAS0002", "查询用户信息为空"),
-    MSG_USER_EXCEPTION("CAS0003", "获取用户信息异常"),
-    TEMPLE_ID_NULL("CAS0004", "模板ID不能为空"),
+    LOGIN_SOURCE_NULL("CAS0003", "登录来源不能为空"),
+    MSG_USER_LOCK("CAS0004", "账户已锁定"),
     MOBILE_NULL("CAS0005", "手机号码不能为空"),
-    SYSTEM_PARA_ERROR("CAS0006", "系统参数异常"),
-    MSG_CHECK_EXCEPTION("CAS0007", "信息校验异常"),
-    MSG_SEND_EXCEPTION("CAS0008", "发送信息异常"),
-    SEND_SMS_FAILD("CAS0009", "短信发送失败"),
-    OLD_MOBILE_CHECK_ERROR("CAS0010", "原手机号码校验不通过"),
-    CHANGE_MOBILE_EXCEPTION("CAS0011", "换绑手机不能与原手机相同"),
-    VERIFICATION_SUCCESS("CAS0012", "校验成功"),
-    MSGCODE_NOT_EXIST("CAS0013", "校验码不存在"),
-    MSGCODE_NULL("CAS0014", "验证码不能为空"),
-    QUERY_SUCCESS("CAS0015", "获取成功"),
+    MSG_USER_FROZEN("CAS0006", "账户已冻结"),
+    MSG_USER_CANCEL("CAS0007", "账户已销户"),
+    MSGCODE_NULL("CAS0008", "验证码不能为空"),
+    PWD_ENCRYPT_ERROR("CAS0009", "密码加密对比失败"),
+    CHECK_FILED("CAS0010", "校验失败"),
+    IMAGE_CODE_NULL("CAS0011", "图形验证码不能为空"),
+    PWD_NULL("CAS0012", "密码不能为空"),
+    LOGIN_NAME_NULL("CAS0013", "登录账号不能为空"),
+    CORPORATION_QUERY_NULL("CAS0014", "查无该法人企业信息"),
+    PWD_ERROR_LOCK("CAS0015", "用户名或密码错误,账户已锁定"),
     LOGIN_FAILED("CAS0016", "登陆失败"),
-    CHANGE_SUCCESS("CAS0017", "修改成功"),
+    DICT_QUERY_NULL("CAS0017", "企业分类字典值不存在字典中"),
     LOGIN_SUCCESS("CAS0018", "登陆成功"),
-    SMS_SEND_ERROR("CAS0019", "发送失败");
+    LOGIN_TYPE_NULL("CAS0019", "登陆方式");
     private String errorCode;
     private String errorDesc;
 
