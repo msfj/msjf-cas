@@ -24,6 +24,7 @@ import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -234,7 +235,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             entity.setCertificateno(certificateno);
             entity.setMembertype(company);
             List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
-            if(StringUtils.isEmpty(custEntityList)){
+            if(ObjectUtils.isEmpty(custEntityList)){
                 return rs.fail(LoginEnum.MSG_USER_NULL);
             }
             CustEntity custEntity=custEntityList.get(0);
@@ -418,7 +419,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             PersonInfoKey personInfoKey=new PersonInfoKey();
             personInfoKey.setCustomerno(customerno);
             PersonInfoEntity e = personInfoDao.selectByKey(personInfoKey);
-            if (StringUtils.isEmpty(e)) {
+            if (ObjectUtils.isEmpty(e)) {
                 rs.fail(LoginEnum.MSG_USER_NULL);
                 throw new RuntimeException(rs.getMsg());
             }
@@ -448,7 +449,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             OrganInfoKey organInfoKey=new OrganInfoKey();
             organInfoKey.setCustomerno(customerno);
             OrganInfoEntity c = organInfoDao.getOrganInfoByKey(organInfoKey);
-            if (StringUtils.isEmpty(c)) {
+            if (ObjectUtils.isEmpty(c)) {
                 rs.fail(LoginEnum.MSG_USER_NULL);
                 throw new RuntimeException(rs.getMsg());
             }

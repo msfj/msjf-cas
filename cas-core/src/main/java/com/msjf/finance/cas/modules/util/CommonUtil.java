@@ -6,6 +6,7 @@ import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
 import com.msjf.finance.cas.modules.util.emun.CommonUtilEnum;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
+import com.msjf.finance.mcs.facade.sms.domain.ReqSendVerificationCodeDomain;
 import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
 import org.slf4j.Logger;
@@ -261,12 +262,12 @@ public final class CommonUtil {
             return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(verificateType.equals(SMS_REGISTER_TYPE)||verificateType.equals(SMS_CHANGE_PWD_TYPE)||verificateType.equals(SMS_LOGIN_TYPE)||verificateType.equals(SMS_SERVICE_LOGIN_TYPE)){
-            HashMap map=new HashMap();
-            map.put("verificateType",verificateType);
-            map.put("mobile",mobile);
-            map.put("templateId",SMS_REGISTER_TEMPLATE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
+            ReqSendVerificationCodeDomain reqSendVerificationCodeDomain=new ReqSendVerificationCodeDomain();
+            reqSendVerificationCodeDomain.setMobile(mobile);
+            reqSendVerificationCodeDomain.setTemplateId(SMS_REGISTER_TEMPLATE);
+            reqSendVerificationCodeDomain.setVerificateType(verificateType);
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
-            return sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+            return sendVerificationCodeFacade.SendRegisterVerificationCode(reqSendVerificationCodeDomain);
         }else{
             return new Response<>().fail();
         }
@@ -286,13 +287,13 @@ public final class CommonUtil {
             return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(verificateType.equals(SMS_CHANGE_MOBILE_TYPE)){
-            HashMap map=new HashMap();
-            map.put("customerno",customerno);
-            map.put("verificateType",verificateType);
-            map.put("mobile",mobile);
-            map.put("templateId",SMS_CHANGE_MOBILE_TYPE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
+            ReqSendVerificationCodeDomain reqSendVerificationCodeDomain=new ReqSendVerificationCodeDomain();
+            reqSendVerificationCodeDomain.setMobile(mobile);
+            reqSendVerificationCodeDomain.setTemplateId(SMS_CHANGE_MOBILE_TYPE);
+            reqSendVerificationCodeDomain.setVerificateType(verificateType);
+            reqSendVerificationCodeDomain.setCustomerno(customerno);
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
-            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(reqSendVerificationCodeDomain);
         }else{
             return rs;
         }
