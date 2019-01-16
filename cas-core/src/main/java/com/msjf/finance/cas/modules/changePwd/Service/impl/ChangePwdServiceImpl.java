@@ -34,10 +34,6 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
 
     private String customerno;
 
-    /**
-     * 法人手机号码
-     */
-    private String cormob;
 
     @Override
     public Response<ChangePwdDomain> changePwd(RequestChangePwdDomain requestChangePwdDomain) {
@@ -57,11 +53,14 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         CustEntity custEntity=new CustEntity();
         custEntity.setCertificateno(certificateno);
         List<CustEntity> custEntityList= custDao.queryCustEntityList(custEntity);
-        if(StringUtils.isEmpty(custEntityList)){
+        if(ObjectUtils.isEmpty(custEntityList)){
             rs.fail(ChangePwdEnum.MSG_USER_NULL);
         }
-        mobile=custEntityList.get(0).getMobile();
-        cormob=custEntityList.get(0).getCormob();
+        if(company.equals(custEntityList.get(0).getMembertype())){
+            mobile=custEntityList.get(0).getCormob();
+        }else{
+            mobile=custEntityList.get(0).getMobile();
+        }
         customerno=custEntityList.get(0).getCustomerno();
         if(step.equals(step_1)){
             Response<VerificationCodeDomain> mcsRs= CommonUtil.sendVerificationCode(SMS_CHANGE_PWD_TYPE,mobile);

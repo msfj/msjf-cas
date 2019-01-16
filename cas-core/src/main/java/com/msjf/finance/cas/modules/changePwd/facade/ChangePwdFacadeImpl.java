@@ -4,6 +4,7 @@ import com.msjf.finance.cas.facade.changePwd.domain.ChangePwdDomain;
 import com.msjf.finance.cas.facade.changePwd.domain.EchoMobileDomain;
 import com.msjf.finance.cas.facade.changePwd.domain.RequestChangePwdDomain;
 import com.msjf.finance.cas.modules.changePwd.Service.ChangePwdService;
+import com.msjf.finance.cas.modules.changePwd.emun.ChangePwdEnum;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class ChangePwdFacadeImpl implements ChangePwdFacade {
         try {
             return changePwdService.changePwd(requestChangePwdDomain);
         }catch (Exception e){
-            return new Response<>().fail();
+            return new Response<>().fail(ChangePwdEnum.MSG_CHECK_EXCEPTION);
         }
     }
 
