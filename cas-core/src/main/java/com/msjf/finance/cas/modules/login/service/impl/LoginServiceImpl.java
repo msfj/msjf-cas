@@ -85,8 +85,6 @@ public class LoginServiceImpl extends Account implements LoginService {
     @Resource
     PersonInfoDao personInfoDao;
     @Resource
-    CommonUtil commonUtil;
-    @Resource
     OrganInfoDao organInfoDao;
     @Resource
     OrganAppendMapper organAppendMapper;
@@ -118,10 +116,10 @@ public class LoginServiceImpl extends Account implements LoginService {
             entitys = custDao.queryCustEntityList(entity);
         }else if("2".equals(loginType)){
             entity.setMobile(mobile);
-            entity.setMembertype(company);
+            entity.setMembertype(person);
             entitys = custDao.queryCustEntityList(entity);
         }
-        if (StringUtils.isEmpty(entitys)) {
+        if (ObjectUtils.isEmpty(entitys)) {
             return rs.fail(LoginEnum.MSG_USER_NULL);
         }
         customerno = entitys.get(0).getCustomerno();
@@ -138,7 +136,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         AusAuthoneKey ausAuthoneKey = new AusAuthoneKey();
         ausAuthoneKey.setCustomerno(customerno);
         AusAuthoneEntity ausAuthoneEntity = ausAuthoneDao.getAusAuthoneByKeyLock(ausAuthoneKey);
-        if (StringUtils.isEmpty(ausAuthoneEntity)) {
+        if (ObjectUtils.isEmpty(ausAuthoneEntity)) {
             return rs.fail(LoginEnum.MSG_USER_NULL);
         }
 //        String enPassword = KDEncodeUtil.getKingdomPasswrod(password, customerno);
@@ -220,7 +218,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             HashMap reqmap=new HashMap();
             reqmap.put("mobile",mobile);
             List<Map> list=accountDao.selectOrganInfoByMobile(reqmap);
-            if(StringUtils.isEmpty(list)){
+            if(ObjectUtils.isEmpty(list)){
                 return rs.fail(LoginEnum.CORPORATION_QUERY_NULL);
             }
             for(Map map:list){
@@ -375,7 +373,7 @@ public class LoginServiceImpl extends Account implements LoginService {
     private void checkFailcount(int failCount, Response rs) {
         //获取系统参数 错误次数上限
         int sysFailCount = Integer
-                .valueOf(commonUtil.getSysConfigValue("login_allow_error_num", "login_allow_error_num"));
+                .valueOf(CommonUtil.getSysConfigValue("login_allow_error_num", "login_error_num"));
         //更新错误次数 和 账户状态
         AusAuthoneEntity ausAuthoneEntity = new AusAuthoneEntity();
         ausAuthoneEntity.setCustomerno(customerno);
@@ -396,7 +394,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             }
             ausAuthoneDao.update(ausAuthoneEntity);
         } catch (Exception e) {
-//            LogUtil.error(e);
+            logger.error(e.getMessage());
             throw new RuntimeException("登录错误次数更新失败");
         }
         int failedExistCount=sysFailCount-ausAuthoneEntity.getFailcount();//剩余次数

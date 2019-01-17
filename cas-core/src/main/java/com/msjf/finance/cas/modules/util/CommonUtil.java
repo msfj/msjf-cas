@@ -26,7 +26,6 @@ import java.util.*;
  * 公用参数
  * Created by lzp on 2018/12/26.
  */
-@Component
 public final class CommonUtil {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -129,12 +128,13 @@ public final class CommonUtil {
         }
         return a;
     }
-    public String getSysConfigValue(String paramId, String paramType){
+    public static String getSysConfigValue(String paramId, String paramType){
         SysParamsConfigEntityKey sysParamsConfigKey=new SysParamsConfigEntityKey();
         sysParamsConfigKey.setDistributorId(DISTRIBUTORID);
         sysParamsConfigKey.setExchangeId(EXCHANGEID);
         sysParamsConfigKey.setParamId(paramId);
         sysParamsConfigKey.setParamType(paramType);
+        SysParamsConfigEntityMapper sysParamsConfigEntityMapper=SpringContextUtil.getBean("sysParamsConfigEntityMapper");
         SysParamsConfigEntity sysParamsConfig=sysParamsConfigEntityMapper.selectByPrimaryKey(sysParamsConfigKey);
         return sysParamsConfig.getParamValue();
     }
