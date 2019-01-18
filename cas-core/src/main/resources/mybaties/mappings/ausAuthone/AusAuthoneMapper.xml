@@ -42,7 +42,6 @@
 		update cas.aus_authone
 	]]>
         <set>
-            <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno},]]></if>
             <if test="password != null and password != '' "><![CDATA[password=#{password},]]></if>
             <if test="failcount != null and failcount != '' or failcount == 0 "><![CDATA[failcount=#{failcount},]]></if>
             <if test="onlinestatus != null and onlinestatus != '' "><![CDATA[onlinestatus=#{onlinestatus},]]></if>
