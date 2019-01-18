@@ -28,6 +28,7 @@ public class EmployeeInfoFacadeImpl implements EmployeeInfoFacade {
     public Response<List<EmployeeInfoDomain>> queryEmployeeInfoList() {
        // return employeeInfoService.queryEmployeeInfoList();
         try {
+
             List<EmployeeInfoDomain> employeeInfoList = employeeInfoService.queryEmployeeInfoList();
             return new Response<>().success(employeeInfoList);
         }catch (Exception e){
