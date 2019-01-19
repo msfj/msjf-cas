@@ -6,13 +6,12 @@ import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
 import com.msjf.finance.cas.modules.util.emun.CommonUtilEnum;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
-import com.msjf.finance.mcs.facade.sms.domain.ReqSendVerificationCodeDomain;
 import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.crypto.Mac;
@@ -26,6 +25,7 @@ import java.util.*;
  * 公用参数
  * Created by lzp on 2018/12/26.
  */
+@Component
 public final class CommonUtil {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -128,13 +128,12 @@ public final class CommonUtil {
         }
         return a;
     }
-    public static String getSysConfigValue(String paramId, String paramType){
+    public String getSysConfigValue(String paramId, String paramType){
         SysParamsConfigEntityKey sysParamsConfigKey=new SysParamsConfigEntityKey();
         sysParamsConfigKey.setDistributorId(DISTRIBUTORID);
         sysParamsConfigKey.setExchangeId(EXCHANGEID);
         sysParamsConfigKey.setParamId(paramId);
         sysParamsConfigKey.setParamType(paramType);
-        SysParamsConfigEntityMapper sysParamsConfigEntityMapper=SpringContextUtil.getBean("sysParamsConfigEntityMapper");
         SysParamsConfigEntity sysParamsConfig=sysParamsConfigEntityMapper.selectByPrimaryKey(sysParamsConfigKey);
         return sysParamsConfig.getParamValue();
     }
@@ -206,7 +205,7 @@ public final class CommonUtil {
      * @return
      */
     public static boolean checkImageValidecode(String uniqueID, String inputValidecode, Response rs) {
-        if (StringUtils.isEmpty(uniqueID)) {
+        if (StringUtils.isBlank(uniqueID)) {
             rs.fail(CommonUtilEnum.MSG_PARAM_ERROR);
             return false;
         }
@@ -262,12 +261,13 @@ public final class CommonUtil {
             return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(verificateType.equals(SMS_REGISTER_TYPE)||verificateType.equals(SMS_CHANGE_PWD_TYPE)||verificateType.equals(SMS_LOGIN_TYPE)||verificateType.equals(SMS_SERVICE_LOGIN_TYPE)){
-            ReqSendVerificationCodeDomain reqSendVerificationCodeDomain=new ReqSendVerificationCodeDomain();
-            reqSendVerificationCodeDomain.setMobile(mobile);
-            reqSendVerificationCodeDomain.setTemplateId(SMS_REGISTER_TEMPLATE);
-            reqSendVerificationCodeDomain.setVerificateType(verificateType);
+            HashMap map=new HashMap();
+            map.put("verificateType",verificateType);
+            map.put("mobile",mobile);
+            map.put("templateId",SMS_REGISTER_TEMPLATE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
-            return sendVerificationCodeFacade.SendRegisterVerificationCode(reqSendVerificationCodeDomain);
+           //todo 这里入参错误 sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+            return sendVerificationCodeFacade.SendRegisterVerificationCode(null);
         }else{
             return new Response<>().fail();
         }
@@ -287,13 +287,14 @@ public final class CommonUtil {
             return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
         if(verificateType.equals(SMS_CHANGE_MOBILE_TYPE)){
-            ReqSendVerificationCodeDomain reqSendVerificationCodeDomain=new ReqSendVerificationCodeDomain();
-            reqSendVerificationCodeDomain.setMobile(mobile);
-            reqSendVerificationCodeDomain.setTemplateId(SMS_CHANGE_MOBILE_TYPE);
-            reqSendVerificationCodeDomain.setVerificateType(verificateType);
-            reqSendVerificationCodeDomain.setCustomerno(customerno);
+            HashMap map=new HashMap();
+            map.put("customerno",customerno);
+            map.put("verificateType",verificateType);
+            map.put("mobile",mobile);
+            map.put("templateId",SMS_CHANGE_MOBILE_TYPE);//您的验证码是{xxxxxxxxxxxxxxx}在{xxxxxxxx}内有效{x}
             SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
-            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(reqSendVerificationCodeDomain);
+            //todo 这里入参错误 sendVerificationCodeFacade.SendRegisterVerificationCode(map);
+            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(null);
         }else{
             return rs;
         }
