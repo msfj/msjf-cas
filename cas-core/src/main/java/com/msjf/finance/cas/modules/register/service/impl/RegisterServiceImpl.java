@@ -179,11 +179,11 @@ public class RegisterServiceImpl implements RegisterService {
                 msgMap.put("verificateType","1");
                 msgMap.put("templateId",msgcode);
                 msgMap.put("mobile",mobile);
-                //TODO 这里入参有问题
+               /* //TODO 这里入参有问题
                 Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(null);
                 if(msgRs.checkIfFail()){
                     return new Response().fail("0","短信验证码验证不通过！");
-                }
+                }*/
                 checkCustMembertypeAndMobile(rs);//用户类型+手机号码在cust表校验唯一性
             }
             String  id =  StringUtil.getUUID();//生成
@@ -197,11 +197,11 @@ public class RegisterServiceImpl implements RegisterService {
                 msgMap.put("verificateType","1");
                 msgMap.put("templateId",msgcode);
                 msgMap.put("mobile",mobile);
-                //TODO 这里入参错误
+                /*//TODO 这里入参错误
                 Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(null);
                 if(msgRs.checkIfFail()){
                     return new Response().fail("0","短信验证码验证不通过！");
-                }
+                }*/
             }
             Map<String,Object> entity = new HashMap<>();
             entity = getCasRegister();
