@@ -395,7 +395,7 @@ public class RegisterServiceImpl implements RegisterService {
             CustEntity c = new CustEntity();
             c.setCertificateno(certificateno);
             List<CustEntity> clist = custDao.checkCustCertificatenoIsExist(c);
-            if(ObjectUtils.isEmpty(clist)){
+            if(!ObjectUtils.isEmpty(clist)){
                 rs.fail("0","证件号码已经使用");//证件号码已经使用
                 return false;
             }
@@ -435,7 +435,7 @@ public class RegisterServiceImpl implements RegisterService {
             CustEntity d = new CustEntity();
             d.setLoginname(certificateno);
             List<CustEntity> dlist =  custDao.queryCustEntityList(d);
-            if(ObjectUtils.isEmpty(dlist)){
+            if(!ObjectUtils.isEmpty(dlist)){
                 return new Response<>().fail("0","证件号码已经使用");//证件号码已经使用
             }
         }catch (Exception e){
