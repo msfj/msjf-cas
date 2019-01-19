@@ -15,4 +15,6 @@
 	<dubbo:service interface="com.msjf.finance.cas.facade.imagevalidcode.ImageValidcodeFacade" ref="imageValidcodeFacade" />
 
 	<dubbo:service interface="com.msjf.finance.cas.facade.loginAuth.LoginAuthFacade" ref="loginAuthFacade" />
+
+	<dubbo:service interface="com.msjf.finance.cas.facade.changePwd.ChangePwdFacade" ref="changePwdFacade" />
 </beans>

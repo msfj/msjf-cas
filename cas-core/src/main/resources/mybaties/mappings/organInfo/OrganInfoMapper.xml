@@ -177,10 +177,8 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime",
-			iscomplete "iscomplete",
-			namefile "namefile",
-			addressfile "addressfile"
-		from kpfsp.cif_organ_info
+			source "source"
+		from cas.organ_info
 		where
 			customerno = #{customerno}
 	]]>

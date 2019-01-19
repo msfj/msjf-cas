@@ -15,6 +15,7 @@ import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -33,10 +34,6 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
 
     private String customerno;
 
-    /**
-     * 法人手机号码
-     */
-    private String cormob;
 
     @Override
     public Response<ChangePwdDomain> changePwd(RequestChangePwdDomain requestChangePwdDomain) {
@@ -56,11 +53,14 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         CustEntity custEntity=new CustEntity();
         custEntity.setCertificateno(certificateno);
         List<CustEntity> custEntityList= custDao.queryCustEntityList(custEntity);
-        if(StringUtils.isEmpty(custEntityList)){
+        if(ObjectUtils.isEmpty(custEntityList)){
             rs.fail(ChangePwdEnum.MSG_USER_NULL);
         }
-        mobile=custEntityList.get(0).getMobile();
-        cormob=custEntityList.get(0).getCormob();
+        if(company.equals(custEntityList.get(0).getMembertype())){
+            mobile=custEntityList.get(0).getCormob();
+        }else{
+            mobile=custEntityList.get(0).getMobile();
+        }
         customerno=custEntityList.get(0).getCustomerno();
         if(step.equals(step_1)){
             Response<VerificationCodeDomain> mcsRs= CommonUtil.sendVerificationCode(SMS_CHANGE_PWD_TYPE,mobile);
@@ -106,10 +106,14 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         CustEntity custEntity=new CustEntity();
         custEntity.setCertificateno(certificateno);
         List<CustEntity> custEntityList= custDao.queryCustEntityList(custEntity);
-        if(StringUtils.isEmpty(custEntityList)){
+        if(ObjectUtils.isEmpty(custEntityList)){
             return rs.fail(ChangePwdEnum.MSG_USER_NULL);
         }
-        mobile=custEntityList.get(0).getMobile();
+        if(company.equals(custEntityList.get(0).getMembertype())){
+            mobile=custEntityList.get(0).getCormob();
+        }else{
+            mobile=custEntityList.get(0).getMobile();
+        }
         mobile=mobile.replaceAll("(\\d{3})\\d{6}(\\d{2})", "$1****$2");
         echoMobileDomain.setCertificateno(certificateno);
         echoMobileDomain.setMobile(mobile);

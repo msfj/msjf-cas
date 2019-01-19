@@ -5,5 +5,10 @@ import java.util.List;
 
 
 public interface EmployeeInfoFacade {
+    /**
+     *
+     * @return
+     */
     public Response<List<EmployeeInfoDomain>> queryEmployeeInfoList();
+
 }
