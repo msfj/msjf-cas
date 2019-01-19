@@ -9,7 +9,7 @@ public enum ChangePwdEnum implements ResponseService {
     TEMPLE_ID_NULL("CAS0004", "模板ID不能为空"),
     MOBILE_NULL("CAS0005", "手机号码不能为空"),
     SYSTEM_PARA_ERROR("CAS0006", "系统参数异常"),
-    MSG_CHECK_EXCEPTION("CAS0007", "信息校验异常"),
+    MSG_CHECK_EXCEPTION("CAS0007", "信息修改异常"),
     MSG_SEND_EXCEPTION("CAS0008", "发送信息异常"),
     SEND_SMS_FAILD("CAS0009", "短信发送失败"),
     OLD_MOBILE_CHECK_ERROR("CAS0010", "原手机号码校验不通过"),
