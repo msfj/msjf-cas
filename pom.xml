@@ -19,7 +19,7 @@
     <repositories>
         <!-- 私服中央公共仓库 -->
         <repository>
-            <id>public</id>
+            <id>msjf-releases</id>
             <name>Public Repositories</name>
             <url>http://49.4.91.18:8081/nexus/content/groups/public/</url>
             <releases>
@@ -38,7 +38,7 @@
     <!--项目部署到私服-->
     <distributionManagement>
         <snapshotRepository>
-            <id>snapshots</id>
+            <id>msjf-releases</id>
             <name>Snapshots</name>
             <url>http://49.4.91.18:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
