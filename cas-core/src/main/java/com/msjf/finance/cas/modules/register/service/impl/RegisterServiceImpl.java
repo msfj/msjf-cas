@@ -184,7 +184,9 @@ public class RegisterServiceImpl implements RegisterService {
                 if(msgRs.checkIfFail()){
                     return new Response().fail("0","短信验证码验证不通过！");
                 }*/
-                checkCustMembertypeAndMobile(rs);//用户类型+手机号码在cust表校验唯一性
+               if(!checkCustMembertypeAndMobile(rs)){//用户类型+手机号码在cust表校验唯一性
+                   return rs;
+               }
             }
             if(ObjectUtils.isEmpty(resultMap)){
                 String  id =  StringUtil.getUUID();//生成
