@@ -22,11 +22,11 @@ public class OrganInfoFacadeTest   extends SpringTestCase {
 OrganInfoFacade organInfoFacade;
    @Test
    public  void  queryOrganInfoList(){
-       OrganInfoDomain organInfoDomain=  new OrganInfoDomain();
+/*       OrganInfoDomain organInfoDomain=  new OrganInfoDomain();
        organInfoDomain.setCustomerno("UR0000000000001");
        organInfoDomain.setMembername("leixiaorui");
        organInfoDomain.setOrgantype("1");
-       System.out.println(organInfoFacade.queryOrganInfoList(organInfoDomain));
+       System.out.println(organInfoFacade.queryOrganInfoList(organInfoDomain));*/
 
        while (true){
 
