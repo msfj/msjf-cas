@@ -186,8 +186,10 @@ public class RegisterServiceImpl implements RegisterService {
                 }*/
                 checkCustMembertypeAndMobile(rs);//用户类型+手机号码在cust表校验唯一性
             }
-            String  id =  StringUtil.getUUID();//生成
-            addCasRegisterInfo(id);//写用户注册基本信息表
+            if(ObjectUtils.isEmpty(resultMap)){
+                String  id =  StringUtil.getUUID();//生成
+                addCasRegisterInfo(id);//写用户注册基本信息表
+            }
         }else if(step.equals(step_2)){
             if (membertype.equals(company)) {
                 /**
