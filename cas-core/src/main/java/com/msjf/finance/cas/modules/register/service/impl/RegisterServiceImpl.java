@@ -216,6 +216,9 @@ public class RegisterServiceImpl implements RegisterService {
             mapParam.put("corcardno",corcardno);
             mapParam.put("mobile",mobile);
             mapParam.put("cardno",cardno);
+            mapParam.put("membername",membername);
+            mapParam.put("certificatetype",certificatetype);
+            mapParam.put("certificateno",certificateno);
             mapParam.put("bank",bank);
             mapParam.put("id",entity.get("id"));
             updCasRegisterInfo(mapParam);
@@ -523,6 +526,7 @@ public class RegisterServiceImpl implements RegisterService {
             custDao.insCust(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 
@@ -540,6 +544,7 @@ public class RegisterServiceImpl implements RegisterService {
             personInfoDao.insPersonInfo(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 
@@ -580,6 +585,7 @@ public class RegisterServiceImpl implements RegisterService {
             casRegisterDao.insCasRegister(entity);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
         return new Response<>().success();
     }
@@ -594,6 +600,7 @@ public class RegisterServiceImpl implements RegisterService {
             casRegisterDao.updCasRegister(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 
@@ -612,6 +619,7 @@ public class RegisterServiceImpl implements RegisterService {
             organInfoDao.insOrganInfo(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 
@@ -631,6 +639,7 @@ public class RegisterServiceImpl implements RegisterService {
             ausAuthoneDao.inrAusAuthone(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 }
