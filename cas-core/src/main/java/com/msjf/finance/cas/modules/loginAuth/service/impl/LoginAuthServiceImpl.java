@@ -1,7 +1,7 @@
 package com.msjf.finance.cas.modules.loginAuth.service.impl;
 
 import com.msjf.finance.cas.facade.loginAuth.domain.LoginAuthDomain;
-import com.msjf.finance.cas.modules.AccountDao;
+import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.modules.loginAuth.emun.LoginAuthEmun;
 import com.msjf.finance.cas.modules.loginAuth.service.LoginAuthService;
 import com.msjf.finance.cas.modules.util.StringUtil;
@@ -26,9 +26,9 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         List<Map> list = null;
         reqMap.put("loginname",mapParam.get("userName"));
             //日志
-        if ("0".equals( mapParam.get("loginType"))) {
+        if ("0".equals( mapParam.get("loginPlat"))) {
             list = accountDao.selectLoginInfo(reqMap);
-        } else if ("1".equals(mapParam.get("loginType"))) {
+        } else if ("1".equals(mapParam.get("loginPlat"))) {
             list = accountDao.selectEmployeeInfo(reqMap);
         }
         if (CollectionUtils.isEmpty(list)) {

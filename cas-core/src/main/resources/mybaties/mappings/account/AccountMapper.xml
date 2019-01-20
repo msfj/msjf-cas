@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="GBK" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.msjf.finance.cas.modules.AccountDao">
+<mapper namespace="com.msjf.finance.cas.modules.Account.AccountDao">
     <!--个人基本信息表person_info 按实体新增记录 mysql-->
     <select id="selectOrganInfoByMobile" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
         <![CDATA[
