@@ -41,5 +41,17 @@ public class LoginFacadeImpl implements LoginFacade {
         return rs;
     }
 
+    @Override
+    public Response<List<Map>> getCorporationCompany(HashMap<String, Object> mapParam) {
+        Response rs=null;
+        try {
+            rs=loginService.getCorporationCompany(mapParam);
+        }catch (Exception e){
+            rs.fail(LoginEnum.LOGIN__EXCEPTION);
+            throw new RuntimeException(e.getMessage(),e);
+        }
+        return rs;
+    }
+
 
 }

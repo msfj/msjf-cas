@@ -52,4 +52,18 @@
                 t.loginname =#{loginname}
 		]]>
     </select>
+
+    <select id="selectSysdictlistByKey" parameterType="com.msjf.finance.cas.modules.organ.entity.SysDictKey"
+            resultType="com.msjf.finance.cas.modules.organ.entity.SysDictEntity">
+        select dict_id "dictId",
+        dict_name "dictName",
+        dict_key "dictKey",
+        dict_value "dictValue"
+        from kpfsp.sys_dict
+        where
+        <foreach item="item" collection="list" index="index"
+                 separator="or" open="(" close=")">
+            dict_id = #{item.dictId} and dict_key = #{item.dictKey}
+        </foreach>
+    </select>
 </mapper>

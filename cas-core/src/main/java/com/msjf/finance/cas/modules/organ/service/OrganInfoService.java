@@ -1,5 +1,8 @@
 package com.msjf.finance.cas.modules.organ.service;
 
+import com.msjf.finance.msjf.core.response.Response;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -13,5 +16,10 @@ public interface OrganInfoService {
       */
      List queryOrganInfoList();
 
-
+     /**
+      * 企业个人信息入口
+      *
+      * @param mapParam
+      */
+     Response companyPersonInfo(HashMap<String, Object> mapParam);
 }

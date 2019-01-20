@@ -25,5 +25,10 @@ public interface LoginFacade {
      */
     Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
 
-
+    /**
+     * 获取法人企业信息
+     * @param mapParam
+     * @return
+     */
+    Response<List<Map>> getCorporationCompany(HashMap<String, Object> mapParam);
 }

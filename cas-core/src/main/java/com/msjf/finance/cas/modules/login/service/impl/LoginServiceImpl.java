@@ -90,6 +90,8 @@ public class LoginServiceImpl extends Account implements LoginService {
     OrganAppendMapper organAppendMapper;
     @Resource
     AccountDao accountDao;
+    @Resource
+    SpringContextUtil springContextUtil;
     /**
      * 登录入口 包含以下两种情况
      * 1.企业和个人账户登陆
@@ -220,10 +222,8 @@ public class LoginServiceImpl extends Account implements LoginService {
         //1.获取参数值
         getParam(mapParam);
         List<Map> mapList=new ArrayList<>();
-        if(!StringUtils.isEmpty(loginName)){
-            if (StringUtils.isEmpty(loginsource)) {
-                return rs.fail(LoginEnum.MSG_PARAM_ERROR);
-            }
+        if (StringUtils.isEmpty(loginsource)) {
+            return rs.fail(LoginEnum.MSG_PARAM_ERROR);
         }
         if (StringUtils.isEmpty(mobile)) {
             return rs.fail(LoginEnum.MSG_PARAM_ERROR);
@@ -231,57 +231,70 @@ public class LoginServiceImpl extends Account implements LoginService {
         if (StringUtils.isEmpty(msgCode)) {
             return rs.fail(LoginEnum.MSG_PARAM_ERROR);
         }
-        if(StringUtils.isEmpty(loginName)){
-            Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
-            if(!flag){
-                return rs.fail(LoginEnum.CHECK_FILED);
-            }
-            HashMap reqmap=new HashMap();
-            reqmap.put("mobile",mobile);
-            List<Map> list=accountDao.selectOrganInfoByMobile(reqmap);
-            if(ObjectUtils.isEmpty(list)){
-                return rs.fail(LoginEnum.CORPORATION_QUERY_NULL);
-            }
-            for(Map map:list){
-                HashMap custmap=new HashMap();
-                custmap.put("loginName",map.get("certificateno"));
-                custmap.put("membername",map.get("membername"));
-                mapList.add(custmap);
-            }
-            return rs.success(LoginEnum.QUERY_COMPANY_SUCCESS,mapList);
-        }else{
-            Boolean flag=CommonUtil.isExistVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
-            if(!flag){
-                return rs.fail(LoginEnum.CHECK_FILED);
-            }
-            certificateno=loginName;
-            CustEntity entity = new CustEntity();
-            entity.setCertificateno(certificateno);
-            entity.setMembertype(company);
-            List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
-            if(ObjectUtils.isEmpty(custEntityList)){
-                return rs.fail(LoginEnum.MSG_USER_NULL);
-            }
-            CustEntity custEntity=custEntityList.get(0);
-            customerno=custEntity.getCustomerno();
-            membertype = custEntity.getMembertype();
-            updAuthone(rs);
-            //基本信息是否完成填写 未完成时跳转到基本信息修改页面
-            boolean isfinish = checkIsFinish(rs);
-            HashMap<String, Object> rsmap = new HashMap<String, Object>();
-            rsmap.put("customerno", customerno);
-            rsmap.put("isfinish", isfinish ? CommonUtil.YES : CommonUtil.NO);
-//        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
-            rsmap.put("membertype", membertype);
-            rsmap.put("membername", membername);
-            rsmap.put("name", certificateno);
-            if (CommonUtil.YES.equals(membertype)) {
-                rsmap.put("organtype", organtype);
-                rsmap.put("organclass", organclass);
-            }
-            mapList.add(rsmap);
-            return rs.success(LoginEnum.LOGIN_SUCCESS,mapList);
+        Boolean flag=CommonUtil.isExistVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
+        if(!flag){
+            return rs.fail(LoginEnum.CHECK_FILED);
         }
+        certificateno=loginName;
+        CustEntity entity = new CustEntity();
+        entity.setCertificateno(certificateno);
+        entity.setMembertype(company);
+        List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
+        if(ObjectUtils.isEmpty(custEntityList)){
+            return rs.fail(LoginEnum.MSG_USER_NULL);
+        }
+        CustEntity custEntity=custEntityList.get(0);
+        customerno=custEntity.getCustomerno();
+        membertype = custEntity.getMembertype();
+        updAuthone(rs);
+        //基本信息是否完成填写 未完成时跳转到基本信息修改页面
+        boolean isfinish = checkIsFinish(rs);
+        HashMap<String, Object> rsmap = new HashMap<String, Object>();
+        rsmap.put("customerno", customerno);
+        rsmap.put("isfinish", isfinish ? CommonUtil.YES : CommonUtil.NO);
+//        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
+        rsmap.put("membertype", membertype);
+        rsmap.put("membername", membername);
+        rsmap.put("name", certificateno);
+        if (CommonUtil.YES.equals(membertype)) {
+            rsmap.put("organtype", organtype);
+            rsmap.put("organclass", organclass);
+        }
+        mapList.add(rsmap);
+        return rs.success(LoginEnum.LOGIN_SUCCESS,mapList);
+
+    }
+
+    @Override
+    public Response<List<Map>> getCorporationCompany(HashMap<String, Object> mapParam) {
+        Response<List<Map>> rs=new Response();
+        rs.fail(LoginEnum.LOGIN_FAILED);
+        //1.获取参数值
+        getParam(mapParam);
+        List<Map> mapList=new ArrayList<>();
+        if (StringUtils.isEmpty(mobile)) {
+            return rs.fail(LoginEnum.MSG_PARAM_ERROR);
+        }
+        if (StringUtils.isEmpty(msgCode)) {
+            return rs.fail(LoginEnum.MSG_PARAM_ERROR);
+        }
+        Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
+        if(!flag){
+            return rs.fail(LoginEnum.CHECK_FILED);
+        }
+        HashMap reqmap=new HashMap();
+        reqmap.put("mobile",mobile);
+        List<Map> list=accountDao.selectOrganInfoByMobile(reqmap);
+        if(ObjectUtils.isEmpty(list)){
+            return rs.fail(LoginEnum.CORPORATION_QUERY_NULL);
+        }
+        for(Map map:list){
+            HashMap custmap=new HashMap();
+            custmap.put("loginName",map.get("certificateno"));
+            custmap.put("membername",map.get("membername"));
+            mapList.add(custmap);
+        }
+        return rs.success(LoginEnum.QUERY_COMPANY_SUCCESS,mapList);
     }
 
     private void getParam(HashMap<String, Object> mapParam) {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -40,5 +41,19 @@ public class OrganInfoFacadeImpl implements OrganInfoFacade {
             logger.warn("查询机构信息异常 organInfoDomain={}，e={}",organInfoDomain,e);
             return new Response<>().fail(OrganInfoEmun.MSG_SYS_ERROR);
         }
+    }
+
+    /**
+     * 企业个人信息查询
+     * @param mapParam
+     * @return
+     */
+    @Override
+    public Response companyPersonInfo(HashMap<String, Object> mapParam) {
+        if(ObjectUtils.isEmpty(mapParam)){
+            logger.warn("入参不能为空 mapParam={}",mapParam);
+            return new Response<>().fail(OrganInfoEmun.MSG_PARAM_ERROR);
+        }
+        return null;
     }
 }
