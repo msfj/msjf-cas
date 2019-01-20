@@ -227,6 +227,10 @@ public class LoginServiceImpl extends Account implements LoginService {
             }
             return rs.success(LoginEnum.LOGIN_SUCCESS,mapList);
         }else{
+            Boolean flag=CommonUtil.isExistVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
+            if(!flag){
+                return rs.fail(LoginEnum.CHECK_FILED);
+            }
             CustEntity entity = new CustEntity();
             entity.setCertificateno(certificateno);
             entity.setMembertype(company);

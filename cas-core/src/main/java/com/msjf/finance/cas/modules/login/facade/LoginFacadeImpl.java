@@ -3,6 +3,7 @@ package com.msjf.finance.cas.modules.login.facade;
 import com.msjf.finance.cas.facade.login.LoginFacade;
 import com.msjf.finance.cas.facade.login.domain.LoginDomain;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
+import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.modules.login.service.LoginService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class LoginFacadeImpl implements LoginFacade {
         try {
             rs=loginService.memberLogin(mapParam);
         }catch (Exception e){
-            rs.fail();
+            rs.fail(LoginEnum.LOGIN__EXCEPTION);
             throw new RuntimeException(e.getMessage(),e);
         }
         return rs;
@@ -34,7 +35,7 @@ public class LoginFacadeImpl implements LoginFacade {
         try {
             rs=loginService.corporationLogin(mapParam);
         }catch (Exception e){
-            rs.fail();
+            rs.fail(LoginEnum.LOGIN__EXCEPTION);
             throw new RuntimeException(e.getMessage(),e);
         }
         return rs;

@@ -356,7 +356,7 @@ public final class CommonUtil {
      * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
      */
     public static Boolean checkVerificationCode(String verificateType,String mobile,String msgCode){
-        Response rs=null;
+        Response rs;
         if(StringUtils.isEmpty(verificateType)){
             return false;
         }
