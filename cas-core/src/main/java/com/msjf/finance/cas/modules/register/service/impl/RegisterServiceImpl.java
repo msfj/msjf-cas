@@ -16,7 +16,6 @@ import com.msjf.finance.cas.modules.util.CommonUtil;
 import com.msjf.finance.cas.modules.util.DateUtil;
 import com.msjf.finance.cas.modules.util.StringUtil;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
-import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.msjf.finance.cas.modules.Account.*;
+import static com.msjf.finance.cas.modules.Account.Account.*;
 import static com.msjf.finance.cas.modules.util.CommonUtil.DATE_FMT_DATE;
 import static com.msjf.finance.cas.modules.util.CommonUtil.DATE_FMT_TIME;
 
