@@ -14,8 +14,7 @@
         <![CDATA[
             SELECT
                 t.customerno "customerno",
-                t.loginname "loginname",
-                t.certificateno "certificateno",
+                t.certificateno "loginname",
                 t1.PASSWORD "password"
             FROM
                 cas.cust t
@@ -25,12 +24,26 @@
 	]]>
     </select>
 
+    <select id="selectPersonInfoByMob" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
+        <![CDATA[
+            SELECT
+                t.customerno "customerno",
+                t.mobile "loginname",
+                t1.PASSWORD "password"
+            FROM
+                cas.cust t
+                INNER JOIN cas.aus_authone t1 ON t.customerno = t1.customerno
+            WHERE
+                t.mobile = #{loginname}
+                and t.membertype='0'
+	]]>
+    </select>
+
     <select id="selectEmployeeInfo" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
         <![CDATA[
             SELECT
                 t.customerno "customerno",
                 t.loginname "loginname",
-                t.certificateno "certificateno",
                 t1.PASSWORD "password"
             FROM
                 cas.employee t

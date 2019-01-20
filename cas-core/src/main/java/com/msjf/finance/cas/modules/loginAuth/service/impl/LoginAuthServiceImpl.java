@@ -4,6 +4,7 @@ import com.msjf.finance.cas.facade.loginAuth.domain.LoginAuthDomain;
 import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.modules.loginAuth.emun.LoginAuthEmun;
 import com.msjf.finance.cas.modules.loginAuth.service.LoginAuthService;
+import com.msjf.finance.cas.modules.util.CommonUtil;
 import com.msjf.finance.cas.modules.util.StringUtil;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,21 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         LoginAuthDomain loginAuthDomain = new LoginAuthDomain();
         HashMap reqMap = new HashMap();
         List<Map> list = null;
-        reqMap.put("loginname",mapParam.get("userName"));
+        String userName=StringUtil.valueOf(mapParam.get("userName"));
+        reqMap.put("loginname",userName);
+        Boolean isMobile=CommonUtil.isMobileNO(userName);
             //日志
+        //业务平台获取分两种情况
+        // 1个人手机号码
+        // 2.企业或个人证件号码获取
         if ("0".equals( mapParam.get("loginPlat"))) {
-            list = accountDao.selectLoginInfo(reqMap);
+            if(isMobile){
+                list =accountDao.selectPersonInfoByMob(reqMap);
+            }else{
+                list = accountDao.selectLoginInfo(reqMap);
+            }
+            //管理平台获取
+            //通过登陆名获取信息
         } else if ("1".equals(mapParam.get("loginPlat"))) {
             list = accountDao.selectEmployeeInfo(reqMap);
         }
@@ -35,11 +47,10 @@ public class LoginAuthServiceImpl implements LoginAuthService {
             //日志
             return new Response<>().fail(LoginAuthEmun.MSG_USER_NULL);
         }
-        loginAuthDomain.setCertificateno(StringUtil.valueOf(list.get(0).get("certificateno")));
         loginAuthDomain.setCustomerno(StringUtil.valueOf(list.get(0).get("customerno")));
         loginAuthDomain.setLoginname(StringUtil.valueOf(list.get(0).get("loginname")));
         loginAuthDomain.setPassword(StringUtil.valueOf(list.get(0).get("password")));
         //日志
-        return new Response<>().success(loginAuthDomain);
+        return new Response<>().success(LoginAuthEmun.USER_QUERY_SUCCESS,loginAuthDomain);
     }
 }
