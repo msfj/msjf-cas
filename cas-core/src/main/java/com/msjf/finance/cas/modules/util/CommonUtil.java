@@ -22,6 +22,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * 公用参数
  * Created by lzp on 2018/12/26.
@@ -408,6 +411,59 @@ public final class CommonUtil {
         }
         return rs.checkIfFail()?false:true;
     }
+    /**
+     * 判断是否为手机号
+     * @param mobiles
+     * @return
+     */
+    public static boolean isMobileNO(String mobiles) {
+        if(StringUtils.isEmpty(mobiles)){
+            return false;
+        }
+        String reg = "^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\\d{8})$";
+        Pattern p = Pattern.compile(reg);
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
+//    /**
+//     * 字典值批量转译(多选 逗号隔开)字典对应转译为中文(逗号隔开)
+//     * 如 1,2,3  ->  身份证,营业执照,机构代码证
+//     *
+//     * @param dictId 字典项 如 dict20025
+//     * @param dictStr 字典key 如 1,2,3
+//     * @return
+//     */
+//    public static String getDictValueBatch(String dictId, String dictStr) {
+//        if (StringUtils.isEmpty(dictStr)) {
+//            return "";
+//        }
+//        String[] dictS = dictStr.split(",");
+//        List<SysDictEntity> sysDictEntityList = new ArrayList<SysDictEntity>();
+//        for (int i = 0; i < dictS.length; i++) {
+//            SysDictEntity sysEntity = new SysDictEntity();
+//            sysEntity.setDictId(dictId);
+//            sysEntity.setDictKey(dictS[i]);
+//            sysDictEntityList.add(sysEntity);
+//        }
+//        try {
+//            List<SysDictEntity> ls = PersistenceUtil.getPersistence(SysDictPersistence.class)
+//                    .query("query_sys_dict_list_by_key", sysDictEntityList);
+//            StringBuffer sb = new StringBuffer();
+//            int i = 1;
+//            for (SysDictEntity en : ls) {
+//                if (i == ls.size()) {
+//                    sb.append(en.getDictValue());
+//                } else {
+//                    sb.append(en.getDictValue() + ",");
+//                }
+//                i++;
+//            }
+//            return sb.toString();
+//        } catch (Exception e) {
+//            LogUtil.error(e);
+//            throw new WsRuntimeException("字典值批量转译失败");
+//        }
+//    }
     public static void main(String[] args){
         try{
             System.out.println(HmacSHA1Encrypt("123456","0008"));

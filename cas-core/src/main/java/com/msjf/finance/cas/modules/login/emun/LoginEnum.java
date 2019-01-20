@@ -24,8 +24,9 @@ public enum  LoginEnum implements ResponseService {
     LOGIN_FAILED("CAS0016", "登陆失败"),
     DICT_QUERY_NULL("CAS0017", "企业分类字典值不存在字典中"),
     LOGIN_SUCCESS("CAS0018", "登陆成功"),
-    LOGIN_TYPE_NULL("CAS0019", "登陆方式"),
-    LOGIN__EXCEPTION("CAS0019", "登陆异常");
+    LOGIN_TYPE_NULL("CAS0019", "登陆方式不能为空"),
+    LOGIN__EXCEPTION("CAS0019", "登陆异常"),
+    QUERY_COMPANY_SUCCESS("CAS0018", "查询法人企业信息成功");
     private String errorCode;
     private String errorDesc;
 

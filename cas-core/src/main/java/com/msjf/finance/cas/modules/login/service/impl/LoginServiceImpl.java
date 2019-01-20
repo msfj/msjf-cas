@@ -76,6 +76,8 @@ public class LoginServiceImpl extends Account implements LoginService {
      * */
     private String loginType;
 
+    private String loginName;
+
     @Resource
     CustDao custDao;
     @Resource
@@ -106,14 +108,17 @@ public class LoginServiceImpl extends Account implements LoginService {
             return rs;
         }
         //3.查询数据库账户，校验是否合法
-        List<CustEntity> entitys=null;
+        List<CustEntity> entitys;
         CustEntity entity = new CustEntity();
-        if("1".equals(loginType)){
-            entity.setCertificateno(certificateno);
-            entitys = custDao.queryCustEntityList(entity);
-        }else if("2".equals(loginType)){
+        Boolean isMobile=CommonUtil.isMobileNO(loginName);
+        if(isMobile){
+            mobile=loginName;
             entity.setMobile(mobile);
             entity.setMembertype(person);
+            entitys = custDao.queryCustEntityList(entity);
+        }else{
+            certificateno=loginName;
+            entity.setCertificateno(certificateno);
             entitys = custDao.queryCustEntityList(entity);
         }
         if (ObjectUtils.isEmpty(entitys)) {
@@ -138,7 +143,21 @@ public class LoginServiceImpl extends Account implements LoginService {
         }
 //        String enPassword = KDEncodeUtil.getKingdomPasswrod(password, customerno);
         //4.根据不同登陆类型 校验不同参数
-        if("1".equals(loginType)){
+        if(!isMobile){
+            if (StringUtils.isEmpty(certificateno)) {
+                return rs.fail(LoginEnum.LOGIN_NAME_NULL);
+            }
+            if (StringUtils.isEmpty(password)) {
+                return rs.fail(LoginEnum.PWD_NULL);
+            }
+            if ("0".equals(loginsource)) {
+                if (StringUtils.isEmpty(uniqueID)) {
+                    return rs.fail(LoginEnum.IMAGE_CODE_NULL);
+                }
+                if (StringUtils.isEmpty(inputValidecode)) {
+                    return rs.fail(LoginEnum.IMAGE_CODE_NULL);
+                }
+            }
              if (WEB.equals(loginsource)) {
                 if (!CommonUtil.checkImageValidecode(uniqueID, inputValidecode, rs)) {
                     return rs;
@@ -160,7 +179,13 @@ public class LoginServiceImpl extends Account implements LoginService {
                 //rs.failed("用户名或密码错误");
                 return rs;
             }
-        }else if("2".equals(loginType)){
+        }else{
+            if (StringUtils.isEmpty(mobile)) {
+                return rs.fail(LoginEnum.MOBILE_NULL);
+            }
+            if (StringUtils.isEmpty(msgCode)) {
+                return rs.fail(LoginEnum.MSGCODE_NULL);
+            }
             Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
             if(!flag){
                 return  rs.fail(LoginEnum.CHECK_FILED);
@@ -174,7 +199,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         loginDomain.setIsfinish(isfinish ? CommonUtil.YES : CommonUtil.NO);
         loginDomain.setMembername(membername);
         loginDomain.setMembertype(membertype);
-        loginDomain.setName(certificateno);
+        loginDomain.setName(loginName);
         if (CommonUtil.YES.equals(membertype)) {
             loginDomain.setOrganclass(organclass);
             loginDomain.setOrgantype(organtype);
@@ -195,7 +220,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         //1.获取参数值
         getParam(mapParam);
         List<Map> mapList=new ArrayList<>();
-        if(!StringUtils.isEmpty(certificateno)){
+        if(!StringUtils.isEmpty(loginName)){
             if (StringUtils.isEmpty(loginsource)) {
                 return rs.fail(LoginEnum.MSG_PARAM_ERROR);
             }
@@ -206,7 +231,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         if (StringUtils.isEmpty(msgCode)) {
             return rs.fail(LoginEnum.MSG_PARAM_ERROR);
         }
-        if(StringUtils.isEmpty(certificateno)){
+        if(StringUtils.isEmpty(loginName)){
             Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
             if(!flag){
                 return rs.fail(LoginEnum.CHECK_FILED);
@@ -219,16 +244,17 @@ public class LoginServiceImpl extends Account implements LoginService {
             }
             for(Map map:list){
                 HashMap custmap=new HashMap();
-                custmap.put("certificateno",map.get("certificateno"));
+                custmap.put("loginName",map.get("certificateno"));
                 custmap.put("membername",map.get("membername"));
                 mapList.add(custmap);
             }
-            return rs.success(LoginEnum.LOGIN_SUCCESS,mapList);
+            return rs.success(LoginEnum.QUERY_COMPANY_SUCCESS,mapList);
         }else{
             Boolean flag=CommonUtil.isExistVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
             if(!flag){
                 return rs.fail(LoginEnum.CHECK_FILED);
             }
+            certificateno=loginName;
             CustEntity entity = new CustEntity();
             entity.setCertificateno(certificateno);
             entity.setMembertype(company);
@@ -267,42 +293,9 @@ public class LoginServiceImpl extends Account implements LoginService {
         loginType=StringUtil.valueOf(mapParam.get("loginType"));
         msgCode=StringUtil.valueOf(mapParam.get("msgCode"));
         mobile=StringUtil.valueOf(mapParam.get("mobile"));
+        loginName=StringUtil.valueOf(mapParam.get("loginName"));
     }
     public Boolean preCheck(Response rs) {
-        if(StringUtils.isEmpty(loginType)){
-            rs.fail(LoginEnum.LOGIN_TYPE_NULL);
-            return false;
-        }
-        if("1".equals(loginType)){
-            if (StringUtils.isEmpty(certificateno)) {
-                rs.fail(LoginEnum.LOGIN_NAME_NULL);
-                return false;
-            }
-            if (StringUtils.isEmpty(password)) {
-                rs.fail(LoginEnum.PWD_NULL);
-                return false;
-            }
-            if ("0".equals(loginsource)) {
-                if (StringUtils.isEmpty(uniqueID)) {
-                    rs.fail(LoginEnum.IMAGE_CODE_NULL);
-                    return false;
-                }
-                if (StringUtils.isEmpty(inputValidecode)) {
-                    rs.fail(LoginEnum.IMAGE_CODE_NULL);
-                    return false;
-                }
-            }
-        }
-        if("2".equals(loginType)){
-            if (StringUtils.isEmpty(mobile)) {
-                rs.fail(LoginEnum.MOBILE_NULL);
-                return false;
-            }
-            if (StringUtils.isEmpty(msgCode)) {
-                rs.fail(LoginEnum.MSGCODE_NULL);
-                return false;
-            }
-        }
         if (StringUtils.isEmpty(loginsource)) {
             rs.fail(LoginEnum.LOGIN_SOURCE_NULL);
             return false;
