@@ -13,4 +13,7 @@ public interface AccountDao {
     List selectLoginInfo(HashMap map);
 
     List selectEmployeeInfo(HashMap map);
+
+    List selectPersonInfoByMob(HashMap map);
+
 }
