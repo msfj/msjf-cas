@@ -370,8 +370,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      */
     private void checkFailcount(int failCount, Response rs) {
         //获取系统参数 错误次数上限
-        //TODO 此处错误
-        int sysFailCount = 0;//Integer.valueOf(CommonUtil.getSysConfigValue("login_allow_error_num", "login_error_num"));
+        int sysFailCount=Integer.valueOf(CommonUtil.getSysConfigValue("login_allow_error_num", "login_error_num"));
         //更新错误次数 和 账户状态
         AusAuthoneEntity ausAuthoneEntity = new AusAuthoneEntity();
         ausAuthoneEntity.setCustomerno(customerno);

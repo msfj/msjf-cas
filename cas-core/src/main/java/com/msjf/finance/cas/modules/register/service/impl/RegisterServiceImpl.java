@@ -175,15 +175,10 @@ public class RegisterServiceImpl implements RegisterService {
                  * 1、先做手机验证码校验；
                  *2、校验成功生成custno并记录手机号码
                  */
-                HashMap<String,Object> msgMap = new HashMap<>();
-                msgMap.put("verificateType","1");
-                msgMap.put("templateId",msgcode);
-                msgMap.put("mobile",mobile);
-               /* //TODO 这里入参有问题
-                Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(null);
-                if(msgRs.checkIfFail()){
+                Boolean flag=CommonUtil.checkVerificationCode("1",mobile,msgcode);
+                if(!flag){
                     return new Response().fail("0","短信验证码验证不通过！");
-                }*/
+                }
                if(!checkCustMembertypeAndMobile(rs)){//用户类型+手机号码在cust表校验唯一性
                    return rs;
                }
@@ -197,15 +192,10 @@ public class RegisterServiceImpl implements RegisterService {
                 /**
                  * 需校验验证码
                  */
-                HashMap<String,Object> msgMap = new HashMap<>();
-                msgMap.put("verificateType","1");
-                msgMap.put("templateId",msgcode);
-                msgMap.put("mobile",mobile);
-                /*//TODO 这里入参错误
-                Response<VerificationCodeDomain> msgRs=sendVerificationCodeFacade.SendRegisterVerificationCode(null);
-                if(msgRs.checkIfFail()){
+                Boolean flag=CommonUtil.checkVerificationCode("1",mobile,msgcode);
+                if(!flag){
                     return new Response().fail("0","短信验证码验证不通过！");
-                }*/
+                }
             }
             Map<String,Object> entity = new HashMap<>();
             entity = getCasRegister();
