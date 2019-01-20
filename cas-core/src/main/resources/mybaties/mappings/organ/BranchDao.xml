@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.modules.organ.dao.BranchDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.msjf.finance.cas.modules.organ.entity.BranchEntity" id="branchMap">
+        <result property="branchid" column="branchid"/>
+        <result property="branchname" column="branchname"/>
+        <result property="parentid" column="parentid"/>
+        <result property="branchtype" column="branchtype"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="county" column="county"/>
+        <result property="stertreet" column="stertreet"/>
+        <result property="showorder" column="showorder"/>
+        <result property="curnumber" column="curnumber"/>
+    </resultMap>
+
+
+</mapper>

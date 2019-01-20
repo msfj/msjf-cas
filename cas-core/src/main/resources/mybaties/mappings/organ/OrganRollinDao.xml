@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.modules.organ.dao.OrganRollinDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.msjf.finance.cas.modules.organ.entity.OrganRollinEntity" id="organRollinMap">
+        <result property="serialno" column="serialno"/>
+        <result property="customerno" column="customerno"/>
+        <result property="companyname" column="companyname"/>
+        <result property="businessno" column="businessno"/>
+        <result property="leader" column="leader"/>
+        <result property="regicapital" column="regicapital"/>
+        <result property="regicapitalbz" column="regicapitalbz"/>
+        <result property="linkmanname" column="linkmanname"/>
+        <result property="mobile" column="mobile"/>
+        <result property="servicecustomerno" column="servicecustomerno"/>
+        <result property="businessscope" column="businessscope"/>
+        <result property="companyintro" column="companyintro"/>
+        <result property="workaddress" column="workaddress"/>
+        <result property="registeraddress" column="registeraddress"/>
+        <result property="insertdate" column="insertdate"/>
+        <result property="inserttime" column="inserttime"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>
