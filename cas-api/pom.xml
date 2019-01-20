@@ -23,7 +23,7 @@
         </dependency>
     </dependencies>
 
-    <!-- 私服仓库地址 -->
+    <!-- api才需要打包上传   私服仓库地址 -->
     <distributionManagement>
         <repository>
             <id>msjf-releases</id>
