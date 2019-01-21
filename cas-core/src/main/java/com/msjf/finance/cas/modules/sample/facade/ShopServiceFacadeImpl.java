@@ -1,10 +1,9 @@
-/*
 package com.msjf.finance.cas.modules.sample.facade;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.msjf.finance.cas.facade.sample.ShopApi;
 import org.springframework.stereotype.Service;
 
-*/
+
 /**
  * <pre>
  * 描述:
@@ -12,19 +11,19 @@ import org.springframework.stereotype.Service;
  *  <pre/>
  * @author 95494
  * @create 2019-01-15 17:24
- *//*
+ */
 
 @Service
-public class ShopServiceFacadeImpl {
-    */
-/**
+public class ShopServiceFacadeImpl implements ShopApi {
+
+    /**
      * 示例代码-方法
      *
      * @param str
      * @return
-     *//*
-
-    public String say(String str) {
+     */
+    @Override
+    public void say(String str) {
         System.out.println("-----dubbo服务测试方法-----调用dubbo服务测试-----");
         System.out.println("-----dubbo服务测试方法-----调用dubbo服务测试-----");
         System.out.println("-----dubbo服务测试方法-----调用dubbo服务测试-----");
@@ -32,4 +31,4 @@ public class ShopServiceFacadeImpl {
 
     }
 }
-*/
+

@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by 11509 on 2018/12/18.
+ *
+ * @author 11509
+ * @date 2018/12/18
  */
 @MyBatisDao
-public interface OrganInfoDao{
+public interface OrganInfoDao extends IBaseDao{
     List<OrganInfoEntity> queryOrganInfoList();
 
     /**

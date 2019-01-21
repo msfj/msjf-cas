@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.modules.organ.dao.OrganAppendDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.msjf.finance.cas.modules.organ.entity.OrganAppendEntity" id="organAppendMap">
+        <result property="customerno" column="customerno"/>
+        <result property="version" column="version"/>
+        <result property="isfiling" column="isfiling"/>
+        <result property="registerno" column="registerno"/>
+        <result property="employeenum" column="employeenum"/>
+        <result property="caremarkettype" column="caremarkettype"/>
+        <result property="projectphase" column="projectphase"/>
+        <result property="profittype" column="profittype"/>
+        <result property="isfundfiling" column="isfundfiling"/>
+        <result property="fundfilingno" column="fundfilingno"/>
+        <result property="fundmanagername" column="fundmanagername"/>
+        <result property="fundmanagerno" column="fundmanagerno"/>
+        <result property="fundmanagerintro" column="fundmanagerintro"/>
+        <result property="fundprojecttrade" column="fundprojecttrade"/>
+        <result property="fundprojectphase" column="fundprojectphase"/>
+        <result property="belonginvest" column="belonginvest"/>
+        <result property="annualrate" column="annualrate"/>
+        <result property="raisetype" column="raisetype"/>
+        <result property="invertcount" column="invertcount"/>
+        <result property="fundprojectintro" column="fundprojectintro"/>
+        <result property="companytrade" column="companytrade"/>
+        <result property="companyname" column="companyname"/>
+        <result property="companyinfo" column="companyinfo"/>
+        <result property="protrade" column="protrade"/>
+        <result property="prointro" column="prointro"/>
+        <result property="investnum" column="investnum"/>
+        <result property="projecttrade" column="projecttrade"/>
+        <result property="projectintro" column="projectintro"/>
+        <result property="blocname" column="blocname"/>
+        <result property="classify" column="classify"/>
+        <result property="businesstype" column="businesstype"/>
+        <result property="objecttype" column="objecttype"/>
+        <result property="specificbusinesstype" column="specificbusinesstype"/>
+        <result property="profitmodel" column="profitmodel"/>
+        <result property="capitalsource" column="capitalsource"/>
+        <result property="mainworkexp" column="mainworkexp"/>
+        <result property="othersintro" column="othersintro"/>
+        <result property="partnerintro" column="partnerintro"/>
+        <result property="insertdate" column="insertdate"/>
+        <result property="inserttime" column="inserttime"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>

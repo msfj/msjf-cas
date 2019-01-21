@@ -1,6 +1,6 @@
 package com.msjf.finance.cas.modules.organ.entity;
 
-public class OrganInfoKey extends IBaseEntity{
+public class OrganAppendKey {
     //企业客户代码
     protected String customerno;
 
