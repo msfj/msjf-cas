@@ -16,20 +16,20 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!-- 生成实体类的包名和位置，这里配置将生成的实体类放在cn.chejinbao.ecommerce.entity这个包下 -->
-        <javaModelGenerator targetPackage="com.msjf.finance.cas.modules.login.entity" targetProject="D:\work\project\msjf-cas\cas-core\src\main\java\">
+        <javaModelGenerator targetPackage="com.msjf.finance.cas.modules.employee.entity" targetProject="D:\work\project\msjf-cas\cas-core\src\main\java\">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!-- 生成的SQL映射文件包名和位置，这里配置将生成的SQL映射文件放在cn.chejinbao.ecommerce.mapping这个包下 -->
-        <sqlMapGenerator targetPackage="mybaties.mappings.organ" targetProject="D:\work\project\msjf-cas\cas-core\src\main\resources\">
+        <sqlMapGenerator targetPackage="mybaties.mappings.employee" targetProject="D:\work\project\msjf-cas\cas-core\src\main\resources\">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置，这里配置将生成的dao类放在cn.chejinbao.ecommerce.dao这个包下 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.msjf.finance.cas.modules.login.dao" targetProject="D:\work\project\msjf-cas\cas-core\src\main\java\">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.msjf.finance.cas.modules.employee.dao" targetProject="D:\work\project\msjf-cas\cas-core\src\main\java\">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
-        <table tableName="sys_dict" domainObjectName="SysDict" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table tableName="employee" domainObjectName="EmployeeEntity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
         <!--<table tableName="spm_message" domainObjectName="SpmMessageEntity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />-->
         <!--<table tableName="spm_msg_template" domainObjectName="SpmMsgTemplateEntity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />-->
         <!--<table tableName="spm_sms_control_tb" domainObjectName="SpmSmsControlTbEntity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />-->

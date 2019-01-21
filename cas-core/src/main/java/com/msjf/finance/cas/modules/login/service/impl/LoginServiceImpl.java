@@ -197,7 +197,6 @@ public class LoginServiceImpl extends Account implements LoginService {
         updAuthone(rs);
         //基本信息是否完成填写 未完成时跳转到基本信息修改页面
         boolean isfinish = checkIsFinish(rs);
-        loginDomain.setCustomerno(customerno);
         loginDomain.setIsfinish(isfinish ? CommonUtil.YES : CommonUtil.NO);
         loginDomain.setMembername(membername);
         loginDomain.setMembertype(membertype);
@@ -250,7 +249,6 @@ public class LoginServiceImpl extends Account implements LoginService {
         //基本信息是否完成填写 未完成时跳转到基本信息修改页面
         boolean isfinish = checkIsFinish(rs);
         HashMap<String, Object> rsmap = new HashMap<String, Object>();
-        rsmap.put("customerno", customerno);
         rsmap.put("isfinish", isfinish ? CommonUtil.YES : CommonUtil.NO);
 //        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
         rsmap.put("membertype", membertype);

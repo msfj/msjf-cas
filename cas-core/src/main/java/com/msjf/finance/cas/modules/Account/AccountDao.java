@@ -7,6 +7,8 @@ import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @MyBatisDao
 public interface AccountDao {
 
@@ -18,7 +20,7 @@ public interface AccountDao {
 
     List selectPersonInfoByMob(HashMap map);
 
-    List selectCompanyPersonInfo(HashMap map);
+    Map selectCompanyPersonInfo(HashMap map);
 
     List<SysDictEntity> selectSysdictlistByKey(List<SysDictKey> sysDictKeyList);
 
