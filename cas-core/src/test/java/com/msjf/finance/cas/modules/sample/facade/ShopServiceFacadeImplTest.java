@@ -1,6 +1,9 @@
 package com.msjf.finance.cas.modules.sample.facade;
 
+import com.msjf.finance.cas.modules.sample.service.ShopService;
+import common.SpringTestCase;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
 
@@ -10,15 +13,15 @@ import static org.junit.Assert.*;
  *    ${DESCRIPTION}
  *  <pre/>
  * @author 95494
- * @create 2019-01-19 15:46
+ * @create 2019-01-21 19:17
  */
-public class ShopServiceFacadeImplTest {
+public class ShopServiceFacadeImplTest extends SpringTestCase {
 
-
+    @Autowired
+    ShopService shopService;
 
     @Test
     public void say() {
-
-
+        shopService.say("sd");
     }
 }
