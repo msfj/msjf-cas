@@ -1,18 +1,22 @@
 package com.msjf.finance.cas.modules.util;
 
 
+import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.modules.login.dao.SysParamsConfigEntityMapper;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
+import com.msjf.finance.cas.modules.organ.entity.SysDictEntity;
+import com.msjf.finance.cas.modules.organ.entity.SysDictKey;
 import com.msjf.finance.cas.modules.util.emun.CommonUtilEnum;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import com.msjf.finance.mcs.facade.sms.domain.ReqSendVerificationCodeDomain;
 import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
-import org.slf4j.Logger;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.crypto.Mac;
@@ -22,14 +26,16 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * 公用参数
  * Created by lzp on 2018/12/26.
  */
-@Component
 public final class CommonUtil {
 
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LogManager.getLogger(CommonUtil.class);
     private static final String MAC_NAME = "SHA-256";
     private static final String ENCODING = "UTF-8";
     /**
@@ -111,8 +117,6 @@ public final class CommonUtil {
      */
     private static final String ADEncrypNo="MSJFmsjf";
 
-    @Resource
-    SysParamsConfigEntityMapper sysParamsConfigEntityMapper;
 
     /**
      * 生成 pwdLength长度的随机码
@@ -129,12 +133,13 @@ public final class CommonUtil {
         }
         return a;
     }
-    public String getSysConfigValue(String paramId, String paramType){
+    public static String getSysConfigValue(String paramId, String paramType){
         SysParamsConfigEntityKey sysParamsConfigKey=new SysParamsConfigEntityKey();
         sysParamsConfigKey.setDistributorId(DISTRIBUTORID);
         sysParamsConfigKey.setExchangeId(EXCHANGEID);
         sysParamsConfigKey.setParamId(paramId);
         sysParamsConfigKey.setParamType(paramType);
+        SysParamsConfigEntityMapper sysParamsConfigEntityMapper=SpringContextUtil.getBean("sysParamsConfigEntityMapper");
         SysParamsConfigEntity sysParamsConfig=sysParamsConfigEntityMapper.selectByPrimaryKey(sysParamsConfigKey);
         return sysParamsConfig.getParamValue();
     }
@@ -206,7 +211,7 @@ public final class CommonUtil {
      * @return
      */
     public static boolean checkImageValidecode(String uniqueID, String inputValidecode, Response rs) {
-        if (StringUtils.isEmpty(uniqueID)) {
+        if (StringUtils.isBlank(uniqueID)) {
             rs.fail(CommonUtilEnum.MSG_PARAM_ERROR);
             return false;
         }
@@ -275,35 +280,33 @@ public final class CommonUtil {
     /**
      * 3-手机号码换绑 传customerno
      */
-    public static Response<VerificationCodeDomain> sendChangeMobileCode(String customerno,String verificateType,String mobile){
-        Response rs=null;
-        if(StringUtils.isEmpty(verificateType)){
+    public static Response<VerificationCodeDomain> sendChangeMobileCode(String customerno,String verificateType,String mobile) {
+        if (StringUtils.isEmpty(verificateType)) {
             return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
-        if(StringUtils.isEmpty(mobile)){
+        if (StringUtils.isEmpty(mobile)) {
             return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
-        if(StringUtils.isEmpty(customerno)){
+        if (StringUtils.isEmpty(customerno)) {
             return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
-        if(verificateType.equals(SMS_CHANGE_MOBILE_TYPE)){
-            ReqSendVerificationCodeDomain reqSendVerificationCodeDomain=new ReqSendVerificationCodeDomain();
+        if (verificateType.equals(SMS_CHANGE_MOBILE_TYPE)) {
+            ReqSendVerificationCodeDomain reqSendVerificationCodeDomain = new ReqSendVerificationCodeDomain();
+            reqSendVerificationCodeDomain.setCustomerno(customerno);
             reqSendVerificationCodeDomain.setMobile(mobile);
             reqSendVerificationCodeDomain.setTemplateId(SMS_CHANGE_MOBILE_TYPE);
             reqSendVerificationCodeDomain.setVerificateType(verificateType);
-            reqSendVerificationCodeDomain.setCustomerno(customerno);
-            SendVerificationCodeFacade sendVerificationCodeFacade=SpringContextUtil.getBean("sendVerificationCodeFacade");
-            rs=sendVerificationCodeFacade.SendRegisterVerificationCode(reqSendVerificationCodeDomain);
-        }else{
-            return rs;
+            SendVerificationCodeFacade sendVerificationCodeFacade = SpringContextUtil.getBean("sendVerificationCodeFacade");
+            return sendVerificationCodeFacade.SendRegisterVerificationCode(null);
+        } else {
+            return new Response<>().fail(CommonUtilEnum.MSG_PARAM_ERROR);
         }
-        return rs;
     }
     /**
      * 3-手机号码换绑 传customerno
      */
     public static Boolean isExistCodeChangeMobile(String customerno,String verificateType,String mobile,String msgCode){
-        Response rs=null;
+        Response rs;
         if(StringUtils.isEmpty(verificateType)){
             return false;
         }
@@ -359,7 +362,7 @@ public final class CommonUtil {
      * 0-服务平台注册 1-管理平台登录 2-修改密码 4-业务平台登陆 等无登陆状态下,不传customerno
      */
     public static Boolean checkVerificationCode(String verificateType,String mobile,String msgCode){
-        Response rs=null;
+        Response rs;
         if(StringUtils.isEmpty(verificateType)){
             return false;
         }
@@ -410,6 +413,59 @@ public final class CommonUtil {
             return false;
         }
         return rs.checkIfFail()?false:true;
+    }
+    /**
+     * 判断是否为手机号
+     * @param mobiles
+     * @return
+     */
+    public static boolean isMobileNO(String mobiles) {
+        if(StringUtils.isEmpty(mobiles)){
+            return false;
+        }
+        String reg = "^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\\d{8})$";
+        Pattern p = Pattern.compile(reg);
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
+    /**
+     * 字典值批量转译(多选 逗号隔开)字典对应转译为中文(逗号隔开)
+     * 如 1,2,3  ->  身份证,营业执照,机构代码证
+     *
+     * @param dictId 字典项 如 dict20025
+     * @param dictStr 字典key 如 1,2,3
+     * @return
+     */
+    public static String getDictValueBatch(String dictId, String dictStr) {
+        if (StringUtils.isEmpty(dictStr)) {
+            return "";
+        }
+        String[] dictS = dictStr.split(",");
+        List<SysDictKey> sysDictKeyList = new ArrayList<SysDictKey>();
+        for (int i = 0; i < dictS.length; i++) {
+            SysDictEntity sysEntity = new SysDictEntity();
+            sysEntity.setDictId(dictId);
+            sysEntity.setDictKey(dictS[i]);
+            sysDictKeyList.add(sysEntity);
+        }
+        try {
+            AccountDao accountDao=SpringContextUtil.getBean("accountDao");
+            List<SysDictEntity> ls = accountDao.selectSysdictlistByKey(sysDictKeyList);
+            StringBuffer sb = new StringBuffer();
+            int i = 1;
+            for (SysDictEntity en : ls) {
+                if (i == ls.size()) {
+                    sb.append(en.getDictValue());
+                } else {
+                    sb.append(en.getDictValue() + ",");
+                }
+                i++;
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            logger.error(e);
+            throw new RuntimeException("字典值批量转译失败");
+        }
     }
     public static void main(String[] args){
         try{

@@ -13,5 +13,5 @@ public interface LoginService {
 
     Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
 
-
+    Response<List<Map>> getCorporationCompany(HashMap<String, Object> mapParam);
 }

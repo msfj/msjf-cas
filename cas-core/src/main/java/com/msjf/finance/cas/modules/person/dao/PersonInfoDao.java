@@ -20,7 +20,6 @@ public interface PersonInfoDao {
      * 查询实体
      */
     PersonInfoEntity selectByKey(PersonInfoKey personInfoKey);
-    void insPersonInfo(PersonInfoEntity personInfoEntity);
 
     /**
      * 查询个人基本信息

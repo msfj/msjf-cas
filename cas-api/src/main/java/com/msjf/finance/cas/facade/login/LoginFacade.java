@@ -11,6 +11,7 @@ import java.util.Map;
 public interface LoginFacade {
     /**
      * 会员登陆
+     *
      * @param mapParam
      * @return
      */
@@ -18,10 +19,16 @@ public interface LoginFacade {
 
     /**
      * 法人登陆
+     *
      * @param mapParam
      * @return
      */
     Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam);
 
-
+    /**
+     * 获取法人企业信息
+     * @param mapParam
+     * @return
+     */
+    Response<List<Map>> getCorporationCompany(HashMap<String, Object> mapParam);
 }

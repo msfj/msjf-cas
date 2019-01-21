@@ -15,7 +15,7 @@ public enum  LoginEnum implements ResponseService {
     MSG_USER_CANCEL("CAS0007", "账户已销户"),
     MSGCODE_NULL("CAS0008", "验证码不能为空"),
     PWD_ENCRYPT_ERROR("CAS0009", "密码加密对比失败"),
-    CHECK_FILED("CAS0010", "校验失败"),
+    CHECK_FILED("CAS0010", "验证码校验失败"),
     IMAGE_CODE_NULL("CAS0011", "图形验证码不能为空"),
     PWD_NULL("CAS0012", "密码不能为空"),
     LOGIN_NAME_NULL("CAS0013", "登录账号不能为空"),
@@ -24,7 +24,9 @@ public enum  LoginEnum implements ResponseService {
     LOGIN_FAILED("CAS0016", "登陆失败"),
     DICT_QUERY_NULL("CAS0017", "企业分类字典值不存在字典中"),
     LOGIN_SUCCESS("CAS0018", "登陆成功"),
-    LOGIN_TYPE_NULL("CAS0019", "登陆方式");
+    LOGIN_TYPE_NULL("CAS0019", "登陆方式不能为空"),
+    LOGIN__EXCEPTION("CAS0019", "登陆异常"),
+    QUERY_COMPANY_SUCCESS("CAS0018", "查询法人企业信息成功");
     private String errorCode;
     private String errorDesc;
 

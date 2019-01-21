@@ -1,7 +1,7 @@
-package com.msjf.finance.cas.modules;
+package com.msjf.finance.cas.modules.Account;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by lzp on 2018/12/27.
@@ -10,7 +10,7 @@ public abstract class Account {
     /**
      * 日志记录类
      */
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected final Logger logger = LogManager.getLogger(this.getClass());
     /** 日期格式 yyyyMMdd */
     public static final String DATE_FMT_DATE = "yyyyMMdd";
 

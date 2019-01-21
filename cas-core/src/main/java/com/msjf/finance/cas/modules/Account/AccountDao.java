@@ -1,0 +1,25 @@
+package com.msjf.finance.cas.modules.Account;
+
+
+import com.msjf.finance.cas.modules.organ.entity.SysDictEntity;
+import com.msjf.finance.cas.modules.organ.entity.SysDictKey;
+import com.msjf.finance.msjf.core.dao.MyBatisDao;
+
+import java.util.HashMap;
+import java.util.List;
+@MyBatisDao
+public interface AccountDao {
+
+    List selectOrganInfoByMobile(HashMap map);
+
+    List selectLoginInfo(HashMap map);
+
+    List selectEmployeeInfo(HashMap map);
+
+    List selectPersonInfoByMob(HashMap map);
+
+    List selectCompanyPersonInfo(HashMap map);
+
+    List<SysDictEntity> selectSysdictlistByKey(List<SysDictKey> sysDictKeyList);
+
+}

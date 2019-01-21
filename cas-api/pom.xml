@@ -8,23 +8,22 @@
     <version>1.0-SNAPSHOT</version>
 </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>cas-api</artifactId>
-<dependencies>
-    <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>fastjson</artifactId>
-        <version>1.2.54</version>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.54</version>
+        </dependency>
 
-    <dependency>
-        <groupId>com.msjf.finance</groupId>
-        <artifactId>msjf-core</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <scope>compile</scope>
-    </dependency>
-</dependencies>
+        <dependency>
+            <groupId>com.msjf.finance</groupId>
+            <artifactId>msjf-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
+    <!-- 私服仓库地址 -->
     <distributionManagement>
         <repository>
             <id>msjf-releases</id>
@@ -37,5 +36,4 @@
             <url>http://49.4.91.18:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
 </project>

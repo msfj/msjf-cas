@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.modules.organ.dao.CustDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.msjf.finance.cas.modules.organ.entity.CustEntity" id="custMap">
+        <result property="customerno" column="customerno"/>
+        <result property="loginname" column="loginname"/>
+        <result property="registersource" column="registersource"/>
+        <result property="membertype" column="membertype"/>
+        <result property="certificatetype" column="certificatetype"/>
+        <result property="certificateno" column="certificateno"/>
+        <result property="linkmanname" column="linkmanname"/>
+        <result property="mobile" column="mobile"/>
+        <result property="cardno" column="cardno"/>
+        <result property="bank" column="bank"/>
+        <result property="companyname" column="companyname"/>
+        <result property="email" column="email"/>
+        <result property="status" column="status"/>
+        <result property="insertdate" column="insertdate"/>
+        <result property="inserttime" column="inserttime"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="issave" column="issave"/>
+        <result property="source" column="source"/>
+        <result property="corname" column="corname"/>
+        <result property="corcardtype" column="corcardtype"/>
+        <result property="corcardno" column="corcardno"/>
+        <result property="cormob" column="cormob"/>
+    </resultMap>
+
+
+</mapper>

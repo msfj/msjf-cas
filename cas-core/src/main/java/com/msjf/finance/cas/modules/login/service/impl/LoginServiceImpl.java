@@ -1,8 +1,8 @@
 package com.msjf.finance.cas.modules.login.service.impl;
 
 import com.msjf.finance.cas.facade.login.domain.LoginDomain;
-import com.msjf.finance.cas.modules.Account;
-import com.msjf.finance.cas.modules.AccountDao;
+import com.msjf.finance.cas.modules.Account.Account;
+import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
 import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneEntity;
 import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneKey;
@@ -19,11 +19,9 @@ import com.msjf.finance.cas.modules.person.entity.PersonInfoKey;
 import com.msjf.finance.cas.modules.register.dao.CustDao;
 import com.msjf.finance.cas.modules.register.entity.CustEntity;
 import com.msjf.finance.cas.modules.util.*;
-import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
@@ -78,6 +76,8 @@ public class LoginServiceImpl extends Account implements LoginService {
      * */
     private String loginType;
 
+    private String loginName;
+
     @Resource
     CustDao custDao;
     @Resource
@@ -85,13 +85,13 @@ public class LoginServiceImpl extends Account implements LoginService {
     @Resource
     PersonInfoDao personInfoDao;
     @Resource
-    CommonUtil commonUtil;
-    @Resource
     OrganInfoDao organInfoDao;
     @Resource
     OrganAppendMapper organAppendMapper;
     @Resource
     AccountDao accountDao;
+    @Resource
+    SpringContextUtil springContextUtil;
     /**
      * 登录入口 包含以下两种情况
      * 1.企业和个人账户登陆
@@ -99,7 +99,6 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param mapParam
      * @param
      */
-    @Override
     public Response<LoginDomain> memberLogin(HashMap<String, Object> mapParam) {
         Response rs=new Response();
         LoginDomain loginDomain=new LoginDomain();
@@ -111,17 +110,20 @@ public class LoginServiceImpl extends Account implements LoginService {
             return rs;
         }
         //3.查询数据库账户，校验是否合法
-        List<CustEntity> entitys=null;
+        List<CustEntity> entitys;
         CustEntity entity = new CustEntity();
-        if("1".equals(loginType)){
+        Boolean isMobile=CommonUtil.isMobileNO(loginName);
+        if(isMobile){
+            mobile=loginName;
+            entity.setMobile(mobile);
+            entity.setMembertype(person);
+            entitys = custDao.queryCustEntityList(entity);
+        }else{
+            certificateno=loginName;
             entity.setCertificateno(certificateno);
             entitys = custDao.queryCustEntityList(entity);
-        }else if("2".equals(loginType)){
-            entity.setMobile(mobile);
-            entity.setMembertype(company);
-            entitys = custDao.queryCustEntityList(entity);
         }
-        if (StringUtils.isEmpty(entitys)) {
+        if (ObjectUtils.isEmpty(entitys)) {
             return rs.fail(LoginEnum.MSG_USER_NULL);
         }
         customerno = entitys.get(0).getCustomerno();
@@ -138,12 +140,26 @@ public class LoginServiceImpl extends Account implements LoginService {
         AusAuthoneKey ausAuthoneKey = new AusAuthoneKey();
         ausAuthoneKey.setCustomerno(customerno);
         AusAuthoneEntity ausAuthoneEntity = ausAuthoneDao.getAusAuthoneByKeyLock(ausAuthoneKey);
-        if (StringUtils.isEmpty(ausAuthoneEntity)) {
+        if (ObjectUtils.isEmpty(ausAuthoneEntity)) {
             return rs.fail(LoginEnum.MSG_USER_NULL);
         }
 //        String enPassword = KDEncodeUtil.getKingdomPasswrod(password, customerno);
         //4.根据不同登陆类型 校验不同参数
-        if("1".equals(loginType)){
+        if(!isMobile){
+            if (StringUtils.isEmpty(certificateno)) {
+                return rs.fail(LoginEnum.LOGIN_NAME_NULL);
+            }
+            if (StringUtils.isEmpty(password)) {
+                return rs.fail(LoginEnum.PWD_NULL);
+            }
+            if ("0".equals(loginsource)) {
+                if (StringUtils.isEmpty(uniqueID)) {
+                    return rs.fail(LoginEnum.IMAGE_CODE_NULL);
+                }
+                if (StringUtils.isEmpty(inputValidecode)) {
+                    return rs.fail(LoginEnum.IMAGE_CODE_NULL);
+                }
+            }
              if (WEB.equals(loginsource)) {
                 if (!CommonUtil.checkImageValidecode(uniqueID, inputValidecode, rs)) {
                     return rs;
@@ -165,7 +181,13 @@ public class LoginServiceImpl extends Account implements LoginService {
                 //rs.failed("用户名或密码错误");
                 return rs;
             }
-        }else if("2".equals(loginType)){
+        }else{
+            if (StringUtils.isEmpty(mobile)) {
+                return rs.fail(LoginEnum.MOBILE_NULL);
+            }
+            if (StringUtils.isEmpty(msgCode)) {
+                return rs.fail(LoginEnum.MSGCODE_NULL);
+            }
             Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
             if(!flag){
                 return  rs.fail(LoginEnum.CHECK_FILED);
@@ -179,7 +201,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         loginDomain.setIsfinish(isfinish ? CommonUtil.YES : CommonUtil.NO);
         loginDomain.setMembername(membername);
         loginDomain.setMembertype(membertype);
-        loginDomain.setName(certificateno);
+        loginDomain.setName(loginName);
         if (CommonUtil.YES.equals(membertype)) {
             loginDomain.setOrganclass(organclass);
             loginDomain.setOrgantype(organtype);
@@ -194,17 +216,14 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param mapParam
      * @return
      */
-    @Override
     public Response<List<Map>> corporationLogin(HashMap<String, Object> mapParam) {
         Response<List<Map>> rs=new Response();
         rs.fail(LoginEnum.LOGIN_FAILED);
         //1.获取参数值
         getParam(mapParam);
         List<Map> mapList=new ArrayList<>();
-        if(!StringUtils.isEmpty(certificateno)){
-            if (StringUtils.isEmpty(loginsource)) {
-                return rs.fail(LoginEnum.MSG_PARAM_ERROR);
-            }
+        if (StringUtils.isEmpty(loginsource)) {
+            return rs.fail(LoginEnum.MSG_PARAM_ERROR);
         }
         if (StringUtils.isEmpty(mobile)) {
             return rs.fail(LoginEnum.MSG_PARAM_ERROR);
@@ -212,52 +231,70 @@ public class LoginServiceImpl extends Account implements LoginService {
         if (StringUtils.isEmpty(msgCode)) {
             return rs.fail(LoginEnum.MSG_PARAM_ERROR);
         }
-        if(StringUtils.isEmpty(certificateno)){
-            Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
-            if(!flag){
-                return rs.fail(LoginEnum.CHECK_FILED);
-            }
-            HashMap reqmap=new HashMap();
-            reqmap.put("mobile",mobile);
-            List<Map> list=accountDao.selectOrganInfoByMobile(reqmap);
-            if(StringUtils.isEmpty(list)){
-                return rs.fail(LoginEnum.CORPORATION_QUERY_NULL);
-            }
-            for(Map map:list){
-                HashMap custmap=new HashMap();
-                custmap.put("certificateno",map.get("certificateno"));
-                custmap.put("membername",map.get("membername"));
-                mapList.add(custmap);
-            }
-            return rs.success(LoginEnum.LOGIN_SUCCESS,mapList);
-        }else{
-            CustEntity entity = new CustEntity();
-            entity.setCertificateno(certificateno);
-            entity.setMembertype(company);
-            List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
-            if(ObjectUtils.isEmpty(custEntityList)){
-                return rs.fail(LoginEnum.MSG_USER_NULL);
-            }
-            CustEntity custEntity=custEntityList.get(0);
-            customerno=custEntity.getCustomerno();
-            membertype = custEntity.getMembertype();
-            updAuthone(rs);
-            //基本信息是否完成填写 未完成时跳转到基本信息修改页面
-            boolean isfinish = checkIsFinish(rs);
-            HashMap<String, Object> rsmap = new HashMap<String, Object>();
-            rsmap.put("customerno", customerno);
-            rsmap.put("isfinish", isfinish ? CommonUtil.YES : CommonUtil.NO);
-//        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
-            rsmap.put("membertype", membertype);
-            rsmap.put("membername", membername);
-            rsmap.put("name", certificateno);
-            if (CommonUtil.YES.equals(membertype)) {
-                rsmap.put("organtype", organtype);
-                rsmap.put("organclass", organclass);
-            }
-            mapList.add(rsmap);
-            return rs.success(LoginEnum.LOGIN_SUCCESS,mapList);
+        Boolean flag=CommonUtil.isExistVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
+        if(!flag){
+            return rs.fail(LoginEnum.CHECK_FILED);
         }
+        certificateno=loginName;
+        CustEntity entity = new CustEntity();
+        entity.setCertificateno(certificateno);
+        entity.setMembertype(company);
+        List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
+        if(ObjectUtils.isEmpty(custEntityList)){
+            return rs.fail(LoginEnum.MSG_USER_NULL);
+        }
+        CustEntity custEntity=custEntityList.get(0);
+        customerno=custEntity.getCustomerno();
+        membertype = custEntity.getMembertype();
+        updAuthone(rs);
+        //基本信息是否完成填写 未完成时跳转到基本信息修改页面
+        boolean isfinish = checkIsFinish(rs);
+        HashMap<String, Object> rsmap = new HashMap<String, Object>();
+        rsmap.put("customerno", customerno);
+        rsmap.put("isfinish", isfinish ? CommonUtil.YES : CommonUtil.NO);
+//        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
+        rsmap.put("membertype", membertype);
+        rsmap.put("membername", membername);
+        rsmap.put("name", certificateno);
+        if (CommonUtil.YES.equals(membertype)) {
+            rsmap.put("organtype", organtype);
+            rsmap.put("organclass", organclass);
+        }
+        mapList.add(rsmap);
+        return rs.success(LoginEnum.LOGIN_SUCCESS,mapList);
+
+    }
+
+    @Override
+    public Response<List<Map>> getCorporationCompany(HashMap<String, Object> mapParam) {
+        Response<List<Map>> rs=new Response();
+        rs.fail(LoginEnum.LOGIN_FAILED);
+        //1.获取参数值
+        getParam(mapParam);
+        List<Map> mapList=new ArrayList<>();
+        if (StringUtils.isEmpty(mobile)) {
+            return rs.fail(LoginEnum.MSG_PARAM_ERROR);
+        }
+        if (StringUtils.isEmpty(msgCode)) {
+            return rs.fail(LoginEnum.MSG_PARAM_ERROR);
+        }
+        Boolean flag=CommonUtil.checkVerificationCode(SMS_SERVICE_LOGIN_TYPE,mobile,msgCode);
+        if(!flag){
+            return rs.fail(LoginEnum.CHECK_FILED);
+        }
+        HashMap reqmap=new HashMap();
+        reqmap.put("mobile",mobile);
+        List<Map> list=accountDao.selectOrganInfoByMobile(reqmap);
+        if(ObjectUtils.isEmpty(list)){
+            return rs.fail(LoginEnum.CORPORATION_QUERY_NULL);
+        }
+        for(Map map:list){
+            HashMap custmap=new HashMap();
+            custmap.put("loginName",map.get("certificateno"));
+            custmap.put("membername",map.get("membername"));
+            mapList.add(custmap);
+        }
+        return rs.success(LoginEnum.QUERY_COMPANY_SUCCESS,mapList);
     }
 
     private void getParam(HashMap<String, Object> mapParam) {
@@ -269,42 +306,9 @@ public class LoginServiceImpl extends Account implements LoginService {
         loginType=StringUtil.valueOf(mapParam.get("loginType"));
         msgCode=StringUtil.valueOf(mapParam.get("msgCode"));
         mobile=StringUtil.valueOf(mapParam.get("mobile"));
+        loginName=StringUtil.valueOf(mapParam.get("loginName"));
     }
     public Boolean preCheck(Response rs) {
-        if(StringUtils.isEmpty(loginType)){
-            rs.fail(LoginEnum.LOGIN_TYPE_NULL);
-            return false;
-        }
-        if("1".equals(loginType)){
-            if (StringUtils.isEmpty(certificateno)) {
-                rs.fail(LoginEnum.LOGIN_NAME_NULL);
-                return false;
-            }
-            if (StringUtils.isEmpty(password)) {
-                rs.fail(LoginEnum.PWD_NULL);
-                return false;
-            }
-            if ("0".equals(loginsource)) {
-                if (StringUtils.isEmpty(uniqueID)) {
-                    rs.fail(LoginEnum.IMAGE_CODE_NULL);
-                    return false;
-                }
-                if (StringUtils.isEmpty(inputValidecode)) {
-                    rs.fail(LoginEnum.IMAGE_CODE_NULL);
-                    return false;
-                }
-            }
-        }
-        if("2".equals(loginType)){
-            if (StringUtils.isEmpty(mobile)) {
-                rs.fail(LoginEnum.MOBILE_NULL);
-                return false;
-            }
-            if (StringUtils.isEmpty(msgCode)) {
-                rs.fail(LoginEnum.MSGCODE_NULL);
-                return false;
-            }
-        }
         if (StringUtils.isEmpty(loginsource)) {
             rs.fail(LoginEnum.LOGIN_SOURCE_NULL);
             return false;
@@ -374,8 +378,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      */
     private void checkFailcount(int failCount, Response rs) {
         //获取系统参数 错误次数上限
-        int sysFailCount = Integer
-                .valueOf(commonUtil.getSysConfigValue("login_allow_error_num", "login_allow_error_num"));
+        int sysFailCount=Integer.valueOf(CommonUtil.getSysConfigValue("login_allow_error_num", "login_error_num"));
         //更新错误次数 和 账户状态
         AusAuthoneEntity ausAuthoneEntity = new AusAuthoneEntity();
         ausAuthoneEntity.setCustomerno(customerno);
@@ -396,7 +399,7 @@ public class LoginServiceImpl extends Account implements LoginService {
             }
             ausAuthoneDao.update(ausAuthoneEntity);
         } catch (Exception e) {
-//            LogUtil.error(e);
+            logger.error(e.getMessage());
             throw new RuntimeException("登录错误次数更新失败");
         }
         int failedExistCount=sysFailCount-ausAuthoneEntity.getFailcount();//剩余次数

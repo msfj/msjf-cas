@@ -16,7 +16,6 @@ import com.msjf.finance.cas.modules.util.CommonUtil;
 import com.msjf.finance.cas.modules.util.DateUtil;
 import com.msjf.finance.cas.modules.util.StringUtil;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
-import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.msjf.finance.cas.modules.Account.*;
+import static com.msjf.finance.cas.modules.Account.Account.*;
 import static com.msjf.finance.cas.modules.util.CommonUtil.DATE_FMT_DATE;
 import static com.msjf.finance.cas.modules.util.CommonUtil.DATE_FMT_TIME;
 
@@ -58,6 +57,9 @@ public class RegisterServiceImpl implements RegisterService {
     @Resource
     CasRegisterDao casRegisterDao;
 
+
+    @Resource
+    SendVerificationCodeFacade sendVerificationCodeFacade;
 
 
 
@@ -176,10 +178,14 @@ public class RegisterServiceImpl implements RegisterService {
                 if(!flag){
                     return new Response().fail("0","短信验证码验证不通过！");
                 }
-                checkCustMembertypeAndMobile(rs);//用户类型+手机号码在cust表校验唯一性
+               if(!checkCustMembertypeAndMobile(rs)){//用户类型+手机号码在cust表校验唯一性
+                   return rs;
+               }
             }
-            String  id =  StringUtil.getUUID();//生成
-            addCasRegisterInfo(id);//写用户注册基本信息表
+            if(ObjectUtils.isEmpty(resultMap)){
+                String  id =  StringUtil.getUUID();//生成
+                addCasRegisterInfo(id);//写用户注册基本信息表
+            }
         }else if(step.equals(step_2)){
             if (membertype.equals(company)) {
                 /**
@@ -201,6 +207,9 @@ public class RegisterServiceImpl implements RegisterService {
             mapParam.put("corcardno",corcardno);
             mapParam.put("mobile",mobile);
             mapParam.put("cardno",cardno);
+            mapParam.put("membername",membername);
+            mapParam.put("certificatetype",certificatetype);
+            mapParam.put("certificateno",certificateno);
             mapParam.put("bank",bank);
             mapParam.put("id",entity.get("id"));
             updCasRegisterInfo(mapParam);
@@ -382,7 +391,7 @@ public class RegisterServiceImpl implements RegisterService {
             CustEntity c = new CustEntity();
             c.setCertificateno(certificateno);
             List<CustEntity> clist = custDao.checkCustCertificatenoIsExist(c);
-            if(ObjectUtils.isEmpty(clist)){
+            if(!ObjectUtils.isEmpty(clist)){
                 rs.fail("0","证件号码已经使用");//证件号码已经使用
                 return false;
             }
@@ -422,7 +431,7 @@ public class RegisterServiceImpl implements RegisterService {
             CustEntity d = new CustEntity();
             d.setLoginname(certificateno);
             List<CustEntity> dlist =  custDao.queryCustEntityList(d);
-            if(ObjectUtils.isEmpty(dlist)){
+            if(!ObjectUtils.isEmpty(dlist)){
                 return new Response<>().fail("0","证件号码已经使用");//证件号码已经使用
             }
         }catch (Exception e){
@@ -508,6 +517,7 @@ public class RegisterServiceImpl implements RegisterService {
             custDao.insCust(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 
@@ -525,6 +535,7 @@ public class RegisterServiceImpl implements RegisterService {
             personInfoDao.insPersonInfo(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 
@@ -565,6 +576,7 @@ public class RegisterServiceImpl implements RegisterService {
             casRegisterDao.insCasRegister(entity);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
         return new Response<>().success();
     }
@@ -579,6 +591,7 @@ public class RegisterServiceImpl implements RegisterService {
             casRegisterDao.updCasRegister(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 
@@ -597,6 +610,7 @@ public class RegisterServiceImpl implements RegisterService {
             organInfoDao.insOrganInfo(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 
@@ -616,6 +630,7 @@ public class RegisterServiceImpl implements RegisterService {
             ausAuthoneDao.inrAusAuthone(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new RuntimeException("注册失败");
         }
     }
 }

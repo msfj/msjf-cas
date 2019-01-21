@@ -22,7 +22,7 @@ public class LoginAuthFacadeImpl implements LoginAuthFacade {
         try {
             if (ObjectUtils.isEmpty(mapParam)||
                     StringUtil.isEmpty((String) mapParam.get("userName"))||
-                    StringUtil.isEmpty((String) mapParam.get("loginType"))){
+                    StringUtil.isEmpty((String) mapParam.get("loginPlat"))){
                 //打印警告日志log4j
                 return new Response<>().fail(LoginAuthEmun.MSG_PARAM_ERROR);
             }

@@ -2,7 +2,7 @@ package com.msjf.finance.cas.modules.register.facade;
 
 import com.msjf.finance.cas.facade.register.RegisterFacade;
 import com.msjf.finance.cas.facade.register.domain.RegisterDomain;
-import com.msjf.finance.cas.modules.Account;
+import com.msjf.finance.cas.modules.Account.Account;
 import com.msjf.finance.cas.modules.register.service.RegisterService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
