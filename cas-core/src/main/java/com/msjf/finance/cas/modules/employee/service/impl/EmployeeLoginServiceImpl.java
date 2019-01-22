@@ -6,18 +6,24 @@ import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
 import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneEntity;
 import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneKey;
 import com.msjf.finance.cas.modules.employee.dao.EmployeeMapper;
+import com.msjf.finance.cas.modules.employee.emun.EmployeeLoginEnum;
 import com.msjf.finance.cas.modules.employee.entity.EmployeeEntity;
 import com.msjf.finance.cas.modules.employee.service.EmployeeLoginService;
+import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.modules.util.CommonUtil;
 import com.msjf.finance.cas.modules.util.DateUtil;
+import com.msjf.finance.cas.modules.util.MacroDefine;
 import com.msjf.finance.cas.modules.util.StringUtil;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
+
 @Service("employeeLoginService")
 @Scope("prototype")
 public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginService {
@@ -39,71 +45,64 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
     EmployeeMapper employeeMapper;
     @Override
     public Response<EmployeeInfoDomain> employeeLogin(HashMap<String, Object> mapParam) {
-//        Response rs=new Response();
-//        getParam(mapParam);
-//        if (StringUtils.isEmpty(loginname, "登录账号", rs)) {
-//            return false;
-//        }
-//        if (StringUtils.isEmpty(password, "密码", rs)) {
-//            return false;
-//        }
-//        if (StringUtils.isEmpty(loginsource, "登录来源", rs)) {
-//            return false;
-//        }
-//        if (!CommonUtil.isLegalOfDictValue("100", "登录来源", loginsource, rs)) {
-//            return false;
-//        }
-//        //用户名存在性检查
-//        EmployeeEntity EmployeeEntity = new EmployeeEntity();
-//        EmployeeEntity.setLoginname(loginname);
-//        List<CifEmployeeEntity> ls = cifEmployeePersistence.queryEntityList(cifEmployeeEntity);
-//        if (CheckUtil.isNull(ls)) {
-//            rs.failed("用户信息不存在");
-//            return false;
-//        }
-//        if (MacroDefine.CUST_STATUS.LOCK.getValue().equals(ls.get(0).getStatus())) {
-//            rs.failed("账户已锁定");
-//            return false;
-//        }
-//        if (MacroDefine.CUST_STATUS.FROZEN.getValue().equals(ls.get(0).getStatus())) {
-//            rs.failed("账户已冻结");
-//            return false;
-//        }
-//        if (MacroDefine.CUST_STATUS.CANCEL.getValue().equals(ls.get(0).getStatus())) {
-//            rs.failed("账户已销户");
-//            return false;
-//        }
-//        //验证码正确性检查
-//        String mobile = ls.get(0).getMobile();
-//        customerno = ls.get(0).getCustomerno();
-//        //密码检查
-//        AusAuthoneKey ausAuthoneKey = new AusAuthoneKey();
-//        ausAuthoneKey.setCustomerno(customerno);
-//        AusAuthoneEntity ausAuthoneEntity = ausAuthoneDao.getAusAuthoneByKeyLock(ausAuthoneKey);
-//        if (CheckUtil.isNull(ausAuthoneEntity)) {
-//            rs.failed("用户信息不存在");
-//            return false;
-//        }
-//        String enPassword = KDEncodeUtil.getKingdomPasswrod(password, customerno);
-//        if (CheckUtil.isNull(enPassword)) {
-//            rs.failed("密码加密对比失败");
-//            return false;
-//        }
-//        if (!enPassword.equals(ausAuthoneEntity.getPassword())) {
-//            //检查错误次数 错误达到上限锁定 并返回前端信息
-//            checkFailcount(ausAuthoneEntity.getFailcount(), rs);
-//            return false;
-//        }
-//        updAuthone(rs);
-//        EmployeeInfoDomain employeeInfoDomain=new EmployeeInfoDomain();
-//        employeeInfoDomain.setLoginname(loginname);
-//        employeeInfoDomain.setCertificateno();
-////        HashMap<String, Object> rsmap = new HashMap<String, Object>();
-////        rsmap.put("customerno", customerno);
-////        rsmap.put("name", loginname);
-////        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
-//        ResultUtil.makerSusResults("登录成功", rsmap, rs);
-        return null;
+        Response rs=new Response();
+        getParam(mapParam);
+        if (StringUtils.isEmpty(loginname)) {
+            return rs.fail(EmployeeLoginEnum.LOGIN_NAME_NULL);
+        }
+        if (StringUtils.isEmpty(password)) {
+            return rs.fail(EmployeeLoginEnum.PWD_NULL);
+        }
+        if (StringUtils.isEmpty(loginsource)) {
+            return rs.fail(EmployeeLoginEnum.LOGIN_SOURCE_NULL);
+        }
+        if (!CommonUtil.isLegalOfDictValue("100", "登录来源", loginsource, rs)) {
+            return rs.fail(EmployeeLoginEnum.LOGIN_SOURCE_ERROR);
+        }
+        //用户名存在性检查
+        EmployeeEntity EmployeeEntity = new EmployeeEntity();
+        EmployeeEntity.setLoginname(loginname);
+        List<EmployeeEntity> ls = employeeMapper.selectByEntity(EmployeeEntity);
+        if (ObjectUtils.isEmpty(ls)) {
+            return rs.fail(EmployeeLoginEnum.MSG_USER_NULL);
+        }
+        if (MacroDefine.CUST_STATUS.LOCK.getValue().equals(ls.get(0).getStatus())) {
+            return rs.fail(LoginEnum.MSG_USER_LOCK);
+        }
+        if (MacroDefine.CUST_STATUS.FROZEN.getValue().equals(ls.get(0).getStatus())) {
+            return rs.fail(LoginEnum.MSG_USER_FROZEN);
+        }
+        if (MacroDefine.CUST_STATUS.CANCEL.getValue().equals(ls.get(0).getStatus())) {
+            return rs.fail(LoginEnum.MSG_USER_CANCEL);
+        }
+        //验证码正确性检查
+        String certificateno = ls.get(0).getCertificateno();
+        customerno = ls.get(0).getCustomerno();
+        //密码检查
+        AusAuthoneKey ausAuthoneKey = new AusAuthoneKey();
+        ausAuthoneKey.setCustomerno(customerno);
+        AusAuthoneEntity ausAuthoneEntity = ausAuthoneDao.getAusAuthoneByKeyLock(ausAuthoneKey);
+        if (ObjectUtils.isEmpty(ausAuthoneEntity)) {
+            return rs.fail(EmployeeLoginEnum.MSG_USER_NULL);
+        }
+        String enPassword = CommonUtil.HmacSHA1Encrypt(password,customerno);
+        if (StringUtils.isEmpty(enPassword)) {
+            return rs.fail(LoginEnum.PWD_ENCRYPT_ERROR);
+        }
+        if (!enPassword.equals(ausAuthoneEntity.getPassword())) {
+            //检查错误次数 错误达到上限锁定 并返回前端信息
+            checkFailcount(ausAuthoneEntity.getFailcount(), rs);
+            return rs;
+        }
+        updAuthone(rs);
+        EmployeeInfoDomain employeeInfoDomain=new EmployeeInfoDomain();
+        employeeInfoDomain.setLoginname(loginname);
+        employeeInfoDomain.setCertificateno(certificateno);
+//        HashMap<String, Object> rsmap = new HashMap<String, Object>();
+//        rsmap.put("customerno", customerno);
+//        rsmap.put("name", loginname);
+//        rsmap.put("kosgParams", CommonUtil.getKosgParams(customerno));
+        return rs.success(EmployeeLoginEnum.LOGIN_SUCCESS,employeeInfoDomain);
     }
 
     private void getParam(HashMap<String, Object> mapParam) {
@@ -133,7 +132,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
                 ausAuthoneEntity.setFailcount(sysFailCount);
                 EmployeeEntity c = new EmployeeEntity();
                 c.setCustomerno(customerno);
-                c.setStatus("1");
+                c.setStatus(MacroDefine.CUST_STATUS.LOCK.getValue());
                 c.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
                 c.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
                 employeeMapper.updateByPrimaryKeySelective(c);
@@ -148,8 +147,10 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
         }
         int failedExistCount=sysFailCount-ausAuthoneEntity.getFailcount();//剩余次数
         if(failedExistCount>0){
+            rs.fail();
             rs.setMsg("用户名或密码错误,剩余"+StringUtil.valueOf(failedExistCount)+"次机会");
         }else{
+            rs.fail();
             rs.setMsg("用户名或密码错误,账户已锁定");
         }
     }

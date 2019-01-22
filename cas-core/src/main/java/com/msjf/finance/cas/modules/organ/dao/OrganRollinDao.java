@@ -1,6 +1,9 @@
 package com.msjf.finance.cas.modules.organ.dao;
 
+import com.msjf.finance.cas.modules.organ.entity.OrganRollinEntity;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
+
+import java.util.List;
 
 /**
  * 企业迁入基本信息表
@@ -11,5 +14,5 @@ import com.msjf.finance.msjf.core.dao.MyBatisDao;
  */
 @MyBatisDao
 public interface OrganRollinDao {
-
+    List<OrganRollinEntity> getOrganRollin(OrganRollinEntity organRollinEntity);
 }

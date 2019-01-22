@@ -3,6 +3,8 @@ package com.msjf.finance.cas.modules.employee.dao;
 import com.msjf.finance.cas.modules.employee.entity.EmployeeEntity;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
+import java.util.List;
+
 @MyBatisDao
 public interface EmployeeMapper {
     int deleteByPrimaryKey(String customerno);
@@ -16,4 +18,6 @@ public interface EmployeeMapper {
     int updateByPrimaryKeySelective(EmployeeEntity record);
 
     int updateByPrimaryKey(EmployeeEntity record);
+
+    List<EmployeeEntity> selectByEntity(EmployeeEntity record);
 }
