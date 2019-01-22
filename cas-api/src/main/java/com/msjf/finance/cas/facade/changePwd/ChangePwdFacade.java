@@ -20,8 +20,8 @@ public interface ChangePwdFacade {
 
     /**
      * 手机号码回显
-     * @param certificateno
+     * @param mapParam
      * @return
      */
-    Response<EchoMobileDomain> echoMobile(String certificateno);
+    Response<EchoMobileDomain> echoMobile(HashMap<String, Object> mapParam);
 }

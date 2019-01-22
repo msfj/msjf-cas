@@ -10,6 +10,7 @@ import com.msjf.finance.cas.modules.changePwd.emun.ChangePwdEnum;
 import com.msjf.finance.cas.modules.register.dao.CustDao;
 import com.msjf.finance.cas.modules.register.entity.CustEntity;
 import com.msjf.finance.cas.modules.util.CommonUtil;
+import com.msjf.finance.cas.modules.util.StringUtil;
 import com.msjf.finance.mcs.facade.sms.domain.VerificationCodeDomain;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.context.annotation.Scope;
@@ -18,6 +19,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 @Service("changePwdServiceImpl")
@@ -94,10 +96,11 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
     }
 
     @Override
-    public Response<EchoMobileDomain> echoMobile(String certificateno){
+    public Response<EchoMobileDomain> echoMobile(HashMap<String, Object> mapParam){
         Response<EchoMobileDomain> rs=new Response();
         EchoMobileDomain echoMobileDomain=new EchoMobileDomain();
         rs.fail();
+        String certificateno=StringUtil.valueOf(mapParam.get("certificateno"));
         if(StringUtils.isEmpty(certificateno)){
             return rs.fail(ChangePwdEnum.MSG_PARAM_ERROR);
         }

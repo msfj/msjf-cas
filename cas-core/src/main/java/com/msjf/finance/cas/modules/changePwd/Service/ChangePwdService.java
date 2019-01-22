@@ -21,5 +21,5 @@ public interface ChangePwdService {
      * @param
      * @return
      */
-    Response<EchoMobileDomain> echoMobile(String certificateno);
+    Response<EchoMobileDomain> echoMobile(HashMap<String, Object> mapParam);
 }
