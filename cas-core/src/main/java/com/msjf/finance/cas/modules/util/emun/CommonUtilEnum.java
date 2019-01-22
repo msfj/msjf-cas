@@ -24,7 +24,8 @@ public enum CommonUtilEnum implements ResponseService {
     CHANGE_FAILED("CAS0016", "修改失败"),
     IMAGE_MD5_ERROR("CAS0017", "图形码验证MD5参数解析错误"),
     CHECK_SUCCESS("CAS0018", "验证成功"),
-    SMS_SEND_ERROR("CAS0019", "发送失败");
+    SMS_SEND_ERROR("CAS0019", "发送失败"),
+    DICT_QUERY_NULL("CAS0020", "字典查询为空");
     private String errorCode;
     private String errorDesc;
 

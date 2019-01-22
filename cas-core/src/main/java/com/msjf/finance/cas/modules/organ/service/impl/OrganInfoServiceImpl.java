@@ -3,6 +3,7 @@ package com.msjf.finance.cas.modules.organ.service.impl;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.modules.Account.Account;
 import com.msjf.finance.cas.modules.Account.AccountDao;
+import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.modules.organ.dao.OrganInfoDao;
 import com.msjf.finance.cas.modules.organ.emun.OrganInfoEmun;
 import com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity;
@@ -64,15 +65,16 @@ public class OrganInfoServiceImpl extends AbstractOrganInfo {
 //        OrganInfoKey organInfoKey = new OrganInfoKey();
 //        organInfoKey.setCustomerno(customerno);
 //        OrganInfoEntity organInfoEntity = organInfoDao.getOrganInfoByKey(organInfoKey);
-//        if (StringUtils.isEmpty(organInfoEntity)) {
-//            rs.failed("查询企业信息失败");
-//            return;
+//        if (ObjectUtils.isEmpty(organInfoEntity)) {
+//            return new Response().fail(OrganInfoEmun.QUERY_INFO_NULL);
 //        }
 //        paramMap.put("organclass", organInfoEntity.getOrganclass());
 //        paramMap.put("organtype", organInfoEntity.getOrgantype());
 //        paramMap.put("customerno", customerno);
+//        HashMap reqMap=new HashMap();
+//        reqMap.put("customerno",customerno);
 //        try {
-//            Map<String, String> infoMap = accountDao.selectCompanyPersonInfo(paramMap);
+//            Map<String, String> infoMap = accountDao.selectCompanyPersonInfo(reqMap);
 //            if(!StringUtils.isEmpty(infoMap.get("caremarkettype"))){
 //                infoMap.put("caremarkettypename", CommonUtil.getDictValueBatch("dict20025",infoMap.get
 // ("caremarkettype")));

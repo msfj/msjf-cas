@@ -6,7 +6,8 @@ import com.msjf.finance.msjf.core.emun.ResponseService;
 public enum  OrganInfoEmun implements ResponseService {
     MSG_PARAM_ERROR("CAS0001", "入参不合法"),
     MSG_SYS_ERROR("CAS0002", "系统调用异常！"),
-    MSG_PARAM_NULL("CAS0003", "入参为空");
+    MSG_PARAM_NULL("CAS0003", "入参为空"),
+    QUERY_INFO_NULL("CAS0004", "查询企业信息失败");
 
     private String errorCode;
     private String errorDesc;

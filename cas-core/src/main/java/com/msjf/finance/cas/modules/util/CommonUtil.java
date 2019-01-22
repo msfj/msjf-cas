@@ -5,6 +5,7 @@ import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.modules.login.dao.SysParamsConfigEntityMapper;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
+import com.msjf.finance.cas.modules.organ.dao.SysDictMapper;
 import com.msjf.finance.cas.modules.organ.entity.SysDictEntity;
 import com.msjf.finance.cas.modules.organ.entity.SysDictKey;
 import com.msjf.finance.cas.modules.util.emun.CommonUtilEnum;
@@ -17,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import javax.crypto.Mac;
@@ -132,6 +134,36 @@ public final class CommonUtil {
             return getRandomCode(a,pwdLength);
         }
         return a;
+    }
+
+    /**
+     * 判断传入的字典值取值是否合法
+     *
+     * @param dictId   字典项
+     * @param dictName 字典名
+     * @param dictKey  字典值
+     * @param rs
+     * @return
+     */
+    public static Boolean isLegalOfDictValue(String dictId, String dictName, String dictKey,Response rs) {
+        if (StringUtils.isEmpty(dictId)) {
+            rs.setMsg(dictName + "-字典项为空");
+            return false;
+        }
+        if (StringUtils.isEmpty(dictKey)) {
+            rs.setMsg(dictName + "-字典值为空");
+            return false;
+        }
+        SysDictMapper sysDictMapper = SpringContextUtil.getBean("sysDictMapper");
+        SysDictKey sysDictKey=new SysDictKey();
+        sysDictKey.setDictId(dictId);
+        sysDictKey.setDictKey(dictKey);
+        SysDictEntity sysDictEntity = sysDictMapper.selectByPrimaryKey(sysDictKey);
+        if (ObjectUtils.isEmpty(sysDictEntity)) {
+            rs.setMsg(dictName + "传入值[" + dictKey + "]不合法");
+            return false;
+        }
+        return true;
     }
     public static String getSysConfigValue(String paramId, String paramType){
         SysParamsConfigEntityKey sysParamsConfigKey=new SysParamsConfigEntityKey();
