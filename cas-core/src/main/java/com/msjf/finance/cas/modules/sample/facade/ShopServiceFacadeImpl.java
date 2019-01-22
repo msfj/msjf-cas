@@ -23,12 +23,12 @@ public class ShopServiceFacadeImpl implements ShopApi {
      * @return
      */
     @Override
-    public void say(String str) {
+    public String say(String str) {
         System.out.println("-----dubbo服务测试方法-----调用dubbo服务测试-----");
         System.out.println("-----dubbo服务测试方法-----调用dubbo服务测试-----");
         System.out.println("-----dubbo服务测试方法-----调用dubbo服务测试-----");
         System.out.println("-----dubbo服务测试方法-----调用dubbo服务测试-----");
-
+        return null;
     }
 }
 
