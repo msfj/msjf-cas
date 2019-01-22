@@ -22,4 +22,6 @@ public interface OrganInfoService {
       * @param mapParam
       */
      Response companyPersonInfo(HashMap<String, Object> mapParam);
+
+
 }

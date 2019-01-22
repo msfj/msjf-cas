@@ -1,5 +1,7 @@
 package com.msjf.finance.cas.modules.organ.entity;
 
+import com.msjf.finance.cas.modules.organ.entity.OrganAppendEntity;
+
 public class OrganAppendEntityWithBLOBs extends OrganAppendEntity {
     private String profittype;
 

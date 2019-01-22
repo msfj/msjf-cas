@@ -1,36 +1,27 @@
 package com.msjf.finance.cas.modules.organ.service.impl;
 
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
-import com.msjf.finance.cas.modules.Account.Account;
 import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.modules.organ.dao.OrganInfoDao;
-import com.msjf.finance.cas.modules.organ.emun.OrganInfoEmun;
 import com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity;
-import com.msjf.finance.cas.modules.organ.entity.OrganInfoKey;
-import com.msjf.finance.cas.modules.organ.service.AbstractOrganInfo;
 import com.msjf.finance.cas.modules.organ.service.OrganInfoService;
-import com.msjf.finance.cas.modules.util.CommonUtil;
-import com.msjf.finance.cas.modules.util.StringUtil;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by 11509 on 2018/12/18.
  */
 @Service("organInfoService")
 @Scope("prototype")
-public class OrganInfoServiceImpl extends AbstractOrganInfo {
+public class OrganInfoServiceImpl implements OrganInfoService {
     @Resource
     OrganInfoDao organInfoDao;
     @Resource

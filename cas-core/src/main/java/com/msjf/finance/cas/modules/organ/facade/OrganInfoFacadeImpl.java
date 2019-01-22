@@ -16,8 +16,8 @@ import java.util.List;
 
 /**
  * Created by 11509 on 2018/12/18.
- *
- *  对入参的校验
+ * <p>
+ * 对入参的校验
  */
 @Service("organInfoFacade")
 public class OrganInfoFacadeImpl implements OrganInfoFacade {
@@ -27,31 +27,32 @@ public class OrganInfoFacadeImpl implements OrganInfoFacade {
     OrganInfoService organInfoService;
 
     @Override
-    public Response<List<OrganInfoDomain>> queryOrganInfoList(OrganInfoDomain  organInfoDomain) {
-        logger.info("开始查询机构信息 organInfoDomain={}",organInfoDomain);
+    public Response<List<OrganInfoDomain>> queryOrganInfoList(OrganInfoDomain organInfoDomain) {
+        logger.info("开始查询机构信息 organInfoDomain={}", organInfoDomain);
         try {
-            if(ObjectUtils.isEmpty(organInfoDomain)){
-                logger.warn("入参不能为空 organInfoDomain={}",organInfoDomain);
+            if (ObjectUtils.isEmpty(organInfoDomain)) {
+                logger.warn("入参不能为空 organInfoDomain={}", organInfoDomain);
                 return new Response<>().fail(OrganInfoEmun.MSG_PARAM_ERROR);
             }
             List<OrganInfoDomain> organInfoDomainList = organInfoService.queryOrganInfoList();
-            logger.warn("查询机构信息成功 organInfoDomain={}，organInfoDomainList={}",organInfoDomain,organInfoDomainList);
+            logger.warn("查询机构信息成功 organInfoDomain={}，organInfoDomainList={}", organInfoDomain, organInfoDomainList);
             return new Response<>().success(organInfoDomainList);
         } catch (Exception e) {
-            logger.warn("查询机构信息异常 organInfoDomain={}，e={}",organInfoDomain,e);
+            logger.warn("查询机构信息异常 organInfoDomain={}，e={}", organInfoDomain, e);
             return new Response<>().fail(OrganInfoEmun.MSG_SYS_ERROR);
         }
     }
 
     /**
      * 企业个人信息查询
+     *
      * @param mapParam
      * @return
      */
     @Override
     public Response companyPersonInfo(HashMap<String, Object> mapParam) {
-        if(ObjectUtils.isEmpty(mapParam)){
-            logger.warn("入参不能为空 mapParam={}",mapParam);
+        if (ObjectUtils.isEmpty(mapParam)) {
+            logger.warn("入参不能为空 mapParam={}", mapParam);
             return new Response<>().fail(OrganInfoEmun.MSG_PARAM_ERROR);
         }
         return null;

@@ -25,4 +25,6 @@ public interface OrganInfoFacade {
      * @throws Exception
      */
     Response companyPersonInfo(HashMap<String, Object> mapParam);
+
+
 }

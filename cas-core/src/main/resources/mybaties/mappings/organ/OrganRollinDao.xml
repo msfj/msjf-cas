@@ -25,13 +25,29 @@
         <result property="updatetime" column="updatetime"/>
     </resultMap>
 
+    <!--企业迁入基本信息表cif_organ_rollin 按实体查询-->
     <select id="getOrganRollin" parameterType="com.msjf.finance.cas.modules.organ.entity.OrganRollinEntity"
             resultType="com.msjf.finance.cas.modules.organ.entity.OrganRollinEntity">
         <![CDATA[
 		select
-		]]>
-        <include refid="Base_Column_List" />
-        <![CDATA[
+			serialno "serialno",
+			customerno "customerno",
+			companyname "companyname",
+			businessno "businessno",
+			leader "leader",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			servicecustomerno "servicecustomerno",
+			businessscope "businessscope",
+			companyintro "companyintro",
+			workaddress "workaddress",
+			registeraddress "registeraddress",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
 		from cas.organ_rollin
 	]]>
         <where>
@@ -42,6 +58,7 @@
             <if test="leader != null and leader!= '' "><![CDATA[ and leader=#{leader}]]></if>
             <if test="regicapital != null and regicapital!= '' "><![CDATA[ and regicapital=#{regicapital}]]></if>
             <if test="regicapitalbz != null and regicapitalbz!= '' "><![CDATA[ and regicapitalbz=#{regicapitalbz}]]></if>
+
             <if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
             <if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
             <if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
@@ -55,4 +72,6 @@
             <if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
         </where>
     </select>
+
+
 </mapper>

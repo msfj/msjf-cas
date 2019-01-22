@@ -6,7 +6,7 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:reference interface="com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade"
-                     id="sendVerificationCodeFacade"/>
-    <dubbo:reference interface="com.msjf.finance.cas.facade.sample.ShopApi"
-                     id="shopApi"/>
+                     id="sendVerificationCodeFacade" check="false"/>
+    <dubbo:reference interface="com.msjf.finance.cas.facade.organ.OrganInfoFacade"
+                     id="organBuildApply" check="true"/>
 </beans>

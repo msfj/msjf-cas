@@ -14,5 +14,9 @@ import java.util.List;
  */
 @MyBatisDao
 public interface OrganRollinDao {
+    /**
+     *查询企业迁入基本信息
+     */
     List<OrganRollinEntity> getOrganRollin(OrganRollinEntity organRollinEntity);
+
 }
