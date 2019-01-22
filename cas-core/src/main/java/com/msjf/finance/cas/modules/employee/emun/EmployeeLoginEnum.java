@@ -29,7 +29,7 @@ public enum EmployeeLoginEnum implements ResponseService {
     LOGIN_NAME_NULL("CAS0021", "登录账号不能为空"),
     LOGIN_SOURCE_NULL("CAS0022", "登录来源不能为空"),
     LOGIN_SOURCE_ERROR("CAS0023", "登录来源不合法"),
-    LOGIN_SUCCESS("CAS0024", "登录来源不合法");
+    LOGIN_SUCCESS("CAS0024", "登录成功");
     private String errorCode;
     private String errorDesc;
 
