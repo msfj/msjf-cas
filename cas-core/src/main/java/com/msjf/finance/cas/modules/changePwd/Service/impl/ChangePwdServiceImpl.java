@@ -54,7 +54,7 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         custEntity.setCertificateno(certificateno);
         List<CustEntity> custEntityList= custDao.queryCustEntityList(custEntity);
         if(ObjectUtils.isEmpty(custEntityList)){
-            rs.fail(ChangePwdEnum.MSG_USER_NULL);
+            return rs.fail(ChangePwdEnum.MSG_USER_NULL);
         }
         if(company.equals(custEntityList.get(0).getMembertype())){
             mobile=custEntityList.get(0).getCormob();
@@ -89,7 +89,7 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
                 ausAuthoneDao.update(ausAuthoneEntity);
                 return rs.success(ChangePwdEnum.CHANGE_SUCCESS);
             }else{
-                return rs.fail(ChangePwdEnum.CHANGE_FAILED);
+                return rs.fail(ChangePwdEnum.VERIFICATION_FAILED);
             }
         }
         return rs;

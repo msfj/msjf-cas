@@ -21,7 +21,8 @@ public enum ChangePwdEnum implements ResponseService {
     CHANGE_FAILED("CAS0016", "修改失败"),
     CHANGE_SUCCESS("CAS0017", "修改成功"),
     SMS_SEND_SUCCESS("CAS0018", "发送成功"),
-    SMS_SEND_ERROR("CAS0019", "发送失败");
+    SMS_SEND_ERROR("CAS0019", "发送失败"),
+    VERIFICATION_FAILED("CAS0020", "短信校验未通过");
     private String errorCode;
     private String errorDesc;
 
