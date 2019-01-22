@@ -1,7 +1,7 @@
-package com.msjf.finance.cas.modules.login.dao;
+package com.msjf.finance.cas.modules.organ.dao;
 
-import com.msjf.finance.cas.modules.login.entity.OrganAppendEntity;
-import com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs;
+import com.msjf.finance.cas.modules.organ.entity.OrganAppendEntity;
+import com.msjf.finance.cas.modules.organ.entity.OrganAppendEntityWithBLOBs;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 @MyBatisDao
