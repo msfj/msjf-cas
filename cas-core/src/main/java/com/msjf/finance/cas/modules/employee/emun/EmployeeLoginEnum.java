@@ -8,7 +8,7 @@ import com.msjf.finance.msjf.core.emun.ResponseService;
 public enum EmployeeLoginEnum implements ResponseService {
     MSG_PARAM_ERROR("CAS0001", "入参不合法"),
     MSG_USER_NULL("CAS0002", "查询用户信息为空"),
-    MSG_USER_EXCEPTION("CAS0003", "获取用户信息异常"),
+    MSG_LOGIN_EXCEPTION("CAS0003", "用户登录异常"),
     TEMPLE_ID_NULL("CAS0004", "模板ID不能为空"),
     MOBILE_NULL("CAS0005", "手机号码不能为空"),
     SYSTEM_PARA_ERROR("CAS0006", "系统参数异常"),

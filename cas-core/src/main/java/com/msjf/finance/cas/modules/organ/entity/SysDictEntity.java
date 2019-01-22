@@ -1,68 +1,44 @@
 package com.msjf.finance.cas.modules.organ.entity;
 
-/***
- *SysDictEntity
- *系统字典表
- */
 public class SysDictEntity extends SysDictKey {
     private String dictName;
-    //字典值
+
     private String dictValue;
-    //关联省市区
+
     private String refDictKey;
+
     private Integer sortNo;
+
     private String isUsed;
+
     private String dictComment;
 
-    public void init() {
-    }
-
-    @Override
-    public String getDictId() {
-        return this.dictId;
-    }
-
-    @Override
-    public void setDictId(String dictId) {
-        this.dictId = dictId;
-    }
-
     public String getDictName() {
-        return this.dictName;
+        return dictName;
     }
 
     public void setDictName(String dictName) {
-        this.dictName = dictName;
-    }
-
-    @Override
-    public String getDictKey() {
-        return this.dictKey;
-    }
-
-    @Override
-    public void setDictKey(String dictKey) {
-        this.dictKey = dictKey;
+        this.dictName = dictName == null ? null : dictName.trim();
     }
 
     public String getDictValue() {
-        return this.dictValue;
+        return dictValue;
     }
 
     public void setDictValue(String dictValue) {
-        this.dictValue = dictValue;
+        this.dictValue = dictValue == null ? null : dictValue.trim();
     }
 
     public String getRefDictKey() {
-        return this.refDictKey;
+        return refDictKey;
     }
 
     public void setRefDictKey(String refDictKey) {
-        this.refDictKey = refDictKey;
+        this.refDictKey = refDictKey == null ? null : refDictKey.trim();
     }
 
     public Integer getSortNo() {
-        return this.sortNo;
+        return sortNo;
     }
 
     public void setSortNo(Integer sortNo) {
@@ -70,18 +46,18 @@ public class SysDictEntity extends SysDictKey {
     }
 
     public String getIsUsed() {
-        return this.isUsed;
+        return isUsed;
     }
 
     public void setIsUsed(String isUsed) {
-        this.isUsed = isUsed;
+        this.isUsed = isUsed == null ? null : isUsed.trim();
     }
 
     public String getDictComment() {
-        return this.dictComment;
+        return dictComment;
     }
 
     public void setDictComment(String dictComment) {
-        this.dictComment = dictComment;
+        this.dictComment = dictComment == null ? null : dictComment.trim();
     }
 }

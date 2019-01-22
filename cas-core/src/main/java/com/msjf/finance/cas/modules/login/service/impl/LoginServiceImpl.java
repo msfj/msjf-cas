@@ -680,7 +680,6 @@ public class LoginServiceImpl extends Account implements LoginService {
         return true;
     }
     public static void main(String[] args){
-        String phone = "17721029999";
-        System.out.println(phone.replaceAll("(\\d{3})\\d{6}(\\d{2})", "$1****$2"));
+        System.out.println(CommonUtil.HmacSHA1Encrypt("q111111","-1"));
     }
 }

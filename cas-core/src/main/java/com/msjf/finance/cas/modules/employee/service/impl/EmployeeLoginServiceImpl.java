@@ -45,7 +45,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
     EmployeeMapper employeeMapper;
     @Override
     public Response<EmployeeInfoDomain> employeeLogin(HashMap<String, Object> mapParam) {
-        Response rs=new Response();
+        Response<EmployeeInfoDomain> rs=new Response();
         getParam(mapParam);
         if (StringUtils.isEmpty(loginname)) {
             return rs.fail(EmployeeLoginEnum.LOGIN_NAME_NULL);

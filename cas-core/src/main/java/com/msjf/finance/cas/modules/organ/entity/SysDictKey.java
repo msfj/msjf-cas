@@ -1,29 +1,23 @@
 package com.msjf.finance.cas.modules.organ.entity;
 
 public class SysDictKey {
-    //字典ＩＤ
-    protected String dictId;
-    //字典ＫＥＹ
-    protected String dictKey;
+    private String dictId;
+
+    private String dictKey;
 
     public String getDictId() {
-        return this.dictId;
+        return dictId;
     }
 
     public void setDictId(String dictId) {
-        this.dictId = dictId;
+        this.dictId = dictId == null ? null : dictId.trim();
     }
 
     public String getDictKey() {
-        return this.dictKey;
+        return dictKey;
     }
 
     public void setDictKey(String dictKey) {
-        this.dictKey = dictKey;
-    }
-
-    public void setKey(String dictId, String dictKey) {
-        this.dictId = dictId;
-        this.dictKey = dictKey;
+        this.dictKey = dictKey == null ? null : dictKey.trim();
     }
 }
