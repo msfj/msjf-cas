@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.OrganInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.msjf.finance.cas.common.entity.OrganInfoEntity" id="organInfoMap">
+        <result property="customerno" column="customerno"/>
+        <result property="version" column="version"/>
+        <result property="membername" column="membername"/>
+        <result property="organtype" column="organtype"/>
+        <result property="organclass" column="organclass"/>
+        <result property="organstatus" column="organstatus"/>
+        <result property="startcustomerno" column="startcustomerno"/>
+        <result property="servicecustomerno" column="servicecustomerno"/>
+        <result property="dealflow" column="dealflow"/>
+        <result property="managelimit" column="managelimit"/>
+        <result property="paydatelimit" column="paydatelimit"/>
+        <result property="registerprovince" column="registerprovince"/>
+        <result property="registercity" column="registercity"/>
+        <result property="registercounty" column="registercounty"/>
+        <result property="registertreet" column="registertreet"/>
+        <result property="realprovince" column="realprovince"/>
+        <result property="realcity" column="realcity"/>
+        <result property="realcounty" column="realcounty"/>
+        <result property="realtreet" column="realtreet"/>
+        <result property="businessscope" column="businessscope"/>
+        <result property="partnertype" column="partnertype"/>
+        <result property="partnername" column="partnername"/>
+        <result property="regicapital" column="regicapital"/>
+        <result property="regicapitalbz" column="regicapitalbz"/>
+        <result property="isboard" column="isboard"/>
+        <result property="issupervision" column="issupervision"/>
+        <result property="sparecontactname" column="sparecontactname"/>
+        <result property="sparecontactmobile" column="sparecontactmobile"/>
+        <result property="establishdate" column="establishdate"/>
+        <result property="companyintro" column="companyintro"/>
+        <result property="hanginfo" column="hanginfo"/>
+        <result property="companymodel" column="companymodel"/>
+        <result property="investsource" column="investsource"/>
+        <result property="businessfile" column="businessfile"/>
+        <result property="establishfile" column="establishfile"/>
+        <result property="modifyfile" column="modifyfile"/>
+        <result property="insertdate" column="insertdate"/>
+        <result property="inserttime" column="inserttime"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="source" column="source"/>
+    </resultMap>
+
+	<!--企业基本信息表organ_info 按主键查询锁表-->
+	<select id="getTableInfoKeyLock" parameterType="com.msjf.finance.cas.common.entity.OrganInfoKey"
+	resultType="com.msjf.finance.cas.common.entity.OrganInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			membername "membername",
+			organtype "organtype",
+			organclass "organclass",
+			organstatus "organstatus",
+			startcustomerno "startcustomerno",
+			servicecustomerno "servicecustomerno",
+			dealflow "dealflow",
+			managelimit "managelimit",
+			paydatelimit "paydatelimit",
+			registerprovince "registerprovince",
+			registercity "registercity",
+			registercounty "registercounty",
+			registertreet "registertreet",
+			realprovince "realprovince",
+			realcity "realcity",
+			realcounty "realcounty",
+			realtreet "realtreet",
+			businessscope "businessscope",
+			partnertype "partnertype",
+			partnername "partnername",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			isboard "isboard",
+			issupervision "issupervision",
+			sparecontactname "sparecontactname",
+			sparecontactmobile "sparecontactmobile",
+			establishdate "establishdate",
+			companyintro "companyintro",
+			hanginfo "hanginfo",
+			companymodel "companymodel",
+			investsource "investsource",
+			businessfile "businessfile",
+			establishfile "establishfile",
+			modifyfile "modifyfile",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source"
+		from cas.organ_info
+		where 
+			customerno = #{customerno}
+		for update
+	]]>
+	</select>
+	<!--企业基本信息表organ_info 按主键查询-->
+	<select id="getInfoKey" parameterType="com.msjf.finance.cas.common.entity.OrganInfoKey"
+	resultType="com.msjf.finance.cas.common.entity.OrganInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			membername "membername",
+			organtype "organtype",
+			organclass "organclass",
+			organstatus "organstatus",
+			startcustomerno "startcustomerno",
+			servicecustomerno "servicecustomerno",
+			dealflow "dealflow",
+			managelimit "managelimit",
+			paydatelimit "paydatelimit",
+			registerprovince "registerprovince",
+			registercity "registercity",
+			registercounty "registercounty",
+			registertreet "registertreet",
+			realprovince "realprovince",
+			realcity "realcity",
+			realcounty "realcounty",
+			realtreet "realtreet",
+			businessscope "businessscope",
+			partnertype "partnertype",
+			partnername "partnername",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			isboard "isboard",
+			issupervision "issupervision",
+			sparecontactname "sparecontactname",
+			sparecontactmobile "sparecontactmobile",
+			establishdate "establishdate",
+			companyintro "companyintro",
+			hanginfo "hanginfo",
+			companymodel "companymodel",
+			investsource "investsource",
+			businessfile "businessfile",
+			establishfile "establishfile",
+			modifyfile "modifyfile",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source"
+		from cas.organ_info
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--企业基本信息表organ_info 按主键查询-->
+	<select id="getInfoKeyHashmap" parameterType="com.msjf.finance.cas.common.entity.OrganInfoKey"
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			membername "membername",
+			organtype "organtype",
+			organclass "organclass",
+			organstatus "organstatus",
+			startcustomerno "startcustomerno",
+			servicecustomerno "servicecustomerno",
+			dealflow "dealflow",
+			managelimit "managelimit",
+			paydatelimit "paydatelimit",
+			registerprovince "registerprovince",
+			registercity "registercity",
+			registercounty "registercounty",
+			registertreet "registertreet",
+			realprovince "realprovince",
+			realcity "realcity",
+			realcounty "realcounty",
+			realtreet "realtreet",
+			businessscope "businessscope",
+			partnertype "partnertype",
+			partnername "partnername",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			isboard "isboard",
+			issupervision "issupervision",
+			sparecontactname "sparecontactname",
+			sparecontactmobile "sparecontactmobile",
+			establishdate "establishdate",
+			companyintro "companyintro",
+			hanginfo "hanginfo",
+			companymodel "companymodel",
+			investsource "investsource",
+			businessfile "businessfile",
+			establishfile "establishfile",
+			modifyfile "modifyfile",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source"
+		from cas.organ_info
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--企业基本信息表organ_info 按实体查询锁表-->
+	<select id="getInfoLockEntity" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity"
+	resultType="com.msjf.finance.cas.common.entity.OrganInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			membername "membername",
+			organtype "organtype",
+			organclass "organclass",
+			organstatus "organstatus",
+			startcustomerno "startcustomerno",
+			servicecustomerno "servicecustomerno",
+			dealflow "dealflow",
+			managelimit "managelimit",
+			paydatelimit "paydatelimit",
+			registerprovince "registerprovince",
+			registercity "registercity",
+			registercounty "registercounty",
+			registertreet "registertreet",
+			realprovince "realprovince",
+			realcity "realcity",
+			realcounty "realcounty",
+			realtreet "realtreet",
+			businessscope "businessscope",
+			partnertype "partnertype",
+			partnername "partnername",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			isboard "isboard",
+			issupervision "issupervision",
+			sparecontactname "sparecontactname",
+			sparecontactmobile "sparecontactmobile",
+			establishdate "establishdate",
+			companyintro "companyintro",
+			hanginfo "hanginfo",
+			companymodel "companymodel",
+			investsource "investsource",
+			businessfile "businessfile",
+			establishfile "establishfile",
+			modifyfile "modifyfile",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source"
+		from cas.organ_info
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="organtype != null and organtype!= '' "><![CDATA[ and organtype=#{organtype}]]></if>
+		<if test="organclass != null and organclass!= '' "><![CDATA[ and organclass=#{organclass}]]></if>
+		<if test="organstatus != null and organstatus!= '' "><![CDATA[ and organstatus=#{organstatus}]]></if>
+		<if test="startcustomerno != null and startcustomerno!= '' "><![CDATA[ and startcustomerno=#{startcustomerno}]]></if>
+		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
+		<if test="dealflow != null and dealflow!= '' "><![CDATA[ and dealflow=#{dealflow}]]></if>
+		<if test="managelimit != null and managelimit!= '' "><![CDATA[ and managelimit=#{managelimit}]]></if>
+		<if test="paydatelimit != null and paydatelimit!= '' "><![CDATA[ and paydatelimit=#{paydatelimit}]]></if>
+		<if test="registerprovince != null and registerprovince!= '' "><![CDATA[ and registerprovince=#{registerprovince}]]></if>
+		<if test="registercity != null and registercity!= '' "><![CDATA[ and registercity=#{registercity}]]></if>
+		<if test="registercounty != null and registercounty!= '' "><![CDATA[ and registercounty=#{registercounty}]]></if>
+		<if test="registertreet != null and registertreet!= '' "><![CDATA[ and registertreet=#{registertreet}]]></if>
+		<if test="realprovince != null and realprovince!= '' "><![CDATA[ and realprovince=#{realprovince}]]></if>
+		<if test="realcity != null and realcity!= '' "><![CDATA[ and realcity=#{realcity}]]></if>
+		<if test="realcounty != null and realcounty!= '' "><![CDATA[ and realcounty=#{realcounty}]]></if>
+		<if test="realtreet != null and realtreet!= '' "><![CDATA[ and realtreet=#{realtreet}]]></if>
+		<if test="businessscope != null and businessscope!= '' "><![CDATA[ and businessscope=#{businessscope}]]></if>
+		<if test="partnertype != null and partnertype!= '' "><![CDATA[ and partnertype=#{partnertype}]]></if>
+		<if test="partnername != null and partnername!= '' "><![CDATA[ and partnername=#{partnername}]]></if>
+		<if test="regicapital != null and regicapital!= '' "><![CDATA[ and regicapital=#{regicapital}]]></if>
+		<if test="regicapitalbz != null and regicapitalbz!= '' "><![CDATA[ and regicapitalbz=#{regicapitalbz}]]></if>
+		<if test="isboard != null and isboard!= '' "><![CDATA[ and isboard=#{isboard}]]></if>
+		<if test="issupervision != null and issupervision!= '' "><![CDATA[ and issupervision=#{issupervision}]]></if>
+		<if test="sparecontactname != null and sparecontactname!= '' "><![CDATA[ and sparecontactname=#{sparecontactname}]]></if>
+		<if test="sparecontactmobile != null and sparecontactmobile!= '' "><![CDATA[ and sparecontactmobile=#{sparecontactmobile}]]></if>
+		<if test="establishdate != null and establishdate!= '' "><![CDATA[ and establishdate=#{establishdate}]]></if>
+		<if test="companyintro != null and companyintro!= '' "><![CDATA[ and companyintro=#{companyintro}]]></if>
+		<if test="hanginfo != null and hanginfo!= '' "><![CDATA[ and hanginfo=#{hanginfo}]]></if>
+		<if test="companymodel != null and companymodel!= '' "><![CDATA[ and companymodel=#{companymodel}]]></if>
+		<if test="investsource != null and investsource!= '' "><![CDATA[ and investsource=#{investsource}]]></if>
+		<if test="businessfile != null and businessfile!= '' "><![CDATA[ and businessfile=#{businessfile}]]></if>
+		<if test="establishfile != null and establishfile!= '' "><![CDATA[ and establishfile=#{establishfile}]]></if>
+		<if test="modifyfile != null and modifyfile!= '' "><![CDATA[ and modifyfile=#{modifyfile}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--企业基本信息表organ_info 按实体查询-->
+	<select id="getInfoEntity" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity"
+	resultType="com.msjf.finance.cas.common.entity.OrganInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			membername "membername",
+			organtype "organtype",
+			organclass "organclass",
+			organstatus "organstatus",
+			startcustomerno "startcustomerno",
+			servicecustomerno "servicecustomerno",
+			dealflow "dealflow",
+			managelimit "managelimit",
+			paydatelimit "paydatelimit",
+			registerprovince "registerprovince",
+			registercity "registercity",
+			registercounty "registercounty",
+			registertreet "registertreet",
+			realprovince "realprovince",
+			realcity "realcity",
+			realcounty "realcounty",
+			realtreet "realtreet",
+			businessscope "businessscope",
+			partnertype "partnertype",
+			partnername "partnername",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			isboard "isboard",
+			issupervision "issupervision",
+			sparecontactname "sparecontactname",
+			sparecontactmobile "sparecontactmobile",
+			establishdate "establishdate",
+			companyintro "companyintro",
+			hanginfo "hanginfo",
+			companymodel "companymodel",
+			investsource "investsource",
+			businessfile "businessfile",
+			establishfile "establishfile",
+			modifyfile "modifyfile",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source"
+		from cas.organ_info
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="organtype != null and organtype!= '' "><![CDATA[ and organtype=#{organtype}]]></if>
+		<if test="organclass != null and organclass!= '' "><![CDATA[ and organclass=#{organclass}]]></if>
+		<if test="organstatus != null and organstatus!= '' "><![CDATA[ and organstatus=#{organstatus}]]></if>
+		<if test="startcustomerno != null and startcustomerno!= '' "><![CDATA[ and startcustomerno=#{startcustomerno}]]></if>
+		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
+		<if test="dealflow != null and dealflow!= '' "><![CDATA[ and dealflow=#{dealflow}]]></if>
+		<if test="managelimit != null and managelimit!= '' "><![CDATA[ and managelimit=#{managelimit}]]></if>
+		<if test="paydatelimit != null and paydatelimit!= '' "><![CDATA[ and paydatelimit=#{paydatelimit}]]></if>
+		<if test="registerprovince != null and registerprovince!= '' "><![CDATA[ and registerprovince=#{registerprovince}]]></if>
+		<if test="registercity != null and registercity!= '' "><![CDATA[ and registercity=#{registercity}]]></if>
+		<if test="registercounty != null and registercounty!= '' "><![CDATA[ and registercounty=#{registercounty}]]></if>
+		<if test="registertreet != null and registertreet!= '' "><![CDATA[ and registertreet=#{registertreet}]]></if>
+		<if test="realprovince != null and realprovince!= '' "><![CDATA[ and realprovince=#{realprovince}]]></if>
+		<if test="realcity != null and realcity!= '' "><![CDATA[ and realcity=#{realcity}]]></if>
+		<if test="realcounty != null and realcounty!= '' "><![CDATA[ and realcounty=#{realcounty}]]></if>
+		<if test="realtreet != null and realtreet!= '' "><![CDATA[ and realtreet=#{realtreet}]]></if>
+		<if test="businessscope != null and businessscope!= '' "><![CDATA[ and businessscope=#{businessscope}]]></if>
+		<if test="partnertype != null and partnertype!= '' "><![CDATA[ and partnertype=#{partnertype}]]></if>
+		<if test="partnername != null and partnername!= '' "><![CDATA[ and partnername=#{partnername}]]></if>
+		<if test="regicapital != null and regicapital!= '' "><![CDATA[ and regicapital=#{regicapital}]]></if>
+		<if test="regicapitalbz != null and regicapitalbz!= '' "><![CDATA[ and regicapitalbz=#{regicapitalbz}]]></if>
+		<if test="isboard != null and isboard!= '' "><![CDATA[ and isboard=#{isboard}]]></if>
+		<if test="issupervision != null and issupervision!= '' "><![CDATA[ and issupervision=#{issupervision}]]></if>
+		<if test="sparecontactname != null and sparecontactname!= '' "><![CDATA[ and sparecontactname=#{sparecontactname}]]></if>
+		<if test="sparecontactmobile != null and sparecontactmobile!= '' "><![CDATA[ and sparecontactmobile=#{sparecontactmobile}]]></if>
+		<if test="establishdate != null and establishdate!= '' "><![CDATA[ and establishdate=#{establishdate}]]></if>
+		<if test="companyintro != null and companyintro!= '' "><![CDATA[ and companyintro=#{companyintro}]]></if>
+		<if test="hanginfo != null and hanginfo!= '' "><![CDATA[ and hanginfo=#{hanginfo}]]></if>
+		<if test="companymodel != null and companymodel!= '' "><![CDATA[ and companymodel=#{companymodel}]]></if>
+		<if test="investsource != null and investsource!= '' "><![CDATA[ and investsource=#{investsource}]]></if>
+		<if test="businessfile != null and businessfile!= '' "><![CDATA[ and businessfile=#{businessfile}]]></if>
+		<if test="establishfile != null and establishfile!= '' "><![CDATA[ and establishfile=#{establishfile}]]></if>
+		<if test="modifyfile != null and modifyfile!= '' "><![CDATA[ and modifyfile=#{modifyfile}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+	</where>
+	</select>
+	<!--企业基本信息表organ_info 按实体查询-->
+	<select id="getInfoHashmap" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity"
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			membername "membername",
+			organtype "organtype",
+			organclass "organclass",
+			organstatus "organstatus",
+			startcustomerno "startcustomerno",
+			servicecustomerno "servicecustomerno",
+			dealflow "dealflow",
+			managelimit "managelimit",
+			paydatelimit "paydatelimit",
+			registerprovince "registerprovince",
+			registercity "registercity",
+			registercounty "registercounty",
+			registertreet "registertreet",
+			realprovince "realprovince",
+			realcity "realcity",
+			realcounty "realcounty",
+			realtreet "realtreet",
+			businessscope "businessscope",
+			partnertype "partnertype",
+			partnername "partnername",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			isboard "isboard",
+			issupervision "issupervision",
+			sparecontactname "sparecontactname",
+			sparecontactmobile "sparecontactmobile",
+			establishdate "establishdate",
+			companyintro "companyintro",
+			hanginfo "hanginfo",
+			companymodel "companymodel",
+			investsource "investsource",
+			businessfile "businessfile",
+			establishfile "establishfile",
+			modifyfile "modifyfile",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source"
+		from cas.organ_info
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="organtype != null and organtype!= '' "><![CDATA[ and organtype=#{organtype}]]></if>
+		<if test="organclass != null and organclass!= '' "><![CDATA[ and organclass=#{organclass}]]></if>
+		<if test="organstatus != null and organstatus!= '' "><![CDATA[ and organstatus=#{organstatus}]]></if>
+		<if test="startcustomerno != null and startcustomerno!= '' "><![CDATA[ and startcustomerno=#{startcustomerno}]]></if>
+		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
+		<if test="dealflow != null and dealflow!= '' "><![CDATA[ and dealflow=#{dealflow}]]></if>
+		<if test="managelimit != null and managelimit!= '' "><![CDATA[ and managelimit=#{managelimit}]]></if>
+		<if test="paydatelimit != null and paydatelimit!= '' "><![CDATA[ and paydatelimit=#{paydatelimit}]]></if>
+		<if test="registerprovince != null and registerprovince!= '' "><![CDATA[ and registerprovince=#{registerprovince}]]></if>
+		<if test="registercity != null and registercity!= '' "><![CDATA[ and registercity=#{registercity}]]></if>
+		<if test="registercounty != null and registercounty!= '' "><![CDATA[ and registercounty=#{registercounty}]]></if>
+		<if test="registertreet != null and registertreet!= '' "><![CDATA[ and registertreet=#{registertreet}]]></if>
+		<if test="realprovince != null and realprovince!= '' "><![CDATA[ and realprovince=#{realprovince}]]></if>
+		<if test="realcity != null and realcity!= '' "><![CDATA[ and realcity=#{realcity}]]></if>
+		<if test="realcounty != null and realcounty!= '' "><![CDATA[ and realcounty=#{realcounty}]]></if>
+		<if test="realtreet != null and realtreet!= '' "><![CDATA[ and realtreet=#{realtreet}]]></if>
+		<if test="businessscope != null and businessscope!= '' "><![CDATA[ and businessscope=#{businessscope}]]></if>
+		<if test="partnertype != null and partnertype!= '' "><![CDATA[ and partnertype=#{partnertype}]]></if>
+		<if test="partnername != null and partnername!= '' "><![CDATA[ and partnername=#{partnername}]]></if>
+		<if test="regicapital != null and regicapital!= '' "><![CDATA[ and regicapital=#{regicapital}]]></if>
+		<if test="regicapitalbz != null and regicapitalbz!= '' "><![CDATA[ and regicapitalbz=#{regicapitalbz}]]></if>
+		<if test="isboard != null and isboard!= '' "><![CDATA[ and isboard=#{isboard}]]></if>
+		<if test="issupervision != null and issupervision!= '' "><![CDATA[ and issupervision=#{issupervision}]]></if>
+		<if test="sparecontactname != null and sparecontactname!= '' "><![CDATA[ and sparecontactname=#{sparecontactname}]]></if>
+		<if test="sparecontactmobile != null and sparecontactmobile!= '' "><![CDATA[ and sparecontactmobile=#{sparecontactmobile}]]></if>
+		<if test="establishdate != null and establishdate!= '' "><![CDATA[ and establishdate=#{establishdate}]]></if>
+		<if test="companyintro != null and companyintro!= '' "><![CDATA[ and companyintro=#{companyintro}]]></if>
+		<if test="hanginfo != null and hanginfo!= '' "><![CDATA[ and hanginfo=#{hanginfo}]]></if>
+		<if test="companymodel != null and companymodel!= '' "><![CDATA[ and companymodel=#{companymodel}]]></if>
+		<if test="investsource != null and investsource!= '' "><![CDATA[ and investsource=#{investsource}]]></if>
+		<if test="businessfile != null and businessfile!= '' "><![CDATA[ and businessfile=#{businessfile}]]></if>
+		<if test="establishfile != null and establishfile!= '' "><![CDATA[ and establishfile=#{establishfile}]]></if>
+		<if test="modifyfile != null and modifyfile!= '' "><![CDATA[ and modifyfile=#{modifyfile}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+	</where>
+	</select>
+	<!--企业基本信息表organ_info 按实体新增记录 mysql-->
+	<insert id="insInfoEntity" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_info(
+			customerno,version,membername,organtype,organclass,
+			organstatus,startcustomerno,servicecustomerno,dealflow,managelimit,
+			paydatelimit,registerprovince,registercity,registercounty,registertreet,
+			realprovince,realcity,realcounty,realtreet,businessscope,
+			partnertype,partnername,regicapital,regicapitalbz,isboard,
+			issupervision,sparecontactname,sparecontactmobile,establishdate,companyintro,
+			hanginfo,companymodel,investsource,businessfile,establishfile,
+			modifyfile,insertdate,inserttime,updatedate,updatetime,
+			source
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{version, jdbcType=INTEGER},#{membername, jdbcType=VARCHAR},#{organtype, jdbcType=VARCHAR},#{organclass, jdbcType=VARCHAR},
+			#{organstatus, jdbcType=VARCHAR},#{startcustomerno, jdbcType=VARCHAR},#{servicecustomerno, jdbcType=VARCHAR},#{dealflow, jdbcType=VARCHAR},#{managelimit, jdbcType=VARCHAR},
+			#{paydatelimit, jdbcType=VARCHAR},#{registerprovince, jdbcType=VARCHAR},#{registercity, jdbcType=VARCHAR},#{registercounty, jdbcType=VARCHAR},#{registertreet, jdbcType=VARCHAR},
+			#{realprovince, jdbcType=VARCHAR},#{realcity, jdbcType=VARCHAR},#{realcounty, jdbcType=VARCHAR},#{realtreet, jdbcType=VARCHAR},#{businessscope, jdbcType=CLOB},
+			#{partnertype, jdbcType=VARCHAR},#{partnername, jdbcType=CLOB},#{regicapital, jdbcType=VARCHAR},#{regicapitalbz, jdbcType=VARCHAR},#{isboard, jdbcType=VARCHAR},
+			#{issupervision, jdbcType=VARCHAR},#{sparecontactname, jdbcType=VARCHAR},#{sparecontactmobile, jdbcType=VARCHAR},#{establishdate, jdbcType=VARCHAR},#{companyintro, jdbcType=CLOB},
+			#{hanginfo, jdbcType=VARCHAR},#{companymodel, jdbcType=VARCHAR},#{investsource, jdbcType=VARCHAR},#{businessfile, jdbcType=CLOB},#{establishfile, jdbcType=CLOB},
+			#{modifyfile, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},
+			#{source, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--企业基本信息表organ_info 按批量实体新增记录mysql-->
+	<insert id="insInfoBatchEntity" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_info(
+			customerno,version,membername,organtype,organclass,
+			organstatus,startcustomerno,servicecustomerno,dealflow,managelimit,
+			paydatelimit,registerprovince,registercity,registercounty,registertreet,
+			realprovince,realcity,realcounty,realtreet,businessscope,
+			partnertype,partnername,regicapital,regicapitalbz,isboard,
+			issupervision,sparecontactname,sparecontactmobile,establishdate,companyintro,
+			hanginfo,companymodel,investsource,businessfile,establishfile,
+			modifyfile,insertdate,inserttime,updatedate,updatetime,
+			source
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.customerno, jdbcType=VARCHAR},#{item.version, jdbcType=INTEGER},#{item.membername, jdbcType=VARCHAR},#{item.organtype, jdbcType=VARCHAR},#{item.organclass, jdbcType=VARCHAR},
+				#{item.organstatus, jdbcType=VARCHAR},#{item.startcustomerno, jdbcType=VARCHAR},#{item.servicecustomerno, jdbcType=VARCHAR},#{item.dealflow, jdbcType=VARCHAR},#{item.managelimit, jdbcType=VARCHAR},
+				#{item.paydatelimit, jdbcType=VARCHAR},#{item.registerprovince, jdbcType=VARCHAR},#{item.registercity, jdbcType=VARCHAR},#{item.registercounty, jdbcType=VARCHAR},#{item.registertreet, jdbcType=VARCHAR},
+				#{item.realprovince, jdbcType=VARCHAR},#{item.realcity, jdbcType=VARCHAR},#{item.realcounty, jdbcType=VARCHAR},#{item.realtreet, jdbcType=VARCHAR},#{item.businessscope, jdbcType=CLOB},
+				#{item.partnertype, jdbcType=VARCHAR},#{item.partnername, jdbcType=CLOB},#{item.regicapital, jdbcType=VARCHAR},#{item.regicapitalbz, jdbcType=VARCHAR},#{item.isboard, jdbcType=VARCHAR},
+				#{item.issupervision, jdbcType=VARCHAR},#{item.sparecontactname, jdbcType=VARCHAR},#{item.sparecontactmobile, jdbcType=VARCHAR},#{item.establishdate, jdbcType=VARCHAR},#{item.companyintro, jdbcType=CLOB},
+				#{item.hanginfo, jdbcType=VARCHAR},#{item.companymodel, jdbcType=VARCHAR},#{item.investsource, jdbcType=VARCHAR},#{item.businessfile, jdbcType=CLOB},#{item.establishfile, jdbcType=CLOB},
+				#{item.modifyfile, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},
+				#{item.source, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--企业基本信息表organ_info 按实体更新记录-->
+	<update id="updOrganInfoEntity" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity">
+	<![CDATA[
+		update cas.organ_info
+	]]>
+	<set>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="version != null and version != '' or version == 0 "><![CDATA[version=#{version, jdbcType=INTEGER},]]></if>
+		 <if test="membername != null and membername != '' "><![CDATA[membername=#{membername, jdbcType=VARCHAR},]]></if>
+		 <if test="organtype != null and organtype != '' "><![CDATA[organtype=#{organtype, jdbcType=VARCHAR},]]></if>
+		 <if test="organclass != null and organclass != '' "><![CDATA[organclass=#{organclass, jdbcType=VARCHAR},]]></if>
+		 <if test="organstatus != null and organstatus != '' "><![CDATA[organstatus=#{organstatus, jdbcType=VARCHAR},]]></if>
+		 <if test="startcustomerno != null and startcustomerno != '' "><![CDATA[startcustomerno=#{startcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="servicecustomerno != null and servicecustomerno != '' "><![CDATA[servicecustomerno=#{servicecustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="dealflow != null and dealflow != '' "><![CDATA[dealflow=#{dealflow, jdbcType=VARCHAR},]]></if>
+		 <if test="managelimit != null and managelimit != '' "><![CDATA[managelimit=#{managelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="paydatelimit != null and paydatelimit != '' "><![CDATA[paydatelimit=#{paydatelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="registerprovince != null and registerprovince != '' "><![CDATA[registerprovince=#{registerprovince, jdbcType=VARCHAR},]]></if>
+		 <if test="registercity != null and registercity != '' "><![CDATA[registercity=#{registercity, jdbcType=VARCHAR},]]></if>
+		 <if test="registercounty != null and registercounty != '' "><![CDATA[registercounty=#{registercounty, jdbcType=VARCHAR},]]></if>
+		 <if test="registertreet != null and registertreet != '' "><![CDATA[registertreet=#{registertreet, jdbcType=VARCHAR},]]></if>
+		 <if test="realprovince != null and realprovince != '' "><![CDATA[realprovince=#{realprovince, jdbcType=VARCHAR},]]></if>
+		 <if test="realcity != null and realcity != '' "><![CDATA[realcity=#{realcity, jdbcType=VARCHAR},]]></if>
+		 <if test="realcounty != null and realcounty != '' "><![CDATA[realcounty=#{realcounty, jdbcType=VARCHAR},]]></if>
+		 <if test="realtreet != null and realtreet != '' "><![CDATA[realtreet=#{realtreet, jdbcType=VARCHAR},]]></if>
+		 <if test="businessscope != null and businessscope != '' "><![CDATA[businessscope=#{businessscope, jdbcType=CLOB},]]></if>
+		 <if test="partnertype != null and partnertype != '' "><![CDATA[partnertype=#{partnertype, jdbcType=VARCHAR},]]></if>
+		 <if test="partnername != null and partnername != '' "><![CDATA[partnername=#{partnername, jdbcType=CLOB},]]></if>
+		 <if test="regicapital != null and regicapital != '' "><![CDATA[regicapital=#{regicapital, jdbcType=VARCHAR},]]></if>
+		 <if test="regicapitalbz != null and regicapitalbz != '' "><![CDATA[regicapitalbz=#{regicapitalbz, jdbcType=VARCHAR},]]></if>
+		 <if test="isboard != null and isboard != '' "><![CDATA[isboard=#{isboard, jdbcType=VARCHAR},]]></if>
+		 <if test="issupervision != null and issupervision != '' "><![CDATA[issupervision=#{issupervision, jdbcType=VARCHAR},]]></if>
+		 <if test="sparecontactname != null and sparecontactname != '' "><![CDATA[sparecontactname=#{sparecontactname, jdbcType=VARCHAR},]]></if>
+		 <if test="sparecontactmobile != null and sparecontactmobile != '' "><![CDATA[sparecontactmobile=#{sparecontactmobile, jdbcType=VARCHAR},]]></if>
+		 <if test="establishdate != null and establishdate != '' "><![CDATA[establishdate=#{establishdate, jdbcType=VARCHAR},]]></if>
+		 <if test="companyintro != null and companyintro != '' "><![CDATA[companyintro=#{companyintro, jdbcType=CLOB},]]></if>
+		 <if test="hanginfo != null and hanginfo != '' "><![CDATA[hanginfo=#{hanginfo, jdbcType=VARCHAR},]]></if>
+		 <if test="companymodel != null and companymodel != '' "><![CDATA[companymodel=#{companymodel, jdbcType=VARCHAR},]]></if>
+		 <if test="investsource != null and investsource != '' "><![CDATA[investsource=#{investsource, jdbcType=VARCHAR},]]></if>
+		 <if test="businessfile != null and businessfile != '' "><![CDATA[businessfile=#{businessfile, jdbcType=CLOB},]]></if>
+		 <if test="establishfile != null and establishfile != '' "><![CDATA[establishfile=#{establishfile, jdbcType=CLOB},]]></if>
+		 <if test="modifyfile != null and modifyfile != '' "><![CDATA[modifyfile=#{modifyfile, jdbcType=CLOB},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="source != null and source != '' "><![CDATA[source=#{source, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--企业基本信息表organ_info 批量实体更新记录 mysql-->
+	<update id="updInfoBatchEntity" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_info
+		<set>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.version != null and item.version != '' or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
+		 <if test="item.membername != null and item.membername != '' "><![CDATA[membername=#{item.membername, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organtype != null and item.organtype != '' "><![CDATA[organtype=#{item.organtype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organclass != null and item.organclass != '' "><![CDATA[organclass=#{item.organclass, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organstatus != null and item.organstatus != '' "><![CDATA[organstatus=#{item.organstatus, jdbcType=VARCHAR},]]></if>
+		 <if test="item.startcustomerno != null and item.startcustomerno != '' "><![CDATA[startcustomerno=#{item.startcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.servicecustomerno != null and item.servicecustomerno != '' "><![CDATA[servicecustomerno=#{item.servicecustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dealflow != null and item.dealflow != '' "><![CDATA[dealflow=#{item.dealflow, jdbcType=VARCHAR},]]></if>
+		 <if test="item.managelimit != null and item.managelimit != '' "><![CDATA[managelimit=#{item.managelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paydatelimit != null and item.paydatelimit != '' "><![CDATA[paydatelimit=#{item.paydatelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registerprovince != null and item.registerprovince != '' "><![CDATA[registerprovince=#{item.registerprovince, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registercity != null and item.registercity != '' "><![CDATA[registercity=#{item.registercity, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registercounty != null and item.registercounty != '' "><![CDATA[registercounty=#{item.registercounty, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registertreet != null and item.registertreet != '' "><![CDATA[registertreet=#{item.registertreet, jdbcType=VARCHAR},]]></if>
+		 <if test="item.realprovince != null and item.realprovince != '' "><![CDATA[realprovince=#{item.realprovince, jdbcType=VARCHAR},]]></if>
+		 <if test="item.realcity != null and item.realcity != '' "><![CDATA[realcity=#{item.realcity, jdbcType=VARCHAR},]]></if>
+		 <if test="item.realcounty != null and item.realcounty != '' "><![CDATA[realcounty=#{item.realcounty, jdbcType=VARCHAR},]]></if>
+		 <if test="item.realtreet != null and item.realtreet != '' "><![CDATA[realtreet=#{item.realtreet, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businessscope != null and item.businessscope != '' "><![CDATA[businessscope=#{item.businessscope, jdbcType=CLOB},]]></if>
+		 <if test="item.partnertype != null and item.partnertype != '' "><![CDATA[partnertype=#{item.partnertype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.partnername != null and item.partnername != '' "><![CDATA[partnername=#{item.partnername, jdbcType=CLOB},]]></if>
+		 <if test="item.regicapital != null and item.regicapital != '' "><![CDATA[regicapital=#{item.regicapital, jdbcType=VARCHAR},]]></if>
+		 <if test="item.regicapitalbz != null and item.regicapitalbz != '' "><![CDATA[regicapitalbz=#{item.regicapitalbz, jdbcType=VARCHAR},]]></if>
+		 <if test="item.isboard != null and item.isboard != '' "><![CDATA[isboard=#{item.isboard, jdbcType=VARCHAR},]]></if>
+		 <if test="item.issupervision != null and item.issupervision != '' "><![CDATA[issupervision=#{item.issupervision, jdbcType=VARCHAR},]]></if>
+		 <if test="item.sparecontactname != null and item.sparecontactname != '' "><![CDATA[sparecontactname=#{item.sparecontactname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.sparecontactmobile != null and item.sparecontactmobile != '' "><![CDATA[sparecontactmobile=#{item.sparecontactmobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.establishdate != null and item.establishdate != '' "><![CDATA[establishdate=#{item.establishdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companyintro != null and item.companyintro != '' "><![CDATA[companyintro=#{item.companyintro, jdbcType=CLOB},]]></if>
+		 <if test="item.hanginfo != null and item.hanginfo != '' "><![CDATA[hanginfo=#{item.hanginfo, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companymodel != null and item.companymodel != '' "><![CDATA[companymodel=#{item.companymodel, jdbcType=VARCHAR},]]></if>
+		 <if test="item.investsource != null and item.investsource != '' "><![CDATA[investsource=#{item.investsource, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businessfile != null and item.businessfile != '' "><![CDATA[businessfile=#{item.businessfile, jdbcType=CLOB},]]></if>
+		 <if test="item.establishfile != null and item.establishfile != '' "><![CDATA[establishfile=#{item.establishfile, jdbcType=CLOB},]]></if>
+		 <if test="item.modifyfile != null and item.modifyfile != '' "><![CDATA[modifyfile=#{item.modifyfile, jdbcType=CLOB},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.source != null and item.source != '' "><![CDATA[source=#{item.source, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业基本信息表organ_info 按实体更新记录-->
+	<update id="updAllowEmptyInfoEntity" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity">
+	<![CDATA[
+		update cas.organ_info
+	]]>
+	<set>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="version != null or version == 0 "><![CDATA[version=#{version, jdbcType=INTEGER},]]></if>
+		 <if test="membername != null "> <![CDATA[membername=#{membername, jdbcType=VARCHAR},]]></if>
+		 <if test="organtype != null "> <![CDATA[organtype=#{organtype, jdbcType=VARCHAR},]]></if>
+		 <if test="organclass != null "> <![CDATA[organclass=#{organclass, jdbcType=VARCHAR},]]></if>
+		 <if test="organstatus != null "> <![CDATA[organstatus=#{organstatus, jdbcType=VARCHAR},]]></if>
+		 <if test="startcustomerno != null "> <![CDATA[startcustomerno=#{startcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="servicecustomerno != null "> <![CDATA[servicecustomerno=#{servicecustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="dealflow != null "> <![CDATA[dealflow=#{dealflow, jdbcType=VARCHAR},]]></if>
+		 <if test="managelimit != null "> <![CDATA[managelimit=#{managelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="paydatelimit != null "> <![CDATA[paydatelimit=#{paydatelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="registerprovince != null "> <![CDATA[registerprovince=#{registerprovince, jdbcType=VARCHAR},]]></if>
+		 <if test="registercity != null "> <![CDATA[registercity=#{registercity, jdbcType=VARCHAR},]]></if>
+		 <if test="registercounty != null "> <![CDATA[registercounty=#{registercounty, jdbcType=VARCHAR},]]></if>
+		 <if test="registertreet != null "> <![CDATA[registertreet=#{registertreet, jdbcType=VARCHAR},]]></if>
+		 <if test="realprovince != null "> <![CDATA[realprovince=#{realprovince, jdbcType=VARCHAR},]]></if>
+		 <if test="realcity != null "> <![CDATA[realcity=#{realcity, jdbcType=VARCHAR},]]></if>
+		 <if test="realcounty != null "> <![CDATA[realcounty=#{realcounty, jdbcType=VARCHAR},]]></if>
+		 <if test="realtreet != null "> <![CDATA[realtreet=#{realtreet, jdbcType=VARCHAR},]]></if>
+		 <if test="businessscope != null "> <![CDATA[businessscope=#{businessscope, jdbcType=CLOB},]]></if>
+		 <if test="partnertype != null "> <![CDATA[partnertype=#{partnertype, jdbcType=VARCHAR},]]></if>
+		 <if test="partnername != null "> <![CDATA[partnername=#{partnername, jdbcType=CLOB},]]></if>
+		 <if test="regicapital != null "> <![CDATA[regicapital=#{regicapital, jdbcType=VARCHAR},]]></if>
+		 <if test="regicapitalbz != null "> <![CDATA[regicapitalbz=#{regicapitalbz, jdbcType=VARCHAR},]]></if>
+		 <if test="isboard != null "> <![CDATA[isboard=#{isboard, jdbcType=VARCHAR},]]></if>
+		 <if test="issupervision != null "> <![CDATA[issupervision=#{issupervision, jdbcType=VARCHAR},]]></if>
+		 <if test="sparecontactname != null "> <![CDATA[sparecontactname=#{sparecontactname, jdbcType=VARCHAR},]]></if>
+		 <if test="sparecontactmobile != null "> <![CDATA[sparecontactmobile=#{sparecontactmobile, jdbcType=VARCHAR},]]></if>
+		 <if test="establishdate != null "> <![CDATA[establishdate=#{establishdate, jdbcType=VARCHAR},]]></if>
+		 <if test="companyintro != null "> <![CDATA[companyintro=#{companyintro, jdbcType=CLOB},]]></if>
+		 <if test="hanginfo != null "> <![CDATA[hanginfo=#{hanginfo, jdbcType=VARCHAR},]]></if>
+		 <if test="companymodel != null "> <![CDATA[companymodel=#{companymodel, jdbcType=VARCHAR},]]></if>
+		 <if test="investsource != null "> <![CDATA[investsource=#{investsource, jdbcType=VARCHAR},]]></if>
+		 <if test="businessfile != null "> <![CDATA[businessfile=#{businessfile, jdbcType=CLOB},]]></if>
+		 <if test="establishfile != null "> <![CDATA[establishfile=#{establishfile, jdbcType=CLOB},]]></if>
+		 <if test="modifyfile != null "> <![CDATA[modifyfile=#{modifyfile, jdbcType=CLOB},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="source != null "> <![CDATA[source=#{source, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--企业基本信息表organ_info 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyInfoBatchEntity" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_info
+		<set>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.version != null or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
+		 <if test="item.membername != null "><![CDATA[membername=#{item.membername, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organtype != null "><![CDATA[organtype=#{item.organtype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organclass != null "><![CDATA[organclass=#{item.organclass, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organstatus != null "><![CDATA[organstatus=#{item.organstatus, jdbcType=VARCHAR},]]></if>
+		 <if test="item.startcustomerno != null "><![CDATA[startcustomerno=#{item.startcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.servicecustomerno != null "><![CDATA[servicecustomerno=#{item.servicecustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dealflow != null "><![CDATA[dealflow=#{item.dealflow, jdbcType=VARCHAR},]]></if>
+		 <if test="item.managelimit != null "><![CDATA[managelimit=#{item.managelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paydatelimit != null "><![CDATA[paydatelimit=#{item.paydatelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registerprovince != null "><![CDATA[registerprovince=#{item.registerprovince, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registercity != null "><![CDATA[registercity=#{item.registercity, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registercounty != null "><![CDATA[registercounty=#{item.registercounty, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registertreet != null "><![CDATA[registertreet=#{item.registertreet, jdbcType=VARCHAR},]]></if>
+		 <if test="item.realprovince != null "><![CDATA[realprovince=#{item.realprovince, jdbcType=VARCHAR},]]></if>
+		 <if test="item.realcity != null "><![CDATA[realcity=#{item.realcity, jdbcType=VARCHAR},]]></if>
+		 <if test="item.realcounty != null "><![CDATA[realcounty=#{item.realcounty, jdbcType=VARCHAR},]]></if>
+		 <if test="item.realtreet != null "><![CDATA[realtreet=#{item.realtreet, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businessscope != null "><![CDATA[businessscope=#{item.businessscope, jdbcType=CLOB},]]></if>
+		 <if test="item.partnertype != null "><![CDATA[partnertype=#{item.partnertype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.partnername != null "><![CDATA[partnername=#{item.partnername, jdbcType=CLOB},]]></if>
+		 <if test="item.regicapital != null "><![CDATA[regicapital=#{item.regicapital, jdbcType=VARCHAR},]]></if>
+		 <if test="item.regicapitalbz != null "><![CDATA[regicapitalbz=#{item.regicapitalbz, jdbcType=VARCHAR},]]></if>
+		 <if test="item.isboard != null "><![CDATA[isboard=#{item.isboard, jdbcType=VARCHAR},]]></if>
+		 <if test="item.issupervision != null "><![CDATA[issupervision=#{item.issupervision, jdbcType=VARCHAR},]]></if>
+		 <if test="item.sparecontactname != null "><![CDATA[sparecontactname=#{item.sparecontactname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.sparecontactmobile != null "><![CDATA[sparecontactmobile=#{item.sparecontactmobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.establishdate != null "><![CDATA[establishdate=#{item.establishdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companyintro != null "><![CDATA[companyintro=#{item.companyintro, jdbcType=CLOB},]]></if>
+		 <if test="item.hanginfo != null "><![CDATA[hanginfo=#{item.hanginfo, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companymodel != null "><![CDATA[companymodel=#{item.companymodel, jdbcType=VARCHAR},]]></if>
+		 <if test="item.investsource != null "><![CDATA[investsource=#{item.investsource, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businessfile != null "><![CDATA[businessfile=#{item.businessfile, jdbcType=CLOB},]]></if>
+		 <if test="item.establishfile != null "><![CDATA[establishfile=#{item.establishfile, jdbcType=CLOB},]]></if>
+		 <if test="item.modifyfile != null "><![CDATA[modifyfile=#{item.modifyfile, jdbcType=CLOB},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.source != null "><![CDATA[source=#{item.source, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业基本信息表organ_info 按主键删除记录-->
+	<delete id="delInfoKey" parameterType="com.msjf.finance.cas.common.entity.OrganInfoKey">
+	<![CDATA[
+		delete from cas.organ_info
+		where
+			customerno = #{customerno}
+	]]>
+	</delete>
+	<!--企业基本信息表organ_info 根据主键批量删除记录  -->
+	<delete id="delInfoKeyBatch" parameterType="com.msjf.finance.cas.common.entity.OrganInfoKey">
+		delete from cas.organ_info where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</delete>
+
+
+</mapper>

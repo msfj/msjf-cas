@@ -2,11 +2,11 @@ package com.msjf.finance.cas.modules.register.service.impl;
 
 import com.msjf.finance.cas.facade.register.domain.RegisterDomain;
 import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
-import com.msjf.finance.cas.modules.organ.dao.OrganInfoChangeDao;
-import com.msjf.finance.cas.modules.organ.dao.OrganInfoDao;
-import com.msjf.finance.cas.modules.organ.dao.OrganRollinDao;
-import com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity;
-import com.msjf.finance.cas.modules.organ.entity.OrganRollinEntity;
+import com.msjf.finance.cas.common.dao.OrganInfoChangeDao;
+import com.msjf.finance.cas.common.dao.OrganInfoDao;
+import com.msjf.finance.cas.common.dao.OrganRollinDao;
+import com.msjf.finance.cas.common.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.entity.OrganRollinEntity;
 import com.msjf.finance.cas.modules.person.dao.PersonInfoDao;
 import com.msjf.finance.cas.modules.register.dao.CasRegisterDao;
 import com.msjf.finance.cas.modules.register.dao.CustDao;

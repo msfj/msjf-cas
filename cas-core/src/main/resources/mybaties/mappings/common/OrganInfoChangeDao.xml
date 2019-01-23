@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.OrganInfoChangeDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.msjf.finance.cas.common.entity.OrganInfoChangeEntity" id="organInfoChangeMap">
+        <result property="customerno" column="customerno"/>
+        <result property="version" column="version"/>
+        <result property="membername" column="membername"/>
+        <result property="organtype" column="organtype"/>
+        <result property="organclass" column="organclass"/>
+        <result property="startcustomerno" column="startcustomerno"/>
+        <result property="servicecustomerno" column="servicecustomerno"/>
+        <result property="dealflow" column="dealflow"/>
+        <result property="managelimit" column="managelimit"/>
+        <result property="paydatelimit" column="paydatelimit"/>
+        <result property="registerprovince" column="registerprovince"/>
+        <result property="registercity" column="registercity"/>
+        <result property="registercounty" column="registercounty"/>
+        <result property="registertreet" column="registertreet"/>
+        <result property="realprovince" column="realprovince"/>
+        <result property="realcity" column="realcity"/>
+        <result property="realcounty" column="realcounty"/>
+        <result property="realtreet" column="realtreet"/>
+        <result property="businessscope" column="businessscope"/>
+        <result property="partnertype" column="partnertype"/>
+        <result property="partnername" column="partnername"/>
+        <result property="regicapital" column="regicapital"/>
+        <result property="regicapitalbz" column="regicapitalbz"/>
+        <result property="isboard" column="isboard"/>
+        <result property="issupervision" column="issupervision"/>
+        <result property="sparecontactname" column="sparecontactname"/>
+        <result property="sparecontactmobile" column="sparecontactmobile"/>
+        <result property="establishdate" column="establishdate"/>
+        <result property="companyintro" column="companyintro"/>
+        <result property="hanginfo" column="hanginfo"/>
+        <result property="companymodel" column="companymodel"/>
+        <result property="investsource" column="investsource"/>
+        <result property="businessfile" column="businessfile"/>
+        <result property="establishfile" column="establishfile"/>
+        <result property="modifyfile" column="modifyfile"/>
+        <result property="insertdate" column="insertdate"/>
+        <result property="inserttime" column="inserttime"/>
+    </resultMap>
+
+
+</mapper>

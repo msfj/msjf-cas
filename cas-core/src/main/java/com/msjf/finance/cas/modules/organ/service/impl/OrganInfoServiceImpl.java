@@ -2,9 +2,8 @@ package com.msjf.finance.cas.modules.organ.service.impl;
 
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.modules.Account.AccountDao;
-import com.msjf.finance.cas.modules.login.emun.LoginEnum;
-import com.msjf.finance.cas.modules.organ.dao.OrganInfoDao;
-import com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.dao.OrganInfoDao;
+import com.msjf.finance.cas.common.entity.OrganInfoEntity;
 import com.msjf.finance.cas.modules.organ.service.OrganInfoService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.beans.BeanUtils;
