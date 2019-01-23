@@ -17,4 +17,5 @@
 
 	<dubbo:service interface="com.msjf.finance.cas.facade.changePwd.ChangePwdFacade" ref="changePwdFacade" />
 
+	<dubbo:service interface="com.msjf.finance.cas.facade.employee.EmployeeLoginFacade" ref="employeeLoginFacade" />
 </beans>

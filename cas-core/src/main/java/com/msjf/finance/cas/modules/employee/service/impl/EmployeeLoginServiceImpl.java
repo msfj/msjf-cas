@@ -28,13 +28,13 @@ import java.util.List;
 @Scope("prototype")
 public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginService {
     /** 登录账号*/
-    private String loginname;
+    private String loginName;
 
     /** 密码*/
     private String password;
 
     /** 登录来源  0-web 1-app*/
-    private String loginsource;
+    private String loginSource;
 
     /** 客户代码*/
     private String customerno;
@@ -47,21 +47,21 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
     public Response<EmployeeInfoDomain> employeeLogin(HashMap<String, Object> mapParam) {
         Response<EmployeeInfoDomain> rs=new Response();
         getParam(mapParam);
-        if (StringUtils.isEmpty(loginname)) {
+        if (StringUtils.isEmpty(loginName)) {
             return rs.fail(EmployeeLoginEnum.LOGIN_NAME_NULL);
         }
         if (StringUtils.isEmpty(password)) {
             return rs.fail(EmployeeLoginEnum.PWD_NULL);
         }
-        if (StringUtils.isEmpty(loginsource)) {
+        if (StringUtils.isEmpty(loginSource)) {
             return rs.fail(EmployeeLoginEnum.LOGIN_SOURCE_NULL);
         }
-        if (!CommonUtil.isLegalOfDictValue("100", "登录来源", loginsource, rs)) {
+        if (!CommonUtil.isLegalOfDictValue("100", "登录来源", loginSource, rs)) {
             return rs.fail(EmployeeLoginEnum.LOGIN_SOURCE_ERROR);
         }
         //用户名存在性检查
         EmployeeEntity EmployeeEntity = new EmployeeEntity();
-        EmployeeEntity.setLoginname(loginname);
+        EmployeeEntity.setLoginname(loginName);
         List<EmployeeEntity> ls = employeeMapper.selectByEntity(EmployeeEntity);
         if (ObjectUtils.isEmpty(ls)) {
             return rs.fail(EmployeeLoginEnum.MSG_USER_NULL);
@@ -96,7 +96,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
         }
         updAuthone(rs);
         EmployeeInfoDomain employeeInfoDomain=new EmployeeInfoDomain();
-        employeeInfoDomain.setLoginname(loginname);
+        employeeInfoDomain.setLoginname(loginName);
         employeeInfoDomain.setCertificateno(certificateno);
 //        HashMap<String, Object> rsmap = new HashMap<String, Object>();
 //        rsmap.put("customerno", customerno);
@@ -106,9 +106,9 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
     }
 
     private void getParam(HashMap<String, Object> mapParam) {
-        loginname = StringUtil.valueOf(mapParam.get("loginname"));
+        loginName = StringUtil.valueOf(mapParam.get("loginName"));
         password = StringUtil.valueOf(mapParam.get("password"));
-        loginsource = StringUtil.valueOf(mapParam.get("loginsource"));
+        loginSource = StringUtil.valueOf(mapParam.get("loginSource"));
     }
 
     /**
@@ -165,7 +165,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
             AusAuthoneEntity ausAuthoneEntity = new AusAuthoneEntity();
             ausAuthoneEntity.setCustomerno(customerno);
             ausAuthoneEntity.setFailcount(0);
-            ausAuthoneEntity.setLoginsource(loginsource);
+            ausAuthoneEntity.setLoginsource(loginSource);
             ausAuthoneEntity.setOnlinestatus("Y");//N-不在线 Y-在线
             ausAuthoneEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
             ausAuthoneEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
