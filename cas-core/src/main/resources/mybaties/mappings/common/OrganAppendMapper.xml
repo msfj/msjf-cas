@@ -36,7 +36,7 @@
     <result column="updatedate" jdbcType="VARCHAR" property="updatedate" />
     <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.msjf.finance.cas.common.entity.OrganAppendEntityWithBLOBs">
     <result column="profittype" jdbcType="LONGVARCHAR" property="profittype" />
     <result column="fundmanagerintro" jdbcType="LONGVARCHAR" property="fundmanagerintro" />
     <result column="fundprojectintro" jdbcType="LONGVARCHAR" property="fundprojectintro" />
@@ -70,7 +70,7 @@
     delete from organ_append
     where customerno = #{customerno,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+  <insert id="insert" parameterType="com.msjf.finance.cas.common.entity.OrganAppendEntityWithBLOBs">
     insert into organ_append (customerno, version, isfiling, 
       registerno, employeenum, caremarkettype, 
       projectphase, isfundfiling, fundfilingno, 
@@ -102,7 +102,7 @@
       #{mainworkexp,jdbcType=LONGVARCHAR}, #{othersintro,jdbcType=LONGVARCHAR}, #{partnerintro,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+  <insert id="insertSelective" parameterType="com.msjf.finance.cas.common.entity.OrganAppendEntityWithBLOBs">
     insert into organ_append
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="customerno != null">
@@ -361,7 +361,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.common.entity.OrganAppendEntityWithBLOBs">
     update organ_append
     <set>
       <if test="version != null">
@@ -490,7 +490,7 @@
     </set>
     where customerno = #{customerno,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.msjf.finance.cas.modules.login.entity.OrganAppendEntityWithBLOBs">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.msjf.finance.cas.common.entity.OrganAppendEntityWithBLOBs">
     update organ_append
     set version = #{version,jdbcType=INTEGER},
       isfiling = #{isfiling,jdbcType=VARCHAR},

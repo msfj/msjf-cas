@@ -20,4 +20,11 @@ public interface OrganBuildApplyFacade {
      * @return Response 返回结果
      */
     Response organBuildApply(HashMap<String, Object> mapParam);
+
+    /**
+     * 添加拟设立
+     * @param mapParam 入参
+     */
+    Response addApply(HashMap<String, Object> mapParam);
+
 }

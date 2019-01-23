@@ -28,4 +28,11 @@ public interface OrganInfoDao extends IBaseDao<OrganInfoEntity>{
      * 写企业基本信息表
      */
     void insOrganInfo(Map<String, Object> mapParams);
+
+    /**
+     * 在变更记录表检查企业名称是否已存在
+     * @param mapParams
+     * @return
+     */
+    List<Map<String, Object>> checkExistCompanynameInChange(Map<String, Object> mapParams);
 }
