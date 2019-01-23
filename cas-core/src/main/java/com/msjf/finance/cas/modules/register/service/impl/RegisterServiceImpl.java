@@ -174,7 +174,7 @@ public class RegisterServiceImpl implements RegisterService {
                  * 1、先做手机验证码校验；
                  *2、校验成功生成custno并记录手机号码
                  */
-                Boolean flag=CommonUtil.checkVerificationCode("1",mobile,msgcode);
+                Boolean flag=CommonUtil.checkVerificationCode(SMS_REGISTER_TYPE,mobile,msgcode);
                 if(!flag){
                     return new Response().fail("0","短信验证码验证不通过！");
                 }
@@ -191,7 +191,7 @@ public class RegisterServiceImpl implements RegisterService {
                 /**
                  * 需校验验证码
                  */
-                Boolean flag=CommonUtil.checkVerificationCode("1",mobile,msgcode);
+                Boolean flag=CommonUtil.checkVerificationCode(SMS_REGISTER_TYPE,mobile,msgcode);
                 if(!flag){
                     return new Response().fail("0","短信验证码验证不通过！");
                 }
