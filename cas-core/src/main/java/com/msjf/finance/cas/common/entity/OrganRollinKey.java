@@ -1,4 +1,4 @@
-package com.msjf.finance.cas.modules.organ.entity;
+package com.msjf.finance.cas.common.entity;
 
 public class OrganRollinKey {
     //申请编号

@@ -7,12 +7,20 @@ import java.util.HashMap;
 /**
  * <pre>
  * 描述:
- *    ${DESCRIPTION}
+ *    企业相关
  *  <pre/>
  * @author 95494
  * @create 2019-01-22 19:35
  */
-public interface OrganBuildApplyService {
+public interface OrganPlanBuildApplyService {
+
+    /**
+     * 添加拟设立
+     * @param mapParam 入参
+     * @param rs 返回结果
+     */
+    void addApply(HashMap<String, Object> mapParam, Response rs);
+
     /**
      * 企业设立申请
      *

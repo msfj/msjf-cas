@@ -53,8 +53,8 @@
 		]]>
     </select>
 
-    <select id="selectSysdictlistByKey" parameterType="com.msjf.finance.cas.modules.organ.entity.SysDictKey"
-            resultType="com.msjf.finance.cas.modules.organ.entity.SysDictEntity">
+    <select id="selectSysdictlistByKey" parameterType="com.msjf.finance.cas.common.entity.SysDictKey"
+            resultType="com.msjf.finance.cas.common.entity.SysDictEntity">
         select dict_id "dictId",
         dict_name "dictName",
         dict_key "dictKey",

@@ -1,6 +1,6 @@
-package com.msjf.finance.cas.modules.organ.dao;
-import com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity;
-import com.msjf.finance.cas.modules.organ.entity.OrganInfoKey;
+package com.msjf.finance.cas.common.dao;
+import com.msjf.finance.cas.common.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.entity.OrganInfoKey;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 2018/12/18
  */
 @MyBatisDao
-public interface OrganInfoDao extends IBaseDao{
+public interface OrganInfoDao extends IBaseDao<OrganInfoEntity>{
     List<OrganInfoEntity> queryOrganInfoList();
 
     /**

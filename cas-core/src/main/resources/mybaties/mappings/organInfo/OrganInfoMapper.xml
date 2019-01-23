@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="GBK" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.msjf.finance.cas.modules.organ.dao.OrganInfoDao">
+<mapper namespace="com.msjf.finance.cas.common.dao.OrganInfoDao">
 
-    <resultMap id="BaseResultMap" type="com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity" >
+    <resultMap id="BaseResultMap" type="com.msjf.finance.cas.common.entity.OrganInfoEntity" >
         <result column="customerno" property="customerno" jdbcType="VARCHAR" />
         <result column="membername" property="membername" jdbcType="VARCHAR" />
         <result column="organtype" property="organtype" jdbcType="VARCHAR" />
@@ -15,8 +15,8 @@
     </select>
 
     <!--企业基本信息表cif_organ_info 按实体查询-->
-    <select id="getOrganInfo" parameterType="com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity"
-            resultType="com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity">
+    <select id="getOrganInfo" parameterType="com.msjf.finance.cas.common.entity.OrganInfoEntity"
+            resultType="com.msjf.finance.cas.common.entity.OrganInfoEntity">
         <![CDATA[
 		select
 			customerno "customerno",
@@ -133,8 +133,8 @@
     </insert>
 
     <!--企业基本信息表cif_organ_info 按主键查询-->
-    <select id="getOrganInfoByKey" parameterType="com.msjf.finance.cas.modules.organ.entity.OrganInfoKey"
-            resultType="com.msjf.finance.cas.modules.organ.entity.OrganInfoEntity">
+    <select id="getOrganInfoByKey" parameterType="com.msjf.finance.cas.common.entity.OrganInfoKey"
+            resultType="com.msjf.finance.cas.common.entity.OrganInfoEntity">
 	<![CDATA[
 		select
 			customerno "customerno",

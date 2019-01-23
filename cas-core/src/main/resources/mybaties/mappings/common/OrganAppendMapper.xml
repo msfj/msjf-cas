@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msjf.finance.cas.modules.login.dao.OrganAppendMapper">
-  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.modules.organ.entity.OrganAppendEntity">
+  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.common.entity.OrganAppendEntity">
     <id column="customerno" jdbcType="VARCHAR" property="customerno" />
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="isfiling" jdbcType="VARCHAR" property="isfiling" />
@@ -535,7 +535,7 @@
       partnerintro = #{partnerintro,jdbcType=LONGVARCHAR}
     where customerno = #{customerno,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.modules.organ.entity.OrganAppendEntity">
+  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.common.entity.OrganAppendEntity">
     update organ_append
     set version = #{version,jdbcType=INTEGER},
       isfiling = #{isfiling,jdbcType=VARCHAR},

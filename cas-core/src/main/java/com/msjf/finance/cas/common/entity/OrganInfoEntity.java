@@ -1,17 +1,21 @@
-package com.msjf.finance.cas.modules.organ.entity;
+package com.msjf.finance.cas.common.entity;
 
 /***
- *OrganInfoChangeEntity
- *企业基本信息变更记录表
+ *OrganInfoEntity
+ *企业基本信息表
  */
-public class OrganInfoChangeEntity extends OrganInfoChangeKey {
+public class OrganInfoEntity extends OrganInfoKey {
+    //版本号（由小到大）
+    private Integer version;
     //企业名称
     private String membername;
     //企业类型 字典104 0-有限公司 1-合伙企业
     private String organtype;
     //企业分类 字典105 0-基金管理人企业 1-基金项目产品企业 2-个人自有资金投资平台类企业 3-企业自有资金投资平台类企业 4-融资租赁企业 5-其他企业
     private String organclass;
-    //变更发起人
+    //字典 106 0-企业设立中 1-企业已注册 2-企业已注销
+    private String organstatus;
+    //设立-登记申请发起人
     private String startcustomerno;
     //服务人员
     private String servicecustomerno;
@@ -39,7 +43,7 @@ public class OrganInfoChangeEntity extends OrganInfoChangeKey {
     private String realtreet;
     //经营范围/主营业务
     private String businessscope;
-    //执行事务合伙人类型 字典 107 0-个人 1-公司
+    //执行事务合伙人类型 字典 107 0-个人 1-公司 -合伙企业属性
     private String partnertype;
     //执行事务合伙人名称
     private String partnername;
@@ -47,9 +51,9 @@ public class OrganInfoChangeEntity extends OrganInfoChangeKey {
     private String regicapital;
     //注册资本金币种
     private String regicapitalbz;
-    //是否存在董事会 0-否 1-是
+    //是否存在董事会 0-否 1-是 -有限公司属性
     private String isboard;
-    //是否存在监事会 0-否 1-是
+    //是否存在监事会 0-否 1-是 -有限公司属性
     private String issupervision;
     //备用联系人
     private String sparecontactname;
@@ -75,6 +79,12 @@ public class OrganInfoChangeEntity extends OrganInfoChangeKey {
     private String insertdate;
     //插入时间
     private String inserttime;
+    //更新日期
+    private String updatedate;
+    //更新时间
+    private String updatetime;
+    //来源：1-企业注册服务平台；2-企业三方会签
+    private String source;
 
     public void init() {
     }
@@ -117,6 +127,14 @@ public class OrganInfoChangeEntity extends OrganInfoChangeKey {
 
     public void setOrganclass(String organclass) {
         this.organclass = organclass;
+    }
+
+    public String getOrganstatus() {
+        return this.organstatus;
+    }
+
+    public void setOrganstatus(String organstatus) {
+        this.organstatus = organstatus;
     }
 
     public String getStartcustomerno() {
@@ -373,5 +391,29 @@ public class OrganInfoChangeEntity extends OrganInfoChangeKey {
 
     public void setInserttime(String inserttime) {
         this.inserttime = inserttime;
+    }
+
+    public String getUpdatedate() {
+        return this.updatedate;
+    }
+
+    public void setUpdatedate(String updatedate) {
+        this.updatedate = updatedate;
+    }
+
+    public String getUpdatetime() {
+        return this.updatetime;
+    }
+
+    public void setUpdatetime(String updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public String getSource() {
+        return this.source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

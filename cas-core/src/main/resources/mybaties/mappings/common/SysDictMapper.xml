@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.msjf.finance.cas.modules.organ.dao.SysDictMapper">
-  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.modules.organ.entity.SysDictEntity">
+<mapper namespace="com.msjf.finance.cas.common.dao.SysDictMapper">
+  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.common.entity.SysDictEntity">
     <id column="dict_id" jdbcType="VARCHAR" property="dictId" />
     <id column="dict_key" jdbcType="VARCHAR" property="dictKey" />
     <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
@@ -14,19 +14,19 @@
   <sql id="Base_Column_List">
     dict_id, dict_key, dict_name, dict_value, ref_dict_key, sort_no, is_used, dict_comment
   </sql>
-  <select id="selectByPrimaryKey" parameterType="com.msjf.finance.cas.modules.organ.entity.SysDictKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.msjf.finance.cas.common.entity.SysDictKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_dict
     where dict_id = #{dictId,jdbcType=VARCHAR}
       and dict_key = #{dictKey,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.msjf.finance.cas.modules.organ.entity.SysDictKey">
+  <delete id="deleteByPrimaryKey" parameterType="com.msjf.finance.cas.common.entity.SysDictKey">
     delete from sys_dict
     where dict_id = #{dictId,jdbcType=VARCHAR}
       and dict_key = #{dictKey,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.msjf.finance.cas.modules.organ.entity.SysDictEntity">
+  <insert id="insert" parameterType="com.msjf.finance.cas.common.entity.SysDictEntity">
     insert into sys_dict (dict_id, dict_key, dict_name, 
       dict_value, ref_dict_key, sort_no, 
       is_used, dict_comment)
@@ -34,7 +34,7 @@
       #{dictValue,jdbcType=VARCHAR}, #{refDictKey,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
       #{isUsed,jdbcType=VARCHAR}, #{dictComment,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.msjf.finance.cas.modules.organ.entity.SysDictEntity">
+  <insert id="insertSelective" parameterType="com.msjf.finance.cas.common.entity.SysDictEntity">
     insert into sys_dict
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dictId != null">
@@ -89,7 +89,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.modules.organ.entity.SysDictEntity">
+  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.common.entity.SysDictEntity">
     update sys_dict
     <set>
       <if test="dictName != null">
@@ -114,7 +114,7 @@
     where dict_id = #{dictId,jdbcType=VARCHAR}
       and dict_key = #{dictKey,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.modules.organ.entity.SysDictEntity">
+  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.common.entity.SysDictEntity">
     update sys_dict
     set dict_name = #{dictName,jdbcType=VARCHAR},
       dict_value = #{dictValue,jdbcType=VARCHAR},

@@ -1,4 +1,4 @@
-package com.msjf.finance.cas.modules.organ.dao;
+package com.msjf.finance.cas.common.dao;
 
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 

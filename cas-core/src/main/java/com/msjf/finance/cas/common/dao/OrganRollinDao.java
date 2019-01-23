@@ -1,6 +1,6 @@
-package com.msjf.finance.cas.modules.organ.dao;
+package com.msjf.finance.cas.common.dao;
 
-import com.msjf.finance.cas.modules.organ.entity.OrganRollinEntity;
+import com.msjf.finance.cas.common.entity.OrganRollinEntity;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.List;

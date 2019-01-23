@@ -16,7 +16,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!-- 生成实体类的包名和位置，这里配置将生成的实体类放在cn.chejinbao.ecommerce.entity这个包下 -->
-        <javaModelGenerator targetPackage="com.msjf.finance.cas.modules.organ.entity" targetProject="C:\Users\admin\msjf-cas\cas-core\src\main\java\">
+        <javaModelGenerator targetPackage="com.msjf.finance.cas.common.entity" targetProject="C:\Users\admin\msjf-cas\cas-core\src\main\java\">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
@@ -25,7 +25,7 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置，这里配置将生成的dao类放在cn.chejinbao.ecommerce.dao这个包下 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.msjf.finance.cas.modules.organ.dao" targetProject="C:\Users\admin\msjf-cas\cas-core\src\main\java\">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.msjf.finance.cas.common.dao" targetProject="C:\Users\admin\msjf-cas\cas-core\src\main\java\">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->

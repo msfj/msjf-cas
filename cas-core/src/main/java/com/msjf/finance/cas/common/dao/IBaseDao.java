@@ -1,6 +1,6 @@
-package com.msjf.finance.cas.modules.organ.dao;
+package com.msjf.finance.cas.common.dao;
 
-import com.msjf.finance.cas.modules.organ.entity.IBaseEntity;
+import com.msjf.finance.cas.common.entity.IBaseEntity;
 
 import java.util.List;
 import java.util.Map;
