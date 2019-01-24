@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msjf.finance.cas.common.dao.SysCertificationConfigMapper">
-  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
     <id column="messageCode" jdbcType="VARCHAR" property="messagecode" />
     <result column="isopen" jdbcType="VARCHAR" property="isopen" />
     <result column="orgCode" jdbcType="VARCHAR" property="orgcode" />
@@ -34,7 +34,7 @@
     delete from sys_certification_config
     where messageCode = #{messagecode,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+  <insert id="insert" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
     insert into sys_certification_config (messageCode, isopen, orgCode, 
       chnlId, authCode, authDate, 
       userName, userPassword, netType, 
@@ -48,7 +48,7 @@
       #{cerCheckCode,jdbcType=VARCHAR}, #{storealias,jdbcType=VARCHAR}, #{storepassword,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+  <insert id="insertSelective" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
     insert into sys_certification_config
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="messagecode != null">
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
     update sys_certification_config
     <set>
       <if test="isopen != null">
@@ -202,7 +202,7 @@
     </set>
     where messageCode = #{messagecode,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
     update sys_certification_config
     set isopen = #{isopen,jdbcType=VARCHAR},
       orgCode = #{orgcode,jdbcType=VARCHAR},

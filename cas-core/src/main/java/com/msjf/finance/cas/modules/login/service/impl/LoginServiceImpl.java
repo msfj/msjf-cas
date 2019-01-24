@@ -1,9 +1,8 @@
 package com.msjf.finance.cas.modules.login.service.impl;
 
-import com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity;
-import com.msjf.finance.cas.common.dao.entity.CustEntity;
-import com.msjf.finance.cas.common.dao.entity.PersonInfoEntity;
+import com.msjf.finance.cas.common.dao.entity.*;
 import com.msjf.finance.cas.common.dao.key.AusAuthoneKey;
+import com.msjf.finance.cas.common.dao.key.OrganAppendKey;
 import com.msjf.finance.cas.common.dao.key.PersonInfoKey;
 import com.msjf.finance.cas.common.dao.persistence.CustDao;
 import com.msjf.finance.cas.common.dao.persistence.PersonInfoDao;
@@ -16,10 +15,8 @@ import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao;
 import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.common.dao.persistence.OrganAppendDao;
-import com.msjf.finance.cas.common.dao.entity.OrganAppendEntityWithBLOBs;
 import com.msjf.finance.cas.modules.login.service.LoginService;
 import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
-import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
 import com.msjf.finance.cas.common.dao.key.OrganInfoKey;
 import com.msjf.finance.cas.modules.util.*;
 import com.msjf.finance.msjf.core.response.Response;
@@ -90,7 +87,7 @@ public class LoginServiceImpl extends Account implements LoginService {
     @Resource
     OrganInfoDao organInfoDao;
     @Resource
-    OrganAppendDao organAppendMapper;
+    OrganAppendDao organAppendDao;
     @Resource
     AccountDao accountDao;
     @Resource
@@ -463,8 +460,9 @@ public class LoginServiceImpl extends Account implements LoginService {
             organclass = c.getOrganclass();
             membername = c.getMembername();
             //6类企业的基本信息差异字段 保存在 企业附属信息表
-            //todo 此处需修改
-            OrganAppendEntityWithBLOBs entity = null;//organAppendMapper.selectByPrimaryKey(customerno);
+            OrganAppendKey organAppendKey=new OrganAppendKey();
+            organAppendKey.setCustomerno(customerno);
+            OrganAppendEntity entity = organAppendDao.getEntityKey(organAppendKey);
             if (StringUtils.isEmpty(entity)) {
                 return false;
             }
@@ -563,7 +561,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param c
      * @return
      */
-    private boolean checkOrganInfo0(OrganAppendEntityWithBLOBs c) {
+    private boolean checkOrganInfo0(OrganAppendEntity c) {
         if (StringUtils.isEmpty(c.getIsfiling())) {
             return false;
         }
@@ -591,7 +589,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param c
      * @return
      */
-    private boolean checkOrganInfo1(OrganAppendEntityWithBLOBs c) {
+    private boolean checkOrganInfo1(OrganAppendEntity c) {
         if (StringUtils.isEmpty(c.getIsfundfiling())) {
             return false;
         }
@@ -613,7 +611,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param c
      * @return
      */
-    private boolean checkOrganInfo2(OrganAppendEntityWithBLOBs c) {
+    private boolean checkOrganInfo2(OrganAppendEntity c) {
         if (StringUtils.isEmpty(c.getCompanytrade())) {
             return false;
         }
@@ -635,7 +633,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param c
      * @return
      */
-    private boolean checkOrganInfo3(OrganAppendEntityWithBLOBs c) {
+    private boolean checkOrganInfo3(OrganAppendEntity c) {
         if (StringUtils.isEmpty(c.getProjecttrade())) {
             return false;
         }
@@ -654,7 +652,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param c
      * @return
      */
-    private boolean checkOrganInfo4(OrganAppendEntityWithBLOBs c) {
+    private boolean checkOrganInfo4(OrganAppendEntity c) {
         if (StringUtils.isEmpty(c.getClassify())) {
             return false;
         }
@@ -673,7 +671,7 @@ public class LoginServiceImpl extends Account implements LoginService {
      * @param c
      * @return
      */
-    private boolean checkOrganInfo5(OrganAppendEntityWithBLOBs c) {
+    private boolean checkOrganInfo5(OrganAppendEntity c) {
         if (StringUtils.isEmpty(c.getSpecificbusinesstype())) {
             return false;
         }

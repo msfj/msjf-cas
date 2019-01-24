@@ -1,6 +1,6 @@
-package com.msjf.finance.cas.common.dao;
+package com.msjf.finance.cas.common.dao.persistence;
 
-import com.msjf.finance.cas.common.entity.SysCertificationConfigEntity;
+import com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 @MyBatisDao

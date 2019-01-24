@@ -2,9 +2,10 @@ package com.msjf.finance.cas.modules.util;
 
 
 import com.msjf.finance.cas.common.dao.key.SysParamsConfigKey;
+import com.msjf.finance.cas.common.dao.persistence.SysDictDao;
+import com.msjf.finance.cas.common.dao.persistence.SysParamsConfigDao;
 import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity;
-import com.msjf.finance.cas.common.dao.persistence.SysDictMapper;
 import com.msjf.finance.cas.common.dao.entity.SysDictEntity;
 import com.msjf.finance.cas.common.dao.key.SysDictKey;
 import com.msjf.finance.cas.modules.util.emun.CommonUtilEnum;
@@ -113,6 +114,46 @@ public final class CommonUtil {
     private static final String ADEncrypNo="MSJFmsjf";
 
 
+    public static boolean checkIP(String s)
+    {
+        Pattern pattern = Pattern.compile("^((\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5]"
+                + "|[*])\\.){3}(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5]|[*])$");
+        return pattern.matcher(s).matches();
+    }
+
+    public static String bytes2Hex(byte[] inbuf)
+    {
+        int i;
+        String byteStr;
+        StringBuffer strBuf = new StringBuffer();
+        for (i = 0; i < inbuf.length; i++)
+        {
+            byteStr = Integer.toHexString(inbuf[i] & 0x00ff);
+            if (byteStr.length() != 2)
+            {
+                strBuf.append('0').append(byteStr);
+            }
+            else
+            {
+                strBuf.append(byteStr);
+            }
+        }
+        return new String(strBuf);
+    }
+
+    public static byte[] hexToBytes(String inbuf)
+    {
+        int i;
+        int len = inbuf.length() / 2;
+        byte outbuf[] = new byte[len];
+        for (i = 0; i < len; i++)
+        {
+            String tmpbuf = inbuf.substring(i * 2, i * 2 + 2);
+
+            outbuf[i] = (byte) Integer.parseInt(tmpbuf, 16);
+        }
+        return outbuf;
+    }
     /**
      * 生成 pwdLength长度的随机码
      * @param a
@@ -147,11 +188,11 @@ public final class CommonUtil {
             rs.setMsg(dictName + "-字典值为空");
             return false;
         }
-        SysDictMapper sysDictMapper = SpringContextUtil.getBean("sysDictMapper");
+        SysDictDao sysDictDao = SpringContextUtil.getBean("sysDictDao");
         SysDictKey sysDictKey=new SysDictKey();
         sysDictKey.setDictId(dictId);
         sysDictKey.setDictKey(dictKey);
-        SysDictEntity sysDictEntity = sysDictMapper.selectByPrimaryKey(sysDictKey);
+        SysDictEntity sysDictEntity = sysDictDao.getEntityKey(sysDictKey);
         if (ObjectUtils.isEmpty(sysDictEntity)) {
             rs.setMsg(dictName + "传入值[" + dictKey + "]不合法");
             return false;
@@ -164,9 +205,8 @@ public final class CommonUtil {
         sysParamsConfigKey.setExchangeId(EXCHANGEID);
         sysParamsConfigKey.setParamId(paramId);
         sysParamsConfigKey.setParamType(paramType);
-        //todo 需修改
-       // SysParamsConfigEntityMapper sysParamsConfigEntityMapper=SpringContextUtil.getBean("sysParamsConfigEntityMapper");
-        SysParamsConfigEntity sysParamsConfig=null;//sysParamsConfigEntityMapper.selectByPrimaryKey(sysParamsConfigKey);
+        SysParamsConfigDao sysParamsConfigDao=SpringContextUtil.getBean("sysParamsConfigDao");
+        SysParamsConfigEntity sysParamsConfig=sysParamsConfigDao.getEntityKey(sysParamsConfigKey);
         return sysParamsConfig.getParamValue();
     }
     /**
@@ -454,6 +494,7 @@ public final class CommonUtil {
         Matcher m = p.matcher(mobiles);
         return m.matches();
     }
+
     /**
      * 字典值批量转译(多选 逗号隔开)字典对应转译为中文(逗号隔开)
      * 如 1,2,3  ->  身份证,营业执照,机构代码证
