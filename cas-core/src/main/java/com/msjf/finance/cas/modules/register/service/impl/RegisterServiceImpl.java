@@ -604,15 +604,23 @@ public class RegisterServiceImpl implements RegisterService {
      */
     private void addOrganInfo(Map<String, Object> mapParam){
         try {
-            mapParam.put("customerno",mapParam.get("id"));
-            mapParam.put("insertdate",DateUtils.getUserDate(DATE_FMT_DATE));
-            mapParam.put("inserttime",DateUtils.getUserDate(DATE_FMT_TIME));
-            mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
-            mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
-            mapParam.put("organstatus","1");
-            mapParam.put("version",1);
-            //todo 修改实体写入
+            OrganInfoEntity organInfoEntity=new OrganInfoEntity();
+            organInfoEntity.setCustomerno(StringUtil.valueOf(mapParam.get("id")));
+            organInfoEntity.setInsertdate(DateUtils.getUserDate(DATE_FMT_DATE));
+            organInfoEntity.setInserttime(DateUtils.getUserDate(DATE_FMT_TIME));
+            organInfoEntity.setUpdatedate(DateUtils.getUserDate(DATE_FMT_DATE));
+            organInfoEntity.setUpdatetime(DateUtils.getUserDate(DATE_FMT_TIME));
+            organInfoEntity.setOrganstatus("1");
+            organInfoEntity.setVersion(1);
+//            mapParam.put("customerno",mapParam.get("id"));
+//            mapParam.put("insertdate",DateUtils.getUserDate(DATE_FMT_DATE));
+//            mapParam.put("inserttime",DateUtils.getUserDate(DATE_FMT_TIME));
+//            mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
+//            mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
+//            mapParam.put("organstatus","1");
+//            mapParam.put("version",1);
             //organInfoDao.insOrganInfo(mapParam);
+            organInfoDao.insEntity(organInfoEntity);
         } catch (Exception e) {
             e.printStackTrace();
             throw  new RuntimeException("注册失败");

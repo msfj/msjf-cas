@@ -1,4 +1,4 @@
-package com.msjf.finance.cas.common.entity;
+package com.msjf.finance.cas.common.dao.entity;
 
 import com.msjf.finance.cas.common.dao.IBaseEntity;
 

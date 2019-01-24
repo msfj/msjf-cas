@@ -57,8 +57,7 @@ public class DataSecurityUtil
         {
             md = MessageDigest.getInstance("SHA1");
             md.update(oriByte);
-            //TODO
-            //strDes = CommonUtil.bytes2Hex(md.digest());
+            strDes = CommonUtil.bytes2Hex(md.digest());
         } catch (Exception e)
         {
             throw new Exception("E000016", e);

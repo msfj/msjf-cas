@@ -2,8 +2,8 @@ package com.msjf.finance.cas.modules.login.service.impl;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.msjf.finance.cas.common.dao.SysCertificationConfigDao;
-import com.msjf.finance.cas.common.entity.SysCertificationConfigEntity;
+import com.msjf.finance.cas.common.dao.persistence.SysCertificationConfigDao;
+import com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity;
 import com.msjf.finance.cas.modules.Account.Account;
 import com.msjf.finance.cas.modules.util.DataSecurityUtil;
 import com.msjf.finance.cas.modules.util.HttpRequestUtil;
