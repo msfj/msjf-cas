@@ -1,6 +1,5 @@
 package com.msjf.finance.cas.common.dao;
 
-import com.msjf.finance.cas.common.entity.SysCertificationConfigEntity;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 @MyBatisDao
