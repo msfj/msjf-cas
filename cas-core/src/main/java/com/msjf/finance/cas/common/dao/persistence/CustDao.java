@@ -28,7 +28,7 @@ public interface CustDao extends IBaseDao<CustEntity,CustKey> {
     /**
      * 新增用户
      */
-    void insCust(Map<String, Object> mapParams);
+    void insCustMap(Map<String, Object> mapParams);
 
     /**
      * 按实体更新
