@@ -421,7 +421,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         if (CommonUtil.NO.equals(membertype)) {
             PersonInfoKey personInfoKey=new PersonInfoKey();
             personInfoKey.setCustomerno(customerno);
-            PersonInfoEntity e = personInfoDao.selectByKey(personInfoKey);
+            PersonInfoEntity e = personInfoDao.getEntityKey(personInfoKey);
             if (ObjectUtils.isEmpty(e)) {
                 rs.fail(LoginEnum.MSG_USER_NULL);
                 throw new RuntimeException(rs.getMsg());

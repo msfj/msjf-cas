@@ -42,7 +42,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
     @Resource
     AusAuthoneDao ausAuthoneDao;
     @Resource
-    EmployeeDao employeeMapper;
+    EmployeeDao employeeDao;
     @Override
     public Response<EmployeeInfoDomain> employeeLogin(HashMap<String, Object> mapParam) {
         Response<EmployeeInfoDomain> rs=new Response();
@@ -62,7 +62,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
         //用户名存在性检查
         EmployeeEntity EmployeeEntity = new EmployeeEntity();
         EmployeeEntity.setLoginname(loginName);
-        List<EmployeeEntity> ls = employeeMapper.selectByEntity(EmployeeEntity);
+        List<EmployeeEntity> ls = employeeDao.getListEntity(EmployeeEntity);
         if (ObjectUtils.isEmpty(ls)) {
             return rs.fail(EmployeeLoginEnum.MSG_USER_NULL);
         }
@@ -135,7 +135,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
                 c.setStatus(MacroDefine.CUST_STATUS.LOCK.getValue());
                 c.setUpdatedate(DateUtils.getUserDate(DATE_FMT_DATE));
                 c.setUpdatetime(DateUtils.getUserDate(DATE_FMT_TIME));
-                employeeMapper.updateByPrimaryKeySelective(c);
+                employeeDao.updAllowEmptyEntity(c);
             } else {
                 ausAuthoneEntity.setFailcount(failCount + 1);
             }

@@ -25,15 +25,15 @@ public class RealNameAuthServiceImpl extends Account {
         // 发送HTTP请求
         //postHttpRequest();
         // 发送HTTPS请求
-        //postHttpsRequest();
+        postHttpsRequest();
     }
-    private void postHttpsRequest() throws Exception
+    private static void postHttpsRequest() throws Exception
     {
-        SysCertificationConfigEntity sysCertificationConfigEntity=sysCertificationConfigDao.selectByPrimaryKey("MSC8036");
+//        SysCertificationConfigEntity sysCertificationConfigEntity=sysCertificationConfigDao.selectByPrimaryKey("MSC8036");
         String sfUrl = "https://test-qhzx.pingan.com.cn:5443/do/dmz//verify/eChkPkgsCard/v1/MSC8169";//请求不同产品需要修改产品ID（如rskdoo）、产品代码（如MSC8036） loanee
-        String url=sysCertificationConfigEntity.getUrl()+File.separator+sysCertificationConfigEntity.getNettype()+File.separator+
-                sysCertificationConfigEntity.getTransname()+File.separator+sysCertificationConfigEntity.getProductid()+File.separator+sysCertificationConfigEntity.getApiver()+
-                File.separator+ sysCertificationConfigEntity.getMessagecode();
+//        String url=sysCertificationConfigEntity.getUrl()+File.separator+sysCertificationConfigEntity.getNettype()+File.separator+
+//                sysCertificationConfigEntity.getTransname()+File.separator+sysCertificationConfigEntity.getProductid()+File.separator+sysCertificationConfigEntity.getApiver()+
+//                File.separator+ sysCertificationConfigEntity.getMessagecode();
         String header = "\"header\":" + MessageUtil.getMHeader();
         String encBusiData = DataSecurityUtil.encrypt(MessageUtil.getBusiData().getBytes(),
                 "SK803@!QLF-D25WEDA5E52DA");

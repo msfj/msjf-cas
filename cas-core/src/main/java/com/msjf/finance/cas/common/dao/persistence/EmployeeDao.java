@@ -11,18 +11,4 @@ import java.util.List;
  */
 @MyBatisDao
 public interface EmployeeDao extends IBaseDao<EmployeeEntity,EmployeeKey> {
-
-    int deleteByPrimaryKey(String customerno);
-
-    int insert(EmployeeEntity record);
-
-    int insertSelective(EmployeeEntity record);
-
-    EmployeeEntity selectByPrimaryKey(String customerno);
-
-    int updateByPrimaryKeySelective(EmployeeEntity record);
-
-    int updateByPrimaryKey(EmployeeEntity record);
-
-    List<EmployeeEntity> selectByEntity(EmployeeEntity record);
 }
