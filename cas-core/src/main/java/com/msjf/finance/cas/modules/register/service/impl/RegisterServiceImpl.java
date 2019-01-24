@@ -518,7 +518,7 @@ public class RegisterServiceImpl implements RegisterService {
             mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
             mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
             mapParam.put("status","0");
-            custDao.insCust(mapParam);
+            custDao.insCustMap(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
             throw  new RuntimeException("注册失败");
