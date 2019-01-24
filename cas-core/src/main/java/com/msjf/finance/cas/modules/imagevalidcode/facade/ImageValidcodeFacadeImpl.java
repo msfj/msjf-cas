@@ -6,13 +6,9 @@ import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 import com.msjf.finance.cas.facade.imagevalidcode.ImageValidcodeFacade;
 import com.msjf.finance.cas.facade.imagevalidcode.domain.ImageValidcodeDomain;
-import com.msjf.finance.cas.modules.imagevalidcode.service.impl.ImageValidcodeServiceImpl;
-import com.msjf.finance.cas.modules.util.StringUtil;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 @Service("imageValidcodeFacade")
 public class ImageValidcodeFacadeImpl implements ImageValidcodeFacade {
     @Resource

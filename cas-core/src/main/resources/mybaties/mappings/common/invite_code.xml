@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.InviteCodeDao" >
+	<!--邀请码信息表invite_code 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.InviteCodeKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			ismember "ismember",
+			invitecode "invitecode",
+			status "status",
+			failuretime "failuretime",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			issendsms "issendsms"
+		from cas.invite_code
+		where 
+			serialno = #{serialno}
+		for update
+	]]>
+	</select>
+	<!--邀请码信息表invite_code 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.InviteCodeKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			ismember "ismember",
+			invitecode "invitecode",
+			status "status",
+			failuretime "failuretime",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			issendsms "issendsms"
+		from cas.invite_code
+		where 
+			serialno = #{serialno}
+	]]>
+	</select>
+	<!--邀请码信息表invite_code 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.InviteCodeKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			ismember "ismember",
+			invitecode "invitecode",
+			status "status",
+			failuretime "failuretime",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			issendsms "issendsms"
+		from cas.invite_code
+		where 
+			serialno = #{serialno}
+	]]>
+	</select>
+	<!--邀请码信息表invite_code 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			ismember "ismember",
+			invitecode "invitecode",
+			status "status",
+			failuretime "failuretime",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			issendsms "issendsms"
+		from cas.invite_code
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="ismember != null and ismember!= '' "><![CDATA[ and ismember=#{ismember}]]></if>
+		<if test="invitecode != null and invitecode!= '' "><![CDATA[ and invitecode=#{invitecode}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="failuretime != null and failuretime!= '' "><![CDATA[ and failuretime=#{failuretime}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="issendsms != null and issendsms!= '' "><![CDATA[ and issendsms=#{issendsms}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--邀请码信息表invite_code 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			ismember "ismember",
+			invitecode "invitecode",
+			status "status",
+			failuretime "failuretime",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			issendsms "issendsms"
+		from cas.invite_code
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="ismember != null and ismember!= '' "><![CDATA[ and ismember=#{ismember}]]></if>
+		<if test="invitecode != null and invitecode!= '' "><![CDATA[ and invitecode=#{invitecode}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="failuretime != null and failuretime!= '' "><![CDATA[ and failuretime=#{failuretime}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="issendsms != null and issendsms!= '' "><![CDATA[ and issendsms=#{issendsms}]]></if>
+	</where>
+	</select>
+	<!--邀请码信息表invite_code 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			ismember "ismember",
+			invitecode "invitecode",
+			status "status",
+			failuretime "failuretime",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			issendsms "issendsms"
+		from cas.invite_code
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="ismember != null and ismember!= '' "><![CDATA[ and ismember=#{ismember}]]></if>
+		<if test="invitecode != null and invitecode!= '' "><![CDATA[ and invitecode=#{invitecode}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="failuretime != null and failuretime!= '' "><![CDATA[ and failuretime=#{failuretime}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="issendsms != null and issendsms!= '' "><![CDATA[ and issendsms=#{issendsms}]]></if>
+	</where>
+	</select>
+	<!--邀请码信息表invite_code 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.invite_code(
+			serialno,customerno,orgcustomerno,certificatetype,certificateno,
+			ismember,invitecode,status,failuretime,insertdate,
+			inserttime,updatedate,updatetime,issendsms
+		) values(
+			#{serialno, jdbcType=VARCHAR},#{customerno, jdbcType=VARCHAR},#{orgcustomerno, jdbcType=VARCHAR},#{certificatetype, jdbcType=VARCHAR},#{certificateno, jdbcType=VARCHAR},
+			#{ismember, jdbcType=VARCHAR},#{invitecode, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{failuretime, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
+			#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{issendsms, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--邀请码信息表invite_code 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.invite_code(
+			serialno,customerno,orgcustomerno,certificatetype,certificateno,
+			ismember,invitecode,status,failuretime,insertdate,
+			inserttime,updatedate,updatetime,issendsms
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.serialno, jdbcType=VARCHAR},#{item.customerno, jdbcType=VARCHAR},#{item.orgcustomerno, jdbcType=VARCHAR},#{item.certificatetype, jdbcType=VARCHAR},#{item.certificateno, jdbcType=VARCHAR},
+				#{item.ismember, jdbcType=VARCHAR},#{item.invitecode, jdbcType=VARCHAR},#{item.status, jdbcType=VARCHAR},#{item.failuretime, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},
+				#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},#{item.issendsms, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--邀请码信息表invite_code 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
+	<![CDATA[
+		update cas.invite_code
+	]]>
+	<set>
+		 <if test="serialno != null and serialno != '' "><![CDATA[serialno=#{serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="orgcustomerno != null and orgcustomerno != '' "><![CDATA[orgcustomerno=#{orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="certificatetype != null and certificatetype != '' "><![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null and certificateno != '' "><![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="ismember != null and ismember != '' "><![CDATA[ismember=#{ismember, jdbcType=VARCHAR},]]></if>
+		 <if test="invitecode != null and invitecode != '' "><![CDATA[invitecode=#{invitecode, jdbcType=VARCHAR},]]></if>
+		 <if test="status != null and status != '' "><![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+		 <if test="failuretime != null and failuretime != '' "><![CDATA[failuretime=#{failuretime, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="issendsms != null and issendsms != '' "><![CDATA[issendsms=#{issendsms, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where serialno = #{serialno}
+	]]>
+	</update>
+	<!--邀请码信息表invite_code 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.invite_code
+		<set>
+		 <if test="item.serialno != null and item.serialno != '' "><![CDATA[serialno=#{item.serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.orgcustomerno != null and item.orgcustomerno != '' "><![CDATA[orgcustomerno=#{item.orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificatetype != null and item.certificatetype != '' "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null and item.certificateno != '' "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.ismember != null and item.ismember != '' "><![CDATA[ismember=#{item.ismember, jdbcType=VARCHAR},]]></if>
+		 <if test="item.invitecode != null and item.invitecode != '' "><![CDATA[invitecode=#{item.invitecode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.status != null and item.status != '' "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+		 <if test="item.failuretime != null and item.failuretime != '' "><![CDATA[failuretime=#{item.failuretime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.issendsms != null and item.issendsms != '' "><![CDATA[issendsms=#{item.issendsms, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</update>
+	<!--邀请码信息表invite_code 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
+	<![CDATA[
+		update cas.invite_code
+	]]>
+	<set>
+		 <if test="serialno != null "> <![CDATA[serialno=#{serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="orgcustomerno != null "> <![CDATA[orgcustomerno=#{orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="certificatetype != null "> <![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null "> <![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="ismember != null "> <![CDATA[ismember=#{ismember, jdbcType=VARCHAR},]]></if>
+		 <if test="invitecode != null "> <![CDATA[invitecode=#{invitecode, jdbcType=VARCHAR},]]></if>
+		 <if test="status != null "> <![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+		 <if test="failuretime != null "> <![CDATA[failuretime=#{failuretime, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="issendsms != null "> <![CDATA[issendsms=#{issendsms, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where serialno = #{serialno}
+	]]>
+	</update>
+	<!--邀请码信息表invite_code 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.invite_code
+		<set>
+		 <if test="item.serialno != null "><![CDATA[serialno=#{item.serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.orgcustomerno != null "><![CDATA[orgcustomerno=#{item.orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificatetype != null "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.ismember != null "><![CDATA[ismember=#{item.ismember, jdbcType=VARCHAR},]]></if>
+		 <if test="item.invitecode != null "><![CDATA[invitecode=#{item.invitecode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.status != null "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+		 <if test="item.failuretime != null "><![CDATA[failuretime=#{item.failuretime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.issendsms != null "><![CDATA[issendsms=#{item.issendsms, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</update>
+	<!--邀请码信息表invite_code 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.InviteCodeKey">
+	<![CDATA[
+		delete from cas.invite_code
+		where
+			serialno = #{serialno}
+	]]>
+	</delete>
+	<!--邀请码信息表invite_code 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.InviteCodeKey">
+		delete from cas.invite_code where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

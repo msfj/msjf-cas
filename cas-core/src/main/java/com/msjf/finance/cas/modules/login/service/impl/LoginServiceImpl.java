@@ -1,23 +1,26 @@
 package com.msjf.finance.cas.modules.login.service.impl;
 
+import com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity;
+import com.msjf.finance.cas.common.dao.entity.CustEntity;
+import com.msjf.finance.cas.common.dao.entity.PersonInfoEntity;
+import com.msjf.finance.cas.common.dao.key.AusAuthoneKey;
+import com.msjf.finance.cas.common.dao.key.PersonInfoKey;
+import com.msjf.finance.cas.common.dao.persistence.CustDao;
+import com.msjf.finance.cas.common.dao.persistence.PersonInfoDao;
+import com.msjf.finance.cas.common.utils.DateUtils;
+import com.msjf.finance.cas.common.utils.MacroDefine;
+import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.facade.login.domain.LoginDomain;
 import com.msjf.finance.cas.modules.Account.Account;
 import com.msjf.finance.cas.modules.Account.AccountDao;
-import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
-import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneEntity;
-import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneKey;
+import com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao;
 import com.msjf.finance.cas.modules.login.emun.LoginEnum;
-import com.msjf.finance.cas.common.dao.OrganAppendDao;
-import com.msjf.finance.cas.common.entity.OrganAppendEntityWithBLOBs;
+import com.msjf.finance.cas.common.dao.persistence.OrganAppendDao;
+import com.msjf.finance.cas.common.dao.entity.OrganAppendEntityWithBLOBs;
 import com.msjf.finance.cas.modules.login.service.LoginService;
-import com.msjf.finance.cas.common.dao.OrganInfoDao;
-import com.msjf.finance.cas.common.entity.OrganInfoEntity;
-import com.msjf.finance.cas.common.entity.OrganInfoKey;
-import com.msjf.finance.cas.modules.person.dao.PersonInfoDao;
-import com.msjf.finance.cas.modules.person.entity.PersonInfoEntity;
-import com.msjf.finance.cas.modules.person.entity.PersonInfoKey;
-import com.msjf.finance.cas.modules.register.dao.CustDao;
-import com.msjf.finance.cas.modules.register.entity.CustEntity;
+import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
+import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.dao.key.OrganInfoKey;
 import com.msjf.finance.cas.modules.util.*;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.context.annotation.Scope;
@@ -361,8 +364,8 @@ public class LoginServiceImpl extends Account implements LoginService {
             ausAuthoneEntity.setFailcount(0);
             ausAuthoneEntity.setLoginsource(loginsource);
             ausAuthoneEntity.setOnlinestatus("Y");//N-不在线 Y-在线
-            ausAuthoneEntity.setUpdatedate(DateUtil.getUserDate(CommonUtil.DATE_FMT_DATE));
-            ausAuthoneEntity.setUpdatetime(DateUtil.getUserDate(CommonUtil.DATE_FMT_TIME));
+            ausAuthoneEntity.setUpdatedate(DateUtils.getUserDate(CommonUtil.DATE_FMT_DATE));
+            ausAuthoneEntity.setUpdatetime(DateUtils.getUserDate(CommonUtil.DATE_FMT_TIME));
             ausAuthoneDao.update(ausAuthoneEntity);
         } catch (Exception e) {
 //            LogUtil.error(e);
@@ -382,8 +385,8 @@ public class LoginServiceImpl extends Account implements LoginService {
         //更新错误次数 和 账户状态
         AusAuthoneEntity ausAuthoneEntity = new AusAuthoneEntity();
         ausAuthoneEntity.setCustomerno(customerno);
-        ausAuthoneEntity.setUpdatedate(DateUtil.getUserDate(CommonUtil.DATE_FMT_DATE));
-        ausAuthoneEntity.setUpdatetime(DateUtil.getUserDate(CommonUtil.DATE_FMT_TIME));
+        ausAuthoneEntity.setUpdatedate(DateUtils.getUserDate(CommonUtil.DATE_FMT_DATE));
+        ausAuthoneEntity.setUpdatetime(DateUtils.getUserDate(CommonUtil.DATE_FMT_TIME));
         try {
             if (failCount + 1 >= sysFailCount) {
                 //错误次数加1 状态更新为锁定
@@ -391,8 +394,8 @@ public class LoginServiceImpl extends Account implements LoginService {
                 CustEntity c = new CustEntity();
                 c.setCustomerno(customerno);
                 c.setStatus(MacroDefine.CUST_STATUS.LOCK.getValue());
-                c.setUpdatedate(DateUtil.getUserDate(CommonUtil.DATE_FMT_DATE));
-                c.setUpdatetime(DateUtil.getUserDate(CommonUtil.DATE_FMT_TIME));
+                c.setUpdatedate(DateUtils.getUserDate(CommonUtil.DATE_FMT_DATE));
+                c.setUpdatetime(DateUtils.getUserDate(CommonUtil.DATE_FMT_TIME));
                 custDao.update(c);
             } else {
                 ausAuthoneEntity.setFailcount(failCount + 1);
@@ -451,7 +454,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         } else {
             OrganInfoKey organInfoKey=new OrganInfoKey();
             organInfoKey.setCustomerno(customerno);
-            OrganInfoEntity c = organInfoDao.getOrganInfoByKey(organInfoKey);
+            OrganInfoEntity c = organInfoDao.getEntityKey(organInfoKey);
             if (ObjectUtils.isEmpty(c)) {
                 rs.fail(LoginEnum.MSG_USER_NULL);
                 throw new RuntimeException(rs.getMsg());
@@ -460,7 +463,8 @@ public class LoginServiceImpl extends Account implements LoginService {
             organclass = c.getOrganclass();
             membername = c.getMembername();
             //6类企业的基本信息差异字段 保存在 企业附属信息表
-            OrganAppendEntityWithBLOBs entity = organAppendMapper.selectByPrimaryKey(customerno);
+            //todo 此处需修改
+            OrganAppendEntityWithBLOBs entity = null;//organAppendMapper.selectByPrimaryKey(customerno);
             if (StringUtils.isEmpty(entity)) {
                 return false;
             }

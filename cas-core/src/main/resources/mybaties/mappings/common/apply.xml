@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.ApplyDao" >
+	<!--申请流水表apply 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.ApplyKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			businesscode "businesscode",
+			content "content",
+			status "status",
+			remark "remark",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.apply
+		where 
+			serialno = #{serialno}
+		for update
+	]]>
+	</select>
+	<!--申请流水表apply 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.ApplyKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			businesscode "businesscode",
+			content "content",
+			status "status",
+			remark "remark",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.apply
+		where 
+			serialno = #{serialno}
+	]]>
+	</select>
+	<!--申请流水表apply 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.ApplyKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			businesscode "businesscode",
+			content "content",
+			status "status",
+			remark "remark",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.apply
+		where 
+			serialno = #{serialno}
+	]]>
+	</select>
+	<!--申请流水表apply 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			businesscode "businesscode",
+			content "content",
+			status "status",
+			remark "remark",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.apply
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="businesscode != null and businesscode!= '' "><![CDATA[ and businesscode=#{businesscode}]]></if>
+		<if test="content != null and content!= '' "><![CDATA[ and content=#{content}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--申请流水表apply 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			businesscode "businesscode",
+			content "content",
+			status "status",
+			remark "remark",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.apply
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="businesscode != null and businesscode!= '' "><![CDATA[ and businesscode=#{businesscode}]]></if>
+		<if test="content != null and content!= '' "><![CDATA[ and content=#{content}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--申请流水表apply 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			businesscode "businesscode",
+			content "content",
+			status "status",
+			remark "remark",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.apply
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="businesscode != null and businesscode!= '' "><![CDATA[ and businesscode=#{businesscode}]]></if>
+		<if test="content != null and content!= '' "><![CDATA[ and content=#{content}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--申请流水表apply 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.apply(
+			serialno,customerno,businesscode,content,status,
+			remark,insertdate,inserttime,updatedate,updatetime
+		) values(
+			#{serialno, jdbcType=VARCHAR},#{customerno, jdbcType=VARCHAR},#{businesscode, jdbcType=VARCHAR},#{content, jdbcType=CLOB},#{status, jdbcType=VARCHAR},
+			#{remark, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--申请流水表apply 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.apply(
+			serialno,customerno,businesscode,content,status,
+			remark,insertdate,inserttime,updatedate,updatetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.serialno, jdbcType=VARCHAR},#{item.customerno, jdbcType=VARCHAR},#{item.businesscode, jdbcType=VARCHAR},#{item.content, jdbcType=CLOB},#{item.status, jdbcType=VARCHAR},
+				#{item.remark, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--申请流水表apply 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
+	<![CDATA[
+		update cas.apply
+	]]>
+	<set>
+		 <if test="serialno != null and serialno != '' "><![CDATA[serialno=#{serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="businesscode != null and businesscode != '' "><![CDATA[businesscode=#{businesscode, jdbcType=VARCHAR},]]></if>
+		 <if test="content != null and content != '' "><![CDATA[content=#{content, jdbcType=CLOB},]]></if>
+		 <if test="status != null and status != '' "><![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+		 <if test="remark != null and remark != '' "><![CDATA[remark=#{remark, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where serialno = #{serialno}
+	]]>
+	</update>
+	<!--申请流水表apply 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.apply
+		<set>
+		 <if test="item.serialno != null and item.serialno != '' "><![CDATA[serialno=#{item.serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businesscode != null and item.businesscode != '' "><![CDATA[businesscode=#{item.businesscode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.content != null and item.content != '' "><![CDATA[content=#{item.content, jdbcType=CLOB},]]></if>
+		 <if test="item.status != null and item.status != '' "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+		 <if test="item.remark != null and item.remark != '' "><![CDATA[remark=#{item.remark, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</update>
+	<!--申请流水表apply 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
+	<![CDATA[
+		update cas.apply
+	]]>
+	<set>
+		 <if test="serialno != null "> <![CDATA[serialno=#{serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="businesscode != null "> <![CDATA[businesscode=#{businesscode, jdbcType=VARCHAR},]]></if>
+		 <if test="content != null "> <![CDATA[content=#{content, jdbcType=CLOB},]]></if>
+		 <if test="status != null "> <![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+		 <if test="remark != null "> <![CDATA[remark=#{remark, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where serialno = #{serialno}
+	]]>
+	</update>
+	<!--申请流水表apply 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.apply
+		<set>
+		 <if test="item.serialno != null "><![CDATA[serialno=#{item.serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businesscode != null "><![CDATA[businesscode=#{item.businesscode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.content != null "><![CDATA[content=#{item.content, jdbcType=CLOB},]]></if>
+		 <if test="item.status != null "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+		 <if test="item.remark != null "><![CDATA[remark=#{item.remark, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</update>
+	<!--申请流水表apply 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.ApplyKey">
+	<![CDATA[
+		delete from cas.apply
+		where
+			serialno = #{serialno}
+	]]>
+	</delete>
+	<!--申请流水表apply 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.ApplyKey">
+		delete from cas.apply where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

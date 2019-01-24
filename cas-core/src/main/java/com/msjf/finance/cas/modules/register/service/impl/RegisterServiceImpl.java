@@ -1,20 +1,21 @@
 package com.msjf.finance.cas.modules.register.service.impl;
 
+import com.msjf.finance.cas.common.dao.entity.CustEntity;
+import com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity;
+import com.msjf.finance.cas.common.dao.persistence.CasRegisterInfoDao;
+import com.msjf.finance.cas.common.dao.persistence.CustDao;
+import com.msjf.finance.cas.common.dao.persistence.PersonInfoDao;
 import com.msjf.finance.cas.facade.register.domain.RegisterDomain;
-import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
-import com.msjf.finance.cas.common.dao.OrganInfoChangeDao;
-import com.msjf.finance.cas.common.dao.OrganInfoDao;
-import com.msjf.finance.cas.common.dao.OrganRollinDao;
-import com.msjf.finance.cas.common.entity.OrganInfoEntity;
-import com.msjf.finance.cas.common.entity.OrganRollinEntity;
-import com.msjf.finance.cas.modules.person.dao.PersonInfoDao;
-import com.msjf.finance.cas.modules.register.dao.CasRegisterDao;
-import com.msjf.finance.cas.modules.register.dao.CustDao;
-import com.msjf.finance.cas.modules.register.entity.CustEntity;
+import com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao;
+import com.msjf.finance.cas.common.dao.persistence.OrganInfoChangeDao;
+import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
+import com.msjf.finance.cas.common.dao.persistence.OrganRollinDao;
+import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.dao.entity.OrganRollinEntity;
 import com.msjf.finance.cas.modules.register.service.RegisterService;
 import com.msjf.finance.cas.modules.util.CommonUtil;
-import com.msjf.finance.cas.modules.util.DateUtil;
-import com.msjf.finance.cas.modules.util.StringUtil;
+import com.msjf.finance.cas.common.utils.DateUtils;
+import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
@@ -55,7 +56,7 @@ public class RegisterServiceImpl implements RegisterService {
 
 
     @Resource
-    CasRegisterDao casRegisterDao;
+    CasRegisterInfoDao casRegisterDao;
 
 
     @Resource
@@ -473,17 +474,20 @@ public class RegisterServiceImpl implements RegisterService {
         OrganInfoEntity c = new OrganInfoEntity();
         c.setMembername(membername);
         c.setOrganstatus("");
-        List<OrganInfoEntity> clist = organInfoDao.getOrganInfo(c);
+        List<OrganInfoEntity> clist = organInfoDao.getListEntity(c);
         if(!ObjectUtils.isEmpty(clist)){
             rs.fail("0","企业名称已存在");//企业名称已存在
             return false;
         }
         //企业变更记录表最新插入的一条变更记录 检查
-        HashMap<String, Object> amap = new HashMap<String, Object>();
-        amap.put("membername", membername);
-        List<HashMap<String, Object>> ls;
+        OrganInfoChangeEntity amap = new OrganInfoChangeEntity();
+        //HashMap<String, Object> amap = new HashMap<String, Object>();
+        //amap.put("membername", membername);
+        amap.setMembername(membername);
+
+        List<OrganInfoChangeEntity> ls;
         try {
-            ls = organInfoChangeDao.checkExistCompanynameInChange(amap);
+            ls = organInfoChangeDao.getListEntity(amap);
         }catch (Exception e){
             rs.fail("0","查询失败");//查询失败
             return false;
@@ -495,7 +499,7 @@ public class RegisterServiceImpl implements RegisterService {
         //企业迁入表检查
         OrganRollinEntity cor = new OrganRollinEntity();
         cor.setCompanyname(companyname);
-        List<OrganRollinEntity> dlist =  organRollinDao.getOrganRollin(cor);
+        List<OrganRollinEntity> dlist =  organRollinDao.getListEntity(cor);
         if(!ObjectUtils.isEmpty(dlist)){
             rs.fail("0","企业名称已存在");
             return false;
@@ -509,10 +513,10 @@ public class RegisterServiceImpl implements RegisterService {
     private void addCust(Map<String, Object> mapParam){
         try {
             mapParam.put("customerno",mapParam.get("id"));
-            mapParam.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATE));
-            mapParam.put("inserttime",DateUtil.getUserDate(DATE_FMT_TIME));
-            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATE));
-            mapParam.put("updatetime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("insertdate",DateUtils.getUserDate(DATE_FMT_DATE));
+            mapParam.put("inserttime",DateUtils.getUserDate(DATE_FMT_TIME));
+            mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
+            mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
             mapParam.put("status","0");
             custDao.insCust(mapParam);
         } catch (Exception e) {
@@ -528,10 +532,10 @@ public class RegisterServiceImpl implements RegisterService {
         try {
 
             mapParam.put("customerno",mapParam.get("id"));
-            mapParam.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATE));
-            mapParam.put("inserttime",DateUtil.getUserDate(DATE_FMT_TIME));
-            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATE));
-            mapParam.put("updatetime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("insertdate",DateUtils.getUserDate(DATE_FMT_DATE));
+            mapParam.put("inserttime",DateUtils.getUserDate(DATE_FMT_TIME));
+            mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
+            mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
             personInfoDao.insPersonInfo(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
@@ -572,7 +576,7 @@ public class RegisterServiceImpl implements RegisterService {
             }else {
                 entity.put("mobile",mobile);
             }
-            entity.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATETIME));
+            entity.put("insertdate",DateUtils.getUserDate(DATE_FMT_DATETIME));
             casRegisterDao.insCasRegister(entity);
         } catch (Exception e) {
             e.printStackTrace();
@@ -587,7 +591,7 @@ public class RegisterServiceImpl implements RegisterService {
      */
     private void updCasRegisterInfo(Map<String, Object> mapParam){
         try {
-            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATETIME));
+            mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATETIME));
             casRegisterDao.updCasRegister(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
@@ -601,13 +605,14 @@ public class RegisterServiceImpl implements RegisterService {
     private void addOrganInfo(Map<String, Object> mapParam){
         try {
             mapParam.put("customerno",mapParam.get("id"));
-            mapParam.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATE));
-            mapParam.put("inserttime",DateUtil.getUserDate(DATE_FMT_TIME));
-            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATE));
-            mapParam.put("updatetime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("insertdate",DateUtils.getUserDate(DATE_FMT_DATE));
+            mapParam.put("inserttime",DateUtils.getUserDate(DATE_FMT_TIME));
+            mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
+            mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
             mapParam.put("organstatus","1");
             mapParam.put("version",1);
-            organInfoDao.insOrganInfo(mapParam);
+            //todo 修改实体写入
+            //organInfoDao.insOrganInfo(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
             throw  new RuntimeException("注册失败");
@@ -620,10 +625,10 @@ public class RegisterServiceImpl implements RegisterService {
     private  void addAuthone(Map<String, Object> mapParam){
         try {
             mapParam.put("customerno",mapParam.get("id"));
-            mapParam.put("insertdate",DateUtil.getUserDate(DATE_FMT_DATE));
-            mapParam.put("inserttime",DateUtil.getUserDate(DATE_FMT_TIME));
-            mapParam.put("updatedate",DateUtil.getUserDate(DATE_FMT_DATE));
-            mapParam.put("updatetime",DateUtil.getUserDate(DATE_FMT_TIME));
+            mapParam.put("insertdate",DateUtils.getUserDate(DATE_FMT_DATE));
+            mapParam.put("inserttime",DateUtils.getUserDate(DATE_FMT_TIME));
+            mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
+            mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
             mapParam.put("password",CommonUtil.HmacSHA1Encrypt(password,(String)mapParam.get("id")));
             mapParam.put("failcount",0);
             mapParam.put("registersource",registersource);

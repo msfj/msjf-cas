@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganAppendDao" >
+	<!--企业附属信息表organ_append 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			isfiling "isfiling",
+			registerno "registerno",
+			employeenum "employeenum",
+			caremarkettype "caremarkettype",
+			projectphase "projectphase",
+			profittype "profittype",
+			isfundfiling "isfundfiling",
+			fundfilingno "fundfilingno",
+			fundmanagername "fundmanagername",
+			fundmanagerno "fundmanagerno",
+			fundmanagerintro "fundmanagerintro",
+			fundprojecttrade "fundprojecttrade",
+			fundprojectphase "fundprojectphase",
+			belonginvest "belonginvest",
+			annualrate "annualrate",
+			raisetype "raisetype",
+			invertcount "invertcount",
+			fundprojectintro "fundprojectintro",
+			companytrade "companytrade",
+			companyname "companyname",
+			companyinfo "companyinfo",
+			protrade "protrade",
+			prointro "prointro",
+			investnum "investnum",
+			projecttrade "projecttrade",
+			projectintro "projectintro",
+			blocname "blocname",
+			classify "classify",
+			businesstype "businesstype",
+			objecttype "objecttype",
+			specificbusinesstype "specificbusinesstype",
+			profitmodel "profitmodel",
+			capitalsource "capitalsource",
+			mainworkexp "mainworkexp",
+			othersintro "othersintro",
+			partnerintro "partnerintro",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
+		where 
+			customerno = #{customerno}
+		for update
+	]]>
+	</select>
+	<!--企业附属信息表organ_append 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			isfiling "isfiling",
+			registerno "registerno",
+			employeenum "employeenum",
+			caremarkettype "caremarkettype",
+			projectphase "projectphase",
+			profittype "profittype",
+			isfundfiling "isfundfiling",
+			fundfilingno "fundfilingno",
+			fundmanagername "fundmanagername",
+			fundmanagerno "fundmanagerno",
+			fundmanagerintro "fundmanagerintro",
+			fundprojecttrade "fundprojecttrade",
+			fundprojectphase "fundprojectphase",
+			belonginvest "belonginvest",
+			annualrate "annualrate",
+			raisetype "raisetype",
+			invertcount "invertcount",
+			fundprojectintro "fundprojectintro",
+			companytrade "companytrade",
+			companyname "companyname",
+			companyinfo "companyinfo",
+			protrade "protrade",
+			prointro "prointro",
+			investnum "investnum",
+			projecttrade "projecttrade",
+			projectintro "projectintro",
+			blocname "blocname",
+			classify "classify",
+			businesstype "businesstype",
+			objecttype "objecttype",
+			specificbusinesstype "specificbusinesstype",
+			profitmodel "profitmodel",
+			capitalsource "capitalsource",
+			mainworkexp "mainworkexp",
+			othersintro "othersintro",
+			partnerintro "partnerintro",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--企业附属信息表organ_append 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			isfiling "isfiling",
+			registerno "registerno",
+			employeenum "employeenum",
+			caremarkettype "caremarkettype",
+			projectphase "projectphase",
+			profittype "profittype",
+			isfundfiling "isfundfiling",
+			fundfilingno "fundfilingno",
+			fundmanagername "fundmanagername",
+			fundmanagerno "fundmanagerno",
+			fundmanagerintro "fundmanagerintro",
+			fundprojecttrade "fundprojecttrade",
+			fundprojectphase "fundprojectphase",
+			belonginvest "belonginvest",
+			annualrate "annualrate",
+			raisetype "raisetype",
+			invertcount "invertcount",
+			fundprojectintro "fundprojectintro",
+			companytrade "companytrade",
+			companyname "companyname",
+			companyinfo "companyinfo",
+			protrade "protrade",
+			prointro "prointro",
+			investnum "investnum",
+			projecttrade "projecttrade",
+			projectintro "projectintro",
+			blocname "blocname",
+			classify "classify",
+			businesstype "businesstype",
+			objecttype "objecttype",
+			specificbusinesstype "specificbusinesstype",
+			profitmodel "profitmodel",
+			capitalsource "capitalsource",
+			mainworkexp "mainworkexp",
+			othersintro "othersintro",
+			partnerintro "partnerintro",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--企业附属信息表organ_append 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			isfiling "isfiling",
+			registerno "registerno",
+			employeenum "employeenum",
+			caremarkettype "caremarkettype",
+			projectphase "projectphase",
+			profittype "profittype",
+			isfundfiling "isfundfiling",
+			fundfilingno "fundfilingno",
+			fundmanagername "fundmanagername",
+			fundmanagerno "fundmanagerno",
+			fundmanagerintro "fundmanagerintro",
+			fundprojecttrade "fundprojecttrade",
+			fundprojectphase "fundprojectphase",
+			belonginvest "belonginvest",
+			annualrate "annualrate",
+			raisetype "raisetype",
+			invertcount "invertcount",
+			fundprojectintro "fundprojectintro",
+			companytrade "companytrade",
+			companyname "companyname",
+			companyinfo "companyinfo",
+			protrade "protrade",
+			prointro "prointro",
+			investnum "investnum",
+			projecttrade "projecttrade",
+			projectintro "projectintro",
+			blocname "blocname",
+			classify "classify",
+			businesstype "businesstype",
+			objecttype "objecttype",
+			specificbusinesstype "specificbusinesstype",
+			profitmodel "profitmodel",
+			capitalsource "capitalsource",
+			mainworkexp "mainworkexp",
+			othersintro "othersintro",
+			partnerintro "partnerintro",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="isfiling != null and isfiling!= '' "><![CDATA[ and isfiling=#{isfiling}]]></if>
+		<if test="registerno != null and registerno!= '' "><![CDATA[ and registerno=#{registerno}]]></if>
+		<if test="employeenum != null and employeenum!= '' "><![CDATA[ and employeenum=#{employeenum}]]></if>
+		<if test="caremarkettype != null and caremarkettype!= '' "><![CDATA[ and caremarkettype=#{caremarkettype}]]></if>
+		<if test="projectphase != null and projectphase!= '' "><![CDATA[ and projectphase=#{projectphase}]]></if>
+		<if test="profittype != null and profittype!= '' "><![CDATA[ and profittype=#{profittype}]]></if>
+		<if test="isfundfiling != null and isfundfiling!= '' "><![CDATA[ and isfundfiling=#{isfundfiling}]]></if>
+		<if test="fundfilingno != null and fundfilingno!= '' "><![CDATA[ and fundfilingno=#{fundfilingno}]]></if>
+		<if test="fundmanagername != null and fundmanagername!= '' "><![CDATA[ and fundmanagername=#{fundmanagername}]]></if>
+		<if test="fundmanagerno != null and fundmanagerno!= '' "><![CDATA[ and fundmanagerno=#{fundmanagerno}]]></if>
+		<if test="fundmanagerintro != null and fundmanagerintro!= '' "><![CDATA[ and fundmanagerintro=#{fundmanagerintro}]]></if>
+		<if test="fundprojecttrade != null and fundprojecttrade!= '' "><![CDATA[ and fundprojecttrade=#{fundprojecttrade}]]></if>
+		<if test="fundprojectphase != null and fundprojectphase!= '' "><![CDATA[ and fundprojectphase=#{fundprojectphase}]]></if>
+		<if test="belonginvest != null and belonginvest!= '' "><![CDATA[ and belonginvest=#{belonginvest}]]></if>
+		<if test="annualrate != null and annualrate!= '' "><![CDATA[ and annualrate=#{annualrate}]]></if>
+		<if test="raisetype != null and raisetype!= '' "><![CDATA[ and raisetype=#{raisetype}]]></if>
+		<if test="invertcount != null and invertcount!= '' "><![CDATA[ and invertcount=#{invertcount}]]></if>
+		<if test="fundprojectintro != null and fundprojectintro!= '' "><![CDATA[ and fundprojectintro=#{fundprojectintro}]]></if>
+		<if test="companytrade != null and companytrade!= '' "><![CDATA[ and companytrade=#{companytrade}]]></if>
+		<if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+		<if test="companyinfo != null and companyinfo!= '' "><![CDATA[ and companyinfo=#{companyinfo}]]></if>
+		<if test="protrade != null and protrade!= '' "><![CDATA[ and protrade=#{protrade}]]></if>
+		<if test="prointro != null and prointro!= '' "><![CDATA[ and prointro=#{prointro}]]></if>
+		<if test="investnum != null and investnum!= '' "><![CDATA[ and investnum=#{investnum}]]></if>
+		<if test="projecttrade != null and projecttrade!= '' "><![CDATA[ and projecttrade=#{projecttrade}]]></if>
+		<if test="projectintro != null and projectintro!= '' "><![CDATA[ and projectintro=#{projectintro}]]></if>
+		<if test="blocname != null and blocname!= '' "><![CDATA[ and blocname=#{blocname}]]></if>
+		<if test="classify != null and classify!= '' "><![CDATA[ and classify=#{classify}]]></if>
+		<if test="businesstype != null and businesstype!= '' "><![CDATA[ and businesstype=#{businesstype}]]></if>
+		<if test="objecttype != null and objecttype!= '' "><![CDATA[ and objecttype=#{objecttype}]]></if>
+		<if test="specificbusinesstype != null and specificbusinesstype!= '' "><![CDATA[ and specificbusinesstype=#{specificbusinesstype}]]></if>
+		<if test="profitmodel != null and profitmodel!= '' "><![CDATA[ and profitmodel=#{profitmodel}]]></if>
+		<if test="capitalsource != null and capitalsource!= '' "><![CDATA[ and capitalsource=#{capitalsource}]]></if>
+		<if test="mainworkexp != null and mainworkexp!= '' "><![CDATA[ and mainworkexp=#{mainworkexp}]]></if>
+		<if test="othersintro != null and othersintro!= '' "><![CDATA[ and othersintro=#{othersintro}]]></if>
+		<if test="partnerintro != null and partnerintro!= '' "><![CDATA[ and partnerintro=#{partnerintro}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--企业附属信息表organ_append 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			isfiling "isfiling",
+			registerno "registerno",
+			employeenum "employeenum",
+			caremarkettype "caremarkettype",
+			projectphase "projectphase",
+			profittype "profittype",
+			isfundfiling "isfundfiling",
+			fundfilingno "fundfilingno",
+			fundmanagername "fundmanagername",
+			fundmanagerno "fundmanagerno",
+			fundmanagerintro "fundmanagerintro",
+			fundprojecttrade "fundprojecttrade",
+			fundprojectphase "fundprojectphase",
+			belonginvest "belonginvest",
+			annualrate "annualrate",
+			raisetype "raisetype",
+			invertcount "invertcount",
+			fundprojectintro "fundprojectintro",
+			companytrade "companytrade",
+			companyname "companyname",
+			companyinfo "companyinfo",
+			protrade "protrade",
+			prointro "prointro",
+			investnum "investnum",
+			projecttrade "projecttrade",
+			projectintro "projectintro",
+			blocname "blocname",
+			classify "classify",
+			businesstype "businesstype",
+			objecttype "objecttype",
+			specificbusinesstype "specificbusinesstype",
+			profitmodel "profitmodel",
+			capitalsource "capitalsource",
+			mainworkexp "mainworkexp",
+			othersintro "othersintro",
+			partnerintro "partnerintro",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="isfiling != null and isfiling!= '' "><![CDATA[ and isfiling=#{isfiling}]]></if>
+		<if test="registerno != null and registerno!= '' "><![CDATA[ and registerno=#{registerno}]]></if>
+		<if test="employeenum != null and employeenum!= '' "><![CDATA[ and employeenum=#{employeenum}]]></if>
+		<if test="caremarkettype != null and caremarkettype!= '' "><![CDATA[ and caremarkettype=#{caremarkettype}]]></if>
+		<if test="projectphase != null and projectphase!= '' "><![CDATA[ and projectphase=#{projectphase}]]></if>
+		<if test="profittype != null and profittype!= '' "><![CDATA[ and profittype=#{profittype}]]></if>
+		<if test="isfundfiling != null and isfundfiling!= '' "><![CDATA[ and isfundfiling=#{isfundfiling}]]></if>
+		<if test="fundfilingno != null and fundfilingno!= '' "><![CDATA[ and fundfilingno=#{fundfilingno}]]></if>
+		<if test="fundmanagername != null and fundmanagername!= '' "><![CDATA[ and fundmanagername=#{fundmanagername}]]></if>
+		<if test="fundmanagerno != null and fundmanagerno!= '' "><![CDATA[ and fundmanagerno=#{fundmanagerno}]]></if>
+		<if test="fundmanagerintro != null and fundmanagerintro!= '' "><![CDATA[ and fundmanagerintro=#{fundmanagerintro}]]></if>
+		<if test="fundprojecttrade != null and fundprojecttrade!= '' "><![CDATA[ and fundprojecttrade=#{fundprojecttrade}]]></if>
+		<if test="fundprojectphase != null and fundprojectphase!= '' "><![CDATA[ and fundprojectphase=#{fundprojectphase}]]></if>
+		<if test="belonginvest != null and belonginvest!= '' "><![CDATA[ and belonginvest=#{belonginvest}]]></if>
+		<if test="annualrate != null and annualrate!= '' "><![CDATA[ and annualrate=#{annualrate}]]></if>
+		<if test="raisetype != null and raisetype!= '' "><![CDATA[ and raisetype=#{raisetype}]]></if>
+		<if test="invertcount != null and invertcount!= '' "><![CDATA[ and invertcount=#{invertcount}]]></if>
+		<if test="fundprojectintro != null and fundprojectintro!= '' "><![CDATA[ and fundprojectintro=#{fundprojectintro}]]></if>
+		<if test="companytrade != null and companytrade!= '' "><![CDATA[ and companytrade=#{companytrade}]]></if>
+		<if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+		<if test="companyinfo != null and companyinfo!= '' "><![CDATA[ and companyinfo=#{companyinfo}]]></if>
+		<if test="protrade != null and protrade!= '' "><![CDATA[ and protrade=#{protrade}]]></if>
+		<if test="prointro != null and prointro!= '' "><![CDATA[ and prointro=#{prointro}]]></if>
+		<if test="investnum != null and investnum!= '' "><![CDATA[ and investnum=#{investnum}]]></if>
+		<if test="projecttrade != null and projecttrade!= '' "><![CDATA[ and projecttrade=#{projecttrade}]]></if>
+		<if test="projectintro != null and projectintro!= '' "><![CDATA[ and projectintro=#{projectintro}]]></if>
+		<if test="blocname != null and blocname!= '' "><![CDATA[ and blocname=#{blocname}]]></if>
+		<if test="classify != null and classify!= '' "><![CDATA[ and classify=#{classify}]]></if>
+		<if test="businesstype != null and businesstype!= '' "><![CDATA[ and businesstype=#{businesstype}]]></if>
+		<if test="objecttype != null and objecttype!= '' "><![CDATA[ and objecttype=#{objecttype}]]></if>
+		<if test="specificbusinesstype != null and specificbusinesstype!= '' "><![CDATA[ and specificbusinesstype=#{specificbusinesstype}]]></if>
+		<if test="profitmodel != null and profitmodel!= '' "><![CDATA[ and profitmodel=#{profitmodel}]]></if>
+		<if test="capitalsource != null and capitalsource!= '' "><![CDATA[ and capitalsource=#{capitalsource}]]></if>
+		<if test="mainworkexp != null and mainworkexp!= '' "><![CDATA[ and mainworkexp=#{mainworkexp}]]></if>
+		<if test="othersintro != null and othersintro!= '' "><![CDATA[ and othersintro=#{othersintro}]]></if>
+		<if test="partnerintro != null and partnerintro!= '' "><![CDATA[ and partnerintro=#{partnerintro}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--企业附属信息表organ_append 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			isfiling "isfiling",
+			registerno "registerno",
+			employeenum "employeenum",
+			caremarkettype "caremarkettype",
+			projectphase "projectphase",
+			profittype "profittype",
+			isfundfiling "isfundfiling",
+			fundfilingno "fundfilingno",
+			fundmanagername "fundmanagername",
+			fundmanagerno "fundmanagerno",
+			fundmanagerintro "fundmanagerintro",
+			fundprojecttrade "fundprojecttrade",
+			fundprojectphase "fundprojectphase",
+			belonginvest "belonginvest",
+			annualrate "annualrate",
+			raisetype "raisetype",
+			invertcount "invertcount",
+			fundprojectintro "fundprojectintro",
+			companytrade "companytrade",
+			companyname "companyname",
+			companyinfo "companyinfo",
+			protrade "protrade",
+			prointro "prointro",
+			investnum "investnum",
+			projecttrade "projecttrade",
+			projectintro "projectintro",
+			blocname "blocname",
+			classify "classify",
+			businesstype "businesstype",
+			objecttype "objecttype",
+			specificbusinesstype "specificbusinesstype",
+			profitmodel "profitmodel",
+			capitalsource "capitalsource",
+			mainworkexp "mainworkexp",
+			othersintro "othersintro",
+			partnerintro "partnerintro",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="isfiling != null and isfiling!= '' "><![CDATA[ and isfiling=#{isfiling}]]></if>
+		<if test="registerno != null and registerno!= '' "><![CDATA[ and registerno=#{registerno}]]></if>
+		<if test="employeenum != null and employeenum!= '' "><![CDATA[ and employeenum=#{employeenum}]]></if>
+		<if test="caremarkettype != null and caremarkettype!= '' "><![CDATA[ and caremarkettype=#{caremarkettype}]]></if>
+		<if test="projectphase != null and projectphase!= '' "><![CDATA[ and projectphase=#{projectphase}]]></if>
+		<if test="profittype != null and profittype!= '' "><![CDATA[ and profittype=#{profittype}]]></if>
+		<if test="isfundfiling != null and isfundfiling!= '' "><![CDATA[ and isfundfiling=#{isfundfiling}]]></if>
+		<if test="fundfilingno != null and fundfilingno!= '' "><![CDATA[ and fundfilingno=#{fundfilingno}]]></if>
+		<if test="fundmanagername != null and fundmanagername!= '' "><![CDATA[ and fundmanagername=#{fundmanagername}]]></if>
+		<if test="fundmanagerno != null and fundmanagerno!= '' "><![CDATA[ and fundmanagerno=#{fundmanagerno}]]></if>
+		<if test="fundmanagerintro != null and fundmanagerintro!= '' "><![CDATA[ and fundmanagerintro=#{fundmanagerintro}]]></if>
+		<if test="fundprojecttrade != null and fundprojecttrade!= '' "><![CDATA[ and fundprojecttrade=#{fundprojecttrade}]]></if>
+		<if test="fundprojectphase != null and fundprojectphase!= '' "><![CDATA[ and fundprojectphase=#{fundprojectphase}]]></if>
+		<if test="belonginvest != null and belonginvest!= '' "><![CDATA[ and belonginvest=#{belonginvest}]]></if>
+		<if test="annualrate != null and annualrate!= '' "><![CDATA[ and annualrate=#{annualrate}]]></if>
+		<if test="raisetype != null and raisetype!= '' "><![CDATA[ and raisetype=#{raisetype}]]></if>
+		<if test="invertcount != null and invertcount!= '' "><![CDATA[ and invertcount=#{invertcount}]]></if>
+		<if test="fundprojectintro != null and fundprojectintro!= '' "><![CDATA[ and fundprojectintro=#{fundprojectintro}]]></if>
+		<if test="companytrade != null and companytrade!= '' "><![CDATA[ and companytrade=#{companytrade}]]></if>
+		<if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+		<if test="companyinfo != null and companyinfo!= '' "><![CDATA[ and companyinfo=#{companyinfo}]]></if>
+		<if test="protrade != null and protrade!= '' "><![CDATA[ and protrade=#{protrade}]]></if>
+		<if test="prointro != null and prointro!= '' "><![CDATA[ and prointro=#{prointro}]]></if>
+		<if test="investnum != null and investnum!= '' "><![CDATA[ and investnum=#{investnum}]]></if>
+		<if test="projecttrade != null and projecttrade!= '' "><![CDATA[ and projecttrade=#{projecttrade}]]></if>
+		<if test="projectintro != null and projectintro!= '' "><![CDATA[ and projectintro=#{projectintro}]]></if>
+		<if test="blocname != null and blocname!= '' "><![CDATA[ and blocname=#{blocname}]]></if>
+		<if test="classify != null and classify!= '' "><![CDATA[ and classify=#{classify}]]></if>
+		<if test="businesstype != null and businesstype!= '' "><![CDATA[ and businesstype=#{businesstype}]]></if>
+		<if test="objecttype != null and objecttype!= '' "><![CDATA[ and objecttype=#{objecttype}]]></if>
+		<if test="specificbusinesstype != null and specificbusinesstype!= '' "><![CDATA[ and specificbusinesstype=#{specificbusinesstype}]]></if>
+		<if test="profitmodel != null and profitmodel!= '' "><![CDATA[ and profitmodel=#{profitmodel}]]></if>
+		<if test="capitalsource != null and capitalsource!= '' "><![CDATA[ and capitalsource=#{capitalsource}]]></if>
+		<if test="mainworkexp != null and mainworkexp!= '' "><![CDATA[ and mainworkexp=#{mainworkexp}]]></if>
+		<if test="othersintro != null and othersintro!= '' "><![CDATA[ and othersintro=#{othersintro}]]></if>
+		<if test="partnerintro != null and partnerintro!= '' "><![CDATA[ and partnerintro=#{partnerintro}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--企业附属信息表organ_append 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_append(
+			customerno,version,isfiling,registerno,employeenum,
+			caremarkettype,projectphase,profittype,isfundfiling,fundfilingno,
+			fundmanagername,fundmanagerno,fundmanagerintro,fundprojecttrade,fundprojectphase,
+			belonginvest,annualrate,raisetype,invertcount,fundprojectintro,
+			companytrade,companyname,companyinfo,protrade,prointro,
+			investnum,projecttrade,projectintro,blocname,classify,
+			businesstype,objecttype,specificbusinesstype,profitmodel,capitalsource,
+			mainworkexp,othersintro,partnerintro,insertdate,inserttime,
+			updatedate,updatetime
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{version, jdbcType=INTEGER},#{isfiling, jdbcType=VARCHAR},#{registerno, jdbcType=VARCHAR},#{employeenum, jdbcType=VARCHAR},
+			#{caremarkettype, jdbcType=VARCHAR},#{projectphase, jdbcType=VARCHAR},#{profittype, jdbcType=CLOB},#{isfundfiling, jdbcType=VARCHAR},#{fundfilingno, jdbcType=VARCHAR},
+			#{fundmanagername, jdbcType=VARCHAR},#{fundmanagerno, jdbcType=VARCHAR},#{fundmanagerintro, jdbcType=CLOB},#{fundprojecttrade, jdbcType=VARCHAR},#{fundprojectphase, jdbcType=VARCHAR},
+			#{belonginvest, jdbcType=VARCHAR},#{annualrate, jdbcType=VARCHAR},#{raisetype, jdbcType=VARCHAR},#{invertcount, jdbcType=VARCHAR},#{fundprojectintro, jdbcType=CLOB},
+			#{companytrade, jdbcType=VARCHAR},#{companyname, jdbcType=VARCHAR},#{companyinfo, jdbcType=CLOB},#{protrade, jdbcType=VARCHAR},#{prointro, jdbcType=CLOB},
+			#{investnum, jdbcType=VARCHAR},#{projecttrade, jdbcType=VARCHAR},#{projectintro, jdbcType=CLOB},#{blocname, jdbcType=VARCHAR},#{classify, jdbcType=VARCHAR},
+			#{businesstype, jdbcType=VARCHAR},#{objecttype, jdbcType=VARCHAR},#{specificbusinesstype, jdbcType=VARCHAR},#{profitmodel, jdbcType=VARCHAR},#{capitalsource, jdbcType=VARCHAR},
+			#{mainworkexp, jdbcType=CLOB},#{othersintro, jdbcType=CLOB},#{partnerintro, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--企业附属信息表organ_append 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_append(
+			customerno,version,isfiling,registerno,employeenum,
+			caremarkettype,projectphase,profittype,isfundfiling,fundfilingno,
+			fundmanagername,fundmanagerno,fundmanagerintro,fundprojecttrade,fundprojectphase,
+			belonginvest,annualrate,raisetype,invertcount,fundprojectintro,
+			companytrade,companyname,companyinfo,protrade,prointro,
+			investnum,projecttrade,projectintro,blocname,classify,
+			businesstype,objecttype,specificbusinesstype,profitmodel,capitalsource,
+			mainworkexp,othersintro,partnerintro,insertdate,inserttime,
+			updatedate,updatetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.customerno, jdbcType=VARCHAR},#{item.version, jdbcType=INTEGER},#{item.isfiling, jdbcType=VARCHAR},#{item.registerno, jdbcType=VARCHAR},#{item.employeenum, jdbcType=VARCHAR},
+				#{item.caremarkettype, jdbcType=VARCHAR},#{item.projectphase, jdbcType=VARCHAR},#{item.profittype, jdbcType=CLOB},#{item.isfundfiling, jdbcType=VARCHAR},#{item.fundfilingno, jdbcType=VARCHAR},
+				#{item.fundmanagername, jdbcType=VARCHAR},#{item.fundmanagerno, jdbcType=VARCHAR},#{item.fundmanagerintro, jdbcType=CLOB},#{item.fundprojecttrade, jdbcType=VARCHAR},#{item.fundprojectphase, jdbcType=VARCHAR},
+				#{item.belonginvest, jdbcType=VARCHAR},#{item.annualrate, jdbcType=VARCHAR},#{item.raisetype, jdbcType=VARCHAR},#{item.invertcount, jdbcType=VARCHAR},#{item.fundprojectintro, jdbcType=CLOB},
+				#{item.companytrade, jdbcType=VARCHAR},#{item.companyname, jdbcType=VARCHAR},#{item.companyinfo, jdbcType=CLOB},#{item.protrade, jdbcType=VARCHAR},#{item.prointro, jdbcType=CLOB},
+				#{item.investnum, jdbcType=VARCHAR},#{item.projecttrade, jdbcType=VARCHAR},#{item.projectintro, jdbcType=CLOB},#{item.blocname, jdbcType=VARCHAR},#{item.classify, jdbcType=VARCHAR},
+				#{item.businesstype, jdbcType=VARCHAR},#{item.objecttype, jdbcType=VARCHAR},#{item.specificbusinesstype, jdbcType=VARCHAR},#{item.profitmodel, jdbcType=VARCHAR},#{item.capitalsource, jdbcType=VARCHAR},
+				#{item.mainworkexp, jdbcType=CLOB},#{item.othersintro, jdbcType=CLOB},#{item.partnerintro, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},
+				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--企业附属信息表organ_append 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
+	<![CDATA[
+		update cas.organ_append
+	]]>
+	<set>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="version != null and version != '' or version == 0 "><![CDATA[version=#{version, jdbcType=INTEGER},]]></if>
+		 <if test="isfiling != null and isfiling != '' "><![CDATA[isfiling=#{isfiling, jdbcType=VARCHAR},]]></if>
+		 <if test="registerno != null and registerno != '' "><![CDATA[registerno=#{registerno, jdbcType=VARCHAR},]]></if>
+		 <if test="employeenum != null and employeenum != '' "><![CDATA[employeenum=#{employeenum, jdbcType=VARCHAR},]]></if>
+		 <if test="caremarkettype != null and caremarkettype != '' "><![CDATA[caremarkettype=#{caremarkettype, jdbcType=VARCHAR},]]></if>
+		 <if test="projectphase != null and projectphase != '' "><![CDATA[projectphase=#{projectphase, jdbcType=VARCHAR},]]></if>
+		 <if test="profittype != null and profittype != '' "><![CDATA[profittype=#{profittype, jdbcType=CLOB},]]></if>
+		 <if test="isfundfiling != null and isfundfiling != '' "><![CDATA[isfundfiling=#{isfundfiling, jdbcType=VARCHAR},]]></if>
+		 <if test="fundfilingno != null and fundfilingno != '' "><![CDATA[fundfilingno=#{fundfilingno, jdbcType=VARCHAR},]]></if>
+		 <if test="fundmanagername != null and fundmanagername != '' "><![CDATA[fundmanagername=#{fundmanagername, jdbcType=VARCHAR},]]></if>
+		 <if test="fundmanagerno != null and fundmanagerno != '' "><![CDATA[fundmanagerno=#{fundmanagerno, jdbcType=VARCHAR},]]></if>
+		 <if test="fundmanagerintro != null and fundmanagerintro != '' "><![CDATA[fundmanagerintro=#{fundmanagerintro, jdbcType=CLOB},]]></if>
+		 <if test="fundprojecttrade != null and fundprojecttrade != '' "><![CDATA[fundprojecttrade=#{fundprojecttrade, jdbcType=VARCHAR},]]></if>
+		 <if test="fundprojectphase != null and fundprojectphase != '' "><![CDATA[fundprojectphase=#{fundprojectphase, jdbcType=VARCHAR},]]></if>
+		 <if test="belonginvest != null and belonginvest != '' "><![CDATA[belonginvest=#{belonginvest, jdbcType=VARCHAR},]]></if>
+		 <if test="annualrate != null and annualrate != '' "><![CDATA[annualrate=#{annualrate, jdbcType=VARCHAR},]]></if>
+		 <if test="raisetype != null and raisetype != '' "><![CDATA[raisetype=#{raisetype, jdbcType=VARCHAR},]]></if>
+		 <if test="invertcount != null and invertcount != '' "><![CDATA[invertcount=#{invertcount, jdbcType=VARCHAR},]]></if>
+		 <if test="fundprojectintro != null and fundprojectintro != '' "><![CDATA[fundprojectintro=#{fundprojectintro, jdbcType=CLOB},]]></if>
+		 <if test="companytrade != null and companytrade != '' "><![CDATA[companytrade=#{companytrade, jdbcType=VARCHAR},]]></if>
+		 <if test="companyname != null and companyname != '' "><![CDATA[companyname=#{companyname, jdbcType=VARCHAR},]]></if>
+		 <if test="companyinfo != null and companyinfo != '' "><![CDATA[companyinfo=#{companyinfo, jdbcType=CLOB},]]></if>
+		 <if test="protrade != null and protrade != '' "><![CDATA[protrade=#{protrade, jdbcType=VARCHAR},]]></if>
+		 <if test="prointro != null and prointro != '' "><![CDATA[prointro=#{prointro, jdbcType=CLOB},]]></if>
+		 <if test="investnum != null and investnum != '' "><![CDATA[investnum=#{investnum, jdbcType=VARCHAR},]]></if>
+		 <if test="projecttrade != null and projecttrade != '' "><![CDATA[projecttrade=#{projecttrade, jdbcType=VARCHAR},]]></if>
+		 <if test="projectintro != null and projectintro != '' "><![CDATA[projectintro=#{projectintro, jdbcType=CLOB},]]></if>
+		 <if test="blocname != null and blocname != '' "><![CDATA[blocname=#{blocname, jdbcType=VARCHAR},]]></if>
+		 <if test="classify != null and classify != '' "><![CDATA[classify=#{classify, jdbcType=VARCHAR},]]></if>
+		 <if test="businesstype != null and businesstype != '' "><![CDATA[businesstype=#{businesstype, jdbcType=VARCHAR},]]></if>
+		 <if test="objecttype != null and objecttype != '' "><![CDATA[objecttype=#{objecttype, jdbcType=VARCHAR},]]></if>
+		 <if test="specificbusinesstype != null and specificbusinesstype != '' "><![CDATA[specificbusinesstype=#{specificbusinesstype, jdbcType=VARCHAR},]]></if>
+		 <if test="profitmodel != null and profitmodel != '' "><![CDATA[profitmodel=#{profitmodel, jdbcType=VARCHAR},]]></if>
+		 <if test="capitalsource != null and capitalsource != '' "><![CDATA[capitalsource=#{capitalsource, jdbcType=VARCHAR},]]></if>
+		 <if test="mainworkexp != null and mainworkexp != '' "><![CDATA[mainworkexp=#{mainworkexp, jdbcType=CLOB},]]></if>
+		 <if test="othersintro != null and othersintro != '' "><![CDATA[othersintro=#{othersintro, jdbcType=CLOB},]]></if>
+		 <if test="partnerintro != null and partnerintro != '' "><![CDATA[partnerintro=#{partnerintro, jdbcType=CLOB},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--企业附属信息表organ_append 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_append
+		<set>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.version != null and item.version != '' or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
+		 <if test="item.isfiling != null and item.isfiling != '' "><![CDATA[isfiling=#{item.isfiling, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registerno != null and item.registerno != '' "><![CDATA[registerno=#{item.registerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.employeenum != null and item.employeenum != '' "><![CDATA[employeenum=#{item.employeenum, jdbcType=VARCHAR},]]></if>
+		 <if test="item.caremarkettype != null and item.caremarkettype != '' "><![CDATA[caremarkettype=#{item.caremarkettype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.projectphase != null and item.projectphase != '' "><![CDATA[projectphase=#{item.projectphase, jdbcType=VARCHAR},]]></if>
+		 <if test="item.profittype != null and item.profittype != '' "><![CDATA[profittype=#{item.profittype, jdbcType=CLOB},]]></if>
+		 <if test="item.isfundfiling != null and item.isfundfiling != '' "><![CDATA[isfundfiling=#{item.isfundfiling, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundfilingno != null and item.fundfilingno != '' "><![CDATA[fundfilingno=#{item.fundfilingno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundmanagername != null and item.fundmanagername != '' "><![CDATA[fundmanagername=#{item.fundmanagername, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundmanagerno != null and item.fundmanagerno != '' "><![CDATA[fundmanagerno=#{item.fundmanagerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundmanagerintro != null and item.fundmanagerintro != '' "><![CDATA[fundmanagerintro=#{item.fundmanagerintro, jdbcType=CLOB},]]></if>
+		 <if test="item.fundprojecttrade != null and item.fundprojecttrade != '' "><![CDATA[fundprojecttrade=#{item.fundprojecttrade, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundprojectphase != null and item.fundprojectphase != '' "><![CDATA[fundprojectphase=#{item.fundprojectphase, jdbcType=VARCHAR},]]></if>
+		 <if test="item.belonginvest != null and item.belonginvest != '' "><![CDATA[belonginvest=#{item.belonginvest, jdbcType=VARCHAR},]]></if>
+		 <if test="item.annualrate != null and item.annualrate != '' "><![CDATA[annualrate=#{item.annualrate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.raisetype != null and item.raisetype != '' "><![CDATA[raisetype=#{item.raisetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.invertcount != null and item.invertcount != '' "><![CDATA[invertcount=#{item.invertcount, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundprojectintro != null and item.fundprojectintro != '' "><![CDATA[fundprojectintro=#{item.fundprojectintro, jdbcType=CLOB},]]></if>
+		 <if test="item.companytrade != null and item.companytrade != '' "><![CDATA[companytrade=#{item.companytrade, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companyname != null and item.companyname != '' "><![CDATA[companyname=#{item.companyname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companyinfo != null and item.companyinfo != '' "><![CDATA[companyinfo=#{item.companyinfo, jdbcType=CLOB},]]></if>
+		 <if test="item.protrade != null and item.protrade != '' "><![CDATA[protrade=#{item.protrade, jdbcType=VARCHAR},]]></if>
+		 <if test="item.prointro != null and item.prointro != '' "><![CDATA[prointro=#{item.prointro, jdbcType=CLOB},]]></if>
+		 <if test="item.investnum != null and item.investnum != '' "><![CDATA[investnum=#{item.investnum, jdbcType=VARCHAR},]]></if>
+		 <if test="item.projecttrade != null and item.projecttrade != '' "><![CDATA[projecttrade=#{item.projecttrade, jdbcType=VARCHAR},]]></if>
+		 <if test="item.projectintro != null and item.projectintro != '' "><![CDATA[projectintro=#{item.projectintro, jdbcType=CLOB},]]></if>
+		 <if test="item.blocname != null and item.blocname != '' "><![CDATA[blocname=#{item.blocname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.classify != null and item.classify != '' "><![CDATA[classify=#{item.classify, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businesstype != null and item.businesstype != '' "><![CDATA[businesstype=#{item.businesstype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.objecttype != null and item.objecttype != '' "><![CDATA[objecttype=#{item.objecttype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.specificbusinesstype != null and item.specificbusinesstype != '' "><![CDATA[specificbusinesstype=#{item.specificbusinesstype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.profitmodel != null and item.profitmodel != '' "><![CDATA[profitmodel=#{item.profitmodel, jdbcType=VARCHAR},]]></if>
+		 <if test="item.capitalsource != null and item.capitalsource != '' "><![CDATA[capitalsource=#{item.capitalsource, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mainworkexp != null and item.mainworkexp != '' "><![CDATA[mainworkexp=#{item.mainworkexp, jdbcType=CLOB},]]></if>
+		 <if test="item.othersintro != null and item.othersintro != '' "><![CDATA[othersintro=#{item.othersintro, jdbcType=CLOB},]]></if>
+		 <if test="item.partnerintro != null and item.partnerintro != '' "><![CDATA[partnerintro=#{item.partnerintro, jdbcType=CLOB},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业附属信息表organ_append 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
+	<![CDATA[
+		update cas.organ_append
+	]]>
+	<set>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="version != null or version == 0 "><![CDATA[version=#{version, jdbcType=INTEGER},]]></if>
+		 <if test="isfiling != null "> <![CDATA[isfiling=#{isfiling, jdbcType=VARCHAR},]]></if>
+		 <if test="registerno != null "> <![CDATA[registerno=#{registerno, jdbcType=VARCHAR},]]></if>
+		 <if test="employeenum != null "> <![CDATA[employeenum=#{employeenum, jdbcType=VARCHAR},]]></if>
+		 <if test="caremarkettype != null "> <![CDATA[caremarkettype=#{caremarkettype, jdbcType=VARCHAR},]]></if>
+		 <if test="projectphase != null "> <![CDATA[projectphase=#{projectphase, jdbcType=VARCHAR},]]></if>
+		 <if test="profittype != null "> <![CDATA[profittype=#{profittype, jdbcType=CLOB},]]></if>
+		 <if test="isfundfiling != null "> <![CDATA[isfundfiling=#{isfundfiling, jdbcType=VARCHAR},]]></if>
+		 <if test="fundfilingno != null "> <![CDATA[fundfilingno=#{fundfilingno, jdbcType=VARCHAR},]]></if>
+		 <if test="fundmanagername != null "> <![CDATA[fundmanagername=#{fundmanagername, jdbcType=VARCHAR},]]></if>
+		 <if test="fundmanagerno != null "> <![CDATA[fundmanagerno=#{fundmanagerno, jdbcType=VARCHAR},]]></if>
+		 <if test="fundmanagerintro != null "> <![CDATA[fundmanagerintro=#{fundmanagerintro, jdbcType=CLOB},]]></if>
+		 <if test="fundprojecttrade != null "> <![CDATA[fundprojecttrade=#{fundprojecttrade, jdbcType=VARCHAR},]]></if>
+		 <if test="fundprojectphase != null "> <![CDATA[fundprojectphase=#{fundprojectphase, jdbcType=VARCHAR},]]></if>
+		 <if test="belonginvest != null "> <![CDATA[belonginvest=#{belonginvest, jdbcType=VARCHAR},]]></if>
+		 <if test="annualrate != null "> <![CDATA[annualrate=#{annualrate, jdbcType=VARCHAR},]]></if>
+		 <if test="raisetype != null "> <![CDATA[raisetype=#{raisetype, jdbcType=VARCHAR},]]></if>
+		 <if test="invertcount != null "> <![CDATA[invertcount=#{invertcount, jdbcType=VARCHAR},]]></if>
+		 <if test="fundprojectintro != null "> <![CDATA[fundprojectintro=#{fundprojectintro, jdbcType=CLOB},]]></if>
+		 <if test="companytrade != null "> <![CDATA[companytrade=#{companytrade, jdbcType=VARCHAR},]]></if>
+		 <if test="companyname != null "> <![CDATA[companyname=#{companyname, jdbcType=VARCHAR},]]></if>
+		 <if test="companyinfo != null "> <![CDATA[companyinfo=#{companyinfo, jdbcType=CLOB},]]></if>
+		 <if test="protrade != null "> <![CDATA[protrade=#{protrade, jdbcType=VARCHAR},]]></if>
+		 <if test="prointro != null "> <![CDATA[prointro=#{prointro, jdbcType=CLOB},]]></if>
+		 <if test="investnum != null "> <![CDATA[investnum=#{investnum, jdbcType=VARCHAR},]]></if>
+		 <if test="projecttrade != null "> <![CDATA[projecttrade=#{projecttrade, jdbcType=VARCHAR},]]></if>
+		 <if test="projectintro != null "> <![CDATA[projectintro=#{projectintro, jdbcType=CLOB},]]></if>
+		 <if test="blocname != null "> <![CDATA[blocname=#{blocname, jdbcType=VARCHAR},]]></if>
+		 <if test="classify != null "> <![CDATA[classify=#{classify, jdbcType=VARCHAR},]]></if>
+		 <if test="businesstype != null "> <![CDATA[businesstype=#{businesstype, jdbcType=VARCHAR},]]></if>
+		 <if test="objecttype != null "> <![CDATA[objecttype=#{objecttype, jdbcType=VARCHAR},]]></if>
+		 <if test="specificbusinesstype != null "> <![CDATA[specificbusinesstype=#{specificbusinesstype, jdbcType=VARCHAR},]]></if>
+		 <if test="profitmodel != null "> <![CDATA[profitmodel=#{profitmodel, jdbcType=VARCHAR},]]></if>
+		 <if test="capitalsource != null "> <![CDATA[capitalsource=#{capitalsource, jdbcType=VARCHAR},]]></if>
+		 <if test="mainworkexp != null "> <![CDATA[mainworkexp=#{mainworkexp, jdbcType=CLOB},]]></if>
+		 <if test="othersintro != null "> <![CDATA[othersintro=#{othersintro, jdbcType=CLOB},]]></if>
+		 <if test="partnerintro != null "> <![CDATA[partnerintro=#{partnerintro, jdbcType=CLOB},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--企业附属信息表organ_append 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_append
+		<set>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.version != null or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
+		 <if test="item.isfiling != null "><![CDATA[isfiling=#{item.isfiling, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registerno != null "><![CDATA[registerno=#{item.registerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.employeenum != null "><![CDATA[employeenum=#{item.employeenum, jdbcType=VARCHAR},]]></if>
+		 <if test="item.caremarkettype != null "><![CDATA[caremarkettype=#{item.caremarkettype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.projectphase != null "><![CDATA[projectphase=#{item.projectphase, jdbcType=VARCHAR},]]></if>
+		 <if test="item.profittype != null "><![CDATA[profittype=#{item.profittype, jdbcType=CLOB},]]></if>
+		 <if test="item.isfundfiling != null "><![CDATA[isfundfiling=#{item.isfundfiling, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundfilingno != null "><![CDATA[fundfilingno=#{item.fundfilingno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundmanagername != null "><![CDATA[fundmanagername=#{item.fundmanagername, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundmanagerno != null "><![CDATA[fundmanagerno=#{item.fundmanagerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundmanagerintro != null "><![CDATA[fundmanagerintro=#{item.fundmanagerintro, jdbcType=CLOB},]]></if>
+		 <if test="item.fundprojecttrade != null "><![CDATA[fundprojecttrade=#{item.fundprojecttrade, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundprojectphase != null "><![CDATA[fundprojectphase=#{item.fundprojectphase, jdbcType=VARCHAR},]]></if>
+		 <if test="item.belonginvest != null "><![CDATA[belonginvest=#{item.belonginvest, jdbcType=VARCHAR},]]></if>
+		 <if test="item.annualrate != null "><![CDATA[annualrate=#{item.annualrate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.raisetype != null "><![CDATA[raisetype=#{item.raisetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.invertcount != null "><![CDATA[invertcount=#{item.invertcount, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fundprojectintro != null "><![CDATA[fundprojectintro=#{item.fundprojectintro, jdbcType=CLOB},]]></if>
+		 <if test="item.companytrade != null "><![CDATA[companytrade=#{item.companytrade, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companyname != null "><![CDATA[companyname=#{item.companyname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companyinfo != null "><![CDATA[companyinfo=#{item.companyinfo, jdbcType=CLOB},]]></if>
+		 <if test="item.protrade != null "><![CDATA[protrade=#{item.protrade, jdbcType=VARCHAR},]]></if>
+		 <if test="item.prointro != null "><![CDATA[prointro=#{item.prointro, jdbcType=CLOB},]]></if>
+		 <if test="item.investnum != null "><![CDATA[investnum=#{item.investnum, jdbcType=VARCHAR},]]></if>
+		 <if test="item.projecttrade != null "><![CDATA[projecttrade=#{item.projecttrade, jdbcType=VARCHAR},]]></if>
+		 <if test="item.projectintro != null "><![CDATA[projectintro=#{item.projectintro, jdbcType=CLOB},]]></if>
+		 <if test="item.blocname != null "><![CDATA[blocname=#{item.blocname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.classify != null "><![CDATA[classify=#{item.classify, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businesstype != null "><![CDATA[businesstype=#{item.businesstype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.objecttype != null "><![CDATA[objecttype=#{item.objecttype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.specificbusinesstype != null "><![CDATA[specificbusinesstype=#{item.specificbusinesstype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.profitmodel != null "><![CDATA[profitmodel=#{item.profitmodel, jdbcType=VARCHAR},]]></if>
+		 <if test="item.capitalsource != null "><![CDATA[capitalsource=#{item.capitalsource, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mainworkexp != null "><![CDATA[mainworkexp=#{item.mainworkexp, jdbcType=CLOB},]]></if>
+		 <if test="item.othersintro != null "><![CDATA[othersintro=#{item.othersintro, jdbcType=CLOB},]]></if>
+		 <if test="item.partnerintro != null "><![CDATA[partnerintro=#{item.partnerintro, jdbcType=CLOB},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业附属信息表organ_append 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey">
+	<![CDATA[
+		delete from cas.organ_append
+		where
+			customerno = #{customerno}
+	]]>
+	</delete>
+	<!--企业附属信息表organ_append 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey">
+		delete from cas.organ_append where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

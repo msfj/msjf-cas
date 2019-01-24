@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganMemberHisDao" >
+	<!--企业成员信息表organ_member_his 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberHisKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			membertype "membertype",
+			membername "membername",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			remark "remark",
+			isauth "isauth",
+			isinvite "isinvite",
+			menulimit "menulimit",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.organ_member_his
+		where 
+			memberid = #{memberid}
+		for update
+	]]>
+	</select>
+	<!--企业成员信息表organ_member_his 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberHisKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			membertype "membertype",
+			membername "membername",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			remark "remark",
+			isauth "isauth",
+			isinvite "isinvite",
+			menulimit "menulimit",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.organ_member_his
+		where 
+			memberid = #{memberid}
+	]]>
+	</select>
+	<!--企业成员信息表organ_member_his 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberHisKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			membertype "membertype",
+			membername "membername",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			remark "remark",
+			isauth "isauth",
+			isinvite "isinvite",
+			menulimit "menulimit",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.organ_member_his
+		where 
+			memberid = #{memberid}
+	]]>
+	</select>
+	<!--企业成员信息表organ_member_his 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			membertype "membertype",
+			membername "membername",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			remark "remark",
+			isauth "isauth",
+			isinvite "isinvite",
+			menulimit "menulimit",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.organ_member_his
+	]]>
+	<where>
+		<if test="memberid != null and memberid!= '' "><![CDATA[ and memberid=#{memberid}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="membertype != null and membertype!= '' "><![CDATA[ and membertype=#{membertype}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+		<if test="isauth != null and isauth!= '' "><![CDATA[ and isauth=#{isauth}]]></if>
+		<if test="isinvite != null and isinvite!= '' "><![CDATA[ and isinvite=#{isinvite}]]></if>
+		<if test="menulimit != null and menulimit!= '' "><![CDATA[ and menulimit=#{menulimit}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="deletetime != null and deletetime!= '' "><![CDATA[ and deletetime=#{deletetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--企业成员信息表organ_member_his 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			membertype "membertype",
+			membername "membername",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			remark "remark",
+			isauth "isauth",
+			isinvite "isinvite",
+			menulimit "menulimit",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.organ_member_his
+	]]>
+	<where>
+		<if test="memberid != null and memberid!= '' "><![CDATA[ and memberid=#{memberid}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="membertype != null and membertype!= '' "><![CDATA[ and membertype=#{membertype}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+		<if test="isauth != null and isauth!= '' "><![CDATA[ and isauth=#{isauth}]]></if>
+		<if test="isinvite != null and isinvite!= '' "><![CDATA[ and isinvite=#{isinvite}]]></if>
+		<if test="menulimit != null and menulimit!= '' "><![CDATA[ and menulimit=#{menulimit}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="deletetime != null and deletetime!= '' "><![CDATA[ and deletetime=#{deletetime}]]></if>
+	</where>
+	</select>
+	<!--企业成员信息表organ_member_his 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			membertype "membertype",
+			membername "membername",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			remark "remark",
+			isauth "isauth",
+			isinvite "isinvite",
+			menulimit "menulimit",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.organ_member_his
+	]]>
+	<where>
+		<if test="memberid != null and memberid!= '' "><![CDATA[ and memberid=#{memberid}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="membertype != null and membertype!= '' "><![CDATA[ and membertype=#{membertype}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+		<if test="isauth != null and isauth!= '' "><![CDATA[ and isauth=#{isauth}]]></if>
+		<if test="isinvite != null and isinvite!= '' "><![CDATA[ and isinvite=#{isinvite}]]></if>
+		<if test="menulimit != null and menulimit!= '' "><![CDATA[ and menulimit=#{menulimit}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="deletetime != null and deletetime!= '' "><![CDATA[ and deletetime=#{deletetime}]]></if>
+	</where>
+	</select>
+	<!--企业成员信息表organ_member_his 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_member_his(
+			memberid,customerno,membertype,membername,certificatetype,
+			certificateno,mobile,remark,isauth,isinvite,
+			menulimit,insertdate,inserttime,updatedate,updatetime,
+			deletetime
+		) values(
+			#{memberid, jdbcType=VARCHAR},#{customerno, jdbcType=VARCHAR},#{membertype, jdbcType=VARCHAR},#{membername, jdbcType=VARCHAR},#{certificatetype, jdbcType=VARCHAR},
+			#{certificateno, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},#{remark, jdbcType=CLOB},#{isauth, jdbcType=VARCHAR},#{isinvite, jdbcType=VARCHAR},
+			#{menulimit, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},
+			#{deletetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--企业成员信息表organ_member_his 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_member_his(
+			memberid,customerno,membertype,membername,certificatetype,
+			certificateno,mobile,remark,isauth,isinvite,
+			menulimit,insertdate,inserttime,updatedate,updatetime,
+			deletetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.memberid, jdbcType=VARCHAR},#{item.customerno, jdbcType=VARCHAR},#{item.membertype, jdbcType=VARCHAR},#{item.membername, jdbcType=VARCHAR},#{item.certificatetype, jdbcType=VARCHAR},
+				#{item.certificateno, jdbcType=VARCHAR},#{item.mobile, jdbcType=VARCHAR},#{item.remark, jdbcType=CLOB},#{item.isauth, jdbcType=VARCHAR},#{item.isinvite, jdbcType=VARCHAR},
+				#{item.menulimit, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},
+				#{item.deletetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--企业成员信息表organ_member_his 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity">
+	<![CDATA[
+		update cas.organ_member_his
+	]]>
+	<set>
+		 <if test="memberid != null and memberid != '' "><![CDATA[memberid=#{memberid, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="membertype != null and membertype != '' "><![CDATA[membertype=#{membertype, jdbcType=VARCHAR},]]></if>
+		 <if test="membername != null and membername != '' "><![CDATA[membername=#{membername, jdbcType=VARCHAR},]]></if>
+		 <if test="certificatetype != null and certificatetype != '' "><![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null and certificateno != '' "><![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="mobile != null and mobile != '' "><![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="remark != null and remark != '' "><![CDATA[remark=#{remark, jdbcType=CLOB},]]></if>
+		 <if test="isauth != null and isauth != '' "><![CDATA[isauth=#{isauth, jdbcType=VARCHAR},]]></if>
+		 <if test="isinvite != null and isinvite != '' "><![CDATA[isinvite=#{isinvite, jdbcType=VARCHAR},]]></if>
+		 <if test="menulimit != null and menulimit != '' "><![CDATA[menulimit=#{menulimit, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="deletetime != null and deletetime != '' "><![CDATA[deletetime=#{deletetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where memberid = #{memberid}
+	]]>
+	</update>
+	<!--企业成员信息表organ_member_his 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_member_his
+		<set>
+		 <if test="item.memberid != null and item.memberid != '' "><![CDATA[memberid=#{item.memberid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.membertype != null and item.membertype != '' "><![CDATA[membertype=#{item.membertype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.membername != null and item.membername != '' "><![CDATA[membername=#{item.membername, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificatetype != null and item.certificatetype != '' "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null and item.certificateno != '' "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mobile != null and item.mobile != '' "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.remark != null and item.remark != '' "><![CDATA[remark=#{item.remark, jdbcType=CLOB},]]></if>
+		 <if test="item.isauth != null and item.isauth != '' "><![CDATA[isauth=#{item.isauth, jdbcType=VARCHAR},]]></if>
+		 <if test="item.isinvite != null and item.isinvite != '' "><![CDATA[isinvite=#{item.isinvite, jdbcType=VARCHAR},]]></if>
+		 <if test="item.menulimit != null and item.menulimit != '' "><![CDATA[menulimit=#{item.menulimit, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.deletetime != null and item.deletetime != '' "><![CDATA[deletetime=#{item.deletetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where memberid = #{item.memberid}
+			]]>
+		</foreach>
+	</update>
+	<!--企业成员信息表organ_member_his 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity">
+	<![CDATA[
+		update cas.organ_member_his
+	]]>
+	<set>
+		 <if test="memberid != null "> <![CDATA[memberid=#{memberid, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="membertype != null "> <![CDATA[membertype=#{membertype, jdbcType=VARCHAR},]]></if>
+		 <if test="membername != null "> <![CDATA[membername=#{membername, jdbcType=VARCHAR},]]></if>
+		 <if test="certificatetype != null "> <![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null "> <![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="mobile != null "> <![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="remark != null "> <![CDATA[remark=#{remark, jdbcType=CLOB},]]></if>
+		 <if test="isauth != null "> <![CDATA[isauth=#{isauth, jdbcType=VARCHAR},]]></if>
+		 <if test="isinvite != null "> <![CDATA[isinvite=#{isinvite, jdbcType=VARCHAR},]]></if>
+		 <if test="menulimit != null "> <![CDATA[menulimit=#{menulimit, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="deletetime != null "> <![CDATA[deletetime=#{deletetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where memberid = #{memberid}
+	]]>
+	</update>
+	<!--企业成员信息表organ_member_his 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberHisEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_member_his
+		<set>
+		 <if test="item.memberid != null "><![CDATA[memberid=#{item.memberid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.membertype != null "><![CDATA[membertype=#{item.membertype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.membername != null "><![CDATA[membername=#{item.membername, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificatetype != null "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mobile != null "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.remark != null "><![CDATA[remark=#{item.remark, jdbcType=CLOB},]]></if>
+		 <if test="item.isauth != null "><![CDATA[isauth=#{item.isauth, jdbcType=VARCHAR},]]></if>
+		 <if test="item.isinvite != null "><![CDATA[isinvite=#{item.isinvite, jdbcType=VARCHAR},]]></if>
+		 <if test="item.menulimit != null "><![CDATA[menulimit=#{item.menulimit, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.deletetime != null "><![CDATA[deletetime=#{item.deletetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where memberid = #{item.memberid}
+			]]>
+		</foreach>
+	</update>
+	<!--企业成员信息表organ_member_his 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberHisKey">
+	<![CDATA[
+		delete from cas.organ_member_his
+		where
+			memberid = #{memberid}
+	]]>
+	</delete>
+	<!--企业成员信息表organ_member_his 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberHisKey">
+		delete from cas.organ_member_his where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ memberid = #{item.memberid}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

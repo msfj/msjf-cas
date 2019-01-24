@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.CustDao">
+
+    <!--用户基本信息表cust 按实体查询 -->
+    <select id="checkCustCertificatenoIsExist" parameterType="com.msjf.finance.cas.common.dao.entity.CustEntity"
+            resultType="com.msjf.finance.cas.common.dao.entity.CustEntity">
+    <![CDATA[
+		select
+			customerno "customerno",
+			loginname  "loginname",
+			registersource "registersource",
+			membertype "membertype",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			cardno  "cardno",
+			bank    "bank",
+		    companyname "companyname",
+			email "email",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+            issave     "issave",
+            source     "source",
+            cormob     "cormob"
+		from cas.cust
+		where certificateno=upper(#{certificateno}) or certificateno=lower(#{certificateno})
+	]]>
+    </select>
+
+    <!--用户基本信息表cif_cust 按实体查询-->
+    <select id="queryCustEntityList" parameterType="com.msjf.finance.cas.common.dao.entity.CustEntity"
+            resultType="com.msjf.finance.cas.common.dao.entity.CustEntity">
+        <![CDATA[
+		select
+			customerno "customerno",
+			loginname  "loginname",
+			registersource "registersource",
+			membertype "membertype",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			cardno  "cardno",
+			bank    "bank",
+		    companyname "companyname",
+			email "email",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+            issave     "issave",
+            source     "source",
+            cormob     "cormob"
+		from cas.cust
+	]]>
+        <where>
+            <if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+            <if test="loginname != null and loginname!= '' "><![CDATA[ and loginname=#{loginname}]]></if>
+            <if test="registersource != null and registersource!= '' "><![CDATA[ and registersource=#{registersource}]]></if>
+            <if test="membertype != null and membertype!= '' "><![CDATA[ and membertype=#{membertype}]]></if>
+            <if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+            <if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+            <if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+            <if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+            <if test="cardno != null and cardno!= '' "><![CDATA[ and cardno=#{cardno}]]></if>
+            <if test="bank != null and bank!= '' "><![CDATA[ and bank=#{bank}]]></if>
+            <if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+            <if test="email != null and email!= '' "><![CDATA[ and email=#{email}]]></if>
+            <if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+            <if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+            <if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+            <if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+            <if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+            <if test="issave != null and issave!= '' "><![CDATA[ and issave=#{issave}]]></if>
+            <if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+            <if test="corname != null and corname!= '' "><![CDATA[ and corname=#{corname}]]></if>
+            <if test="corcardtype != null and corcardtype!= '' "><![CDATA[ and corcardtype=#{corcardtype}]]></if>
+            <if test="corcardno != null and corcardno!= '' "><![CDATA[ and corcardno=#{corcardno}]]></if>
+            <if test="cormob != null and cormob!= '' "><![CDATA[ and cormob=#{cormob}]]></if>
+        </where>
+    </select>
+
+    <!--用户基本信息表cust 按实体新增记录 mysql-->
+    <insert id="insCust" parameterType="java.util.Map">
+    <![CDATA[
+		insert into cas.cust(
+			customerno,loginname,registersource,membertype,
+			certificatetype,certificateno,linkmanname,mobile,cardno,bank,companyname,
+			email,status,insertdate,inserttime,
+			updatedate,updatetime,issave,source,corname,corcardtype,corcardno,cormob
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{loginname, jdbcType=VARCHAR},#{registersource, jdbcType=VARCHAR},#{membertype, jdbcType=VARCHAR},
+			#{certificatetype, jdbcType=VARCHAR},#{certificateno, jdbcType=VARCHAR},#{linkmanname, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},
+			#{cardno, jdbcType=VARCHAR},#{bank, jdbcType=VARCHAR},#{companyname, jdbcType=VARCHAR},
+			#{email, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{issave, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR},
+			#{corname, jdbcType=VARCHAR},#{corcardtype, jdbcType=VARCHAR},#{corcardno, jdbcType=VARCHAR},#{cormob, jdbcType=VARCHAR}
+	)]]>
+    </insert>
+    <!--用户基本信息表cif_cust 按实体更新记录-->
+    <update id="update" parameterType="com.msjf.finance.cas.common.dao.entity.CustEntity">
+        <![CDATA[
+		update cas.cust
+	]]>
+        <set>
+            <if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+            <if test="loginname != null and loginname!= '' "><![CDATA[ and loginname=#{loginname}]]></if>
+            <if test="registersource != null and registersource!= '' "><![CDATA[ and registersource=#{registersource}]]></if>
+            <if test="membertype != null and membertype!= '' "><![CDATA[ and membertype=#{membertype}]]></if>
+            <if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+            <if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+            <if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+            <if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+            <if test="cardno != null and cardno!= '' "><![CDATA[ and cardno=#{cardno}]]></if>
+            <if test="bank != null and bank!= '' "><![CDATA[ and bank=#{bank}]]></if>
+            <if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+            <if test="email != null and email!= '' "><![CDATA[ and email=#{email}]]></if>
+            <if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+            <if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+            <if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+            <if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+            <if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+            <if test="issave != null and issave!= '' "><![CDATA[ and issave=#{issave}]]></if>
+            <if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+            <if test="corname != null and corname!= '' "><![CDATA[ and corname=#{corname}]]></if>
+            <if test="corcardtype != null and corcardtype!= '' "><![CDATA[ and corcardtype=#{corcardtype}]]></if>
+            <if test="corcardno != null and corcardno!= '' "><![CDATA[ and corcardno=#{corcardno}]]></if>
+            <if test="cormob != null and cormob!= '' "><![CDATA[ and cormob=#{cormob}]]></if>
+        </set>
+        <![CDATA[ where customerno = #{customerno}
+	]]>
+    </update>
+</mapper>

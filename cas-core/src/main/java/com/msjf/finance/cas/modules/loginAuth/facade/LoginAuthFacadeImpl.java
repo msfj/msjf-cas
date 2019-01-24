@@ -3,7 +3,7 @@ import com.msjf.finance.cas.facade.loginAuth.LoginAuthFacade;
 import com.msjf.finance.cas.facade.loginAuth.domain.LoginAuthDomain;
 import com.msjf.finance.cas.modules.loginAuth.emun.LoginAuthEmun;
 import com.msjf.finance.cas.modules.loginAuth.service.LoginAuthService;
-import com.msjf.finance.cas.modules.util.StringUtil;
+import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;

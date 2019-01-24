@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.SysDictDao" >
+	<!--系统字典表sys_dict 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.SysDictKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
+	<![CDATA[
+		select
+			dict_id "dictId",
+			dict_name "dictName",
+			dict_key "dictKey",
+			dict_value "dictValue",
+			ref_dict_key "refDictKey",
+			sort_no "sortNo",
+			is_used "isUsed",
+			dict_comment "dictComment"
+		from cas.sys_dict
+		where 
+			dict_key = #{dictKey}
+			and dict_id = #{dictId}
+		for update
+	]]>
+	</select>
+	<!--系统字典表sys_dict 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysDictKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
+	<![CDATA[
+		select
+			dict_id "dictId",
+			dict_name "dictName",
+			dict_key "dictKey",
+			dict_value "dictValue",
+			ref_dict_key "refDictKey",
+			sort_no "sortNo",
+			is_used "isUsed",
+			dict_comment "dictComment"
+		from cas.sys_dict
+		where 
+			dict_key = #{dictKey}
+			and dict_id = #{dictId}
+	]]>
+	</select>
+	<!--系统字典表sys_dict 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.SysDictKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			dict_id "dictId",
+			dict_name "dictName",
+			dict_key "dictKey",
+			dict_value "dictValue",
+			ref_dict_key "refDictKey",
+			sort_no "sortNo",
+			is_used "isUsed",
+			dict_comment "dictComment"
+		from cas.sys_dict
+		where 
+			dict_key = #{dictKey}
+			and dict_id = #{dictId}
+	]]>
+	</select>
+	<!--系统字典表sys_dict 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
+	<![CDATA[
+		select
+			dict_id "dictId",
+			dict_name "dictName",
+			dict_key "dictKey",
+			dict_value "dictValue",
+			ref_dict_key "refDictKey",
+			sort_no "sortNo",
+			is_used "isUsed",
+			dict_comment "dictComment"
+		from cas.sys_dict
+	]]>
+	<where>
+		<if test="dictId != null and dictId!= '' "><![CDATA[ and dict_id=#{dictId}]]></if>
+		<if test="dictName != null and dictName!= '' "><![CDATA[ and dict_name=#{dictName}]]></if>
+		<if test="dictKey != null and dictKey!= '' "><![CDATA[ and dict_key=#{dictKey}]]></if>
+		<if test="dictValue != null and dictValue!= '' "><![CDATA[ and dict_value=#{dictValue}]]></if>
+		<if test="refDictKey != null and refDictKey!= '' "><![CDATA[ and ref_dict_key=#{refDictKey}]]></if>
+		<if test="sortNo != null and sortNo!= '' "><![CDATA[ and sort_no=#{sortNo}]]></if>
+		<if test="isUsed != null and isUsed!= '' "><![CDATA[ and is_used=#{isUsed}]]></if>
+		<if test="dictComment != null and dictComment!= '' "><![CDATA[ and dict_comment=#{dictComment}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--系统字典表sys_dict 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
+	<![CDATA[
+		select
+			dict_id "dictId",
+			dict_name "dictName",
+			dict_key "dictKey",
+			dict_value "dictValue",
+			ref_dict_key "refDictKey",
+			sort_no "sortNo",
+			is_used "isUsed",
+			dict_comment "dictComment"
+		from cas.sys_dict
+	]]>
+	<where>
+		<if test="dictId != null and dictId!= '' "><![CDATA[ and dict_id=#{dictId}]]></if>
+		<if test="dictName != null and dictName!= '' "><![CDATA[ and dict_name=#{dictName}]]></if>
+		<if test="dictKey != null and dictKey!= '' "><![CDATA[ and dict_key=#{dictKey}]]></if>
+		<if test="dictValue != null and dictValue!= '' "><![CDATA[ and dict_value=#{dictValue}]]></if>
+		<if test="refDictKey != null and refDictKey!= '' "><![CDATA[ and ref_dict_key=#{refDictKey}]]></if>
+		<if test="sortNo != null and sortNo!= '' "><![CDATA[ and sort_no=#{sortNo}]]></if>
+		<if test="isUsed != null and isUsed!= '' "><![CDATA[ and is_used=#{isUsed}]]></if>
+		<if test="dictComment != null and dictComment!= '' "><![CDATA[ and dict_comment=#{dictComment}]]></if>
+	</where>
+	</select>
+	<!--系统字典表sys_dict 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			dict_id "dictId",
+			dict_name "dictName",
+			dict_key "dictKey",
+			dict_value "dictValue",
+			ref_dict_key "refDictKey",
+			sort_no "sortNo",
+			is_used "isUsed",
+			dict_comment "dictComment"
+		from cas.sys_dict
+	]]>
+	<where>
+		<if test="dictId != null and dictId!= '' "><![CDATA[ and dict_id=#{dictId}]]></if>
+		<if test="dictName != null and dictName!= '' "><![CDATA[ and dict_name=#{dictName}]]></if>
+		<if test="dictKey != null and dictKey!= '' "><![CDATA[ and dict_key=#{dictKey}]]></if>
+		<if test="dictValue != null and dictValue!= '' "><![CDATA[ and dict_value=#{dictValue}]]></if>
+		<if test="refDictKey != null and refDictKey!= '' "><![CDATA[ and ref_dict_key=#{refDictKey}]]></if>
+		<if test="sortNo != null and sortNo!= '' "><![CDATA[ and sort_no=#{sortNo}]]></if>
+		<if test="isUsed != null and isUsed!= '' "><![CDATA[ and is_used=#{isUsed}]]></if>
+		<if test="dictComment != null and dictComment!= '' "><![CDATA[ and dict_comment=#{dictComment}]]></if>
+	</where>
+	</select>
+	<!--系统字典表sys_dict 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.sys_dict(
+			dict_id,dict_name,dict_key,dict_value,ref_dict_key,
+			sort_no,is_used,dict_comment
+		) values(
+			#{dictId, jdbcType=VARCHAR},#{dictName, jdbcType=VARCHAR},#{dictKey, jdbcType=VARCHAR},#{dictValue, jdbcType=VARCHAR},#{refDictKey, jdbcType=VARCHAR},
+			#{sortNo, jdbcType=INTEGER},#{isUsed, jdbcType=VARCHAR},#{dictComment, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--系统字典表sys_dict 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.sys_dict(
+			dict_id,dict_name,dict_key,dict_value,ref_dict_key,
+			sort_no,is_used,dict_comment
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.dictId, jdbcType=VARCHAR},#{item.dictName, jdbcType=VARCHAR},#{item.dictKey, jdbcType=VARCHAR},#{item.dictValue, jdbcType=VARCHAR},#{item.refDictKey, jdbcType=VARCHAR},
+				#{item.sortNo, jdbcType=INTEGER},#{item.isUsed, jdbcType=VARCHAR},#{item.dictComment, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--系统字典表sys_dict 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
+	<![CDATA[
+		update cas.sys_dict
+	]]>
+	<set>
+		 <if test="dictId != null and dictId != '' "><![CDATA[dict_id=#{dictId, jdbcType=VARCHAR},]]></if>
+		 <if test="dictName != null and dictName != '' "><![CDATA[dict_name=#{dictName, jdbcType=VARCHAR},]]></if>
+		 <if test="dictKey != null and dictKey != '' "><![CDATA[dict_key=#{dictKey, jdbcType=VARCHAR},]]></if>
+		 <if test="dictValue != null and dictValue != '' "><![CDATA[dict_value=#{dictValue, jdbcType=VARCHAR},]]></if>
+		 <if test="refDictKey != null and refDictKey != '' "><![CDATA[ref_dict_key=#{refDictKey, jdbcType=VARCHAR},]]></if>
+		 <if test="sortNo != null and sortNo != '' or sortNo == 0 "><![CDATA[sort_no=#{sortNo, jdbcType=INTEGER},]]></if>
+		 <if test="isUsed != null and isUsed != '' "><![CDATA[is_used=#{isUsed, jdbcType=VARCHAR},]]></if>
+		 <if test="dictComment != null and dictComment != '' "><![CDATA[dict_comment=#{dictComment, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where dict_key = #{dictKey} and dict_id = #{dictId}
+	]]>
+	</update>
+	<!--系统字典表sys_dict 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.sys_dict
+		<set>
+		 <if test="item.dictId != null and item.dictId != '' "><![CDATA[dict_id=#{item.dictId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dictName != null and item.dictName != '' "><![CDATA[dict_name=#{item.dictName, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dictKey != null and item.dictKey != '' "><![CDATA[dict_key=#{item.dictKey, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dictValue != null and item.dictValue != '' "><![CDATA[dict_value=#{item.dictValue, jdbcType=VARCHAR},]]></if>
+		 <if test="item.refDictKey != null and item.refDictKey != '' "><![CDATA[ref_dict_key=#{item.refDictKey, jdbcType=VARCHAR},]]></if>
+		 <if test="item.sortNo != null and item.sortNo != '' or sortNo == 0 "><![CDATA[sort_no=#{item.sortNo, jdbcType=INTEGER},]]></if>
+		 <if test="item.isUsed != null and item.isUsed != '' "><![CDATA[is_used=#{item.isUsed, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dictComment != null and item.dictComment != '' "><![CDATA[dict_comment=#{item.dictComment, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where dict_key = #{item.dictKey} and dict_id = #{item.dictId}
+			]]>
+		</foreach>
+	</update>
+	<!--系统字典表sys_dict 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
+	<![CDATA[
+		update cas.sys_dict
+	]]>
+	<set>
+		 <if test="dictId != null "> <![CDATA[dict_id=#{dictId, jdbcType=VARCHAR},]]></if>
+		 <if test="dictName != null "> <![CDATA[dict_name=#{dictName, jdbcType=VARCHAR},]]></if>
+		 <if test="dictKey != null "> <![CDATA[dict_key=#{dictKey, jdbcType=VARCHAR},]]></if>
+		 <if test="dictValue != null "> <![CDATA[dict_value=#{dictValue, jdbcType=VARCHAR},]]></if>
+		 <if test="refDictKey != null "> <![CDATA[ref_dict_key=#{refDictKey, jdbcType=VARCHAR},]]></if>
+		 <if test="sortNo != null or sortNo == 0 "><![CDATA[sort_no=#{sortNo, jdbcType=INTEGER},]]></if>
+		 <if test="isUsed != null "> <![CDATA[is_used=#{isUsed, jdbcType=VARCHAR},]]></if>
+		 <if test="dictComment != null "> <![CDATA[dict_comment=#{dictComment, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where dict_key = #{dictKey} and dict_id = #{dictId}
+	]]>
+	</update>
+	<!--系统字典表sys_dict 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.sys_dict
+		<set>
+		 <if test="item.dictId != null "><![CDATA[dict_id=#{item.dictId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dictName != null "><![CDATA[dict_name=#{item.dictName, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dictKey != null "><![CDATA[dict_key=#{item.dictKey, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dictValue != null "><![CDATA[dict_value=#{item.dictValue, jdbcType=VARCHAR},]]></if>
+		 <if test="item.refDictKey != null "><![CDATA[ref_dict_key=#{item.refDictKey, jdbcType=VARCHAR},]]></if>
+		 <if test="item.sortNo != null or sortNo == 0 "><![CDATA[sort_no=#{item.sortNo, jdbcType=INTEGER},]]></if>
+		 <if test="item.isUsed != null "><![CDATA[is_used=#{item.isUsed, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dictComment != null "><![CDATA[dict_comment=#{item.dictComment, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where dict_key = #{item.dictKey} and dict_id = #{item.dictId}
+			]]>
+		</foreach>
+	</update>
+	<!--系统字典表sys_dict 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysDictKey">
+	<![CDATA[
+		delete from cas.sys_dict
+		where
+			dict_key = #{dictKey} and dict_id = #{dictId}
+	]]>
+	</delete>
+	<!--系统字典表sys_dict 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.SysDictKey">
+		delete from cas.sys_dict where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ dict_key = #{item.dictKey} and dict_id = #{item.dictId}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

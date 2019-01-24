@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganCounterSignDao" >
+	<!--会签结果表organ_counter_sign 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganCounterSignKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			registertype "registertype",
+			signid "signid",
+			fileurl "fileurl",
+			createtime "createtime"
+		from cas.organ_counter_sign
+		where 
+			orgcustomerno = #{orgcustomerno}
+			and registertype = #{registertype}
+		for update
+	]]>
+	</select>
+	<!--会签结果表organ_counter_sign 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganCounterSignKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			registertype "registertype",
+			signid "signid",
+			fileurl "fileurl",
+			createtime "createtime"
+		from cas.organ_counter_sign
+		where 
+			orgcustomerno = #{orgcustomerno}
+			and registertype = #{registertype}
+	]]>
+	</select>
+	<!--会签结果表organ_counter_sign 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganCounterSignKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			registertype "registertype",
+			signid "signid",
+			fileurl "fileurl",
+			createtime "createtime"
+		from cas.organ_counter_sign
+		where 
+			orgcustomerno = #{orgcustomerno}
+			and registertype = #{registertype}
+	]]>
+	</select>
+	<!--会签结果表organ_counter_sign 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			registertype "registertype",
+			signid "signid",
+			fileurl "fileurl",
+			createtime "createtime"
+		from cas.organ_counter_sign
+	]]>
+	<where>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="registertype != null and registertype!= '' "><![CDATA[ and registertype=#{registertype}]]></if>
+		<if test="signid != null and signid!= '' "><![CDATA[ and signid=#{signid}]]></if>
+		<if test="fileurl != null and fileurl!= '' "><![CDATA[ and fileurl=#{fileurl}]]></if>
+		<if test="createtime != null and createtime!= '' "><![CDATA[ and createtime=#{createtime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--会签结果表organ_counter_sign 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			registertype "registertype",
+			signid "signid",
+			fileurl "fileurl",
+			createtime "createtime"
+		from cas.organ_counter_sign
+	]]>
+	<where>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="registertype != null and registertype!= '' "><![CDATA[ and registertype=#{registertype}]]></if>
+		<if test="signid != null and signid!= '' "><![CDATA[ and signid=#{signid}]]></if>
+		<if test="fileurl != null and fileurl!= '' "><![CDATA[ and fileurl=#{fileurl}]]></if>
+		<if test="createtime != null and createtime!= '' "><![CDATA[ and createtime=#{createtime}]]></if>
+	</where>
+	</select>
+	<!--会签结果表organ_counter_sign 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			registertype "registertype",
+			signid "signid",
+			fileurl "fileurl",
+			createtime "createtime"
+		from cas.organ_counter_sign
+	]]>
+	<where>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="registertype != null and registertype!= '' "><![CDATA[ and registertype=#{registertype}]]></if>
+		<if test="signid != null and signid!= '' "><![CDATA[ and signid=#{signid}]]></if>
+		<if test="fileurl != null and fileurl!= '' "><![CDATA[ and fileurl=#{fileurl}]]></if>
+		<if test="createtime != null and createtime!= '' "><![CDATA[ and createtime=#{createtime}]]></if>
+	</where>
+	</select>
+	<!--会签结果表organ_counter_sign 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_counter_sign(
+			orgcustomerno,registertype,signid,fileurl,createtime
+		) values(
+			#{orgcustomerno, jdbcType=VARCHAR},#{registertype, jdbcType=VARCHAR},#{signid, jdbcType=VARCHAR},#{fileurl, jdbcType=CLOB},#{createtime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--会签结果表organ_counter_sign 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_counter_sign(
+			orgcustomerno,registertype,signid,fileurl,createtime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.orgcustomerno, jdbcType=VARCHAR},#{item.registertype, jdbcType=VARCHAR},#{item.signid, jdbcType=VARCHAR},#{item.fileurl, jdbcType=CLOB},#{item.createtime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--会签结果表organ_counter_sign 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity">
+	<![CDATA[
+		update cas.organ_counter_sign
+	]]>
+	<set>
+		 <if test="orgcustomerno != null and orgcustomerno != '' "><![CDATA[orgcustomerno=#{orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="registertype != null and registertype != '' "><![CDATA[registertype=#{registertype, jdbcType=VARCHAR},]]></if>
+		 <if test="signid != null and signid != '' "><![CDATA[signid=#{signid, jdbcType=VARCHAR},]]></if>
+		 <if test="fileurl != null and fileurl != '' "><![CDATA[fileurl=#{fileurl, jdbcType=CLOB},]]></if>
+		 <if test="createtime != null and createtime != '' "><![CDATA[createtime=#{createtime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where orgcustomerno = #{orgcustomerno} and registertype = #{registertype}
+	]]>
+	</update>
+	<!--会签结果表organ_counter_sign 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_counter_sign
+		<set>
+		 <if test="item.orgcustomerno != null and item.orgcustomerno != '' "><![CDATA[orgcustomerno=#{item.orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registertype != null and item.registertype != '' "><![CDATA[registertype=#{item.registertype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.signid != null and item.signid != '' "><![CDATA[signid=#{item.signid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fileurl != null and item.fileurl != '' "><![CDATA[fileurl=#{item.fileurl, jdbcType=CLOB},]]></if>
+		 <if test="item.createtime != null and item.createtime != '' "><![CDATA[createtime=#{item.createtime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and registertype = #{item.registertype}
+			]]>
+		</foreach>
+	</update>
+	<!--会签结果表organ_counter_sign 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity">
+	<![CDATA[
+		update cas.organ_counter_sign
+	]]>
+	<set>
+		 <if test="orgcustomerno != null "> <![CDATA[orgcustomerno=#{orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="registertype != null "> <![CDATA[registertype=#{registertype, jdbcType=VARCHAR},]]></if>
+		 <if test="signid != null "> <![CDATA[signid=#{signid, jdbcType=VARCHAR},]]></if>
+		 <if test="fileurl != null "> <![CDATA[fileurl=#{fileurl, jdbcType=CLOB},]]></if>
+		 <if test="createtime != null "> <![CDATA[createtime=#{createtime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where orgcustomerno = #{orgcustomerno} and registertype = #{registertype}
+	]]>
+	</update>
+	<!--会签结果表organ_counter_sign 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCounterSignEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_counter_sign
+		<set>
+		 <if test="item.orgcustomerno != null "><![CDATA[orgcustomerno=#{item.orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.registertype != null "><![CDATA[registertype=#{item.registertype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.signid != null "><![CDATA[signid=#{item.signid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.fileurl != null "><![CDATA[fileurl=#{item.fileurl, jdbcType=CLOB},]]></if>
+		 <if test="item.createtime != null "><![CDATA[createtime=#{item.createtime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and registertype = #{item.registertype}
+			]]>
+		</foreach>
+	</update>
+	<!--会签结果表organ_counter_sign 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganCounterSignKey">
+	<![CDATA[
+		delete from cas.organ_counter_sign
+		where
+			orgcustomerno = #{orgcustomerno} and registertype = #{registertype}
+	]]>
+	</delete>
+	<!--会签结果表organ_counter_sign 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganCounterSignKey">
+		delete from cas.organ_counter_sign where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ orgcustomerno = #{item.orgcustomerno} and registertype = #{item.registertype}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

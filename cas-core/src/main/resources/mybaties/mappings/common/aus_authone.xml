@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao" >
+	<!--登录认证表aus_authone 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.AusAuthoneKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			password "password",
+			failcount "failcount",
+			registersource "registersource",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source",
+			onlinestatus "onlinestatus",
+			loginsource "loginsource"
+		from cas.aus_authone
+		where 
+			customerno = #{customerno}
+		for update
+	]]>
+	</select>
+	<!--登录认证表aus_authone 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.AusAuthoneKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			password "password",
+			failcount "failcount",
+			registersource "registersource",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source",
+			onlinestatus "onlinestatus",
+			loginsource "loginsource"
+		from cas.aus_authone
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--登录认证表aus_authone 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.AusAuthoneKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			password "password",
+			failcount "failcount",
+			registersource "registersource",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source",
+			onlinestatus "onlinestatus",
+			loginsource "loginsource"
+		from cas.aus_authone
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--登录认证表aus_authone 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			password "password",
+			failcount "failcount",
+			registersource "registersource",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source",
+			onlinestatus "onlinestatus",
+			loginsource "loginsource"
+		from cas.aus_authone
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="password != null and password!= '' "><![CDATA[ and password=#{password}]]></if>
+		<if test="failcount != null and failcount!= '' "><![CDATA[ and failcount=#{failcount}]]></if>
+		<if test="registersource != null and registersource!= '' "><![CDATA[ and registersource=#{registersource}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+		<if test="onlinestatus != null and onlinestatus!= '' "><![CDATA[ and onlinestatus=#{onlinestatus}]]></if>
+		<if test="loginsource != null and loginsource!= '' "><![CDATA[ and loginsource=#{loginsource}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--登录认证表aus_authone 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			password "password",
+			failcount "failcount",
+			registersource "registersource",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source",
+			onlinestatus "onlinestatus",
+			loginsource "loginsource"
+		from cas.aus_authone
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="password != null and password!= '' "><![CDATA[ and password=#{password}]]></if>
+		<if test="failcount != null and failcount!= '' "><![CDATA[ and failcount=#{failcount}]]></if>
+		<if test="registersource != null and registersource!= '' "><![CDATA[ and registersource=#{registersource}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+		<if test="onlinestatus != null and onlinestatus!= '' "><![CDATA[ and onlinestatus=#{onlinestatus}]]></if>
+		<if test="loginsource != null and loginsource!= '' "><![CDATA[ and loginsource=#{loginsource}]]></if>
+	</where>
+	</select>
+	<!--登录认证表aus_authone 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			password "password",
+			failcount "failcount",
+			registersource "registersource",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			source "source",
+			onlinestatus "onlinestatus",
+			loginsource "loginsource"
+		from cas.aus_authone
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="password != null and password!= '' "><![CDATA[ and password=#{password}]]></if>
+		<if test="failcount != null and failcount!= '' "><![CDATA[ and failcount=#{failcount}]]></if>
+		<if test="registersource != null and registersource!= '' "><![CDATA[ and registersource=#{registersource}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+		<if test="onlinestatus != null and onlinestatus!= '' "><![CDATA[ and onlinestatus=#{onlinestatus}]]></if>
+		<if test="loginsource != null and loginsource!= '' "><![CDATA[ and loginsource=#{loginsource}]]></if>
+	</where>
+	</select>
+	<!--登录认证表aus_authone 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.aus_authone(
+			customerno,password,failcount,registersource,insertdate,
+			inserttime,updatedate,updatetime,source,onlinestatus,
+			loginsource
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},#{failcount, jdbcType=INTEGER},#{registersource, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
+			#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR},#{onlinestatus, jdbcType=VARCHAR},
+			#{loginsource, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--登录认证表aus_authone 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.aus_authone(
+			customerno,password,failcount,registersource,insertdate,
+			inserttime,updatedate,updatetime,source,onlinestatus,
+			loginsource
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.customerno, jdbcType=VARCHAR},#{item.password, jdbcType=VARCHAR},#{item.failcount, jdbcType=INTEGER},#{item.registersource, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},
+				#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},#{item.source, jdbcType=VARCHAR},#{item.onlinestatus, jdbcType=VARCHAR},
+				#{item.loginsource, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--登录认证表aus_authone 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
+	<![CDATA[
+		update cas.aus_authone
+	]]>
+	<set>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="password != null and password != '' "><![CDATA[password=#{password, jdbcType=VARCHAR},]]></if>
+		 <if test="failcount != null and failcount != '' or failcount == 0 "><![CDATA[failcount=#{failcount, jdbcType=INTEGER},]]></if>
+		 <if test="registersource != null and registersource != '' "><![CDATA[registersource=#{registersource, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="source != null and source != '' "><![CDATA[source=#{source, jdbcType=VARCHAR},]]></if>
+		 <if test="onlinestatus != null and onlinestatus != '' "><![CDATA[onlinestatus=#{onlinestatus, jdbcType=VARCHAR},]]></if>
+		 <if test="loginsource != null and loginsource != '' "><![CDATA[loginsource=#{loginsource, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--登录认证表aus_authone 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.aus_authone
+		<set>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.password != null and item.password != '' "><![CDATA[password=#{item.password, jdbcType=VARCHAR},]]></if>
+		 <if test="item.failcount != null and item.failcount != '' or failcount == 0 "><![CDATA[failcount=#{item.failcount, jdbcType=INTEGER},]]></if>
+		 <if test="item.registersource != null and item.registersource != '' "><![CDATA[registersource=#{item.registersource, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.source != null and item.source != '' "><![CDATA[source=#{item.source, jdbcType=VARCHAR},]]></if>
+		 <if test="item.onlinestatus != null and item.onlinestatus != '' "><![CDATA[onlinestatus=#{item.onlinestatus, jdbcType=VARCHAR},]]></if>
+		 <if test="item.loginsource != null and item.loginsource != '' "><![CDATA[loginsource=#{item.loginsource, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--登录认证表aus_authone 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
+	<![CDATA[
+		update cas.aus_authone
+	]]>
+	<set>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="password != null "> <![CDATA[password=#{password, jdbcType=VARCHAR},]]></if>
+		 <if test="failcount != null or failcount == 0 "><![CDATA[failcount=#{failcount, jdbcType=INTEGER},]]></if>
+		 <if test="registersource != null "> <![CDATA[registersource=#{registersource, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="source != null "> <![CDATA[source=#{source, jdbcType=VARCHAR},]]></if>
+		 <if test="onlinestatus != null "> <![CDATA[onlinestatus=#{onlinestatus, jdbcType=VARCHAR},]]></if>
+		 <if test="loginsource != null "> <![CDATA[loginsource=#{loginsource, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--登录认证表aus_authone 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.aus_authone
+		<set>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.password != null "><![CDATA[password=#{item.password, jdbcType=VARCHAR},]]></if>
+		 <if test="item.failcount != null or failcount == 0 "><![CDATA[failcount=#{item.failcount, jdbcType=INTEGER},]]></if>
+		 <if test="item.registersource != null "><![CDATA[registersource=#{item.registersource, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.source != null "><![CDATA[source=#{item.source, jdbcType=VARCHAR},]]></if>
+		 <if test="item.onlinestatus != null "><![CDATA[onlinestatus=#{item.onlinestatus, jdbcType=VARCHAR},]]></if>
+		 <if test="item.loginsource != null "><![CDATA[loginsource=#{item.loginsource, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--登录认证表aus_authone 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.AusAuthoneKey">
+	<![CDATA[
+		delete from cas.aus_authone
+		where
+			customerno = #{customerno}
+	]]>
+	</delete>
+	<!--登录认证表aus_authone 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.AusAuthoneKey">
+		delete from cas.aus_authone where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

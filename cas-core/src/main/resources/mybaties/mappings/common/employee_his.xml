@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.EmployeeHisDao" >
+	<!--员工基本信息历史表employee_his 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeHisKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			employeename "employeename",
+			loginname "loginname",
+			branchid "branchid",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			email "email",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.employee_his
+		where 
+			customerno = #{customerno}
+		for update
+	]]>
+	</select>
+	<!--员工基本信息历史表employee_his 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeHisKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			employeename "employeename",
+			loginname "loginname",
+			branchid "branchid",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			email "email",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.employee_his
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--员工基本信息历史表employee_his 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeHisKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			employeename "employeename",
+			loginname "loginname",
+			branchid "branchid",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			email "email",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.employee_his
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--员工基本信息历史表employee_his 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			employeename "employeename",
+			loginname "loginname",
+			branchid "branchid",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			email "email",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.employee_his
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="employeename != null and employeename!= '' "><![CDATA[ and employeename=#{employeename}]]></if>
+		<if test="loginname != null and loginname!= '' "><![CDATA[ and loginname=#{loginname}]]></if>
+		<if test="branchid != null and branchid!= '' "><![CDATA[ and branchid=#{branchid}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="email != null and email!= '' "><![CDATA[ and email=#{email}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="deletetime != null and deletetime!= '' "><![CDATA[ and deletetime=#{deletetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--员工基本信息历史表employee_his 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			employeename "employeename",
+			loginname "loginname",
+			branchid "branchid",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			email "email",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.employee_his
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="employeename != null and employeename!= '' "><![CDATA[ and employeename=#{employeename}]]></if>
+		<if test="loginname != null and loginname!= '' "><![CDATA[ and loginname=#{loginname}]]></if>
+		<if test="branchid != null and branchid!= '' "><![CDATA[ and branchid=#{branchid}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="email != null and email!= '' "><![CDATA[ and email=#{email}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="deletetime != null and deletetime!= '' "><![CDATA[ and deletetime=#{deletetime}]]></if>
+	</where>
+	</select>
+	<!--员工基本信息历史表employee_his 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			employeename "employeename",
+			loginname "loginname",
+			branchid "branchid",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			email "email",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime",
+			deletetime "deletetime"
+		from cas.employee_his
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="employeename != null and employeename!= '' "><![CDATA[ and employeename=#{employeename}]]></if>
+		<if test="loginname != null and loginname!= '' "><![CDATA[ and loginname=#{loginname}]]></if>
+		<if test="branchid != null and branchid!= '' "><![CDATA[ and branchid=#{branchid}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="email != null and email!= '' "><![CDATA[ and email=#{email}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="deletetime != null and deletetime!= '' "><![CDATA[ and deletetime=#{deletetime}]]></if>
+	</where>
+	</select>
+	<!--员工基本信息历史表employee_his 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.employee_his(
+			customerno,employeename,loginname,branchid,certificatetype,
+			certificateno,mobile,email,status,insertdate,
+			inserttime,updatedate,updatetime,deletetime
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{employeename, jdbcType=VARCHAR},#{loginname, jdbcType=VARCHAR},#{branchid, jdbcType=VARCHAR},#{certificatetype, jdbcType=VARCHAR},
+			#{certificateno, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
+			#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{deletetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--员工基本信息历史表employee_his 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.employee_his(
+			customerno,employeename,loginname,branchid,certificatetype,
+			certificateno,mobile,email,status,insertdate,
+			inserttime,updatedate,updatetime,deletetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.customerno, jdbcType=VARCHAR},#{item.employeename, jdbcType=VARCHAR},#{item.loginname, jdbcType=VARCHAR},#{item.branchid, jdbcType=VARCHAR},#{item.certificatetype, jdbcType=VARCHAR},
+				#{item.certificateno, jdbcType=VARCHAR},#{item.mobile, jdbcType=VARCHAR},#{item.email, jdbcType=VARCHAR},#{item.status, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},
+				#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},#{item.deletetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--员工基本信息历史表employee_his 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
+	<![CDATA[
+		update cas.employee_his
+	]]>
+	<set>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="employeename != null and employeename != '' "><![CDATA[employeename=#{employeename, jdbcType=VARCHAR},]]></if>
+		 <if test="loginname != null and loginname != '' "><![CDATA[loginname=#{loginname, jdbcType=VARCHAR},]]></if>
+		 <if test="branchid != null and branchid != '' "><![CDATA[branchid=#{branchid, jdbcType=VARCHAR},]]></if>
+		 <if test="certificatetype != null and certificatetype != '' "><![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null and certificateno != '' "><![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="mobile != null and mobile != '' "><![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="email != null and email != '' "><![CDATA[email=#{email, jdbcType=VARCHAR},]]></if>
+		 <if test="status != null and status != '' "><![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="deletetime != null and deletetime != '' "><![CDATA[deletetime=#{deletetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--员工基本信息历史表employee_his 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.employee_his
+		<set>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.employeename != null and item.employeename != '' "><![CDATA[employeename=#{item.employeename, jdbcType=VARCHAR},]]></if>
+		 <if test="item.loginname != null and item.loginname != '' "><![CDATA[loginname=#{item.loginname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.branchid != null and item.branchid != '' "><![CDATA[branchid=#{item.branchid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificatetype != null and item.certificatetype != '' "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null and item.certificateno != '' "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mobile != null and item.mobile != '' "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.email != null and item.email != '' "><![CDATA[email=#{item.email, jdbcType=VARCHAR},]]></if>
+		 <if test="item.status != null and item.status != '' "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.deletetime != null and item.deletetime != '' "><![CDATA[deletetime=#{item.deletetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--员工基本信息历史表employee_his 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
+	<![CDATA[
+		update cas.employee_his
+	]]>
+	<set>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="employeename != null "> <![CDATA[employeename=#{employeename, jdbcType=VARCHAR},]]></if>
+		 <if test="loginname != null "> <![CDATA[loginname=#{loginname, jdbcType=VARCHAR},]]></if>
+		 <if test="branchid != null "> <![CDATA[branchid=#{branchid, jdbcType=VARCHAR},]]></if>
+		 <if test="certificatetype != null "> <![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null "> <![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="mobile != null "> <![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="email != null "> <![CDATA[email=#{email, jdbcType=VARCHAR},]]></if>
+		 <if test="status != null "> <![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="deletetime != null "> <![CDATA[deletetime=#{deletetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--员工基本信息历史表employee_his 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.employee_his
+		<set>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.employeename != null "><![CDATA[employeename=#{item.employeename, jdbcType=VARCHAR},]]></if>
+		 <if test="item.loginname != null "><![CDATA[loginname=#{item.loginname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.branchid != null "><![CDATA[branchid=#{item.branchid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificatetype != null "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mobile != null "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.email != null "><![CDATA[email=#{item.email, jdbcType=VARCHAR},]]></if>
+		 <if test="item.status != null "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.deletetime != null "><![CDATA[deletetime=#{item.deletetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--员工基本信息历史表employee_his 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeHisKey">
+	<![CDATA[
+		delete from cas.employee_his
+		where
+			customerno = #{customerno}
+	]]>
+	</delete>
+	<!--员工基本信息历史表employee_his 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeHisKey">
+		delete from cas.employee_his where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.common.dao.entity.EmployeeEntity">
+    <id column="customerno" jdbcType="VARCHAR" property="customerno" />
+    <result column="employeename" jdbcType="VARCHAR" property="employeename" />
+    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="branchid" jdbcType="VARCHAR" property="branchid" />
+    <result column="certificatetype" jdbcType="VARCHAR" property="certificatetype" />
+    <result column="certificateno" jdbcType="VARCHAR" property="certificateno" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
+    <result column="insertdate" jdbcType="VARCHAR" property="insertdate" />
+    <result column="inserttime" jdbcType="VARCHAR" property="inserttime" />
+    <result column="updatedate" jdbcType="VARCHAR" property="updatedate" />
+    <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    customerno, employeename, loginname, branchid, certificatetype, certificateno, mobile, 
+    email, status, province, city, county, insertdate, inserttime, updatedate, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from employee
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeEntity">
+    insert into employee (customerno, employeename, loginname, 
+      branchid, certificatetype, certificateno, 
+      mobile, email, status, 
+      province, city, county, 
+      insertdate, inserttime, updatedate, 
+      updatetime)
+    values (#{customerno,jdbcType=VARCHAR}, #{employeename,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}, 
+      #{branchid,jdbcType=VARCHAR}, #{certificatetype,jdbcType=VARCHAR}, #{certificateno,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
+      #{insertdate,jdbcType=VARCHAR}, #{inserttime,jdbcType=VARCHAR}, #{updatedate,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeEntity">
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerno != null">
+        customerno,
+      </if>
+      <if test="employeename != null">
+        employeename,
+      </if>
+      <if test="loginname != null">
+        loginname,
+      </if>
+      <if test="branchid != null">
+        branchid,
+      </if>
+      <if test="certificatetype != null">
+        certificatetype,
+      </if>
+      <if test="certificateno != null">
+        certificateno,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="county != null">
+        county,
+      </if>
+      <if test="insertdate != null">
+        insertdate,
+      </if>
+      <if test="inserttime != null">
+        inserttime,
+      </if>
+      <if test="updatedate != null">
+        updatedate,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerno != null">
+        #{customerno,jdbcType=VARCHAR},
+      </if>
+      <if test="employeename != null">
+        #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="branchid != null">
+        #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatetype != null">
+        #{certificatetype,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateno != null">
+        #{certificateno,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null">
+        #{insertdate,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null">
+        #{inserttime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeEntity">
+    update employee
+    <set>
+      <if test="employeename != null">
+        employeename = #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="loginname != null">
+        loginname = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="branchid != null">
+        branchid = #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatetype != null">
+        certificatetype = #{certificatetype,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateno != null">
+        certificateno = #{certificateno,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null">
+        insertdate = #{insertdate,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null">
+        inserttime = #{inserttime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        updatedate = #{updatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeEntity">
+    update employee
+    set employeename = #{employeename,jdbcType=VARCHAR},
+      loginname = #{loginname,jdbcType=VARCHAR},
+      branchid = #{branchid,jdbcType=VARCHAR},
+      certificatetype = #{certificatetype,jdbcType=VARCHAR},
+      certificateno = #{certificateno,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      insertdate = #{insertdate,jdbcType=VARCHAR},
+      inserttime = #{inserttime,jdbcType=VARCHAR},
+      updatedate = #{updatedate,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR}
+    where customerno = #{customerno,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeEntity"
+          resultType="com.msjf.finance.cas.common.dao.entity.EmployeeEntity">
+    <![CDATA[
+		select
+		]]>
+          <include refid="Base_Column_List" />
+    <![CDATA[
+		from employee
+	]]>
+    <where>
+      <if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+      <if test="employeename != null and employeename!= '' "><![CDATA[ and employeename=#{employeename}]]></if>
+      <if test="loginname != null and loginname!= '' "><![CDATA[ and loginname=#{loginname}]]></if>
+      <if test="branchid != null and branchid!= '' "><![CDATA[ and branchid=#{branchid}]]></if>
+      <if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+      <if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+      <if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+      <if test="email != null and email!= '' "><![CDATA[ and email=#{email}]]></if>
+      <if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+      <if test="province != null and province!= ''"><![CDATA[ and province=#{province}]]></if>
+      <if test="city != null and city!= ''"><![CDATA[ and city=#{city}]]></if>
+      <if test="county != null and county!= ''"><![CDATA[ and county=#{county}]]></if>
+      <if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+      <if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+      <if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+      <if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+    </where>
+  </select>
+</mapper>

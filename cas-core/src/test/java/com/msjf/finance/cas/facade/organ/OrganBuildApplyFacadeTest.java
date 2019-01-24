@@ -1,14 +1,11 @@
 package com.msjf.finance.cas.facade.organ;
 
-import com.msjf.finance.cas.modules.util.SpringContextUtil;
+import com.msjf.finance.msjf.core.response.Response;
 import common.SpringTestCase;
 import org.junit.Test;
 
 import javax.annotation.Resource;
-
 import java.util.HashMap;
-
-import static org.junit.Assert.*;
 
 /**
  * <pre>
@@ -30,6 +27,7 @@ public class OrganBuildApplyFacadeTest extends SpringTestCase {
 
     @Test
     public void addApply() {
-        organBuildApplyFacade.addApply(new HashMap<>());
+        Response rs = organBuildApplyFacade.addApply(new HashMap<>());
+        System.out.println(rs);
     }
 }

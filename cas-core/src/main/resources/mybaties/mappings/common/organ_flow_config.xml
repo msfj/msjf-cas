@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganFlowConfigDao" >
+	<!--流程进度配置表organ_flow_config 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganFlowConfigKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity">
+	<![CDATA[
+		select
+			type "type",
+			name "name",
+			step "step",
+			remark "remark"
+		from cas.organ_flow_config
+		where 
+			type = #{type}
+		for update
+	]]>
+	</select>
+	<!--流程进度配置表organ_flow_config 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganFlowConfigKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity">
+	<![CDATA[
+		select
+			type "type",
+			name "name",
+			step "step",
+			remark "remark"
+		from cas.organ_flow_config
+		where 
+			type = #{type}
+	]]>
+	</select>
+	<!--流程进度配置表organ_flow_config 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganFlowConfigKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			type "type",
+			name "name",
+			step "step",
+			remark "remark"
+		from cas.organ_flow_config
+		where 
+			type = #{type}
+	]]>
+	</select>
+	<!--流程进度配置表organ_flow_config 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity">
+	<![CDATA[
+		select
+			type "type",
+			name "name",
+			step "step",
+			remark "remark"
+		from cas.organ_flow_config
+	]]>
+	<where>
+		<if test="type != null and type!= '' "><![CDATA[ and type=#{type}]]></if>
+		<if test="name != null and name!= '' "><![CDATA[ and name=#{name}]]></if>
+		<if test="step != null and step!= '' "><![CDATA[ and step=#{step}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--流程进度配置表organ_flow_config 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity">
+	<![CDATA[
+		select
+			type "type",
+			name "name",
+			step "step",
+			remark "remark"
+		from cas.organ_flow_config
+	]]>
+	<where>
+		<if test="type != null and type!= '' "><![CDATA[ and type=#{type}]]></if>
+		<if test="name != null and name!= '' "><![CDATA[ and name=#{name}]]></if>
+		<if test="step != null and step!= '' "><![CDATA[ and step=#{step}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+	</where>
+	</select>
+	<!--流程进度配置表organ_flow_config 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			type "type",
+			name "name",
+			step "step",
+			remark "remark"
+		from cas.organ_flow_config
+	]]>
+	<where>
+		<if test="type != null and type!= '' "><![CDATA[ and type=#{type}]]></if>
+		<if test="name != null and name!= '' "><![CDATA[ and name=#{name}]]></if>
+		<if test="step != null and step!= '' "><![CDATA[ and step=#{step}]]></if>
+		<if test="remark != null and remark!= '' "><![CDATA[ and remark=#{remark}]]></if>
+	</where>
+	</select>
+	<!--流程进度配置表organ_flow_config 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_flow_config(
+			type,name,step,remark
+		) values(
+			#{type, jdbcType=VARCHAR},#{name, jdbcType=VARCHAR},#{step, jdbcType=VARCHAR},#{remark, jdbcType=CLOB}
+	)]]>
+	</insert>
+	<!--流程进度配置表organ_flow_config 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_flow_config(
+			type,name,step,remark
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.type, jdbcType=VARCHAR},#{item.name, jdbcType=VARCHAR},#{item.step, jdbcType=VARCHAR},#{item.remark, jdbcType=CLOB}
+			)
+		</foreach>
+	</insert>
+	<!--流程进度配置表organ_flow_config 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity">
+	<![CDATA[
+		update cas.organ_flow_config
+	]]>
+	<set>
+		 <if test="type != null and type != '' "><![CDATA[type=#{type, jdbcType=VARCHAR},]]></if>
+		 <if test="name != null and name != '' "><![CDATA[name=#{name, jdbcType=VARCHAR},]]></if>
+		 <if test="step != null and step != '' "><![CDATA[step=#{step, jdbcType=VARCHAR},]]></if>
+		 <if test="remark != null and remark != '' "><![CDATA[remark=#{remark, jdbcType=CLOB},]]></if>
+	</set>
+	<![CDATA[ where type = #{type}
+	]]>
+	</update>
+	<!--流程进度配置表organ_flow_config 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_flow_config
+		<set>
+		 <if test="item.type != null and item.type != '' "><![CDATA[type=#{item.type, jdbcType=VARCHAR},]]></if>
+		 <if test="item.name != null and item.name != '' "><![CDATA[name=#{item.name, jdbcType=VARCHAR},]]></if>
+		 <if test="item.step != null and item.step != '' "><![CDATA[step=#{item.step, jdbcType=VARCHAR},]]></if>
+		 <if test="item.remark != null and item.remark != '' "><![CDATA[remark=#{item.remark, jdbcType=CLOB},]]></if>
+			</set>
+			<![CDATA[ where type = #{item.type}
+			]]>
+		</foreach>
+	</update>
+	<!--流程进度配置表organ_flow_config 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity">
+	<![CDATA[
+		update cas.organ_flow_config
+	]]>
+	<set>
+		 <if test="type != null "> <![CDATA[type=#{type, jdbcType=VARCHAR},]]></if>
+		 <if test="name != null "> <![CDATA[name=#{name, jdbcType=VARCHAR},]]></if>
+		 <if test="step != null "> <![CDATA[step=#{step, jdbcType=VARCHAR},]]></if>
+		 <if test="remark != null "> <![CDATA[remark=#{remark, jdbcType=CLOB},]]></if>
+	</set>
+	<![CDATA[ where type = #{type}
+	]]>
+	</update>
+	<!--流程进度配置表organ_flow_config 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowConfigEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_flow_config
+		<set>
+		 <if test="item.type != null "><![CDATA[type=#{item.type, jdbcType=VARCHAR},]]></if>
+		 <if test="item.name != null "><![CDATA[name=#{item.name, jdbcType=VARCHAR},]]></if>
+		 <if test="item.step != null "><![CDATA[step=#{item.step, jdbcType=VARCHAR},]]></if>
+		 <if test="item.remark != null "><![CDATA[remark=#{item.remark, jdbcType=CLOB},]]></if>
+			</set>
+			<![CDATA[ where type = #{item.type}
+			]]>
+		</foreach>
+	</update>
+	<!--流程进度配置表organ_flow_config 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganFlowConfigKey">
+	<![CDATA[
+		delete from cas.organ_flow_config
+		where
+			type = #{type}
+	]]>
+	</delete>
+	<!--流程进度配置表organ_flow_config 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganFlowConfigKey">
+		delete from cas.organ_flow_config where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ type = #{item.type}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

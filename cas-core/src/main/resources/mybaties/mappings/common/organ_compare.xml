@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganCompareDao" >
+	<!--企业信息变更比对结果表organ_compare 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganCompareKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			beforeitem "beforeitem",
+			afteritem "afteritem",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.organ_compare
+		where 
+			version = #{version}
+			and customerno = #{customerno}
+		for update
+	]]>
+	</select>
+	<!--企业信息变更比对结果表organ_compare 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganCompareKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			beforeitem "beforeitem",
+			afteritem "afteritem",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.organ_compare
+		where 
+			version = #{version}
+			and customerno = #{customerno}
+	]]>
+	</select>
+	<!--企业信息变更比对结果表organ_compare 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganCompareKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			beforeitem "beforeitem",
+			afteritem "afteritem",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.organ_compare
+		where 
+			version = #{version}
+			and customerno = #{customerno}
+	]]>
+	</select>
+	<!--企业信息变更比对结果表organ_compare 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			beforeitem "beforeitem",
+			afteritem "afteritem",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.organ_compare
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="beforeitem != null and beforeitem!= '' "><![CDATA[ and beforeitem=#{beforeitem}]]></if>
+		<if test="afteritem != null and afteritem!= '' "><![CDATA[ and afteritem=#{afteritem}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--企业信息变更比对结果表organ_compare 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			beforeitem "beforeitem",
+			afteritem "afteritem",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.organ_compare
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="beforeitem != null and beforeitem!= '' "><![CDATA[ and beforeitem=#{beforeitem}]]></if>
+		<if test="afteritem != null and afteritem!= '' "><![CDATA[ and afteritem=#{afteritem}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+	</where>
+	</select>
+	<!--企业信息变更比对结果表organ_compare 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			version "version",
+			beforeitem "beforeitem",
+			afteritem "afteritem",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.organ_compare
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="beforeitem != null and beforeitem!= '' "><![CDATA[ and beforeitem=#{beforeitem}]]></if>
+		<if test="afteritem != null and afteritem!= '' "><![CDATA[ and afteritem=#{afteritem}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+	</where>
+	</select>
+	<!--企业信息变更比对结果表organ_compare 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_compare(
+			customerno,version,beforeitem,afteritem,insertdate,
+			inserttime
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{version, jdbcType=VARCHAR},#{beforeitem, jdbcType=CLOB},#{afteritem, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},
+			#{inserttime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--企业信息变更比对结果表organ_compare 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_compare(
+			customerno,version,beforeitem,afteritem,insertdate,
+			inserttime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.customerno, jdbcType=VARCHAR},#{item.version, jdbcType=VARCHAR},#{item.beforeitem, jdbcType=CLOB},#{item.afteritem, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},
+				#{item.inserttime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--企业信息变更比对结果表organ_compare 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity">
+	<![CDATA[
+		update cas.organ_compare
+	]]>
+	<set>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="version != null and version != '' "><![CDATA[version=#{version, jdbcType=VARCHAR},]]></if>
+		 <if test="beforeitem != null and beforeitem != '' "><![CDATA[beforeitem=#{beforeitem, jdbcType=CLOB},]]></if>
+		 <if test="afteritem != null and afteritem != '' "><![CDATA[afteritem=#{afteritem, jdbcType=CLOB},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where version = #{version} and customerno = #{customerno}
+	]]>
+	</update>
+	<!--企业信息变更比对结果表organ_compare 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_compare
+		<set>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.version != null and item.version != '' "><![CDATA[version=#{item.version, jdbcType=VARCHAR},]]></if>
+		 <if test="item.beforeitem != null and item.beforeitem != '' "><![CDATA[beforeitem=#{item.beforeitem, jdbcType=CLOB},]]></if>
+		 <if test="item.afteritem != null and item.afteritem != '' "><![CDATA[afteritem=#{item.afteritem, jdbcType=CLOB},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where version = #{item.version} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业信息变更比对结果表organ_compare 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity">
+	<![CDATA[
+		update cas.organ_compare
+	]]>
+	<set>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="version != null "> <![CDATA[version=#{version, jdbcType=VARCHAR},]]></if>
+		 <if test="beforeitem != null "> <![CDATA[beforeitem=#{beforeitem, jdbcType=CLOB},]]></if>
+		 <if test="afteritem != null "> <![CDATA[afteritem=#{afteritem, jdbcType=CLOB},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where version = #{version} and customerno = #{customerno}
+	]]>
+	</update>
+	<!--企业信息变更比对结果表organ_compare 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganCompareEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_compare
+		<set>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.version != null "><![CDATA[version=#{item.version, jdbcType=VARCHAR},]]></if>
+		 <if test="item.beforeitem != null "><![CDATA[beforeitem=#{item.beforeitem, jdbcType=CLOB},]]></if>
+		 <if test="item.afteritem != null "><![CDATA[afteritem=#{item.afteritem, jdbcType=CLOB},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where version = #{item.version} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业信息变更比对结果表organ_compare 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganCompareKey">
+	<![CDATA[
+		delete from cas.organ_compare
+		where
+			version = #{version} and customerno = #{customerno}
+	]]>
+	</delete>
+	<!--企业信息变更比对结果表organ_compare 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganCompareKey">
+		delete from cas.organ_compare where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ version = #{item.version} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

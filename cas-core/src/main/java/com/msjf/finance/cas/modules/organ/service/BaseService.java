@@ -1,9 +1,9 @@
 package com.msjf.finance.cas.modules.organ.service;
 
-import com.msjf.finance.cas.common.dao.OrganInfoDao;
-import com.msjf.finance.cas.common.dao.OrganRollinDao;
-import com.msjf.finance.cas.common.entity.OrganInfoEntity;
-import com.msjf.finance.cas.common.entity.OrganRollinEntity;
+import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
+import com.msjf.finance.cas.common.dao.persistence.OrganRollinDao;
+import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.dao.entity.OrganRollinEntity;
 import com.msjf.finance.cas.common.utils.CheckUtil;
 import com.msjf.finance.cas.modules.util.SpringContextUtil;
 import com.msjf.finance.msjf.core.response.Response;
@@ -318,7 +318,7 @@ public class BaseService {
         //1-企业基本信息表检查
         OrganInfoEntity c = new OrganInfoEntity();
         c.setMembername(organName);
-        List<OrganInfoEntity> clist = organInfoDao.getOrganInfo(c);
+        List<OrganInfoEntity> clist = organInfoDao.getListEntity(c);
         if (clist!= null || clist.size() > 0) {
             rs.fail("cas","企业名称已存在");
             return false;
@@ -327,7 +327,8 @@ public class BaseService {
         //2-在变更记录表检查企业名称是否已存在
         HashMap<String, Object> mapParam = new HashMap<>();
         mapParam.put("membername", organName);
-        List<Map<String, Object>> checkListMap = organInfoDao.checkExistCompanynameInChange(mapParam);
+        //todo 此处需修改
+        List<Map<String, Object>> checkListMap = null;//organInfoDao.checkExistCompanynameInChange(mapParam);
         if (!CheckUtil.isNull(checkListMap)) {
             rs.fail("cas","企业名称已存在");
             return false;
@@ -336,7 +337,7 @@ public class BaseService {
         //3-企业迁入表检查
         OrganRollinEntity rollinEntity = new OrganRollinEntity();
         rollinEntity.setCompanyname(organName);
-        List<OrganRollinEntity> organRollinEntityList = organRollinDao.getOrganRollin(rollinEntity);
+        List<OrganRollinEntity> organRollinEntityList = organRollinDao.getListEntity(rollinEntity);
         if (!CheckUtil.isNull(organRollinEntityList)) {
             rs.fail("cas","企业名称已存在");
             return false;

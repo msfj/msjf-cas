@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganRollinDao" >
+	<!--企业迁入基本信息表organ_rollin 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganRollinKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			companyname "companyname",
+			businessno "businessno",
+			leader "leader",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			servicecustomerno "servicecustomerno",
+			businessscope "businessscope",
+			companyintro "companyintro",
+			workaddress "workaddress",
+			registeraddress "registeraddress",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_rollin
+		where 
+			serialno = #{serialno}
+		for update
+	]]>
+	</select>
+	<!--企业迁入基本信息表organ_rollin 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganRollinKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			companyname "companyname",
+			businessno "businessno",
+			leader "leader",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			servicecustomerno "servicecustomerno",
+			businessscope "businessscope",
+			companyintro "companyintro",
+			workaddress "workaddress",
+			registeraddress "registeraddress",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_rollin
+		where 
+			serialno = #{serialno}
+	]]>
+	</select>
+	<!--企业迁入基本信息表organ_rollin 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganRollinKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			companyname "companyname",
+			businessno "businessno",
+			leader "leader",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			servicecustomerno "servicecustomerno",
+			businessscope "businessscope",
+			companyintro "companyintro",
+			workaddress "workaddress",
+			registeraddress "registeraddress",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_rollin
+		where 
+			serialno = #{serialno}
+	]]>
+	</select>
+	<!--企业迁入基本信息表organ_rollin 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			companyname "companyname",
+			businessno "businessno",
+			leader "leader",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			servicecustomerno "servicecustomerno",
+			businessscope "businessscope",
+			companyintro "companyintro",
+			workaddress "workaddress",
+			registeraddress "registeraddress",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_rollin
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+		<if test="businessno != null and businessno!= '' "><![CDATA[ and businessno=#{businessno}]]></if>
+		<if test="leader != null and leader!= '' "><![CDATA[ and leader=#{leader}]]></if>
+		<if test="regicapital != null and regicapital!= '' "><![CDATA[ and regicapital=#{regicapital}]]></if>
+		<if test="regicapitalbz != null and regicapitalbz!= '' "><![CDATA[ and regicapitalbz=#{regicapitalbz}]]></if>
+		<if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
+		<if test="businessscope != null and businessscope!= '' "><![CDATA[ and businessscope=#{businessscope}]]></if>
+		<if test="companyintro != null and companyintro!= '' "><![CDATA[ and companyintro=#{companyintro}]]></if>
+		<if test="workaddress != null and workaddress!= '' "><![CDATA[ and workaddress=#{workaddress}]]></if>
+		<if test="registeraddress != null and registeraddress!= '' "><![CDATA[ and registeraddress=#{registeraddress}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--企业迁入基本信息表organ_rollin 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			companyname "companyname",
+			businessno "businessno",
+			leader "leader",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			servicecustomerno "servicecustomerno",
+			businessscope "businessscope",
+			companyintro "companyintro",
+			workaddress "workaddress",
+			registeraddress "registeraddress",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_rollin
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+		<if test="businessno != null and businessno!= '' "><![CDATA[ and businessno=#{businessno}]]></if>
+		<if test="leader != null and leader!= '' "><![CDATA[ and leader=#{leader}]]></if>
+		<if test="regicapital != null and regicapital!= '' "><![CDATA[ and regicapital=#{regicapital}]]></if>
+		<if test="regicapitalbz != null and regicapitalbz!= '' "><![CDATA[ and regicapitalbz=#{regicapitalbz}]]></if>
+		<if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
+		<if test="businessscope != null and businessscope!= '' "><![CDATA[ and businessscope=#{businessscope}]]></if>
+		<if test="companyintro != null and companyintro!= '' "><![CDATA[ and companyintro=#{companyintro}]]></if>
+		<if test="workaddress != null and workaddress!= '' "><![CDATA[ and workaddress=#{workaddress}]]></if>
+		<if test="registeraddress != null and registeraddress!= '' "><![CDATA[ and registeraddress=#{registeraddress}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--企业迁入基本信息表organ_rollin 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			companyname "companyname",
+			businessno "businessno",
+			leader "leader",
+			regicapital "regicapital",
+			regicapitalbz "regicapitalbz",
+			linkmanname "linkmanname",
+			mobile "mobile",
+			servicecustomerno "servicecustomerno",
+			businessscope "businessscope",
+			companyintro "companyintro",
+			workaddress "workaddress",
+			registeraddress "registeraddress",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_rollin
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="companyname != null and companyname!= '' "><![CDATA[ and companyname=#{companyname}]]></if>
+		<if test="businessno != null and businessno!= '' "><![CDATA[ and businessno=#{businessno}]]></if>
+		<if test="leader != null and leader!= '' "><![CDATA[ and leader=#{leader}]]></if>
+		<if test="regicapital != null and regicapital!= '' "><![CDATA[ and regicapital=#{regicapital}]]></if>
+		<if test="regicapitalbz != null and regicapitalbz!= '' "><![CDATA[ and regicapitalbz=#{regicapitalbz}]]></if>
+		<if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
+		<if test="businessscope != null and businessscope!= '' "><![CDATA[ and businessscope=#{businessscope}]]></if>
+		<if test="companyintro != null and companyintro!= '' "><![CDATA[ and companyintro=#{companyintro}]]></if>
+		<if test="workaddress != null and workaddress!= '' "><![CDATA[ and workaddress=#{workaddress}]]></if>
+		<if test="registeraddress != null and registeraddress!= '' "><![CDATA[ and registeraddress=#{registeraddress}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--企业迁入基本信息表organ_rollin 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_rollin(
+			serialno,customerno,companyname,businessno,leader,
+			regicapital,regicapitalbz,linkmanname,mobile,servicecustomerno,
+			businessscope,companyintro,workaddress,registeraddress,insertdate,
+			inserttime,updatedate,updatetime
+		) values(
+			#{serialno, jdbcType=VARCHAR},#{customerno, jdbcType=VARCHAR},#{companyname, jdbcType=VARCHAR},#{businessno, jdbcType=VARCHAR},#{leader, jdbcType=VARCHAR},
+			#{regicapital, jdbcType=VARCHAR},#{regicapitalbz, jdbcType=VARCHAR},#{linkmanname, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},#{servicecustomerno, jdbcType=VARCHAR},
+			#{businessscope, jdbcType=CLOB},#{companyintro, jdbcType=CLOB},#{workaddress, jdbcType=CLOB},#{registeraddress, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},
+			#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--企业迁入基本信息表organ_rollin 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_rollin(
+			serialno,customerno,companyname,businessno,leader,
+			regicapital,regicapitalbz,linkmanname,mobile,servicecustomerno,
+			businessscope,companyintro,workaddress,registeraddress,insertdate,
+			inserttime,updatedate,updatetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.serialno, jdbcType=VARCHAR},#{item.customerno, jdbcType=VARCHAR},#{item.companyname, jdbcType=VARCHAR},#{item.businessno, jdbcType=VARCHAR},#{item.leader, jdbcType=VARCHAR},
+				#{item.regicapital, jdbcType=VARCHAR},#{item.regicapitalbz, jdbcType=VARCHAR},#{item.linkmanname, jdbcType=VARCHAR},#{item.mobile, jdbcType=VARCHAR},#{item.servicecustomerno, jdbcType=VARCHAR},
+				#{item.businessscope, jdbcType=CLOB},#{item.companyintro, jdbcType=CLOB},#{item.workaddress, jdbcType=CLOB},#{item.registeraddress, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},
+				#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--企业迁入基本信息表organ_rollin 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
+	<![CDATA[
+		update cas.organ_rollin
+	]]>
+	<set>
+		 <if test="serialno != null and serialno != '' "><![CDATA[serialno=#{serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="companyname != null and companyname != '' "><![CDATA[companyname=#{companyname, jdbcType=VARCHAR},]]></if>
+		 <if test="businessno != null and businessno != '' "><![CDATA[businessno=#{businessno, jdbcType=VARCHAR},]]></if>
+		 <if test="leader != null and leader != '' "><![CDATA[leader=#{leader, jdbcType=VARCHAR},]]></if>
+		 <if test="regicapital != null and regicapital != '' "><![CDATA[regicapital=#{regicapital, jdbcType=VARCHAR},]]></if>
+		 <if test="regicapitalbz != null and regicapitalbz != '' "><![CDATA[regicapitalbz=#{regicapitalbz, jdbcType=VARCHAR},]]></if>
+		 <if test="linkmanname != null and linkmanname != '' "><![CDATA[linkmanname=#{linkmanname, jdbcType=VARCHAR},]]></if>
+		 <if test="mobile != null and mobile != '' "><![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="servicecustomerno != null and servicecustomerno != '' "><![CDATA[servicecustomerno=#{servicecustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="businessscope != null and businessscope != '' "><![CDATA[businessscope=#{businessscope, jdbcType=CLOB},]]></if>
+		 <if test="companyintro != null and companyintro != '' "><![CDATA[companyintro=#{companyintro, jdbcType=CLOB},]]></if>
+		 <if test="workaddress != null and workaddress != '' "><![CDATA[workaddress=#{workaddress, jdbcType=CLOB},]]></if>
+		 <if test="registeraddress != null and registeraddress != '' "><![CDATA[registeraddress=#{registeraddress, jdbcType=CLOB},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where serialno = #{serialno}
+	]]>
+	</update>
+	<!--企业迁入基本信息表organ_rollin 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_rollin
+		<set>
+		 <if test="item.serialno != null and item.serialno != '' "><![CDATA[serialno=#{item.serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companyname != null and item.companyname != '' "><![CDATA[companyname=#{item.companyname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businessno != null and item.businessno != '' "><![CDATA[businessno=#{item.businessno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.leader != null and item.leader != '' "><![CDATA[leader=#{item.leader, jdbcType=VARCHAR},]]></if>
+		 <if test="item.regicapital != null and item.regicapital != '' "><![CDATA[regicapital=#{item.regicapital, jdbcType=VARCHAR},]]></if>
+		 <if test="item.regicapitalbz != null and item.regicapitalbz != '' "><![CDATA[regicapitalbz=#{item.regicapitalbz, jdbcType=VARCHAR},]]></if>
+		 <if test="item.linkmanname != null and item.linkmanname != '' "><![CDATA[linkmanname=#{item.linkmanname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mobile != null and item.mobile != '' "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.servicecustomerno != null and item.servicecustomerno != '' "><![CDATA[servicecustomerno=#{item.servicecustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businessscope != null and item.businessscope != '' "><![CDATA[businessscope=#{item.businessscope, jdbcType=CLOB},]]></if>
+		 <if test="item.companyintro != null and item.companyintro != '' "><![CDATA[companyintro=#{item.companyintro, jdbcType=CLOB},]]></if>
+		 <if test="item.workaddress != null and item.workaddress != '' "><![CDATA[workaddress=#{item.workaddress, jdbcType=CLOB},]]></if>
+		 <if test="item.registeraddress != null and item.registeraddress != '' "><![CDATA[registeraddress=#{item.registeraddress, jdbcType=CLOB},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业迁入基本信息表organ_rollin 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
+	<![CDATA[
+		update cas.organ_rollin
+	]]>
+	<set>
+		 <if test="serialno != null "> <![CDATA[serialno=#{serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="companyname != null "> <![CDATA[companyname=#{companyname, jdbcType=VARCHAR},]]></if>
+		 <if test="businessno != null "> <![CDATA[businessno=#{businessno, jdbcType=VARCHAR},]]></if>
+		 <if test="leader != null "> <![CDATA[leader=#{leader, jdbcType=VARCHAR},]]></if>
+		 <if test="regicapital != null "> <![CDATA[regicapital=#{regicapital, jdbcType=VARCHAR},]]></if>
+		 <if test="regicapitalbz != null "> <![CDATA[regicapitalbz=#{regicapitalbz, jdbcType=VARCHAR},]]></if>
+		 <if test="linkmanname != null "> <![CDATA[linkmanname=#{linkmanname, jdbcType=VARCHAR},]]></if>
+		 <if test="mobile != null "> <![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="servicecustomerno != null "> <![CDATA[servicecustomerno=#{servicecustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="businessscope != null "> <![CDATA[businessscope=#{businessscope, jdbcType=CLOB},]]></if>
+		 <if test="companyintro != null "> <![CDATA[companyintro=#{companyintro, jdbcType=CLOB},]]></if>
+		 <if test="workaddress != null "> <![CDATA[workaddress=#{workaddress, jdbcType=CLOB},]]></if>
+		 <if test="registeraddress != null "> <![CDATA[registeraddress=#{registeraddress, jdbcType=CLOB},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where serialno = #{serialno}
+	]]>
+	</update>
+	<!--企业迁入基本信息表organ_rollin 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_rollin
+		<set>
+		 <if test="item.serialno != null "><![CDATA[serialno=#{item.serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.companyname != null "><![CDATA[companyname=#{item.companyname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businessno != null "><![CDATA[businessno=#{item.businessno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.leader != null "><![CDATA[leader=#{item.leader, jdbcType=VARCHAR},]]></if>
+		 <if test="item.regicapital != null "><![CDATA[regicapital=#{item.regicapital, jdbcType=VARCHAR},]]></if>
+		 <if test="item.regicapitalbz != null "><![CDATA[regicapitalbz=#{item.regicapitalbz, jdbcType=VARCHAR},]]></if>
+		 <if test="item.linkmanname != null "><![CDATA[linkmanname=#{item.linkmanname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mobile != null "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.servicecustomerno != null "><![CDATA[servicecustomerno=#{item.servicecustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.businessscope != null "><![CDATA[businessscope=#{item.businessscope, jdbcType=CLOB},]]></if>
+		 <if test="item.companyintro != null "><![CDATA[companyintro=#{item.companyintro, jdbcType=CLOB},]]></if>
+		 <if test="item.workaddress != null "><![CDATA[workaddress=#{item.workaddress, jdbcType=CLOB},]]></if>
+		 <if test="item.registeraddress != null "><![CDATA[registeraddress=#{item.registeraddress, jdbcType=CLOB},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业迁入基本信息表organ_rollin 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganRollinKey">
+	<![CDATA[
+		delete from cas.organ_rollin
+		where
+			serialno = #{serialno}
+	]]>
+	</delete>
+	<!--企业迁入基本信息表organ_rollin 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganRollinKey">
+		delete from cas.organ_rollin where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

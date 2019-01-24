@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.BranchDao" >
+	<!--分支表branch 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.BranchKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
+	<![CDATA[
+		select
+			branchid "branchid",
+			branchname "branchname",
+			parentid "parentid",
+			branchtype "branchtype",
+			province "province",
+			city "city",
+			county "county",
+			stertreet "stertreet",
+			showorder "showorder",
+			curnumber "curnumber"
+		from cas.branch
+		where 
+			branchid = #{branchid}
+		for update
+	]]>
+	</select>
+	<!--分支表branch 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.BranchKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
+	<![CDATA[
+		select
+			branchid "branchid",
+			branchname "branchname",
+			parentid "parentid",
+			branchtype "branchtype",
+			province "province",
+			city "city",
+			county "county",
+			stertreet "stertreet",
+			showorder "showorder",
+			curnumber "curnumber"
+		from cas.branch
+		where 
+			branchid = #{branchid}
+	]]>
+	</select>
+	<!--分支表branch 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.BranchKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			branchid "branchid",
+			branchname "branchname",
+			parentid "parentid",
+			branchtype "branchtype",
+			province "province",
+			city "city",
+			county "county",
+			stertreet "stertreet",
+			showorder "showorder",
+			curnumber "curnumber"
+		from cas.branch
+		where 
+			branchid = #{branchid}
+	]]>
+	</select>
+	<!--分支表branch 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
+	<![CDATA[
+		select
+			branchid "branchid",
+			branchname "branchname",
+			parentid "parentid",
+			branchtype "branchtype",
+			province "province",
+			city "city",
+			county "county",
+			stertreet "stertreet",
+			showorder "showorder",
+			curnumber "curnumber"
+		from cas.branch
+	]]>
+	<where>
+		<if test="branchid != null and branchid!= '' "><![CDATA[ and branchid=#{branchid}]]></if>
+		<if test="branchname != null and branchname!= '' "><![CDATA[ and branchname=#{branchname}]]></if>
+		<if test="parentid != null and parentid!= '' "><![CDATA[ and parentid=#{parentid}]]></if>
+		<if test="branchtype != null and branchtype!= '' "><![CDATA[ and branchtype=#{branchtype}]]></if>
+		<if test="province != null and province!= '' "><![CDATA[ and province=#{province}]]></if>
+		<if test="city != null and city!= '' "><![CDATA[ and city=#{city}]]></if>
+		<if test="county != null and county!= '' "><![CDATA[ and county=#{county}]]></if>
+		<if test="stertreet != null and stertreet!= '' "><![CDATA[ and stertreet=#{stertreet}]]></if>
+		<if test="showorder != null and showorder!= '' "><![CDATA[ and showorder=#{showorder}]]></if>
+		<if test="curnumber != null and curnumber!= '' "><![CDATA[ and curnumber=#{curnumber}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--分支表branch 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
+	<![CDATA[
+		select
+			branchid "branchid",
+			branchname "branchname",
+			parentid "parentid",
+			branchtype "branchtype",
+			province "province",
+			city "city",
+			county "county",
+			stertreet "stertreet",
+			showorder "showorder",
+			curnumber "curnumber"
+		from cas.branch
+	]]>
+	<where>
+		<if test="branchid != null and branchid!= '' "><![CDATA[ and branchid=#{branchid}]]></if>
+		<if test="branchname != null and branchname!= '' "><![CDATA[ and branchname=#{branchname}]]></if>
+		<if test="parentid != null and parentid!= '' "><![CDATA[ and parentid=#{parentid}]]></if>
+		<if test="branchtype != null and branchtype!= '' "><![CDATA[ and branchtype=#{branchtype}]]></if>
+		<if test="province != null and province!= '' "><![CDATA[ and province=#{province}]]></if>
+		<if test="city != null and city!= '' "><![CDATA[ and city=#{city}]]></if>
+		<if test="county != null and county!= '' "><![CDATA[ and county=#{county}]]></if>
+		<if test="stertreet != null and stertreet!= '' "><![CDATA[ and stertreet=#{stertreet}]]></if>
+		<if test="showorder != null and showorder!= '' "><![CDATA[ and showorder=#{showorder}]]></if>
+		<if test="curnumber != null and curnumber!= '' "><![CDATA[ and curnumber=#{curnumber}]]></if>
+	</where>
+	</select>
+	<!--分支表branch 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			branchid "branchid",
+			branchname "branchname",
+			parentid "parentid",
+			branchtype "branchtype",
+			province "province",
+			city "city",
+			county "county",
+			stertreet "stertreet",
+			showorder "showorder",
+			curnumber "curnumber"
+		from cas.branch
+	]]>
+	<where>
+		<if test="branchid != null and branchid!= '' "><![CDATA[ and branchid=#{branchid}]]></if>
+		<if test="branchname != null and branchname!= '' "><![CDATA[ and branchname=#{branchname}]]></if>
+		<if test="parentid != null and parentid!= '' "><![CDATA[ and parentid=#{parentid}]]></if>
+		<if test="branchtype != null and branchtype!= '' "><![CDATA[ and branchtype=#{branchtype}]]></if>
+		<if test="province != null and province!= '' "><![CDATA[ and province=#{province}]]></if>
+		<if test="city != null and city!= '' "><![CDATA[ and city=#{city}]]></if>
+		<if test="county != null and county!= '' "><![CDATA[ and county=#{county}]]></if>
+		<if test="stertreet != null and stertreet!= '' "><![CDATA[ and stertreet=#{stertreet}]]></if>
+		<if test="showorder != null and showorder!= '' "><![CDATA[ and showorder=#{showorder}]]></if>
+		<if test="curnumber != null and curnumber!= '' "><![CDATA[ and curnumber=#{curnumber}]]></if>
+	</where>
+	</select>
+	<!--分支表branch 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.branch(
+			branchid,branchname,parentid,branchtype,province,
+			city,county,stertreet,showorder,curnumber
+		) values(
+			#{branchid, jdbcType=VARCHAR},#{branchname, jdbcType=VARCHAR},#{parentid, jdbcType=VARCHAR},#{branchtype, jdbcType=VARCHAR},#{province, jdbcType=VARCHAR},
+			#{city, jdbcType=VARCHAR},#{county, jdbcType=VARCHAR},#{stertreet, jdbcType=VARCHAR},#{showorder, jdbcType=INTEGER},#{curnumber, jdbcType=INTEGER}
+	)]]>
+	</insert>
+	<!--分支表branch 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.branch(
+			branchid,branchname,parentid,branchtype,province,
+			city,county,stertreet,showorder,curnumber
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.branchid, jdbcType=VARCHAR},#{item.branchname, jdbcType=VARCHAR},#{item.parentid, jdbcType=VARCHAR},#{item.branchtype, jdbcType=VARCHAR},#{item.province, jdbcType=VARCHAR},
+				#{item.city, jdbcType=VARCHAR},#{item.county, jdbcType=VARCHAR},#{item.stertreet, jdbcType=VARCHAR},#{item.showorder, jdbcType=INTEGER},#{item.curnumber, jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+	<!--分支表branch 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
+	<![CDATA[
+		update cas.branch
+	]]>
+	<set>
+		 <if test="branchid != null and branchid != '' "><![CDATA[branchid=#{branchid, jdbcType=VARCHAR},]]></if>
+		 <if test="branchname != null and branchname != '' "><![CDATA[branchname=#{branchname, jdbcType=VARCHAR},]]></if>
+		 <if test="parentid != null and parentid != '' "><![CDATA[parentid=#{parentid, jdbcType=VARCHAR},]]></if>
+		 <if test="branchtype != null and branchtype != '' "><![CDATA[branchtype=#{branchtype, jdbcType=VARCHAR},]]></if>
+		 <if test="province != null and province != '' "><![CDATA[province=#{province, jdbcType=VARCHAR},]]></if>
+		 <if test="city != null and city != '' "><![CDATA[city=#{city, jdbcType=VARCHAR},]]></if>
+		 <if test="county != null and county != '' "><![CDATA[county=#{county, jdbcType=VARCHAR},]]></if>
+		 <if test="stertreet != null and stertreet != '' "><![CDATA[stertreet=#{stertreet, jdbcType=VARCHAR},]]></if>
+		 <if test="showorder != null and showorder != '' or showorder == 0 "><![CDATA[showorder=#{showorder, jdbcType=INTEGER},]]></if>
+		 <if test="curnumber != null and curnumber != '' or curnumber == 0 "><![CDATA[curnumber=#{curnumber, jdbcType=INTEGER},]]></if>
+	</set>
+	<![CDATA[ where branchid = #{branchid}
+	]]>
+	</update>
+	<!--分支表branch 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.branch
+		<set>
+		 <if test="item.branchid != null and item.branchid != '' "><![CDATA[branchid=#{item.branchid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.branchname != null and item.branchname != '' "><![CDATA[branchname=#{item.branchname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.parentid != null and item.parentid != '' "><![CDATA[parentid=#{item.parentid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.branchtype != null and item.branchtype != '' "><![CDATA[branchtype=#{item.branchtype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.province != null and item.province != '' "><![CDATA[province=#{item.province, jdbcType=VARCHAR},]]></if>
+		 <if test="item.city != null and item.city != '' "><![CDATA[city=#{item.city, jdbcType=VARCHAR},]]></if>
+		 <if test="item.county != null and item.county != '' "><![CDATA[county=#{item.county, jdbcType=VARCHAR},]]></if>
+		 <if test="item.stertreet != null and item.stertreet != '' "><![CDATA[stertreet=#{item.stertreet, jdbcType=VARCHAR},]]></if>
+		 <if test="item.showorder != null and item.showorder != '' or showorder == 0 "><![CDATA[showorder=#{item.showorder, jdbcType=INTEGER},]]></if>
+		 <if test="item.curnumber != null and item.curnumber != '' or curnumber == 0 "><![CDATA[curnumber=#{item.curnumber, jdbcType=INTEGER},]]></if>
+			</set>
+			<![CDATA[ where branchid = #{item.branchid}
+			]]>
+		</foreach>
+	</update>
+	<!--分支表branch 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
+	<![CDATA[
+		update cas.branch
+	]]>
+	<set>
+		 <if test="branchid != null "> <![CDATA[branchid=#{branchid, jdbcType=VARCHAR},]]></if>
+		 <if test="branchname != null "> <![CDATA[branchname=#{branchname, jdbcType=VARCHAR},]]></if>
+		 <if test="parentid != null "> <![CDATA[parentid=#{parentid, jdbcType=VARCHAR},]]></if>
+		 <if test="branchtype != null "> <![CDATA[branchtype=#{branchtype, jdbcType=VARCHAR},]]></if>
+		 <if test="province != null "> <![CDATA[province=#{province, jdbcType=VARCHAR},]]></if>
+		 <if test="city != null "> <![CDATA[city=#{city, jdbcType=VARCHAR},]]></if>
+		 <if test="county != null "> <![CDATA[county=#{county, jdbcType=VARCHAR},]]></if>
+		 <if test="stertreet != null "> <![CDATA[stertreet=#{stertreet, jdbcType=VARCHAR},]]></if>
+		 <if test="showorder != null or showorder == 0 "><![CDATA[showorder=#{showorder, jdbcType=INTEGER},]]></if>
+		 <if test="curnumber != null or curnumber == 0 "><![CDATA[curnumber=#{curnumber, jdbcType=INTEGER},]]></if>
+	</set>
+	<![CDATA[ where branchid = #{branchid}
+	]]>
+	</update>
+	<!--分支表branch 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.branch
+		<set>
+		 <if test="item.branchid != null "><![CDATA[branchid=#{item.branchid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.branchname != null "><![CDATA[branchname=#{item.branchname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.parentid != null "><![CDATA[parentid=#{item.parentid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.branchtype != null "><![CDATA[branchtype=#{item.branchtype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.province != null "><![CDATA[province=#{item.province, jdbcType=VARCHAR},]]></if>
+		 <if test="item.city != null "><![CDATA[city=#{item.city, jdbcType=VARCHAR},]]></if>
+		 <if test="item.county != null "><![CDATA[county=#{item.county, jdbcType=VARCHAR},]]></if>
+		 <if test="item.stertreet != null "><![CDATA[stertreet=#{item.stertreet, jdbcType=VARCHAR},]]></if>
+		 <if test="item.showorder != null or showorder == 0 "><![CDATA[showorder=#{item.showorder, jdbcType=INTEGER},]]></if>
+		 <if test="item.curnumber != null or curnumber == 0 "><![CDATA[curnumber=#{item.curnumber, jdbcType=INTEGER},]]></if>
+			</set>
+			<![CDATA[ where branchid = #{item.branchid}
+			]]>
+		</foreach>
+	</update>
+	<!--分支表branch 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.BranchKey">
+	<![CDATA[
+		delete from cas.branch
+		where
+			branchid = #{branchid}
+	]]>
+	</delete>
+	<!--分支表branch 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.BranchKey">
+		delete from cas.branch where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ branchid = #{item.branchid}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

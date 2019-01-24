@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganFlowHisDao" >
+	<!--企业业务流程历史记录表organ_flow_his 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			customerno "customerno",
+			type "type",
+			status "status",
+			processid "processid",
+			isreturn "isreturn",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_flow_his
+	]]>
+	<where>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="type != null and type!= '' "><![CDATA[ and type=#{type}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="processid != null and processid!= '' "><![CDATA[ and processid=#{processid}]]></if>
+		<if test="isreturn != null and isreturn!= '' "><![CDATA[ and isreturn=#{isreturn}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--企业业务流程历史记录表organ_flow_his 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			customerno "customerno",
+			type "type",
+			status "status",
+			processid "processid",
+			isreturn "isreturn",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_flow_his
+	]]>
+	<where>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="type != null and type!= '' "><![CDATA[ and type=#{type}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="processid != null and processid!= '' "><![CDATA[ and processid=#{processid}]]></if>
+		<if test="isreturn != null and isreturn!= '' "><![CDATA[ and isreturn=#{isreturn}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--企业业务流程历史记录表organ_flow_his 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			orgcustomerno "orgcustomerno",
+			customerno "customerno",
+			type "type",
+			status "status",
+			processid "processid",
+			isreturn "isreturn",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_flow_his
+	]]>
+	<where>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="type != null and type!= '' "><![CDATA[ and type=#{type}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="processid != null and processid!= '' "><![CDATA[ and processid=#{processid}]]></if>
+		<if test="isreturn != null and isreturn!= '' "><![CDATA[ and isreturn=#{isreturn}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--企业业务流程历史记录表organ_flow_his 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_flow_his(
+			orgcustomerno,customerno,type,status,processid,
+			isreturn,insertdate,inserttime,updatedate,updatetime
+		) values(
+			#{orgcustomerno, jdbcType=VARCHAR},#{customerno, jdbcType=VARCHAR},#{type, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{processid, jdbcType=VARCHAR},
+			#{isreturn, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--企业业务流程历史记录表organ_flow_his 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_flow_his(
+			orgcustomerno,customerno,type,status,processid,
+			isreturn,insertdate,inserttime,updatedate,updatetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.orgcustomerno, jdbcType=VARCHAR},#{item.customerno, jdbcType=VARCHAR},#{item.type, jdbcType=VARCHAR},#{item.status, jdbcType=VARCHAR},#{item.processid, jdbcType=VARCHAR},
+				#{item.isreturn, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+</mapper>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.EmployeeOrganDao" >
+	<!--员工关注企业信息表employee_organ 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeOrganKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			status "status"
+		from cas.employee_organ
+		where 
+			orgcustomerno = #{orgcustomerno}
+			and customerno = #{customerno}
+		for update
+	]]>
+	</select>
+	<!--员工关注企业信息表employee_organ 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeOrganKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			status "status"
+		from cas.employee_organ
+		where 
+			orgcustomerno = #{orgcustomerno}
+			and customerno = #{customerno}
+	]]>
+	</select>
+	<!--员工关注企业信息表employee_organ 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeOrganKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			status "status"
+		from cas.employee_organ
+		where 
+			orgcustomerno = #{orgcustomerno}
+			and customerno = #{customerno}
+	]]>
+	</select>
+	<!--员工关注企业信息表employee_organ 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			status "status"
+		from cas.employee_organ
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--员工关注企业信息表employee_organ 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			status "status"
+		from cas.employee_organ
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+	</where>
+	</select>
+	<!--员工关注企业信息表employee_organ 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			orgcustomerno "orgcustomerno",
+			status "status"
+		from cas.employee_organ
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="orgcustomerno != null and orgcustomerno!= '' "><![CDATA[ and orgcustomerno=#{orgcustomerno}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+	</where>
+	</select>
+	<!--员工关注企业信息表employee_organ 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.employee_organ(
+			customerno,orgcustomerno,status
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{orgcustomerno, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--员工关注企业信息表employee_organ 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.employee_organ(
+			customerno,orgcustomerno,status
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.customerno, jdbcType=VARCHAR},#{item.orgcustomerno, jdbcType=VARCHAR},#{item.status, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--员工关注企业信息表employee_organ 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
+	<![CDATA[
+		update cas.employee_organ
+	]]>
+	<set>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="orgcustomerno != null and orgcustomerno != '' "><![CDATA[orgcustomerno=#{orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="status != null and status != '' "><![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where orgcustomerno = #{orgcustomerno} and customerno = #{customerno}
+	]]>
+	</update>
+	<!--员工关注企业信息表employee_organ 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.employee_organ
+		<set>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.orgcustomerno != null and item.orgcustomerno != '' "><![CDATA[orgcustomerno=#{item.orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.status != null and item.status != '' "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--员工关注企业信息表employee_organ 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
+	<![CDATA[
+		update cas.employee_organ
+	]]>
+	<set>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="orgcustomerno != null "> <![CDATA[orgcustomerno=#{orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="status != null "> <![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where orgcustomerno = #{orgcustomerno} and customerno = #{customerno}
+	]]>
+	</update>
+	<!--员工关注企业信息表employee_organ 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.employee_organ
+		<set>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.orgcustomerno != null "><![CDATA[orgcustomerno=#{item.orgcustomerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.status != null "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--员工关注企业信息表employee_organ 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeOrganKey">
+	<![CDATA[
+		delete from cas.employee_organ
+		where
+			orgcustomerno = #{orgcustomerno} and customerno = #{customerno}
+	]]>
+	</delete>
+	<!--员工关注企业信息表employee_organ 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeOrganKey">
+		delete from cas.employee_organ where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ orgcustomerno = #{item.orgcustomerno} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

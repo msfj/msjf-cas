@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.PersonInfoDao" >
+	<!--个人基本信息表person_info 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.PersonInfoKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			membername "membername",
+			education "education",
+			workexp "workexp",
+			investexp "investexp",
+			idcard "idcard",
+			amacno "amacno",
+			isamac "isamac",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.person_info
+		where 
+			customerno = #{customerno}
+		for update
+	]]>
+	</select>
+	<!--个人基本信息表person_info 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.PersonInfoKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			membername "membername",
+			education "education",
+			workexp "workexp",
+			investexp "investexp",
+			idcard "idcard",
+			amacno "amacno",
+			isamac "isamac",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.person_info
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--个人基本信息表person_info 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.PersonInfoKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			membername "membername",
+			education "education",
+			workexp "workexp",
+			investexp "investexp",
+			idcard "idcard",
+			amacno "amacno",
+			isamac "isamac",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.person_info
+		where 
+			customerno = #{customerno}
+	]]>
+	</select>
+	<!--个人基本信息表person_info 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			membername "membername",
+			education "education",
+			workexp "workexp",
+			investexp "investexp",
+			idcard "idcard",
+			amacno "amacno",
+			isamac "isamac",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.person_info
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="education != null and education!= '' "><![CDATA[ and education=#{education}]]></if>
+		<if test="workexp != null and workexp!= '' "><![CDATA[ and workexp=#{workexp}]]></if>
+		<if test="investexp != null and investexp!= '' "><![CDATA[ and investexp=#{investexp}]]></if>
+		<if test="idcard != null and idcard!= '' "><![CDATA[ and idcard=#{idcard}]]></if>
+		<if test="amacno != null and amacno!= '' "><![CDATA[ and amacno=#{amacno}]]></if>
+		<if test="isamac != null and isamac!= '' "><![CDATA[ and isamac=#{isamac}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--个人基本信息表person_info 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			membername "membername",
+			education "education",
+			workexp "workexp",
+			investexp "investexp",
+			idcard "idcard",
+			amacno "amacno",
+			isamac "isamac",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.person_info
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="education != null and education!= '' "><![CDATA[ and education=#{education}]]></if>
+		<if test="workexp != null and workexp!= '' "><![CDATA[ and workexp=#{workexp}]]></if>
+		<if test="investexp != null and investexp!= '' "><![CDATA[ and investexp=#{investexp}]]></if>
+		<if test="idcard != null and idcard!= '' "><![CDATA[ and idcard=#{idcard}]]></if>
+		<if test="amacno != null and amacno!= '' "><![CDATA[ and amacno=#{amacno}]]></if>
+		<if test="isamac != null and isamac!= '' "><![CDATA[ and isamac=#{isamac}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--个人基本信息表person_info 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			membername "membername",
+			education "education",
+			workexp "workexp",
+			investexp "investexp",
+			idcard "idcard",
+			amacno "amacno",
+			isamac "isamac",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.person_info
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
+		<if test="education != null and education!= '' "><![CDATA[ and education=#{education}]]></if>
+		<if test="workexp != null and workexp!= '' "><![CDATA[ and workexp=#{workexp}]]></if>
+		<if test="investexp != null and investexp!= '' "><![CDATA[ and investexp=#{investexp}]]></if>
+		<if test="idcard != null and idcard!= '' "><![CDATA[ and idcard=#{idcard}]]></if>
+		<if test="amacno != null and amacno!= '' "><![CDATA[ and amacno=#{amacno}]]></if>
+		<if test="isamac != null and isamac!= '' "><![CDATA[ and isamac=#{isamac}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--个人基本信息表person_info 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.person_info(
+			customerno,membername,education,workexp,investexp,
+			idcard,amacno,isamac,insertdate,inserttime,
+			updatedate,updatetime
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{membername, jdbcType=VARCHAR},#{education, jdbcType=VARCHAR},#{workexp, jdbcType=CLOB},#{investexp, jdbcType=CLOB},
+			#{idcard, jdbcType=CLOB},#{amacno, jdbcType=VARCHAR},#{isamac, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--个人基本信息表person_info 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.person_info(
+			customerno,membername,education,workexp,investexp,
+			idcard,amacno,isamac,insertdate,inserttime,
+			updatedate,updatetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.customerno, jdbcType=VARCHAR},#{item.membername, jdbcType=VARCHAR},#{item.education, jdbcType=VARCHAR},#{item.workexp, jdbcType=CLOB},#{item.investexp, jdbcType=CLOB},
+				#{item.idcard, jdbcType=CLOB},#{item.amacno, jdbcType=VARCHAR},#{item.isamac, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},
+				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--个人基本信息表person_info 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity">
+	<![CDATA[
+		update cas.person_info
+	]]>
+	<set>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="membername != null and membername != '' "><![CDATA[membername=#{membername, jdbcType=VARCHAR},]]></if>
+		 <if test="education != null and education != '' "><![CDATA[education=#{education, jdbcType=VARCHAR},]]></if>
+		 <if test="workexp != null and workexp != '' "><![CDATA[workexp=#{workexp, jdbcType=CLOB},]]></if>
+		 <if test="investexp != null and investexp != '' "><![CDATA[investexp=#{investexp, jdbcType=CLOB},]]></if>
+		 <if test="idcard != null and idcard != '' "><![CDATA[idcard=#{idcard, jdbcType=CLOB},]]></if>
+		 <if test="amacno != null and amacno != '' "><![CDATA[amacno=#{amacno, jdbcType=VARCHAR},]]></if>
+		 <if test="isamac != null and isamac != '' "><![CDATA[isamac=#{isamac, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--个人基本信息表person_info 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.person_info
+		<set>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.membername != null and item.membername != '' "><![CDATA[membername=#{item.membername, jdbcType=VARCHAR},]]></if>
+		 <if test="item.education != null and item.education != '' "><![CDATA[education=#{item.education, jdbcType=VARCHAR},]]></if>
+		 <if test="item.workexp != null and item.workexp != '' "><![CDATA[workexp=#{item.workexp, jdbcType=CLOB},]]></if>
+		 <if test="item.investexp != null and item.investexp != '' "><![CDATA[investexp=#{item.investexp, jdbcType=CLOB},]]></if>
+		 <if test="item.idcard != null and item.idcard != '' "><![CDATA[idcard=#{item.idcard, jdbcType=CLOB},]]></if>
+		 <if test="item.amacno != null and item.amacno != '' "><![CDATA[amacno=#{item.amacno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.isamac != null and item.isamac != '' "><![CDATA[isamac=#{item.isamac, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--个人基本信息表person_info 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity">
+	<![CDATA[
+		update cas.person_info
+	]]>
+	<set>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="membername != null "> <![CDATA[membername=#{membername, jdbcType=VARCHAR},]]></if>
+		 <if test="education != null "> <![CDATA[education=#{education, jdbcType=VARCHAR},]]></if>
+		 <if test="workexp != null "> <![CDATA[workexp=#{workexp, jdbcType=CLOB},]]></if>
+		 <if test="investexp != null "> <![CDATA[investexp=#{investexp, jdbcType=CLOB},]]></if>
+		 <if test="idcard != null "> <![CDATA[idcard=#{idcard, jdbcType=CLOB},]]></if>
+		 <if test="amacno != null "> <![CDATA[amacno=#{amacno, jdbcType=VARCHAR},]]></if>
+		 <if test="isamac != null "> <![CDATA[isamac=#{isamac, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where customerno = #{customerno}
+	]]>
+	</update>
+	<!--个人基本信息表person_info 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.PersonInfoEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.person_info
+		<set>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.membername != null "><![CDATA[membername=#{item.membername, jdbcType=VARCHAR},]]></if>
+		 <if test="item.education != null "><![CDATA[education=#{item.education, jdbcType=VARCHAR},]]></if>
+		 <if test="item.workexp != null "><![CDATA[workexp=#{item.workexp, jdbcType=CLOB},]]></if>
+		 <if test="item.investexp != null "><![CDATA[investexp=#{item.investexp, jdbcType=CLOB},]]></if>
+		 <if test="item.idcard != null "><![CDATA[idcard=#{item.idcard, jdbcType=CLOB},]]></if>
+		 <if test="item.amacno != null "><![CDATA[amacno=#{item.amacno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.isamac != null "><![CDATA[isamac=#{item.isamac, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--个人基本信息表person_info 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.PersonInfoKey">
+	<![CDATA[
+		delete from cas.person_info
+		where
+			customerno = #{customerno}
+	]]>
+	</delete>
+	<!--个人基本信息表person_info 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.PersonInfoKey">
+		delete from cas.person_info where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao">
+    <!--个人基本信息表person_info 按实体新增记录 mysql-->
+    <insert id="inrAusAuthone" parameterType="java.util.Map">
+        <![CDATA[
+		insert into cas.aus_authone(
+			customerno,password,failcount,onlinestatus,loginsource,registersource,insertdate,
+			inserttime,updatedate,updatetime,source
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},#{failcount, jdbcType=INTEGER},
+			#{onlinestatus, jdbcType=VARCHAR},#{loginsource, jdbcType=VARCHAR},
+			#{registersource, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
+			#{inserttime, jdbcType=CLOB},#{updatedate, jdbcType=VARCHAR},
+			#{updatetime, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR}
+	)]]>
+    </insert>
+    <!--登录认证表aus_authone 按主键查询锁表-->
+    <select id="getAusAuthoneByKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.AusAuthoneKey"
+            resultType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			password "password",
+			failcount "failcount",
+			onlinestatus "onlinestatus",
+			registersource "registersource",
+			loginsource "loginsource",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.aus_authone
+		where
+			customerno = #{customerno}
+		for update
+	]]>
+	</select>
+    <!--登录认证表aus_authone 按实体更新记录-->
+    <update id="update" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
+        <![CDATA[
+		update cas.aus_authone
+	]]>
+        <set>
+            <if test="password != null and password != '' "><![CDATA[password=#{password},]]></if>
+            <if test="failcount != null and failcount != '' or failcount == 0 "><![CDATA[failcount=#{failcount},]]></if>
+            <if test="onlinestatus != null and onlinestatus != '' "><![CDATA[onlinestatus=#{onlinestatus},]]></if>
+            <if test="registersource != null and registersource != '' "><![CDATA[registersource=#{registersource},]]></if>
+            <if test="loginsource != null and loginsource != '' "><![CDATA[loginsource=#{loginsource},]]></if>
+            <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate},]]></if>
+            <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime},]]></if>
+            <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate},]]></if>
+            <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime},]]></if>
+        </set>
+        <![CDATA[ where customerno = #{customerno}
+	]]>
+    </update>
+</mapper>

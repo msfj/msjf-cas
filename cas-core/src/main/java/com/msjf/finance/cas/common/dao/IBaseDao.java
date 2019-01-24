@@ -1,7 +1,5 @@
 package com.msjf.finance.cas.common.dao;
 
-import com.msjf.finance.cas.common.entity.IBaseEntity;
-
 import java.util.List;
 import java.util.Map;
 
@@ -13,121 +11,121 @@ import java.util.Map;
  * @author 95494
  * @create 2019-01-21 17:59
  */
-public interface IBaseDao<T extends IBaseEntity> {
+public interface IBaseDao<K extends IBaseEntity,V extends IBaseEntity> {
 
     /**
      * 按主键查询锁表
      *
-     * @param t 主键
+     * @param v 主键
      * @return 实体
      */
-    T getTableInfoKeyLock(T t);
+    K getEntityKeyLock(V v);
 
     /**
      * 按主键查询
      *
-     * @param t
+     * @param v
      * @return
      */
-    T getInfoKey(T t);
+    K getEntityKey(V v);
 
     /**
      * 按主键查询锁表
      *
-     * @param t
+     * @param v
      * @return
      */
-    Map getInfoKeyHashmap(T t);
+    Map getHashMapKey(V v);
 
     /**
      * 按实体查询锁表
      *
-     * @param t
+     * @param K
      * @return
      */
-    T getInfoLockEntity(T t);
+    List<K> getListEntityLock(K K);
 
     /**
      * 按实体查询
      *
-     * @param t
+     * @param K
      * @return
      */
-    T getInfoEntity(T t);
+    List<K> getListEntity(K K);
 
     /**
      * 按实体查询
      *
-     * @param t
+     * @param K
      * @return
      */
-    Map getInfoHashmap(T t);
+    List<Map> getListMap(K K);
 
     /**
      * 按实体新增记录
      *
-     * @param t
+     * @param K
      * @return
      */
-    Integer insInfoEntity(T t);
+    Integer insEntity(K K);
 
     /**
      * 按批量实体新增记录
      *
-     * @param t
+     * @param K
      * @return
      */
-    Integer insInfoBatchEntity(List<T> t);
+    Integer insEntityBatch(List<K> K);
 
 
     /**
      * 按实体更新记录
      *
-     * @param t
+     * @param K
      * @return
      */
-    Integer updOrganInfoEntity(T t);
+    Integer updEntity(K K);
 
     /**
      * 批量实体更新记录
      *
-     * @param t
+     * @param K
      * @return
      */
-    Integer updInfoBatchEntity(T t);
+    Integer updEntityBatch(List<K> K);
 
     /**
      * 按实体更新记录
      *
-     * @param t
+     * @param K
      * @return
      */
-    Integer updAllowEmptyInfoEntity(T t);
+    Integer updAllowEmptyEntity(K K);
 
     /**
      * 批量实体更新记录
      *
-     * @param t
+     * @param K
      * @return
      */
-    Integer updAllowEmptyInfoBatchEntity(T t);
+    Integer updAllowEmptyBatchEntity(List<K> K);
 
 
     /**
      * 按主键删除记录
      *
-     * @param t
+     * @param v
      * @return
      */
-    Integer delInfoKey(T t);
+    Integer delEntityKey(V v);
 
     /**
      * 根据主键批量删除记录
      *
-     * @param t
+     * @param v
      * @return
      */
-    Integer delInfoKeyBatch(T t);
+    Integer delEntityKeyBatch(List<V> v);
 
 
 }

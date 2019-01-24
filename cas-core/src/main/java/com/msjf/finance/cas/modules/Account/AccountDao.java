@@ -1,8 +1,8 @@
 package com.msjf.finance.cas.modules.Account;
 
 
-import com.msjf.finance.cas.common.entity.SysDictEntity;
-import com.msjf.finance.cas.common.entity.SysDictKey;
+import com.msjf.finance.cas.common.dao.entity.SysDictEntity;
+import com.msjf.finance.cas.common.dao.key.SysDictKey;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.HashMap;

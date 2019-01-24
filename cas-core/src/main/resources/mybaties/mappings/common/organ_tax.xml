@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganTaxDao" >
+	<!--税收收入测算表organ_tax 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganTaxKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			reportperiod "reportperiod",
+			relatename "relatename",
+			zzfee "zzfee",
+			xffee "xffee",
+			qysdfee "qysdfee",
+			grsdfee "grsdfee",
+			cjfee "cjfee",
+			yhfee "yhfee",
+			otherfee "otherfee",
+			total "total",
+			taxcause "taxcause",
+			substatus "substatus",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_tax
+		where 
+			reportperiod = #{reportperiod}
+			and customerno = #{customerno}
+		for update
+	]]>
+	</select>
+	<!--税收收入测算表organ_tax 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganTaxKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			reportperiod "reportperiod",
+			relatename "relatename",
+			zzfee "zzfee",
+			xffee "xffee",
+			qysdfee "qysdfee",
+			grsdfee "grsdfee",
+			cjfee "cjfee",
+			yhfee "yhfee",
+			otherfee "otherfee",
+			total "total",
+			taxcause "taxcause",
+			substatus "substatus",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_tax
+		where 
+			reportperiod = #{reportperiod}
+			and customerno = #{customerno}
+	]]>
+	</select>
+	<!--税收收入测算表organ_tax 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganTaxKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			reportperiod "reportperiod",
+			relatename "relatename",
+			zzfee "zzfee",
+			xffee "xffee",
+			qysdfee "qysdfee",
+			grsdfee "grsdfee",
+			cjfee "cjfee",
+			yhfee "yhfee",
+			otherfee "otherfee",
+			total "total",
+			taxcause "taxcause",
+			substatus "substatus",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_tax
+		where 
+			reportperiod = #{reportperiod}
+			and customerno = #{customerno}
+	]]>
+	</select>
+	<!--税收收入测算表organ_tax 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			reportperiod "reportperiod",
+			relatename "relatename",
+			zzfee "zzfee",
+			xffee "xffee",
+			qysdfee "qysdfee",
+			grsdfee "grsdfee",
+			cjfee "cjfee",
+			yhfee "yhfee",
+			otherfee "otherfee",
+			total "total",
+			taxcause "taxcause",
+			substatus "substatus",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_tax
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="reportperiod != null and reportperiod!= '' "><![CDATA[ and reportperiod=#{reportperiod}]]></if>
+		<if test="relatename != null and relatename!= '' "><![CDATA[ and relatename=#{relatename}]]></if>
+		<if test="zzfee != null and zzfee!= '' "><![CDATA[ and zzfee=#{zzfee}]]></if>
+		<if test="xffee != null and xffee!= '' "><![CDATA[ and xffee=#{xffee}]]></if>
+		<if test="qysdfee != null and qysdfee!= '' "><![CDATA[ and qysdfee=#{qysdfee}]]></if>
+		<if test="grsdfee != null and grsdfee!= '' "><![CDATA[ and grsdfee=#{grsdfee}]]></if>
+		<if test="cjfee != null and cjfee!= '' "><![CDATA[ and cjfee=#{cjfee}]]></if>
+		<if test="yhfee != null and yhfee!= '' "><![CDATA[ and yhfee=#{yhfee}]]></if>
+		<if test="otherfee != null and otherfee!= '' "><![CDATA[ and otherfee=#{otherfee}]]></if>
+		<if test="total != null and total!= '' "><![CDATA[ and total=#{total}]]></if>
+		<if test="taxcause != null and taxcause!= '' "><![CDATA[ and taxcause=#{taxcause}]]></if>
+		<if test="substatus != null and substatus!= '' "><![CDATA[ and substatus=#{substatus}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--税收收入测算表organ_tax 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
+	<![CDATA[
+		select
+			customerno "customerno",
+			reportperiod "reportperiod",
+			relatename "relatename",
+			zzfee "zzfee",
+			xffee "xffee",
+			qysdfee "qysdfee",
+			grsdfee "grsdfee",
+			cjfee "cjfee",
+			yhfee "yhfee",
+			otherfee "otherfee",
+			total "total",
+			taxcause "taxcause",
+			substatus "substatus",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_tax
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="reportperiod != null and reportperiod!= '' "><![CDATA[ and reportperiod=#{reportperiod}]]></if>
+		<if test="relatename != null and relatename!= '' "><![CDATA[ and relatename=#{relatename}]]></if>
+		<if test="zzfee != null and zzfee!= '' "><![CDATA[ and zzfee=#{zzfee}]]></if>
+		<if test="xffee != null and xffee!= '' "><![CDATA[ and xffee=#{xffee}]]></if>
+		<if test="qysdfee != null and qysdfee!= '' "><![CDATA[ and qysdfee=#{qysdfee}]]></if>
+		<if test="grsdfee != null and grsdfee!= '' "><![CDATA[ and grsdfee=#{grsdfee}]]></if>
+		<if test="cjfee != null and cjfee!= '' "><![CDATA[ and cjfee=#{cjfee}]]></if>
+		<if test="yhfee != null and yhfee!= '' "><![CDATA[ and yhfee=#{yhfee}]]></if>
+		<if test="otherfee != null and otherfee!= '' "><![CDATA[ and otherfee=#{otherfee}]]></if>
+		<if test="total != null and total!= '' "><![CDATA[ and total=#{total}]]></if>
+		<if test="taxcause != null and taxcause!= '' "><![CDATA[ and taxcause=#{taxcause}]]></if>
+		<if test="substatus != null and substatus!= '' "><![CDATA[ and substatus=#{substatus}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--税收收入测算表organ_tax 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			customerno "customerno",
+			reportperiod "reportperiod",
+			relatename "relatename",
+			zzfee "zzfee",
+			xffee "xffee",
+			qysdfee "qysdfee",
+			grsdfee "grsdfee",
+			cjfee "cjfee",
+			yhfee "yhfee",
+			otherfee "otherfee",
+			total "total",
+			taxcause "taxcause",
+			substatus "substatus",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_tax
+	]]>
+	<where>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="reportperiod != null and reportperiod!= '' "><![CDATA[ and reportperiod=#{reportperiod}]]></if>
+		<if test="relatename != null and relatename!= '' "><![CDATA[ and relatename=#{relatename}]]></if>
+		<if test="zzfee != null and zzfee!= '' "><![CDATA[ and zzfee=#{zzfee}]]></if>
+		<if test="xffee != null and xffee!= '' "><![CDATA[ and xffee=#{xffee}]]></if>
+		<if test="qysdfee != null and qysdfee!= '' "><![CDATA[ and qysdfee=#{qysdfee}]]></if>
+		<if test="grsdfee != null and grsdfee!= '' "><![CDATA[ and grsdfee=#{grsdfee}]]></if>
+		<if test="cjfee != null and cjfee!= '' "><![CDATA[ and cjfee=#{cjfee}]]></if>
+		<if test="yhfee != null and yhfee!= '' "><![CDATA[ and yhfee=#{yhfee}]]></if>
+		<if test="otherfee != null and otherfee!= '' "><![CDATA[ and otherfee=#{otherfee}]]></if>
+		<if test="total != null and total!= '' "><![CDATA[ and total=#{total}]]></if>
+		<if test="taxcause != null and taxcause!= '' "><![CDATA[ and taxcause=#{taxcause}]]></if>
+		<if test="substatus != null and substatus!= '' "><![CDATA[ and substatus=#{substatus}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--税收收入测算表organ_tax 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_tax(
+			customerno,reportperiod,relatename,zzfee,xffee,
+			qysdfee,grsdfee,cjfee,yhfee,otherfee,
+			total,taxcause,substatus,insertdate,inserttime,
+			updatedate,updatetime
+		) values(
+			#{customerno, jdbcType=VARCHAR},#{reportperiod, jdbcType=VARCHAR},#{relatename, jdbcType=VARCHAR},#{zzfee, jdbcType=VARCHAR},#{xffee, jdbcType=VARCHAR},
+			#{qysdfee, jdbcType=VARCHAR},#{grsdfee, jdbcType=VARCHAR},#{cjfee, jdbcType=VARCHAR},#{yhfee, jdbcType=VARCHAR},#{otherfee, jdbcType=VARCHAR},
+			#{total, jdbcType=VARCHAR},#{taxcause, jdbcType=CLOB},#{substatus, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--税收收入测算表organ_tax 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_tax(
+			customerno,reportperiod,relatename,zzfee,xffee,
+			qysdfee,grsdfee,cjfee,yhfee,otherfee,
+			total,taxcause,substatus,insertdate,inserttime,
+			updatedate,updatetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.customerno, jdbcType=VARCHAR},#{item.reportperiod, jdbcType=VARCHAR},#{item.relatename, jdbcType=VARCHAR},#{item.zzfee, jdbcType=VARCHAR},#{item.xffee, jdbcType=VARCHAR},
+				#{item.qysdfee, jdbcType=VARCHAR},#{item.grsdfee, jdbcType=VARCHAR},#{item.cjfee, jdbcType=VARCHAR},#{item.yhfee, jdbcType=VARCHAR},#{item.otherfee, jdbcType=VARCHAR},
+				#{item.total, jdbcType=VARCHAR},#{item.taxcause, jdbcType=CLOB},#{item.substatus, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},
+				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--税收收入测算表organ_tax 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
+	<![CDATA[
+		update cas.organ_tax
+	]]>
+	<set>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="reportperiod != null and reportperiod != '' "><![CDATA[reportperiod=#{reportperiod, jdbcType=VARCHAR},]]></if>
+		 <if test="relatename != null and relatename != '' "><![CDATA[relatename=#{relatename, jdbcType=VARCHAR},]]></if>
+		 <if test="zzfee != null and zzfee != '' "><![CDATA[zzfee=#{zzfee, jdbcType=VARCHAR},]]></if>
+		 <if test="xffee != null and xffee != '' "><![CDATA[xffee=#{xffee, jdbcType=VARCHAR},]]></if>
+		 <if test="qysdfee != null and qysdfee != '' "><![CDATA[qysdfee=#{qysdfee, jdbcType=VARCHAR},]]></if>
+		 <if test="grsdfee != null and grsdfee != '' "><![CDATA[grsdfee=#{grsdfee, jdbcType=VARCHAR},]]></if>
+		 <if test="cjfee != null and cjfee != '' "><![CDATA[cjfee=#{cjfee, jdbcType=VARCHAR},]]></if>
+		 <if test="yhfee != null and yhfee != '' "><![CDATA[yhfee=#{yhfee, jdbcType=VARCHAR},]]></if>
+		 <if test="otherfee != null and otherfee != '' "><![CDATA[otherfee=#{otherfee, jdbcType=VARCHAR},]]></if>
+		 <if test="total != null and total != '' "><![CDATA[total=#{total, jdbcType=VARCHAR},]]></if>
+		 <if test="taxcause != null and taxcause != '' "><![CDATA[taxcause=#{taxcause, jdbcType=CLOB},]]></if>
+		 <if test="substatus != null and substatus != '' "><![CDATA[substatus=#{substatus, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where reportperiod = #{reportperiod} and customerno = #{customerno}
+	]]>
+	</update>
+	<!--税收收入测算表organ_tax 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_tax
+		<set>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.reportperiod != null and item.reportperiod != '' "><![CDATA[reportperiod=#{item.reportperiod, jdbcType=VARCHAR},]]></if>
+		 <if test="item.relatename != null and item.relatename != '' "><![CDATA[relatename=#{item.relatename, jdbcType=VARCHAR},]]></if>
+		 <if test="item.zzfee != null and item.zzfee != '' "><![CDATA[zzfee=#{item.zzfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.xffee != null and item.xffee != '' "><![CDATA[xffee=#{item.xffee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.qysdfee != null and item.qysdfee != '' "><![CDATA[qysdfee=#{item.qysdfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.grsdfee != null and item.grsdfee != '' "><![CDATA[grsdfee=#{item.grsdfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.cjfee != null and item.cjfee != '' "><![CDATA[cjfee=#{item.cjfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.yhfee != null and item.yhfee != '' "><![CDATA[yhfee=#{item.yhfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.otherfee != null and item.otherfee != '' "><![CDATA[otherfee=#{item.otherfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.total != null and item.total != '' "><![CDATA[total=#{item.total, jdbcType=VARCHAR},]]></if>
+		 <if test="item.taxcause != null and item.taxcause != '' "><![CDATA[taxcause=#{item.taxcause, jdbcType=CLOB},]]></if>
+		 <if test="item.substatus != null and item.substatus != '' "><![CDATA[substatus=#{item.substatus, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where reportperiod = #{item.reportperiod} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--税收收入测算表organ_tax 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
+	<![CDATA[
+		update cas.organ_tax
+	]]>
+	<set>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="reportperiod != null "> <![CDATA[reportperiod=#{reportperiod, jdbcType=VARCHAR},]]></if>
+		 <if test="relatename != null "> <![CDATA[relatename=#{relatename, jdbcType=VARCHAR},]]></if>
+		 <if test="zzfee != null "> <![CDATA[zzfee=#{zzfee, jdbcType=VARCHAR},]]></if>
+		 <if test="xffee != null "> <![CDATA[xffee=#{xffee, jdbcType=VARCHAR},]]></if>
+		 <if test="qysdfee != null "> <![CDATA[qysdfee=#{qysdfee, jdbcType=VARCHAR},]]></if>
+		 <if test="grsdfee != null "> <![CDATA[grsdfee=#{grsdfee, jdbcType=VARCHAR},]]></if>
+		 <if test="cjfee != null "> <![CDATA[cjfee=#{cjfee, jdbcType=VARCHAR},]]></if>
+		 <if test="yhfee != null "> <![CDATA[yhfee=#{yhfee, jdbcType=VARCHAR},]]></if>
+		 <if test="otherfee != null "> <![CDATA[otherfee=#{otherfee, jdbcType=VARCHAR},]]></if>
+		 <if test="total != null "> <![CDATA[total=#{total, jdbcType=VARCHAR},]]></if>
+		 <if test="taxcause != null "> <![CDATA[taxcause=#{taxcause, jdbcType=CLOB},]]></if>
+		 <if test="substatus != null "> <![CDATA[substatus=#{substatus, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where reportperiod = #{reportperiod} and customerno = #{customerno}
+	]]>
+	</update>
+	<!--税收收入测算表organ_tax 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_tax
+		<set>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.reportperiod != null "><![CDATA[reportperiod=#{item.reportperiod, jdbcType=VARCHAR},]]></if>
+		 <if test="item.relatename != null "><![CDATA[relatename=#{item.relatename, jdbcType=VARCHAR},]]></if>
+		 <if test="item.zzfee != null "><![CDATA[zzfee=#{item.zzfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.xffee != null "><![CDATA[xffee=#{item.xffee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.qysdfee != null "><![CDATA[qysdfee=#{item.qysdfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.grsdfee != null "><![CDATA[grsdfee=#{item.grsdfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.cjfee != null "><![CDATA[cjfee=#{item.cjfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.yhfee != null "><![CDATA[yhfee=#{item.yhfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.otherfee != null "><![CDATA[otherfee=#{item.otherfee, jdbcType=VARCHAR},]]></if>
+		 <if test="item.total != null "><![CDATA[total=#{item.total, jdbcType=VARCHAR},]]></if>
+		 <if test="item.taxcause != null "><![CDATA[taxcause=#{item.taxcause, jdbcType=CLOB},]]></if>
+		 <if test="item.substatus != null "><![CDATA[substatus=#{item.substatus, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where reportperiod = #{item.reportperiod} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</update>
+	<!--税收收入测算表organ_tax 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganTaxKey">
+	<![CDATA[
+		delete from cas.organ_tax
+		where
+			reportperiod = #{reportperiod} and customerno = #{customerno}
+	]]>
+	</delete>
+	<!--税收收入测算表organ_tax 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganTaxKey">
+		delete from cas.organ_tax where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ reportperiod = #{item.reportperiod} and customerno = #{item.customerno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

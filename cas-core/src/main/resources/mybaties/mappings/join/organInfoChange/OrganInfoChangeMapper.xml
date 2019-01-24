@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganInfoChangeDao">
+
+    <!--在变更记录表检查企业名称是否已存在 -->
+    <select id="checkExistCompanynameInChange" parameterType="java.util.HashMap"
+            resultType="java.util.LinkedHashMap">
+        <![CDATA[
+		select a.membername "membername"
+		  from cas.organ_info_change a
+		 inner join (select max(t.version) "version", t.customerno
+					   from cas.organ_info_change t
+					  group by t.customerno) b
+			on a.customerno = b.customerno
+		   and a.version = b.version
+		 where a.membername = #{membername}
+	]]>
+    </select>
+</mapper>

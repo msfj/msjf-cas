@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.MemberSubmitChangeDao" >
+	<!--企业成员申报信息变更记录表member_submit_change 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.MemberSubmitChangeKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			version "version",
+			username "username",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			moneyscale "moneyscale",
+			mobile "mobile",
+			dutyway "dutyway",
+			moneytype "moneytype",
+			amount "amount",
+			paydatelimit "paydatelimit",
+			address "address",
+			position "position",
+			sortnum "sortnum",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.member_submit_change
+		where 
+			version = #{version}
+			and serialno = #{serialno}
+		for update
+	]]>
+	</select>
+	<!--企业成员申报信息变更记录表member_submit_change 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.MemberSubmitChangeKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			version "version",
+			username "username",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			moneyscale "moneyscale",
+			mobile "mobile",
+			dutyway "dutyway",
+			moneytype "moneytype",
+			amount "amount",
+			paydatelimit "paydatelimit",
+			address "address",
+			position "position",
+			sortnum "sortnum",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.member_submit_change
+		where 
+			version = #{version}
+			and serialno = #{serialno}
+	]]>
+	</select>
+	<!--企业成员申报信息变更记录表member_submit_change 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.MemberSubmitChangeKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			version "version",
+			username "username",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			moneyscale "moneyscale",
+			mobile "mobile",
+			dutyway "dutyway",
+			moneytype "moneytype",
+			amount "amount",
+			paydatelimit "paydatelimit",
+			address "address",
+			position "position",
+			sortnum "sortnum",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.member_submit_change
+		where 
+			version = #{version}
+			and serialno = #{serialno}
+	]]>
+	</select>
+	<!--企业成员申报信息变更记录表member_submit_change 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			version "version",
+			username "username",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			moneyscale "moneyscale",
+			mobile "mobile",
+			dutyway "dutyway",
+			moneytype "moneytype",
+			amount "amount",
+			paydatelimit "paydatelimit",
+			address "address",
+			position "position",
+			sortnum "sortnum",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.member_submit_change
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="username != null and username!= '' "><![CDATA[ and username=#{username}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="moneyscale != null and moneyscale!= '' "><![CDATA[ and moneyscale=#{moneyscale}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="dutyway != null and dutyway!= '' "><![CDATA[ and dutyway=#{dutyway}]]></if>
+		<if test="moneytype != null and moneytype!= '' "><![CDATA[ and moneytype=#{moneytype}]]></if>
+		<if test="amount != null and amount!= '' "><![CDATA[ and amount=#{amount}]]></if>
+		<if test="paydatelimit != null and paydatelimit!= '' "><![CDATA[ and paydatelimit=#{paydatelimit}]]></if>
+		<if test="address != null and address!= '' "><![CDATA[ and address=#{address}]]></if>
+		<if test="position != null and position!= '' "><![CDATA[ and position=#{position}]]></if>
+		<if test="sortnum != null and sortnum!= '' "><![CDATA[ and sortnum=#{sortnum}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--企业成员申报信息变更记录表member_submit_change 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			version "version",
+			username "username",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			moneyscale "moneyscale",
+			mobile "mobile",
+			dutyway "dutyway",
+			moneytype "moneytype",
+			amount "amount",
+			paydatelimit "paydatelimit",
+			address "address",
+			position "position",
+			sortnum "sortnum",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.member_submit_change
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="username != null and username!= '' "><![CDATA[ and username=#{username}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="moneyscale != null and moneyscale!= '' "><![CDATA[ and moneyscale=#{moneyscale}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="dutyway != null and dutyway!= '' "><![CDATA[ and dutyway=#{dutyway}]]></if>
+		<if test="moneytype != null and moneytype!= '' "><![CDATA[ and moneytype=#{moneytype}]]></if>
+		<if test="amount != null and amount!= '' "><![CDATA[ and amount=#{amount}]]></if>
+		<if test="paydatelimit != null and paydatelimit!= '' "><![CDATA[ and paydatelimit=#{paydatelimit}]]></if>
+		<if test="address != null and address!= '' "><![CDATA[ and address=#{address}]]></if>
+		<if test="position != null and position!= '' "><![CDATA[ and position=#{position}]]></if>
+		<if test="sortnum != null and sortnum!= '' "><![CDATA[ and sortnum=#{sortnum}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+	</where>
+	</select>
+	<!--企业成员申报信息变更记录表member_submit_change 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			serialno "serialno",
+			customerno "customerno",
+			version "version",
+			username "username",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			moneyscale "moneyscale",
+			mobile "mobile",
+			dutyway "dutyway",
+			moneytype "moneytype",
+			amount "amount",
+			paydatelimit "paydatelimit",
+			address "address",
+			position "position",
+			sortnum "sortnum",
+			insertdate "insertdate",
+			inserttime "inserttime"
+		from cas.member_submit_change
+	]]>
+	<where>
+		<if test="serialno != null and serialno!= '' "><![CDATA[ and serialno=#{serialno}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="version != null and version!= '' "><![CDATA[ and version=#{version}]]></if>
+		<if test="username != null and username!= '' "><![CDATA[ and username=#{username}]]></if>
+		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="moneyscale != null and moneyscale!= '' "><![CDATA[ and moneyscale=#{moneyscale}]]></if>
+		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
+		<if test="dutyway != null and dutyway!= '' "><![CDATA[ and dutyway=#{dutyway}]]></if>
+		<if test="moneytype != null and moneytype!= '' "><![CDATA[ and moneytype=#{moneytype}]]></if>
+		<if test="amount != null and amount!= '' "><![CDATA[ and amount=#{amount}]]></if>
+		<if test="paydatelimit != null and paydatelimit!= '' "><![CDATA[ and paydatelimit=#{paydatelimit}]]></if>
+		<if test="address != null and address!= '' "><![CDATA[ and address=#{address}]]></if>
+		<if test="position != null and position!= '' "><![CDATA[ and position=#{position}]]></if>
+		<if test="sortnum != null and sortnum!= '' "><![CDATA[ and sortnum=#{sortnum}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+	</where>
+	</select>
+	<!--企业成员申报信息变更记录表member_submit_change 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.member_submit_change(
+			serialno,customerno,version,username,certificatetype,
+			certificateno,moneyscale,mobile,dutyway,moneytype,
+			amount,paydatelimit,address,position,sortnum,
+			insertdate,inserttime
+		) values(
+			#{serialno, jdbcType=VARCHAR},#{customerno, jdbcType=VARCHAR},#{version, jdbcType=INTEGER},#{username, jdbcType=VARCHAR},#{certificatetype, jdbcType=VARCHAR},
+			#{certificateno, jdbcType=VARCHAR},#{moneyscale, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},#{dutyway, jdbcType=VARCHAR},#{moneytype, jdbcType=VARCHAR},
+			#{amount, jdbcType=VARCHAR},#{paydatelimit, jdbcType=VARCHAR},#{address, jdbcType=VARCHAR},#{position, jdbcType=VARCHAR},#{sortnum, jdbcType=INTEGER},
+			#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--企业成员申报信息变更记录表member_submit_change 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.member_submit_change(
+			serialno,customerno,version,username,certificatetype,
+			certificateno,moneyscale,mobile,dutyway,moneytype,
+			amount,paydatelimit,address,position,sortnum,
+			insertdate,inserttime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.serialno, jdbcType=VARCHAR},#{item.customerno, jdbcType=VARCHAR},#{item.version, jdbcType=INTEGER},#{item.username, jdbcType=VARCHAR},#{item.certificatetype, jdbcType=VARCHAR},
+				#{item.certificateno, jdbcType=VARCHAR},#{item.moneyscale, jdbcType=VARCHAR},#{item.mobile, jdbcType=VARCHAR},#{item.dutyway, jdbcType=VARCHAR},#{item.moneytype, jdbcType=VARCHAR},
+				#{item.amount, jdbcType=VARCHAR},#{item.paydatelimit, jdbcType=VARCHAR},#{item.address, jdbcType=VARCHAR},#{item.position, jdbcType=VARCHAR},#{item.sortnum, jdbcType=INTEGER},
+				#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--企业成员申报信息变更记录表member_submit_change 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity">
+	<![CDATA[
+		update cas.member_submit_change
+	]]>
+	<set>
+		 <if test="serialno != null and serialno != '' "><![CDATA[serialno=#{serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="version != null and version != '' or version == 0 "><![CDATA[version=#{version, jdbcType=INTEGER},]]></if>
+		 <if test="username != null and username != '' "><![CDATA[username=#{username, jdbcType=VARCHAR},]]></if>
+		 <if test="certificatetype != null and certificatetype != '' "><![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null and certificateno != '' "><![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="moneyscale != null and moneyscale != '' "><![CDATA[moneyscale=#{moneyscale, jdbcType=VARCHAR},]]></if>
+		 <if test="mobile != null and mobile != '' "><![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="dutyway != null and dutyway != '' "><![CDATA[dutyway=#{dutyway, jdbcType=VARCHAR},]]></if>
+		 <if test="moneytype != null and moneytype != '' "><![CDATA[moneytype=#{moneytype, jdbcType=VARCHAR},]]></if>
+		 <if test="amount != null and amount != '' "><![CDATA[amount=#{amount, jdbcType=VARCHAR},]]></if>
+		 <if test="paydatelimit != null and paydatelimit != '' "><![CDATA[paydatelimit=#{paydatelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="address != null and address != '' "><![CDATA[address=#{address, jdbcType=VARCHAR},]]></if>
+		 <if test="position != null and position != '' "><![CDATA[position=#{position, jdbcType=VARCHAR},]]></if>
+		 <if test="sortnum != null and sortnum != '' or sortnum == 0 "><![CDATA[sortnum=#{sortnum, jdbcType=INTEGER},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where version = #{version} and serialno = #{serialno}
+	]]>
+	</update>
+	<!--企业成员申报信息变更记录表member_submit_change 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.member_submit_change
+		<set>
+		 <if test="item.serialno != null and item.serialno != '' "><![CDATA[serialno=#{item.serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.version != null and item.version != '' or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
+		 <if test="item.username != null and item.username != '' "><![CDATA[username=#{item.username, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificatetype != null and item.certificatetype != '' "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null and item.certificateno != '' "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.moneyscale != null and item.moneyscale != '' "><![CDATA[moneyscale=#{item.moneyscale, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mobile != null and item.mobile != '' "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dutyway != null and item.dutyway != '' "><![CDATA[dutyway=#{item.dutyway, jdbcType=VARCHAR},]]></if>
+		 <if test="item.moneytype != null and item.moneytype != '' "><![CDATA[moneytype=#{item.moneytype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.amount != null and item.amount != '' "><![CDATA[amount=#{item.amount, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paydatelimit != null and item.paydatelimit != '' "><![CDATA[paydatelimit=#{item.paydatelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="item.address != null and item.address != '' "><![CDATA[address=#{item.address, jdbcType=VARCHAR},]]></if>
+		 <if test="item.position != null and item.position != '' "><![CDATA[position=#{item.position, jdbcType=VARCHAR},]]></if>
+		 <if test="item.sortnum != null and item.sortnum != '' or sortnum == 0 "><![CDATA[sortnum=#{item.sortnum, jdbcType=INTEGER},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where version = #{item.version} and serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业成员申报信息变更记录表member_submit_change 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity">
+	<![CDATA[
+		update cas.member_submit_change
+	]]>
+	<set>
+		 <if test="serialno != null "> <![CDATA[serialno=#{serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="version != null or version == 0 "><![CDATA[version=#{version, jdbcType=INTEGER},]]></if>
+		 <if test="username != null "> <![CDATA[username=#{username, jdbcType=VARCHAR},]]></if>
+		 <if test="certificatetype != null "> <![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null "> <![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="moneyscale != null "> <![CDATA[moneyscale=#{moneyscale, jdbcType=VARCHAR},]]></if>
+		 <if test="mobile != null "> <![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="dutyway != null "> <![CDATA[dutyway=#{dutyway, jdbcType=VARCHAR},]]></if>
+		 <if test="moneytype != null "> <![CDATA[moneytype=#{moneytype, jdbcType=VARCHAR},]]></if>
+		 <if test="amount != null "> <![CDATA[amount=#{amount, jdbcType=VARCHAR},]]></if>
+		 <if test="paydatelimit != null "> <![CDATA[paydatelimit=#{paydatelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="address != null "> <![CDATA[address=#{address, jdbcType=VARCHAR},]]></if>
+		 <if test="position != null "> <![CDATA[position=#{position, jdbcType=VARCHAR},]]></if>
+		 <if test="sortnum != null or sortnum == 0 "><![CDATA[sortnum=#{sortnum, jdbcType=INTEGER},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where version = #{version} and serialno = #{serialno}
+	]]>
+	</update>
+	<!--企业成员申报信息变更记录表member_submit_change 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitChangeEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.member_submit_change
+		<set>
+		 <if test="item.serialno != null "><![CDATA[serialno=#{item.serialno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.version != null or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
+		 <if test="item.username != null "><![CDATA[username=#{item.username, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificatetype != null "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.moneyscale != null "><![CDATA[moneyscale=#{item.moneyscale, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mobile != null "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dutyway != null "><![CDATA[dutyway=#{item.dutyway, jdbcType=VARCHAR},]]></if>
+		 <if test="item.moneytype != null "><![CDATA[moneytype=#{item.moneytype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.amount != null "><![CDATA[amount=#{item.amount, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paydatelimit != null "><![CDATA[paydatelimit=#{item.paydatelimit, jdbcType=VARCHAR},]]></if>
+		 <if test="item.address != null "><![CDATA[address=#{item.address, jdbcType=VARCHAR},]]></if>
+		 <if test="item.position != null "><![CDATA[position=#{item.position, jdbcType=VARCHAR},]]></if>
+		 <if test="item.sortnum != null or sortnum == 0 "><![CDATA[sortnum=#{item.sortnum, jdbcType=INTEGER},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where version = #{item.version} and serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</update>
+	<!--企业成员申报信息变更记录表member_submit_change 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.MemberSubmitChangeKey">
+	<![CDATA[
+		delete from cas.member_submit_change
+		where
+			version = #{version} and serialno = #{serialno}
+	]]>
+	</delete>
+	<!--企业成员申报信息变更记录表member_submit_change 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.MemberSubmitChangeKey">
+		delete from cas.member_submit_change where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ version = #{item.version} and serialno = #{item.serialno}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

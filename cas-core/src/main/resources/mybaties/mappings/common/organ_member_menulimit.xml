@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganMemberMenulimitDao" >
+	<!--成员菜单权限表organ_member_menulimit 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberMenulimitKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			certificateno "certificateno",
+			menulimit "menulimit"
+		from cas.organ_member_menulimit
+		where 
+			memberid = #{memberid}
+			and menulimit = #{menulimit}
+		for update
+	]]>
+	</select>
+	<!--成员菜单权限表organ_member_menulimit 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberMenulimitKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			certificateno "certificateno",
+			menulimit "menulimit"
+		from cas.organ_member_menulimit
+		where 
+			memberid = #{memberid}
+			and menulimit = #{menulimit}
+	]]>
+	</select>
+	<!--成员菜单权限表organ_member_menulimit 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberMenulimitKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			certificateno "certificateno",
+			menulimit "menulimit"
+		from cas.organ_member_menulimit
+		where 
+			memberid = #{memberid}
+			and menulimit = #{menulimit}
+	]]>
+	</select>
+	<!--成员菜单权限表organ_member_menulimit 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			certificateno "certificateno",
+			menulimit "menulimit"
+		from cas.organ_member_menulimit
+	]]>
+	<where>
+		<if test="memberid != null and memberid!= '' "><![CDATA[ and memberid=#{memberid}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="menulimit != null and menulimit!= '' "><![CDATA[ and menulimit=#{menulimit}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--成员菜单权限表organ_member_menulimit 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			certificateno "certificateno",
+			menulimit "menulimit"
+		from cas.organ_member_menulimit
+	]]>
+	<where>
+		<if test="memberid != null and memberid!= '' "><![CDATA[ and memberid=#{memberid}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="menulimit != null and menulimit!= '' "><![CDATA[ and menulimit=#{menulimit}]]></if>
+	</where>
+	</select>
+	<!--成员菜单权限表organ_member_menulimit 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			memberid "memberid",
+			customerno "customerno",
+			certificateno "certificateno",
+			menulimit "menulimit"
+		from cas.organ_member_menulimit
+	]]>
+	<where>
+		<if test="memberid != null and memberid!= '' "><![CDATA[ and memberid=#{memberid}]]></if>
+		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
+		<if test="menulimit != null and menulimit!= '' "><![CDATA[ and menulimit=#{menulimit}]]></if>
+	</where>
+	</select>
+	<!--成员菜单权限表organ_member_menulimit 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_member_menulimit(
+			memberid,customerno,certificateno,menulimit
+		) values(
+			#{memberid, jdbcType=VARCHAR},#{customerno, jdbcType=VARCHAR},#{certificateno, jdbcType=VARCHAR},#{menulimit, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--成员菜单权限表organ_member_menulimit 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_member_menulimit(
+			memberid,customerno,certificateno,menulimit
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.memberid, jdbcType=VARCHAR},#{item.customerno, jdbcType=VARCHAR},#{item.certificateno, jdbcType=VARCHAR},#{item.menulimit, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--成员菜单权限表organ_member_menulimit 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
+	<![CDATA[
+		update cas.organ_member_menulimit
+	]]>
+	<set>
+		 <if test="memberid != null and memberid != '' "><![CDATA[memberid=#{memberid, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null and certificateno != '' "><![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="menulimit != null and menulimit != '' "><![CDATA[menulimit=#{menulimit, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where memberid = #{memberid} and menulimit = #{menulimit}
+	]]>
+	</update>
+	<!--成员菜单权限表organ_member_menulimit 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_member_menulimit
+		<set>
+		 <if test="item.memberid != null and item.memberid != '' "><![CDATA[memberid=#{item.memberid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null and item.certificateno != '' "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.menulimit != null and item.menulimit != '' "><![CDATA[menulimit=#{item.menulimit, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where memberid = #{item.memberid} and menulimit = #{item.menulimit}
+			]]>
+		</foreach>
+	</update>
+	<!--成员菜单权限表organ_member_menulimit 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
+	<![CDATA[
+		update cas.organ_member_menulimit
+	]]>
+	<set>
+		 <if test="memberid != null "> <![CDATA[memberid=#{memberid, jdbcType=VARCHAR},]]></if>
+		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="certificateno != null "> <![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="menulimit != null "> <![CDATA[menulimit=#{menulimit, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where memberid = #{memberid} and menulimit = #{menulimit}
+	]]>
+	</update>
+	<!--成员菜单权限表organ_member_menulimit 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_member_menulimit
+		<set>
+		 <if test="item.memberid != null "><![CDATA[memberid=#{item.memberid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.certificateno != null "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
+		 <if test="item.menulimit != null "><![CDATA[menulimit=#{item.menulimit, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where memberid = #{item.memberid} and menulimit = #{item.menulimit}
+			]]>
+		</foreach>
+	</update>
+	<!--成员菜单权限表organ_member_menulimit 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberMenulimitKey">
+	<![CDATA[
+		delete from cas.organ_member_menulimit
+		where
+			memberid = #{memberid} and menulimit = #{menulimit}
+	]]>
+	</delete>
+	<!--成员菜单权限表organ_member_menulimit 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganMemberMenulimitKey">
+		delete from cas.organ_member_menulimit where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ memberid = #{item.memberid} and menulimit = #{item.menulimit}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

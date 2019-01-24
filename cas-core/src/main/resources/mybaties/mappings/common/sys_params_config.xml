@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.SysParamsConfigDao" >
+	<!--nullsys_params_config 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey"
+	resultType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
+	<![CDATA[
+		select
+			exchange_id "exchangeId",
+			distributor_id "distributorId",
+			param_type "paramType",
+			param_id "paramId",
+			param_value "paramValue",
+			comments "comments",
+			param_status "paramStatus",
+			sort_no "sortNo"
+		from cas.sys_params_config
+		where 
+			exchange_id = #{exchangeId}
+			and param_type = #{paramType}
+			and distributor_id = #{distributorId}
+			and param_id = #{paramId}
+		for update
+	]]>
+	</select>
+	<!--nullsys_params_config 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey"
+	resultType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
+	<![CDATA[
+		select
+			exchange_id "exchangeId",
+			distributor_id "distributorId",
+			param_type "paramType",
+			param_id "paramId",
+			param_value "paramValue",
+			comments "comments",
+			param_status "paramStatus",
+			sort_no "sortNo"
+		from cas.sys_params_config
+		where 
+			exchange_id = #{exchangeId}
+			and param_type = #{paramType}
+			and distributor_id = #{distributorId}
+			and param_id = #{paramId}
+	]]>
+	</select>
+	<!--nullsys_params_config 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey"
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			exchange_id "exchangeId",
+			distributor_id "distributorId",
+			param_type "paramType",
+			param_id "paramId",
+			param_value "paramValue",
+			comments "comments",
+			param_status "paramStatus",
+			sort_no "sortNo"
+		from cas.sys_params_config
+		where 
+			exchange_id = #{exchangeId}
+			and param_type = #{paramType}
+			and distributor_id = #{distributorId}
+			and param_id = #{paramId}
+	]]>
+	</select>
+	<!--nullsys_params_config 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
+	<![CDATA[
+		select
+			exchange_id "exchangeId",
+			distributor_id "distributorId",
+			param_type "paramType",
+			param_id "paramId",
+			param_value "paramValue",
+			comments "comments",
+			param_status "paramStatus",
+			sort_no "sortNo"
+		from cas.sys_params_config
+	]]>
+	<where>
+		<if test="exchangeId != null and exchangeId!= '' "><![CDATA[ and exchange_id=#{exchangeId}]]></if>
+		<if test="distributorId != null and distributorId!= '' "><![CDATA[ and distributor_id=#{distributorId}]]></if>
+		<if test="paramType != null and paramType!= '' "><![CDATA[ and param_type=#{paramType}]]></if>
+		<if test="paramId != null and paramId!= '' "><![CDATA[ and param_id=#{paramId}]]></if>
+		<if test="paramValue != null and paramValue!= '' "><![CDATA[ and param_value=#{paramValue}]]></if>
+		<if test="comments != null and comments!= '' "><![CDATA[ and comments=#{comments}]]></if>
+		<if test="paramStatus != null and paramStatus!= '' "><![CDATA[ and param_status=#{paramStatus}]]></if>
+		<if test="sortNo != null and sortNo!= '' "><![CDATA[ and sort_no=#{sortNo}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--nullsys_params_config 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
+	<![CDATA[
+		select
+			exchange_id "exchangeId",
+			distributor_id "distributorId",
+			param_type "paramType",
+			param_id "paramId",
+			param_value "paramValue",
+			comments "comments",
+			param_status "paramStatus",
+			sort_no "sortNo"
+		from cas.sys_params_config
+	]]>
+	<where>
+		<if test="exchangeId != null and exchangeId!= '' "><![CDATA[ and exchange_id=#{exchangeId}]]></if>
+		<if test="distributorId != null and distributorId!= '' "><![CDATA[ and distributor_id=#{distributorId}]]></if>
+		<if test="paramType != null and paramType!= '' "><![CDATA[ and param_type=#{paramType}]]></if>
+		<if test="paramId != null and paramId!= '' "><![CDATA[ and param_id=#{paramId}]]></if>
+		<if test="paramValue != null and paramValue!= '' "><![CDATA[ and param_value=#{paramValue}]]></if>
+		<if test="comments != null and comments!= '' "><![CDATA[ and comments=#{comments}]]></if>
+		<if test="paramStatus != null and paramStatus!= '' "><![CDATA[ and param_status=#{paramStatus}]]></if>
+		<if test="sortNo != null and sortNo!= '' "><![CDATA[ and sort_no=#{sortNo}]]></if>
+	</where>
+	</select>
+	<!--nullsys_params_config 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			exchange_id "exchangeId",
+			distributor_id "distributorId",
+			param_type "paramType",
+			param_id "paramId",
+			param_value "paramValue",
+			comments "comments",
+			param_status "paramStatus",
+			sort_no "sortNo"
+		from cas.sys_params_config
+	]]>
+	<where>
+		<if test="exchangeId != null and exchangeId!= '' "><![CDATA[ and exchange_id=#{exchangeId}]]></if>
+		<if test="distributorId != null and distributorId!= '' "><![CDATA[ and distributor_id=#{distributorId}]]></if>
+		<if test="paramType != null and paramType!= '' "><![CDATA[ and param_type=#{paramType}]]></if>
+		<if test="paramId != null and paramId!= '' "><![CDATA[ and param_id=#{paramId}]]></if>
+		<if test="paramValue != null and paramValue!= '' "><![CDATA[ and param_value=#{paramValue}]]></if>
+		<if test="comments != null and comments!= '' "><![CDATA[ and comments=#{comments}]]></if>
+		<if test="paramStatus != null and paramStatus!= '' "><![CDATA[ and param_status=#{paramStatus}]]></if>
+		<if test="sortNo != null and sortNo!= '' "><![CDATA[ and sort_no=#{sortNo}]]></if>
+	</where>
+	</select>
+	<!--nullsys_params_config 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.sys_params_config(
+			exchange_id,distributor_id,param_type,param_id,param_value,
+			comments,param_status,sort_no
+		) values(
+			#{exchangeId, jdbcType=VARCHAR},#{distributorId, jdbcType=VARCHAR},#{paramType, jdbcType=VARCHAR},#{paramId, jdbcType=VARCHAR},#{paramValue, jdbcType=VARCHAR},
+			#{comments, jdbcType=VARCHAR},#{paramStatus, jdbcType=INTEGER},#{sortNo, jdbcType=INTEGER}
+	)]]>
+	</insert>
+	<!--nullsys_params_config 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.sys_params_config(
+			exchange_id,distributor_id,param_type,param_id,param_value,
+			comments,param_status,sort_no
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.exchangeId, jdbcType=VARCHAR},#{item.distributorId, jdbcType=VARCHAR},#{item.paramType, jdbcType=VARCHAR},#{item.paramId, jdbcType=VARCHAR},#{item.paramValue, jdbcType=VARCHAR},
+				#{item.comments, jdbcType=VARCHAR},#{item.paramStatus, jdbcType=INTEGER},#{item.sortNo, jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+	<!--nullsys_params_config 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
+	<![CDATA[
+		update cas.sys_params_config
+	]]>
+	<set>
+		 <if test="exchangeId != null and exchangeId != '' "><![CDATA[exchange_id=#{exchangeId, jdbcType=VARCHAR},]]></if>
+		 <if test="distributorId != null and distributorId != '' "><![CDATA[distributor_id=#{distributorId, jdbcType=VARCHAR},]]></if>
+		 <if test="paramType != null and paramType != '' "><![CDATA[param_type=#{paramType, jdbcType=VARCHAR},]]></if>
+		 <if test="paramId != null and paramId != '' "><![CDATA[param_id=#{paramId, jdbcType=VARCHAR},]]></if>
+		 <if test="paramValue != null and paramValue != '' "><![CDATA[param_value=#{paramValue, jdbcType=VARCHAR},]]></if>
+		 <if test="comments != null and comments != '' "><![CDATA[comments=#{comments, jdbcType=VARCHAR},]]></if>
+		 <if test="paramStatus != null and paramStatus != '' or paramStatus == 0 "><![CDATA[param_status=#{paramStatus, jdbcType=INTEGER},]]></if>
+		 <if test="sortNo != null and sortNo != '' or sortNo == 0 "><![CDATA[sort_no=#{sortNo, jdbcType=INTEGER},]]></if>
+	</set>
+	<![CDATA[ where exchange_id = #{exchangeId} and param_type = #{paramType} and distributor_id = #{distributorId} and param_id = #{paramId}
+	]]>
+	</update>
+	<!--nullsys_params_config 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.sys_params_config
+		<set>
+		 <if test="item.exchangeId != null and item.exchangeId != '' "><![CDATA[exchange_id=#{item.exchangeId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.distributorId != null and item.distributorId != '' "><![CDATA[distributor_id=#{item.distributorId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paramType != null and item.paramType != '' "><![CDATA[param_type=#{item.paramType, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paramId != null and item.paramId != '' "><![CDATA[param_id=#{item.paramId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paramValue != null and item.paramValue != '' "><![CDATA[param_value=#{item.paramValue, jdbcType=VARCHAR},]]></if>
+		 <if test="item.comments != null and item.comments != '' "><![CDATA[comments=#{item.comments, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paramStatus != null and item.paramStatus != '' or paramStatus == 0 "><![CDATA[param_status=#{item.paramStatus, jdbcType=INTEGER},]]></if>
+		 <if test="item.sortNo != null and item.sortNo != '' or sortNo == 0 "><![CDATA[sort_no=#{item.sortNo, jdbcType=INTEGER},]]></if>
+			</set>
+			<![CDATA[ where exchange_id = #{item.exchangeId} and param_type = #{item.paramType} and distributor_id = #{item.distributorId} and param_id = #{item.paramId}
+			]]>
+		</foreach>
+	</update>
+	<!--nullsys_params_config 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
+	<![CDATA[
+		update cas.sys_params_config
+	]]>
+	<set>
+		 <if test="exchangeId != null "> <![CDATA[exchange_id=#{exchangeId, jdbcType=VARCHAR},]]></if>
+		 <if test="distributorId != null "> <![CDATA[distributor_id=#{distributorId, jdbcType=VARCHAR},]]></if>
+		 <if test="paramType != null "> <![CDATA[param_type=#{paramType, jdbcType=VARCHAR},]]></if>
+		 <if test="paramId != null "> <![CDATA[param_id=#{paramId, jdbcType=VARCHAR},]]></if>
+		 <if test="paramValue != null "> <![CDATA[param_value=#{paramValue, jdbcType=VARCHAR},]]></if>
+		 <if test="comments != null "> <![CDATA[comments=#{comments, jdbcType=VARCHAR},]]></if>
+		 <if test="paramStatus != null or paramStatus == 0 "><![CDATA[param_status=#{paramStatus, jdbcType=INTEGER},]]></if>
+		 <if test="sortNo != null or sortNo == 0 "><![CDATA[sort_no=#{sortNo, jdbcType=INTEGER},]]></if>
+	</set>
+	<![CDATA[ where exchange_id = #{exchangeId} and param_type = #{paramType} and distributor_id = #{distributorId} and param_id = #{paramId}
+	]]>
+	</update>
+	<!--nullsys_params_config 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.sys_params_config
+		<set>
+		 <if test="item.exchangeId != null "><![CDATA[exchange_id=#{item.exchangeId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.distributorId != null "><![CDATA[distributor_id=#{item.distributorId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paramType != null "><![CDATA[param_type=#{item.paramType, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paramId != null "><![CDATA[param_id=#{item.paramId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paramValue != null "><![CDATA[param_value=#{item.paramValue, jdbcType=VARCHAR},]]></if>
+		 <if test="item.comments != null "><![CDATA[comments=#{item.comments, jdbcType=VARCHAR},]]></if>
+		 <if test="item.paramStatus != null or paramStatus == 0 "><![CDATA[param_status=#{item.paramStatus, jdbcType=INTEGER},]]></if>
+		 <if test="item.sortNo != null or sortNo == 0 "><![CDATA[sort_no=#{item.sortNo, jdbcType=INTEGER},]]></if>
+			</set>
+			<![CDATA[ where exchange_id = #{item.exchangeId} and param_type = #{item.paramType} and distributor_id = #{item.distributorId} and param_id = #{item.paramId}
+			]]>
+		</foreach>
+	</update>
+	<!--nullsys_params_config 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey">
+	<![CDATA[
+		delete from cas.sys_params_config
+		where
+			exchange_id = #{exchangeId} and param_type = #{paramType} and distributor_id = #{distributorId} and param_id = #{paramId}
+	]]>
+	</delete>
+	<!--nullsys_params_config 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey">
+		delete from cas.sys_params_config where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ exchange_id = #{item.exchangeId} and param_type = #{item.paramType} and distributor_id = #{item.distributorId} and param_id = #{item.paramId}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.RoleDao" >
+	<!--nullrole 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.RoleKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.RoleEntity">
+	<![CDATA[
+		select
+			role_id "roleId",
+			role_name "roleName",
+			isdefault "isdefault",
+			inserttime "inserttime",
+			updatetime "updatetime"
+		from cas.role
+		where 
+			role_id = #{roleId}
+		for update
+	]]>
+	</select>
+	<!--nullrole 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.RoleKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.RoleEntity">
+	<![CDATA[
+		select
+			role_id "roleId",
+			role_name "roleName",
+			isdefault "isdefault",
+			inserttime "inserttime",
+			updatetime "updatetime"
+		from cas.role
+		where 
+			role_id = #{roleId}
+	]]>
+	</select>
+	<!--nullrole 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.RoleKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			role_id "roleId",
+			role_name "roleName",
+			isdefault "isdefault",
+			inserttime "inserttime",
+			updatetime "updatetime"
+		from cas.role
+		where 
+			role_id = #{roleId}
+	]]>
+	</select>
+	<!--nullrole 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.RoleEntity">
+	<![CDATA[
+		select
+			role_id "roleId",
+			role_name "roleName",
+			isdefault "isdefault",
+			inserttime "inserttime",
+			updatetime "updatetime"
+		from cas.role
+	]]>
+	<where>
+		<if test="roleId != null and roleId!= '' "><![CDATA[ and role_id=#{roleId}]]></if>
+		<if test="roleName != null and roleName!= '' "><![CDATA[ and role_name=#{roleName}]]></if>
+		<if test="isdefault != null and isdefault!= '' "><![CDATA[ and isdefault=#{isdefault}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--nullrole 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.RoleEntity">
+	<![CDATA[
+		select
+			role_id "roleId",
+			role_name "roleName",
+			isdefault "isdefault",
+			inserttime "inserttime",
+			updatetime "updatetime"
+		from cas.role
+	]]>
+	<where>
+		<if test="roleId != null and roleId!= '' "><![CDATA[ and role_id=#{roleId}]]></if>
+		<if test="roleName != null and roleName!= '' "><![CDATA[ and role_name=#{roleName}]]></if>
+		<if test="isdefault != null and isdefault!= '' "><![CDATA[ and isdefault=#{isdefault}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--nullrole 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			role_id "roleId",
+			role_name "roleName",
+			isdefault "isdefault",
+			inserttime "inserttime",
+			updatetime "updatetime"
+		from cas.role
+	]]>
+	<where>
+		<if test="roleId != null and roleId!= '' "><![CDATA[ and role_id=#{roleId}]]></if>
+		<if test="roleName != null and roleName!= '' "><![CDATA[ and role_name=#{roleName}]]></if>
+		<if test="isdefault != null and isdefault!= '' "><![CDATA[ and isdefault=#{isdefault}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--nullrole 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.role(
+			role_id,role_name,isdefault,inserttime,updatetime
+		) values(
+			#{roleId, jdbcType=VARCHAR},#{roleName, jdbcType=VARCHAR},#{isdefault, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--nullrole 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.role(
+			role_id,role_name,isdefault,inserttime,updatetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.roleId, jdbcType=VARCHAR},#{item.roleName, jdbcType=VARCHAR},#{item.isdefault, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--nullrole 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity">
+	<![CDATA[
+		update cas.role
+	]]>
+	<set>
+		 <if test="roleId != null and roleId != '' "><![CDATA[role_id=#{roleId, jdbcType=VARCHAR},]]></if>
+		 <if test="roleName != null and roleName != '' "><![CDATA[role_name=#{roleName, jdbcType=VARCHAR},]]></if>
+		 <if test="isdefault != null and isdefault != '' "><![CDATA[isdefault=#{isdefault, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where role_id = #{roleId}
+	]]>
+	</update>
+	<!--nullrole 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.role
+		<set>
+		 <if test="item.roleId != null and item.roleId != '' "><![CDATA[role_id=#{item.roleId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.roleName != null and item.roleName != '' "><![CDATA[role_name=#{item.roleName, jdbcType=VARCHAR},]]></if>
+		 <if test="item.isdefault != null and item.isdefault != '' "><![CDATA[isdefault=#{item.isdefault, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where role_id = #{item.roleId}
+			]]>
+		</foreach>
+	</update>
+	<!--nullrole 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity">
+	<![CDATA[
+		update cas.role
+	]]>
+	<set>
+		 <if test="roleId != null "> <![CDATA[role_id=#{roleId, jdbcType=VARCHAR},]]></if>
+		 <if test="roleName != null "> <![CDATA[role_name=#{roleName, jdbcType=VARCHAR},]]></if>
+		 <if test="isdefault != null "> <![CDATA[isdefault=#{isdefault, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where role_id = #{roleId}
+	]]>
+	</update>
+	<!--nullrole 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.RoleEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.role
+		<set>
+		 <if test="item.roleId != null "><![CDATA[role_id=#{item.roleId, jdbcType=VARCHAR},]]></if>
+		 <if test="item.roleName != null "><![CDATA[role_name=#{item.roleName, jdbcType=VARCHAR},]]></if>
+		 <if test="item.isdefault != null "><![CDATA[isdefault=#{item.isdefault, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where role_id = #{item.roleId}
+			]]>
+		</foreach>
+	</update>
+	<!--nullrole 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.RoleKey">
+	<![CDATA[
+		delete from cas.role
+		where
+			role_id = #{roleId}
+	]]>
+	</delete>
+	<!--nullrole 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.RoleKey">
+		delete from cas.role where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ role_id = #{item.roleId}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

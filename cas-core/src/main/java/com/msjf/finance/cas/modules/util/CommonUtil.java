@@ -1,13 +1,12 @@
 package com.msjf.finance.cas.modules.util;
 
 
+import com.msjf.finance.cas.common.dao.key.SysParamsConfigKey;
 import com.msjf.finance.cas.modules.Account.AccountDao;
-import com.msjf.finance.cas.modules.login.dao.SysParamsConfigEntityMapper;
-import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntity;
-import com.msjf.finance.cas.modules.login.entity.SysParamsConfigEntityKey;
-import com.msjf.finance.cas.common.dao.SysDictMapper;
-import com.msjf.finance.cas.common.entity.SysDictEntity;
-import com.msjf.finance.cas.common.entity.SysDictKey;
+import com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity;
+import com.msjf.finance.cas.common.dao.persistence.SysDictMapper;
+import com.msjf.finance.cas.common.dao.entity.SysDictEntity;
+import com.msjf.finance.cas.common.dao.key.SysDictKey;
 import com.msjf.finance.cas.modules.util.emun.CommonUtilEnum;
 import com.msjf.finance.mcs.facade.sms.SendVerificationCodeFacade;
 import com.msjf.finance.mcs.facade.sms.domain.ReqSendVerificationCodeDomain;
@@ -160,13 +159,14 @@ public final class CommonUtil {
         return true;
     }
     public static String getSysConfigValue(String paramId, String paramType){
-        SysParamsConfigEntityKey sysParamsConfigKey=new SysParamsConfigEntityKey();
+        SysParamsConfigKey sysParamsConfigKey=new SysParamsConfigKey();
         sysParamsConfigKey.setDistributorId(DISTRIBUTORID);
         sysParamsConfigKey.setExchangeId(EXCHANGEID);
         sysParamsConfigKey.setParamId(paramId);
         sysParamsConfigKey.setParamType(paramType);
-        SysParamsConfigEntityMapper sysParamsConfigEntityMapper=SpringContextUtil.getBean("sysParamsConfigEntityMapper");
-        SysParamsConfigEntity sysParamsConfig=sysParamsConfigEntityMapper.selectByPrimaryKey(sysParamsConfigKey);
+        //todo 需修改
+       // SysParamsConfigEntityMapper sysParamsConfigEntityMapper=SpringContextUtil.getBean("sysParamsConfigEntityMapper");
+        SysParamsConfigEntity sysParamsConfig=null;//sysParamsConfigEntityMapper.selectByPrimaryKey(sysParamsConfigKey);
         return sysParamsConfig.getParamValue();
     }
     /**

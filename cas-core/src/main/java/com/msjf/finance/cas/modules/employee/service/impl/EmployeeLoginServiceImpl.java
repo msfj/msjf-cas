@@ -1,19 +1,19 @@
 package com.msjf.finance.cas.modules.employee.service.impl;
 
+import com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity;
+import com.msjf.finance.cas.common.dao.entity.EmployeeEntity;
+import com.msjf.finance.cas.common.dao.key.AusAuthoneKey;
+import com.msjf.finance.cas.common.dao.persistence.EmployeeDao;
 import com.msjf.finance.cas.facade.employee.domain.EmployeeInfoDomain;
 import com.msjf.finance.cas.modules.Account.Account;
-import com.msjf.finance.cas.modules.ausAuthone.dao.AusAuthoneDao;
-import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneEntity;
-import com.msjf.finance.cas.modules.ausAuthone.entity.AusAuthoneKey;
-import com.msjf.finance.cas.modules.employee.dao.EmployeeMapper;
+import com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao;
 import com.msjf.finance.cas.modules.employee.emun.EmployeeLoginEnum;
-import com.msjf.finance.cas.modules.employee.entity.EmployeeEntity;
 import com.msjf.finance.cas.modules.employee.service.EmployeeLoginService;
 import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.modules.util.CommonUtil;
-import com.msjf.finance.cas.modules.util.DateUtil;
-import com.msjf.finance.cas.modules.util.MacroDefine;
-import com.msjf.finance.cas.modules.util.StringUtil;
+import com.msjf.finance.cas.common.utils.DateUtils;
+import com.msjf.finance.cas.common.utils.MacroDefine;
+import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
     @Resource
     AusAuthoneDao ausAuthoneDao;
     @Resource
-    EmployeeMapper employeeMapper;
+    EmployeeDao employeeMapper;
     @Override
     public Response<EmployeeInfoDomain> employeeLogin(HashMap<String, Object> mapParam) {
         Response<EmployeeInfoDomain> rs=new Response();
@@ -124,8 +124,8 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
         //更新错误次数 和 账户状态
         AusAuthoneEntity ausAuthoneEntity = new AusAuthoneEntity();
         ausAuthoneEntity.setCustomerno(customerno);
-        ausAuthoneEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
-        ausAuthoneEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
+        ausAuthoneEntity.setUpdatedate(DateUtils.getUserDate(DATE_FMT_DATE));
+        ausAuthoneEntity.setUpdatetime(DateUtils.getUserDate(DATE_FMT_TIME));
         try {
             if (failCount + 1 >= sysFailCount) {
                 //错误次数加1 状态更新为锁定
@@ -133,8 +133,8 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
                 EmployeeEntity c = new EmployeeEntity();
                 c.setCustomerno(customerno);
                 c.setStatus(MacroDefine.CUST_STATUS.LOCK.getValue());
-                c.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
-                c.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
+                c.setUpdatedate(DateUtils.getUserDate(DATE_FMT_DATE));
+                c.setUpdatetime(DateUtils.getUserDate(DATE_FMT_TIME));
                 employeeMapper.updateByPrimaryKeySelective(c);
             } else {
                 ausAuthoneEntity.setFailcount(failCount + 1);
@@ -167,8 +167,8 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
             ausAuthoneEntity.setFailcount(0);
             ausAuthoneEntity.setLoginsource(loginSource);
             ausAuthoneEntity.setOnlinestatus("Y");//N-不在线 Y-在线
-            ausAuthoneEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
-            ausAuthoneEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
+            ausAuthoneEntity.setUpdatedate(DateUtils.getUserDate(DATE_FMT_DATE));
+            ausAuthoneEntity.setUpdatetime(DateUtils.getUserDate(DATE_FMT_TIME));
             ausAuthoneDao.update(ausAuthoneEntity);
         } catch (Exception e) {
             logger.error(e.getMessage());

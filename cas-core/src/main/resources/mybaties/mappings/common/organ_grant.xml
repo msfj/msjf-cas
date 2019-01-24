@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganGrantDao" >
+	<!--税收补助申请表organ_grant 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganGrantKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
+	<![CDATA[
+		select
+			id "id",
+			granturl "granturl",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_grant
+		where 
+			id = #{id}
+		for update
+	]]>
+	</select>
+	<!--税收补助申请表organ_grant 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganGrantKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
+	<![CDATA[
+		select
+			id "id",
+			granturl "granturl",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_grant
+		where 
+			id = #{id}
+	]]>
+	</select>
+	<!--税收补助申请表organ_grant 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganGrantKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			id "id",
+			granturl "granturl",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_grant
+		where 
+			id = #{id}
+	]]>
+	</select>
+	<!--税收补助申请表organ_grant 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
+	<![CDATA[
+		select
+			id "id",
+			granturl "granturl",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_grant
+	]]>
+	<where>
+		<if test="id != null and id!= '' "><![CDATA[ and id=#{id}]]></if>
+		<if test="granturl != null and granturl!= '' "><![CDATA[ and granturl=#{granturl}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--税收补助申请表organ_grant 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
+	<![CDATA[
+		select
+			id "id",
+			granturl "granturl",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_grant
+	]]>
+	<where>
+		<if test="id != null and id!= '' "><![CDATA[ and id=#{id}]]></if>
+		<if test="granturl != null and granturl!= '' "><![CDATA[ and granturl=#{granturl}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--税收补助申请表organ_grant 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			id "id",
+			granturl "granturl",
+			status "status",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_grant
+	]]>
+	<where>
+		<if test="id != null and id!= '' "><![CDATA[ and id=#{id}]]></if>
+		<if test="granturl != null and granturl!= '' "><![CDATA[ and granturl=#{granturl}]]></if>
+		<if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+	</where>
+	</select>
+	<!--税收补助申请表organ_grant 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_grant(
+			id,granturl,status,insertdate,inserttime,
+			updatedate,updatetime
+		) values(
+			#{id, jdbcType=VARCHAR},#{granturl, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--税收补助申请表organ_grant 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" databaseId="mysql">
+	<![CDATA[
+		insert into cas.organ_grant(
+			id,granturl,status,insertdate,inserttime,
+			updatedate,updatetime
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.id, jdbcType=VARCHAR},#{item.granturl, jdbcType=VARCHAR},#{item.status, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},
+				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--税收补助申请表organ_grant 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
+	<![CDATA[
+		update cas.organ_grant
+	]]>
+	<set>
+		 <if test="id != null and id != '' "><![CDATA[id=#{id, jdbcType=VARCHAR},]]></if>
+		 <if test="granturl != null and granturl != '' "><![CDATA[granturl=#{granturl, jdbcType=VARCHAR},]]></if>
+		 <if test="status != null and status != '' "><![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where id = #{id}
+	]]>
+	</update>
+	<!--税收补助申请表organ_grant 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_grant
+		<set>
+		 <if test="item.id != null and item.id != '' "><![CDATA[id=#{item.id, jdbcType=VARCHAR},]]></if>
+		 <if test="item.granturl != null and item.granturl != '' "><![CDATA[granturl=#{item.granturl, jdbcType=VARCHAR},]]></if>
+		 <if test="item.status != null and item.status != '' "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where id = #{item.id}
+			]]>
+		</foreach>
+	</update>
+	<!--税收补助申请表organ_grant 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
+	<![CDATA[
+		update cas.organ_grant
+	]]>
+	<set>
+		 <if test="id != null "> <![CDATA[id=#{id, jdbcType=VARCHAR},]]></if>
+		 <if test="granturl != null "> <![CDATA[granturl=#{granturl, jdbcType=VARCHAR},]]></if>
+		 <if test="status != null "> <![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
+		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where id = #{id}
+	]]>
+	</update>
+	<!--税收补助申请表organ_grant 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" databaseId="mysql">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.organ_grant
+		<set>
+		 <if test="item.id != null "><![CDATA[id=#{item.id, jdbcType=VARCHAR},]]></if>
+		 <if test="item.granturl != null "><![CDATA[granturl=#{item.granturl, jdbcType=VARCHAR},]]></if>
+		 <if test="item.status != null "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
+		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where id = #{item.id}
+			]]>
+		</foreach>
+	</update>
+	<!--税收补助申请表organ_grant 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganGrantKey">
+	<![CDATA[
+		delete from cas.organ_grant
+		where
+			id = #{id}
+	]]>
+	</delete>
+	<!--税收补助申请表organ_grant 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganGrantKey">
+		delete from cas.organ_grant where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ id = #{item.id}
+			]]>
+		</foreach>
+	</delete>
+</mapper>

@@ -1,15 +1,15 @@
 package com.msjf.finance.cas.modules.organ.service.impl;
 
-import com.msjf.finance.cas.common.dao.OrganInfoDao;
-import com.msjf.finance.cas.common.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.dao.entity.CustEntity;
+import com.msjf.finance.cas.common.dao.persistence.CustDao;
+import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
+import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
 import com.msjf.finance.cas.common.utils.CheckUtil;
 import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.IDUtils;
 import com.msjf.finance.cas.modules.organ.service.BaseService;
 import com.msjf.finance.cas.modules.organ.service.OrganPlanBuildApplyService;
-import com.msjf.finance.cas.modules.register.dao.CustDao;
-import com.msjf.finance.cas.modules.register.entity.CustEntity;
-import com.msjf.finance.cas.modules.util.SpringContextUtil;
+import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +80,7 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
 
     @Resource
     OrganInfoDao organInfoDao;
+
     /**
      * 添加拟设立
      *
@@ -116,7 +117,7 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
         }
 
         //企业名称唯一性检查
-        if (!super.checkOrganName(membername, rs)) {
+        if (!checkOrganName(membername, rs)) {
             return;
         }
 
@@ -126,7 +127,16 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
         orgcustomerno = String.valueOf(IDUtils.genItemId());
 
         //写企业基本信息表
-        addOrganInfo();
+        addOrganInfo(rs);
+        //写客户信息表
+        addCifCust(rs);
+        //返回新增信息
+        HashMap reqmap=new HashMap(4);
+        reqmap.put("orgcustomerno",orgcustomerno);
+        reqmap.put("organtype",organtype);
+        reqmap.put("organclass",organclass);
+        reqmap.put("membername",membername);
+        rs.success("cas","新增成功", reqmap);
 
     }
 
@@ -136,7 +146,7 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
      *
      * @param
      */
-    private void addOrganInfo() {
+    private void addOrganInfo(Response rs) {
         try {
             OrganInfoEntity organInfoEntity = new OrganInfoEntity();
             organInfoEntity.setCustomerno(orgcustomerno);
@@ -144,15 +154,62 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
             organInfoEntity.setMembername(membername);
             organInfoEntity.setOrgantype(organtype);
             organInfoEntity.setOrganclass(organclass);
-            organInfoEntity.setOrganstatus("0");//0-设立中
+            //0-设立中
+            organInfoEntity.setOrganstatus("0");
             organInfoEntity.setInsertdate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
             organInfoEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
             organInfoEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
             organInfoEntity.setUpdatetime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
-            organInfoDao.insInfoEntity(organInfoEntity);
+            organInfoDao.insEntity(organInfoEntity);
         } catch (Exception e) {
+            rs.fail("cas", "organ_info表写失败");
             throw new RuntimeException("organ_info表写失败", e);
         }
+    }
+
+    /**
+     * 写客户信息表
+     *
+     * @param rs
+     */
+    private void addCifCust(Response rs) {
+        try {
+            CustEntity custEntity = new CustEntity();
+            custEntity.setCustomerno(orgcustomerno);
+            //用户类型 字典102 0-个人 1-企业
+            custEntity.setMembertype(YES);
+            custEntity.setStatus(MacroDefine.CUST_STATUS.NORMAL.getValue());
+            custEntity.setInsertdate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
+            custEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
+            custEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
+            custEntity.setUpdatetime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
+        } catch (Exception e) {
+            rs.fail("cas", "cif_cust表写失败");
+            throw new RuntimeException("cif_cust表写失败", e);
+        }
+    }
+
+    /**
+     * 写企业业务流程信息表
+     */
+    private void addFlow() {
+/*        try {
+            OrganFlowEntity cifOrganFlowEntity = new OrganFlowEntity();
+            cifOrganFlowEntity.setOrgcustomerno(orgcustomerno);
+            cifOrganFlowEntity.setCustomerno(customerno);
+            cifOrganFlowEntity.setType(FLOW_TYPE_NAME);
+            cifOrganFlowEntity.setStatus(FLOW_STATUS_STATUS);
+            cifOrganFlowEntity.setIsreturn(NO);
+            cifOrganFlowEntity.setInsertdate(DateUtil.getUserDate(DATE_FMT_DATE));
+            cifOrganFlowEntity.setInserttime(DateUtil.getUserDate(DATE_FMT_TIME));
+            cifOrganFlowEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
+            cifOrganFlowEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
+            CifOrganFlowPersistence flowPersistence = PersistenceUtil.getPersistence(CifOrganFlowPersistence.class);
+            flowPersistence.insert(cifOrganFlowEntity);
+        } catch (Exception e) {
+            LogUtil.error(e);
+            throw new WsRuntimeException("cif_organ_flow表写失败");
+        }*/
     }
 
 
