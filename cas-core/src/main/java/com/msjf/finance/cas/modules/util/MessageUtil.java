@@ -8,7 +8,7 @@ public class MessageUtil
                 "{\"orgCode\":\"10000000\","
                 + "\"chnlId\":\"qhcs-dcs\","
                 + "\"transNo\":\""+DateUtil.getCurrDateTime()+"\","//请先修改该值，再发起请求！！！保持每次请求其唯一性！！！
-                + "\"transDate\":\"2017-08-10 14:12:14\","
+                + "\"transDate\":\""+DateUtil.getUserDate("yyyy-MM-dd HH:mm:ss")+"\","
                 + "\"authCode\":\"CRT001A2\","
                 + "\"authDate\":\"2017-8-10 14:12:14\"}");
         return sb.toString();
@@ -42,7 +42,7 @@ public class MessageUtil
                         + "\"entityAuthDate\":\"2018-1-16\","
                         + "\"seqNo\":\"a123456789\"}]}");
         return sb.toString();
-    }//6214837848529628
+    }
     public static String getSecurityInfo(String signatureValue, String pwd)
     {
         StringBuffer sb = new StringBuffer("{\"signatureValue\":\"" + signatureValue

@@ -1,10 +1,6 @@
 package com.msjf.finance.cas.modules.util;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.MessageDigest;
@@ -29,20 +25,22 @@ public class DataSecurityUtil
     {
         try
         {
-            System.out.println("234242\\n23423".replace("\\n","\n"));
-            // String s = signData("abc");
-            String busiData="OHQMWgf3em9GO48yl4T10+g7o/9me76TzknqJri8hrpOFs8rQAO/nDZXEOlibjNxEFR1DD2WjXaG\nta+zI/kN3LJ2/UA2amZQTTCzNFznkW37EYTcJ5+srnI3f9YlD6ELnZsdHQ/pfq4lg4aOZWqM8nys\nWtg51x4bn5APOBLDr7kAoA9r8KOpQOyIc9JHKLbFzdDJFQC7P5A6uDK2QQQK12sfic6bELYsKpZp\nlBJVzWOOdcmd9x32z5tiVgV89eqM0YYOju0/8thvtogXUKzUtK3IC33Pk/KlMyL5DyftN81A8ZVk\nAz9gJpgZaWqO5pgXjo6x8S0imLcXgKBuJTKFqsW6sFZLKEZhltOIxAOsofuOjrHxLSKYt/a/vfM2\nj2VfMZAIbokO40tzn4lpnuQJh1XilVwohd0i+4IBSc86jiPy5BoDvIRGgunQr6JurSoh";
-            String signatureValue = "Mwsz9SZaDHKHlmox9Sf7cYgUDsB04JKFllQ/EoEdx0W4FiotidIw4j4IQNTNcGtgnBpkottLHQTv\nx0SCMuAQFyIpmL5WXd/dvhcemRYxhfolj26K9ss+UVtIwJiirFQJioNfW8qpd1cdfkFjUqgXA0Aw\ncNWSRvc2zwBERmXuK9o=\n";
-            String busiData1 = "HhegzMMlIYKAth5hZS+SMBM2Vz7iuAeypLNuQRzrQaisCKVbR0RgyWBt4LfFcaVJAUekXXfWVZPX\ngODeFw3GpRdg+zZSSNLI4HLaECt5bg6ykwEfGhpk4LktjfzmtTrPlvvtGyzhfiuNQl4Vjo+EQB8W\nNnNJvzODHGVDkLxQjqZFgAbCW2008PjRptAwqxtYGKdg6r7lp2YNLjB1+NjnD09QdZ49on9B5LRw\nLs4RJXYYDsS1luX7ezvCjWlHRVxcKhQ1+56y0I+T1R0bzvzNDsyaAe8Ic/m1iiMB0hrCR9211rgr\nMh80eEoUbn4nmI/qh1ToYURdPHXMmgHvCHP5tYrpH8kBM03ytda4KzIfNHhKFG5+J5iP6n/nqCvm\nidXHzJoB7whz+bW7akfWSxHfpwBKkUi7Yez6j6snDa8/ebiQCX1hGzHFKzB1mqr00euHMpZBU08o\nh9FpnAWOBf+FJJiLaqhKse33";
-            String signatureValue1="BuOIaou42Wov81X6KwvMK3C3HiYb2gfptMWo7RbsE0t2/t1FQWQ5n44awN34WHim1kSROetpqBWh\natb5RcF2NHA81A9HTDXXaymQWjFn4z9hfqyhz33dEMEv0XRRUNvI2TqBEzc/IPL65svImD2zbevU\nLOpqrh8gvOEB2+lGlxw=\n";
-            verifyData(
-                    busiData,
-                    signatureValue);
-            // System.out.println("验签OK");
-            // System.out.println(decrypt("Kn7F+lvQqP/59bltknRDBA==",
-            // "123456781234567812345678"));
-            System.out.println("k62@dfqlRE" + "_" + digest("k62@dfqlRE".getBytes()));
-             System.out.println(getPublicKey());
+//            String localPath = HyConstant.CLASS_PATH + File.separator + "考核表" + ".xlsx";
+//            System.out.println(localPath);
+//            System.out.println("234242\\n23423".replace("\\n","\n"));
+//            // String s = signData("abc");
+//            String busiData="OHQMWgf3em9GO48yl4T10+g7o/9me76TzknqJri8hrpOFs8rQAO/nDZXEOlibjNxEFR1DD2WjXaG\nta+zI/kN3LJ2/UA2amZQTTCzNFznkW37EYTcJ5+srnI3f9YlD6ELnZsdHQ/pfq4lg4aOZWqM8nys\nWtg51x4bn5APOBLDr7kAoA9r8KOpQOyIc9JHKLbFzdDJFQC7P5A6uDK2QQQK12sfic6bELYsKpZp\nlBJVzWOOdcmd9x32z5tiVgV89eqM0YYOju0/8thvtogXUKzUtK3IC33Pk/KlMyL5DyftN81A8ZVk\nAz9gJpgZaWqO5pgXjo6x8S0imLcXgKBuJTKFqsW6sFZLKEZhltOIxAOsofuOjrHxLSKYt/a/vfM2\nj2VfMZAIbokO40tzn4lpnuQJh1XilVwohd0i+4IBSc86jiPy5BoDvIRGgunQr6JurSoh";
+//            String signatureValue = "Mwsz9SZaDHKHlmox9Sf7cYgUDsB04JKFllQ/EoEdx0W4FiotidIw4j4IQNTNcGtgnBpkottLHQTv\nx0SCMuAQFyIpmL5WXd/dvhcemRYxhfolj26K9ss+UVtIwJiirFQJioNfW8qpd1cdfkFjUqgXA0Aw\ncNWSRvc2zwBERmXuK9o=\n";
+//            String busiData1 = "HhegzMMlIYKAth5hZS+SMBM2Vz7iuAeypLNuQRzrQaisCKVbR0RgyWBt4LfFcaVJAUekXXfWVZPX\ngODeFw3GpRdg+zZSSNLI4HLaECt5bg6ykwEfGhpk4LktjfzmtTrPlvvtGyzhfiuNQl4Vjo+EQB8W\nNnNJvzODHGVDkLxQjqZFgAbCW2008PjRptAwqxtYGKdg6r7lp2YNLjB1+NjnD09QdZ49on9B5LRw\nLs4RJXYYDsS1luX7ezvCjWlHRVxcKhQ1+56y0I+T1R0bzvzNDsyaAe8Ic/m1iiMB0hrCR9211rgr\nMh80eEoUbn4nmI/qh1ToYURdPHXMmgHvCHP5tYrpH8kBM03ytda4KzIfNHhKFG5+J5iP6n/nqCvm\nidXHzJoB7whz+bW7akfWSxHfpwBKkUi7Yez6j6snDa8/ebiQCX1hGzHFKzB1mqr00euHMpZBU08o\nh9FpnAWOBf+FJJiLaqhKse33";
+//            String signatureValue1="BuOIaou42Wov81X6KwvMK3C3HiYb2gfptMWo7RbsE0t2/t1FQWQ5n44awN34WHim1kSROetpqBWh\natb5RcF2NHA81A9HTDXXaymQWjFn4z9hfqyhz33dEMEv0XRRUNvI2TqBEzc/IPL65svImD2zbevU\nLOpqrh8gvOEB2+lGlxw=\n";
+//            verifyData(
+//                    busiData,
+//                    signatureValue);
+//            // System.out.println("验签OK");
+//            // System.out.println(decrypt("Kn7F+lvQqP/59bltknRDBA==",
+//            // "123456781234567812345678"));
+//            System.out.println("k62@dfqlRE" + "_" + digest("k62@dfqlRE".getBytes()));
+             System.out.println(DateUtil.getUserDate("yyyy-MM-dd HH:mm:ss"));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -111,8 +109,9 @@ public class DataSecurityUtil
         InputStream is = null;
         try
         {
-            // is = new FileInputStream("D:\\KeyScript\\test\\bistest_2.cer");
-            is = new FileInputStream("C:\\Users\\admin\\Documents\\WeChat Files\\k6500775\\Files\\API联调文档汇总V3.1解压密码123456(1)\\API联调文档汇总V3.1\\step1测试阶段\\Java-demo\\Java-测试证书\\credoo_stg.cer");
+            String credentialsFile=HyConstant.CLASS_PATH + File.separator + "properties"+ File.separator+ "credoo_stg.cer";
+//            is = new FileInputStream("C:\\Users\\admin\\Documents\\WeChat Files\\k6500775\\Files\\API联调文档汇总V3.1解压密码123456(1)\\API联调文档汇总V3.1\\step1测试阶段\\Java-demo\\Java-测试证书\\credoo_stg.cer");
+            is = new FileInputStream(credentialsFile);
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
             X509Certificate cert = (X509Certificate) cf.generateCertificate(is);
             return cert.getPublicKey();
@@ -146,7 +145,8 @@ public class DataSecurityUtil
         try
         {
             KeyStore ks = KeyStore.getInstance("JKS");
-            FileInputStream fis = new FileInputStream("C:\\Users\\admin\\Documents\\WeChat Files\\k6500775\\Files\\API联调文档汇总V3.1解压密码123456(1)\\API联调文档汇总V3.1\\step1测试阶段\\Java-demo\\Java-测试证书\\credoo_stg.jks");
+            String credentialsFile=HyConstant.CLASS_PATH + File.separator + "properties"+ File.separator+ "credoo_stg.jks";
+            FileInputStream fis = new FileInputStream(credentialsFile);
             // FileInputStream fis = new
             // FileInputStream("D:\\KeyScript\\test\\EXV_BIS_FRONT_JK_RONGZI_001_STG.jks");
             bis = new BufferedInputStream(fis);
