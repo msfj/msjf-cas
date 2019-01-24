@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msjf.finance.cas.common.dao.SysCertificationConfigMapper">
+  <resultMap id="BaseResultMap" type="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+    <id column="messageCode" jdbcType="VARCHAR" property="messagecode" />
+    <result column="isopen" jdbcType="VARCHAR" property="isopen" />
+    <result column="orgCode" jdbcType="VARCHAR" property="orgcode" />
+    <result column="chnlId" jdbcType="VARCHAR" property="chnlid" />
+    <result column="authCode" jdbcType="VARCHAR" property="authcode" />
+    <result column="authDate" jdbcType="VARCHAR" property="authdate" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userPassword" jdbcType="VARCHAR" property="userpassword" />
+    <result column="netType" jdbcType="VARCHAR" property="nettype" />
+    <result column="transName" jdbcType="VARCHAR" property="transname" />
+    <result column="productId" jdbcType="VARCHAR" property="productid" />
+    <result column="apiVer" jdbcType="VARCHAR" property="apiver" />
+    <result column="cer_check_code" jdbcType="VARCHAR" property="cerCheckCode" />
+    <result column="storeAlias" jdbcType="VARCHAR" property="storealias" />
+    <result column="storePassword" jdbcType="VARCHAR" property="storepassword" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    messageCode, isopen, orgCode, chnlId, authCode, authDate, userName, userPassword, 
+    netType, transName, productId, apiVer, cer_check_code, storeAlias, storePassword, 
+    url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_certification_config
+    where messageCode = #{messagecode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_certification_config
+    where messageCode = #{messagecode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+    insert into sys_certification_config (messageCode, isopen, orgCode, 
+      chnlId, authCode, authDate, 
+      userName, userPassword, netType, 
+      transName, productId, apiVer, 
+      cer_check_code, storeAlias, storePassword, 
+      url)
+    values (#{messagecode,jdbcType=VARCHAR}, #{isopen,jdbcType=VARCHAR}, #{orgcode,jdbcType=VARCHAR}, 
+      #{chnlid,jdbcType=VARCHAR}, #{authcode,jdbcType=VARCHAR}, #{authdate,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, #{nettype,jdbcType=VARCHAR}, 
+      #{transname,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{apiver,jdbcType=VARCHAR}, 
+      #{cerCheckCode,jdbcType=VARCHAR}, #{storealias,jdbcType=VARCHAR}, #{storepassword,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+    insert into sys_certification_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messagecode != null">
+        messageCode,
+      </if>
+      <if test="isopen != null">
+        isopen,
+      </if>
+      <if test="orgcode != null">
+        orgCode,
+      </if>
+      <if test="chnlid != null">
+        chnlId,
+      </if>
+      <if test="authcode != null">
+        authCode,
+      </if>
+      <if test="authdate != null">
+        authDate,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="userpassword != null">
+        userPassword,
+      </if>
+      <if test="nettype != null">
+        netType,
+      </if>
+      <if test="transname != null">
+        transName,
+      </if>
+      <if test="productid != null">
+        productId,
+      </if>
+      <if test="apiver != null">
+        apiVer,
+      </if>
+      <if test="cerCheckCode != null">
+        cer_check_code,
+      </if>
+      <if test="storealias != null">
+        storeAlias,
+      </if>
+      <if test="storepassword != null">
+        storePassword,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messagecode != null">
+        #{messagecode,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null">
+        #{isopen,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null">
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlid != null">
+        #{chnlid,jdbcType=VARCHAR},
+      </if>
+      <if test="authcode != null">
+        #{authcode,jdbcType=VARCHAR},
+      </if>
+      <if test="authdate != null">
+        #{authdate,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nettype != null">
+        #{nettype,jdbcType=VARCHAR},
+      </if>
+      <if test="transname != null">
+        #{transname,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="apiver != null">
+        #{apiver,jdbcType=VARCHAR},
+      </if>
+      <if test="cerCheckCode != null">
+        #{cerCheckCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storealias != null">
+        #{storealias,jdbcType=VARCHAR},
+      </if>
+      <if test="storepassword != null">
+        #{storepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+    update sys_certification_config
+    <set>
+      <if test="isopen != null">
+        isopen = #{isopen,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null">
+        orgCode = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlid != null">
+        chnlId = #{chnlid,jdbcType=VARCHAR},
+      </if>
+      <if test="authcode != null">
+        authCode = #{authcode,jdbcType=VARCHAR},
+      </if>
+      <if test="authdate != null">
+        authDate = #{authdate,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        userPassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nettype != null">
+        netType = #{nettype,jdbcType=VARCHAR},
+      </if>
+      <if test="transname != null">
+        transName = #{transname,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        productId = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="apiver != null">
+        apiVer = #{apiver,jdbcType=VARCHAR},
+      </if>
+      <if test="cerCheckCode != null">
+        cer_check_code = #{cerCheckCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storealias != null">
+        storeAlias = #{storealias,jdbcType=VARCHAR},
+      </if>
+      <if test="storepassword != null">
+        storePassword = #{storepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where messageCode = #{messagecode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.msjf.finance.cas.common.entity.SysCertificationConfigEntity">
+    update sys_certification_config
+    set isopen = #{isopen,jdbcType=VARCHAR},
+      orgCode = #{orgcode,jdbcType=VARCHAR},
+      chnlId = #{chnlid,jdbcType=VARCHAR},
+      authCode = #{authcode,jdbcType=VARCHAR},
+      authDate = #{authdate,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      userPassword = #{userpassword,jdbcType=VARCHAR},
+      netType = #{nettype,jdbcType=VARCHAR},
+      transName = #{transname,jdbcType=VARCHAR},
+      productId = #{productid,jdbcType=VARCHAR},
+      apiVer = #{apiver,jdbcType=VARCHAR},
+      cer_check_code = #{cerCheckCode,jdbcType=VARCHAR},
+      storeAlias = #{storealias,jdbcType=VARCHAR},
+      storePassword = #{storepassword,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where messageCode = #{messagecode,jdbcType=VARCHAR}
+  </update>
+</mapper>
