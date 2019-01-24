@@ -4,7 +4,7 @@ import com.msjf.finance.cas.common.entity.SysCertificationConfigEntity;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 @MyBatisDao
-public interface SysCertificationConfigDao extends IBaseDao<SysCertificationConfigEntity>{
+public interface SysCertificationConfigDao{
     int deleteByPrimaryKey(String messagecode);
 
     int insert(SysCertificationConfigEntity record);

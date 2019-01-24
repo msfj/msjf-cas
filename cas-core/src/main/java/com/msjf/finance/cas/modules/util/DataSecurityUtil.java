@@ -16,6 +16,8 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
+
+import com.msjf.finance.cas.common.utils.DateUtils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -40,7 +42,7 @@ public class DataSecurityUtil
 //            // System.out.println(decrypt("Kn7F+lvQqP/59bltknRDBA==",
 //            // "123456781234567812345678"));
 //            System.out.println("k62@dfqlRE" + "_" + digest("k62@dfqlRE".getBytes()));
-             System.out.println(DateUtil.getUserDate("yyyy-MM-dd HH:mm:ss"));
+             System.out.println(DateUtils.getUserDate("yyyy-MM-dd HH:mm:ss"));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -55,7 +57,8 @@ public class DataSecurityUtil
         {
             md = MessageDigest.getInstance("SHA1");
             md.update(oriByte);
-            strDes = CommonUtil.bytes2Hex(md.digest());
+            //TODO
+            //strDes = CommonUtil.bytes2Hex(md.digest());
         } catch (Exception e)
         {
             throw new Exception("E000016", e);

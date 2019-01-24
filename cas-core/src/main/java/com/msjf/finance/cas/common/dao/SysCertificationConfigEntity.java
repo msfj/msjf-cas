@@ -1,6 +1,8 @@
 package com.msjf.finance.cas.common.entity;
 
-public class SysCertificationConfigEntity extends IBaseEntity{
+import com.msjf.finance.cas.common.dao.IBaseEntity;
+
+public class SysCertificationConfigEntity extends IBaseEntity {
     private String messagecode;
 
     private String isopen;

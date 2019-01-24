@@ -1,5 +1,7 @@
 package com.msjf.finance.cas.modules.util;
 
+import com.msjf.finance.cas.common.utils.DateUtils;
+
 public class MessageUtil
 {
     public static String getMHeader()
@@ -7,8 +9,8 @@ public class MessageUtil
         StringBuffer sb = new StringBuffer(
                 "{\"orgCode\":\"10000000\","
                 + "\"chnlId\":\"qhcs-dcs\","
-                + "\"transNo\":\""+DateUtil.getCurrDateTime()+"\","//请先修改该值，再发起请求！！！保持每次请求其唯一性！！！
-                + "\"transDate\":\""+DateUtil.getUserDate("yyyy-MM-dd HH:mm:ss")+"\","
+                + "\"transNo\":\""+DateUtils.getCurrDateTime()+"\","//请先修改该值，再发起请求！！！保持每次请求其唯一性！！！
+                + "\"transDate\":\""+DateUtils.getUserDate("yyyy-MM-dd HH:mm:ss")+"\","
                 + "\"authCode\":\"CRT001A2\","
                 + "\"authDate\":\"2017-8-10 14:12:14\"}");
         return sb.toString();
