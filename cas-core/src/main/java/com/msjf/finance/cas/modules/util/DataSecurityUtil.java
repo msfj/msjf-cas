@@ -111,7 +111,7 @@ public class DataSecurityUtil
         InputStream is = null;
         try
         {
-            String credentialsFile=HyConstant.CLASS_PATH + File.separator + "properties"+ File.separator+ "credoo_stg.cer";
+            String credentialsFile=HyConstant.CLASS_PATH + File.separator + "certs"+ File.separator+ "credoo_stg.cer";
 //            is = new FileInputStream("C:\\Users\\admin\\Documents\\WeChat Files\\k6500775\\Files\\API联调文档汇总V3.1解压密码123456(1)\\API联调文档汇总V3.1\\step1测试阶段\\Java-demo\\Java-测试证书\\credoo_stg.cer");
             is = new FileInputStream(credentialsFile);
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
@@ -147,7 +147,8 @@ public class DataSecurityUtil
         try
         {
             KeyStore ks = KeyStore.getInstance("JKS");
-            String credentialsFile=HyConstant.CLASS_PATH + File.separator + "properties"+ File.separator+ "credoo_stg.jks";
+            String credentialsFile=HyConstant.CLASS_PATH + File.separator + "certs"+ File.separator+ "credoo_stg.jks";
+//            String credentialsFile="C:\\Users\\admin\\Documents\\WeChat Files\\k6500775\\Files\\API联调文档汇总V3.1解压密码123456(1)\\API联调文档汇总V3.1\\step1测试阶段\\Java-demo\\Java-测试证书\\credoo_stg.jks";
             FileInputStream fis = new FileInputStream(credentialsFile);
             // FileInputStream fis = new
             // FileInputStream("D:\\KeyScript\\test\\EXV_BIS_FRONT_JK_RONGZI_001_STG.jks");
