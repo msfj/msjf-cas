@@ -106,7 +106,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService  {
         //检查发起人账户信息不存在
         CustEntity custEntity = new CustEntity();
         custEntity.setCustomerno(customerNo);
-        List<CustEntity> custEntityList = custDao.queryCustEntityList(custEntity);
+        List<CustEntity> custEntityList = custDao.getListEntity(custEntity);
         if (CheckUtil.isNull(custEntityList)) {
             rs.fail("cas", "发起人账户信息不存在");
             return;

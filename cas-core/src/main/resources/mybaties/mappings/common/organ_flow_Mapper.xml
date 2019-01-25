@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganFlowDao" >
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganFlowDao">
 	<!--企业业务流程信息表organ_flow 按主键查询锁表-->
 	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganFlowKey" 
 	resultType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity">
@@ -20,8 +20,8 @@
 			updatetime "updatetime"
 		from cas.organ_flow
 		where 
-			type = #{type}
-			and orgcustomerno = #{orgcustomerno}
+			orgcustomerno = #{orgcustomerno}
+			and type = #{type}
 		for update
 	]]>
 	</select>
@@ -42,8 +42,8 @@
 			updatetime "updatetime"
 		from cas.organ_flow
 		where 
-			type = #{type}
-			and orgcustomerno = #{orgcustomerno}
+			orgcustomerno = #{orgcustomerno}
+			and type = #{type}
 	]]>
 	</select>
 	<!--企业业务流程信息表organ_flow 按主键查询-->
@@ -63,8 +63,8 @@
 			updatetime "updatetime"
 		from cas.organ_flow
 		where 
-			type = #{type}
-			and orgcustomerno = #{orgcustomerno}
+			orgcustomerno = #{orgcustomerno}
+			and type = #{type}
 	]]>
 	</select>
 	<!--企业业务流程信息表organ_flow 按实体查询锁表-->
@@ -202,7 +202,7 @@
 		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where type = #{type} and orgcustomerno = #{orgcustomerno}
+	<![CDATA[ where orgcustomerno = #{orgcustomerno} and type = #{type}
 	]]>
 	</update>
 	<!--企业业务流程信息表organ_flow 批量实体更新记录 mysql-->
@@ -221,7 +221,7 @@
 		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where type = #{item.type} and orgcustomerno = #{item.orgcustomerno}
+			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and type = #{item.type}
 			]]>
 		</foreach>
 	</update>
@@ -242,7 +242,7 @@
 		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where type = #{type} and orgcustomerno = #{orgcustomerno}
+	<![CDATA[ where orgcustomerno = #{orgcustomerno} and type = #{type}
 	]]>
 	</update>
 	<!--企业业务流程信息表organ_flow 批量实体更新记录 mysql-->
@@ -261,7 +261,7 @@
 		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where type = #{item.type} and orgcustomerno = #{item.orgcustomerno}
+			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and type = #{item.type}
 			]]>
 		</foreach>
 	</update>
@@ -270,14 +270,14 @@
 	<![CDATA[
 		delete from cas.organ_flow
 		where
-			type = #{type} and orgcustomerno = #{orgcustomerno}
+			orgcustomerno = #{orgcustomerno} and type = #{type}
 	]]>
 	</delete>
 	<!--企业业务流程信息表organ_flow 根据主键批量删除记录  -->
 	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganFlowKey">
 		delete from cas.organ_flow where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ type = #{item.type} and orgcustomerno = #{item.orgcustomerno}
+			<![CDATA[ orgcustomerno = #{item.orgcustomerno} and type = #{item.type}
 			]]>
 		</foreach>
 	</delete>

@@ -2,10 +2,10 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganAppendChangeDao" >
-	<!--企业附属信息变更记录表organ_append_change 按主键查询锁表-->
-	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendChangeKey" 
-	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity">
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganAppendDao">
+	<!--企业附属信息表organ_append 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 	<![CDATA[
 		select
 			customerno "customerno",
@@ -47,17 +47,18 @@
 			othersintro "othersintro",
 			partnerintro "partnerintro",
 			insertdate "insertdate",
-			inserttime "inserttime"
-		from cas.organ_append_change
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
 		where 
-			version = #{version}
-			and customerno = #{customerno}
+			customerno = #{customerno}
 		for update
 	]]>
 	</select>
-	<!--企业附属信息变更记录表organ_append_change 按主键查询-->
-	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendChangeKey" 
-	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity">
+	<!--企业附属信息表organ_append 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 	<![CDATA[
 		select
 			customerno "customerno",
@@ -99,15 +100,16 @@
 			othersintro "othersintro",
 			partnerintro "partnerintro",
 			insertdate "insertdate",
-			inserttime "inserttime"
-		from cas.organ_append_change
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
 		where 
-			version = #{version}
-			and customerno = #{customerno}
+			customerno = #{customerno}
 	]]>
 	</select>
-	<!--企业附属信息变更记录表organ_append_change 按主键查询-->
-	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendChangeKey" 
+	<!--企业附属信息表organ_append 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey" 
 	resultType="java.util.LinkedHashMap">
 	<![CDATA[
 		select
@@ -150,16 +152,17 @@
 			othersintro "othersintro",
 			partnerintro "partnerintro",
 			insertdate "insertdate",
-			inserttime "inserttime"
-		from cas.organ_append_change
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
 		where 
-			version = #{version}
-			and customerno = #{customerno}
+			customerno = #{customerno}
 	]]>
 	</select>
-	<!--企业附属信息变更记录表organ_append_change 按实体查询锁表-->
-	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity" 
-	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity">
+	<!--企业附属信息表organ_append 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 	<![CDATA[
 		select
 			customerno "customerno",
@@ -201,8 +204,10 @@
 			othersintro "othersintro",
 			partnerintro "partnerintro",
 			insertdate "insertdate",
-			inserttime "inserttime"
-		from cas.organ_append_change
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
 	]]>
 	<where>
 		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
@@ -245,12 +250,14 @@
 		<if test="partnerintro != null and partnerintro!= '' "><![CDATA[ and partnerintro=#{partnerintro}]]></if>
 		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
 	</where>
 	<![CDATA[for update ]]>
 	</select>
-	<!--企业附属信息变更记录表organ_append_change 按实体查询-->
-	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity" 
-	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity">
+	<!--企业附属信息表organ_append 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 	<![CDATA[
 		select
 			customerno "customerno",
@@ -292,8 +299,10 @@
 			othersintro "othersintro",
 			partnerintro "partnerintro",
 			insertdate "insertdate",
-			inserttime "inserttime"
-		from cas.organ_append_change
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
 	]]>
 	<where>
 		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
@@ -336,10 +345,12 @@
 		<if test="partnerintro != null and partnerintro!= '' "><![CDATA[ and partnerintro=#{partnerintro}]]></if>
 		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
 	</where>
 	</select>
-	<!--企业附属信息变更记录表organ_append_change 按实体查询-->
-	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity" 
+	<!--企业附属信息表organ_append 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" 
 	resultType="java.util.LinkedHashMap">
 	<![CDATA[
 		select
@@ -382,8 +393,10 @@
 			othersintro "othersintro",
 			partnerintro "partnerintro",
 			insertdate "insertdate",
-			inserttime "inserttime"
-		from cas.organ_append_change
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.organ_append
 	]]>
 	<where>
 		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
@@ -426,12 +439,14 @@
 		<if test="partnerintro != null and partnerintro!= '' "><![CDATA[ and partnerintro=#{partnerintro}]]></if>
 		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
 	</where>
 	</select>
-	<!--企业附属信息变更记录表organ_append_change 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity" databaseId="mysql">
+	<!--企业附属信息表organ_append 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
 	<![CDATA[
-		insert into cas.organ_append_change(
+		insert into cas.organ_append(
 			customerno,version,isfiling,registerno,employeenum,
 			caremarkettype,projectphase,profittype,isfundfiling,fundfilingno,
 			fundmanagername,fundmanagerno,fundmanagerintro,fundprojecttrade,fundprojectphase,
@@ -439,7 +454,8 @@
 			companytrade,companyname,companyinfo,protrade,prointro,
 			investnum,projecttrade,projectintro,blocname,classify,
 			businesstype,objecttype,specificbusinesstype,profitmodel,capitalsource,
-			mainworkexp,othersintro,partnerintro,insertdate,inserttime
+			mainworkexp,othersintro,partnerintro,insertdate,inserttime,
+			updatedate,updatetime
 		) values(
 			#{customerno, jdbcType=VARCHAR},#{version, jdbcType=INTEGER},#{isfiling, jdbcType=VARCHAR},#{registerno, jdbcType=VARCHAR},#{employeenum, jdbcType=VARCHAR},
 			#{caremarkettype, jdbcType=VARCHAR},#{projectphase, jdbcType=VARCHAR},#{profittype, jdbcType=CLOB},#{isfundfiling, jdbcType=VARCHAR},#{fundfilingno, jdbcType=VARCHAR},
@@ -448,13 +464,14 @@
 			#{companytrade, jdbcType=VARCHAR},#{companyname, jdbcType=VARCHAR},#{companyinfo, jdbcType=CLOB},#{protrade, jdbcType=VARCHAR},#{prointro, jdbcType=CLOB},
 			#{investnum, jdbcType=VARCHAR},#{projecttrade, jdbcType=VARCHAR},#{projectintro, jdbcType=CLOB},#{blocname, jdbcType=VARCHAR},#{classify, jdbcType=VARCHAR},
 			#{businesstype, jdbcType=VARCHAR},#{objecttype, jdbcType=VARCHAR},#{specificbusinesstype, jdbcType=VARCHAR},#{profitmodel, jdbcType=VARCHAR},#{capitalsource, jdbcType=VARCHAR},
-			#{mainworkexp, jdbcType=CLOB},#{othersintro, jdbcType=CLOB},#{partnerintro, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR}
+			#{mainworkexp, jdbcType=CLOB},#{othersintro, jdbcType=CLOB},#{partnerintro, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
 	)]]>
 	</insert>
-	<!--企业附属信息变更记录表organ_append_change 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity" databaseId="mysql">
+	<!--企业附属信息表organ_append 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
 	<![CDATA[
-		insert into cas.organ_append_change(
+		insert into cas.organ_append(
 			customerno,version,isfiling,registerno,employeenum,
 			caremarkettype,projectphase,profittype,isfundfiling,fundfilingno,
 			fundmanagername,fundmanagerno,fundmanagerintro,fundprojecttrade,fundprojectphase,
@@ -462,7 +479,8 @@
 			companytrade,companyname,companyinfo,protrade,prointro,
 			investnum,projecttrade,projectintro,blocname,classify,
 			businesstype,objecttype,specificbusinesstype,profitmodel,capitalsource,
-			mainworkexp,othersintro,partnerintro,insertdate,inserttime
+			mainworkexp,othersintro,partnerintro,insertdate,inserttime,
+			updatedate,updatetime
 		)
 		values
 	]]>
@@ -475,14 +493,15 @@
 				#{item.companytrade, jdbcType=VARCHAR},#{item.companyname, jdbcType=VARCHAR},#{item.companyinfo, jdbcType=CLOB},#{item.protrade, jdbcType=VARCHAR},#{item.prointro, jdbcType=CLOB},
 				#{item.investnum, jdbcType=VARCHAR},#{item.projecttrade, jdbcType=VARCHAR},#{item.projectintro, jdbcType=CLOB},#{item.blocname, jdbcType=VARCHAR},#{item.classify, jdbcType=VARCHAR},
 				#{item.businesstype, jdbcType=VARCHAR},#{item.objecttype, jdbcType=VARCHAR},#{item.specificbusinesstype, jdbcType=VARCHAR},#{item.profitmodel, jdbcType=VARCHAR},#{item.capitalsource, jdbcType=VARCHAR},
-				#{item.mainworkexp, jdbcType=CLOB},#{item.othersintro, jdbcType=CLOB},#{item.partnerintro, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR}
+				#{item.mainworkexp, jdbcType=CLOB},#{item.othersintro, jdbcType=CLOB},#{item.partnerintro, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},
+				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
 			)
 		</foreach>
 	</insert>
-	<!--企业附属信息变更记录表organ_append_change 按实体更新记录-->
-	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity">
+	<!--企业附属信息表organ_append 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 	<![CDATA[
-		update cas.organ_append_change
+		update cas.organ_append
 	]]>
 	<set>
 		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
@@ -525,14 +544,16 @@
 		 <if test="partnerintro != null and partnerintro != '' "><![CDATA[partnerintro=#{partnerintro, jdbcType=CLOB},]]></if>
 		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where version = #{version} and customerno = #{customerno}
+	<![CDATA[ where customerno = #{customerno}
 	]]>
 	</update>
-	<!--企业附属信息变更记录表organ_append_change 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity" databaseId="mysql">
+	<!--企业附属信息表organ_append 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
-			update cas.organ_append_change
+			update cas.organ_append
 		<set>
 		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.version != null and item.version != '' or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
@@ -574,15 +595,17 @@
 		 <if test="item.partnerintro != null and item.partnerintro != '' "><![CDATA[partnerintro=#{item.partnerintro, jdbcType=CLOB},]]></if>
 		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where version = #{item.version} and customerno = #{item.customerno}
+			<![CDATA[ where customerno = #{item.customerno}
 			]]>
 		</foreach>
 	</update>
-	<!--企业附属信息变更记录表organ_append_change 按实体更新记录-->
-	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity">
+	<!--企业附属信息表organ_append 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 	<![CDATA[
-		update cas.organ_append_change
+		update cas.organ_append
 	]]>
 	<set>
 		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
@@ -625,14 +648,16 @@
 		 <if test="partnerintro != null "> <![CDATA[partnerintro=#{partnerintro, jdbcType=CLOB},]]></if>
 		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where version = #{version} and customerno = #{customerno}
+	<![CDATA[ where customerno = #{customerno}
 	]]>
 	</update>
-	<!--企业附属信息变更记录表organ_append_change 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendChangeEntity" databaseId="mysql">
+	<!--企业附属信息表organ_append 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
-			update cas.organ_append_change
+			update cas.organ_append
 		<set>
 		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.version != null or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
@@ -674,24 +699,26 @@
 		 <if test="item.partnerintro != null "><![CDATA[partnerintro=#{item.partnerintro, jdbcType=CLOB},]]></if>
 		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where version = #{item.version} and customerno = #{item.customerno}
+			<![CDATA[ where customerno = #{item.customerno}
 			]]>
 		</foreach>
 	</update>
-	<!--企业附属信息变更记录表organ_append_change 按主键删除记录-->
-	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendChangeKey">
+	<!--企业附属信息表organ_append 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey">
 	<![CDATA[
-		delete from cas.organ_append_change
+		delete from cas.organ_append
 		where
-			version = #{version} and customerno = #{customerno}
+			customerno = #{customerno}
 	]]>
 	</delete>
-	<!--企业附属信息变更记录表organ_append_change 根据主键批量删除记录  -->
-	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendChangeKey">
-		delete from cas.organ_append_change where
+	<!--企业附属信息表organ_append 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganAppendKey">
+		delete from cas.organ_append where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ version = #{item.version} and customerno = #{item.customerno}
+			<![CDATA[ customerno = #{item.customerno}
 			]]>
 		</foreach>
 	</delete>

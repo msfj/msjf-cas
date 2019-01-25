@@ -2,9 +2,9 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.msjf.finance.cas.common.dao.persistence.SysParamsConfigDao" >
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.SysParamsConfigDao">
 	<!--nullsys_params_config 按主键查询锁表-->
-	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey"
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKey" 
 	resultType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
 	<![CDATA[
 		select
@@ -18,15 +18,15 @@
 			sort_no "sortNo"
 		from cas.sys_params_config
 		where 
-			exchange_id = #{exchangeId}
-			and param_type = #{paramType}
-			and distributor_id = #{distributorId}
+			param_type = #{paramType}
+			and exchange_id = #{exchangeId}
 			and param_id = #{paramId}
+			and distributor_id = #{distributorId}
 		for update
 	]]>
 	</select>
 	<!--nullsys_params_config 按主键查询-->
-	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey"
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKey" 
 	resultType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
 	<![CDATA[
 		select
@@ -40,14 +40,14 @@
 			sort_no "sortNo"
 		from cas.sys_params_config
 		where 
-			exchange_id = #{exchangeId}
-			and param_type = #{paramType}
-			and distributor_id = #{distributorId}
+			param_type = #{paramType}
+			and exchange_id = #{exchangeId}
 			and param_id = #{paramId}
+			and distributor_id = #{distributorId}
 	]]>
 	</select>
 	<!--nullsys_params_config 按主键查询-->
-	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey"
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKey" 
 	resultType="java.util.LinkedHashMap">
 	<![CDATA[
 		select
@@ -61,10 +61,10 @@
 			sort_no "sortNo"
 		from cas.sys_params_config
 		where 
-			exchange_id = #{exchangeId}
-			and param_type = #{paramType}
-			and distributor_id = #{distributorId}
+			param_type = #{paramType}
+			and exchange_id = #{exchangeId}
 			and param_id = #{paramId}
+			and distributor_id = #{distributorId}
 	]]>
 	</select>
 	<!--nullsys_params_config 按实体查询锁表-->
@@ -188,7 +188,7 @@
 		 <if test="paramStatus != null and paramStatus != '' or paramStatus == 0 "><![CDATA[param_status=#{paramStatus, jdbcType=INTEGER},]]></if>
 		 <if test="sortNo != null and sortNo != '' or sortNo == 0 "><![CDATA[sort_no=#{sortNo, jdbcType=INTEGER},]]></if>
 	</set>
-	<![CDATA[ where exchange_id = #{exchangeId} and param_type = #{paramType} and distributor_id = #{distributorId} and param_id = #{paramId}
+	<![CDATA[ where param_type = #{paramType} and exchange_id = #{exchangeId} and param_id = #{paramId} and distributor_id = #{distributorId}
 	]]>
 	</update>
 	<!--nullsys_params_config 批量实体更新记录 mysql-->
@@ -205,7 +205,7 @@
 		 <if test="item.paramStatus != null and item.paramStatus != '' or paramStatus == 0 "><![CDATA[param_status=#{item.paramStatus, jdbcType=INTEGER},]]></if>
 		 <if test="item.sortNo != null and item.sortNo != '' or sortNo == 0 "><![CDATA[sort_no=#{item.sortNo, jdbcType=INTEGER},]]></if>
 			</set>
-			<![CDATA[ where exchange_id = #{item.exchangeId} and param_type = #{item.paramType} and distributor_id = #{item.distributorId} and param_id = #{item.paramId}
+			<![CDATA[ where param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and param_id = #{item.paramId} and distributor_id = #{item.distributorId}
 			]]>
 		</foreach>
 	</update>
@@ -224,7 +224,7 @@
 		 <if test="paramStatus != null or paramStatus == 0 "><![CDATA[param_status=#{paramStatus, jdbcType=INTEGER},]]></if>
 		 <if test="sortNo != null or sortNo == 0 "><![CDATA[sort_no=#{sortNo, jdbcType=INTEGER},]]></if>
 	</set>
-	<![CDATA[ where exchange_id = #{exchangeId} and param_type = #{paramType} and distributor_id = #{distributorId} and param_id = #{paramId}
+	<![CDATA[ where param_type = #{paramType} and exchange_id = #{exchangeId} and param_id = #{paramId} and distributor_id = #{distributorId}
 	]]>
 	</update>
 	<!--nullsys_params_config 批量实体更新记录 mysql-->
@@ -241,23 +241,23 @@
 		 <if test="item.paramStatus != null or paramStatus == 0 "><![CDATA[param_status=#{item.paramStatus, jdbcType=INTEGER},]]></if>
 		 <if test="item.sortNo != null or sortNo == 0 "><![CDATA[sort_no=#{item.sortNo, jdbcType=INTEGER},]]></if>
 			</set>
-			<![CDATA[ where exchange_id = #{item.exchangeId} and param_type = #{item.paramType} and distributor_id = #{item.distributorId} and param_id = #{item.paramId}
+			<![CDATA[ where param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and param_id = #{item.paramId} and distributor_id = #{item.distributorId}
 			]]>
 		</foreach>
 	</update>
 	<!--nullsys_params_config 按主键删除记录-->
-	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey">
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKey">
 	<![CDATA[
 		delete from cas.sys_params_config
 		where
-			exchange_id = #{exchangeId} and param_type = #{paramType} and distributor_id = #{distributorId} and param_id = #{paramId}
+			param_type = #{paramType} and exchange_id = #{exchangeId} and param_id = #{paramId} and distributor_id = #{distributorId}
 	]]>
 	</delete>
 	<!--nullsys_params_config 根据主键批量删除记录  -->
-	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKeyKey">
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKey">
 		delete from cas.sys_params_config where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ exchange_id = #{item.exchangeId} and param_type = #{item.paramType} and distributor_id = #{item.distributorId} and param_id = #{item.paramId}
+			<![CDATA[ param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and param_id = #{item.paramId} and distributor_id = #{item.distributorId}
 			]]>
 		</foreach>
 	</delete>

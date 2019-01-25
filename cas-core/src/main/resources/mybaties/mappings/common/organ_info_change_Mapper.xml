@@ -2,10 +2,10 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganInfoDao" >
-	<!--企业基本信息表organ_info 按主键查询锁表-->
-	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoKey" 
-	resultType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity">
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganInfoChangeDao">
+	<!--企业基本信息变更记录表organ_info_change 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoChangeKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 	<![CDATA[
 		select
 			customerno "customerno",
@@ -13,7 +13,6 @@
 			membername "membername",
 			organtype "organtype",
 			organclass "organclass",
-			organstatus "organstatus",
 			startcustomerno "startcustomerno",
 			servicecustomerno "servicecustomerno",
 			dealflow "dealflow",
@@ -45,19 +44,17 @@
 			establishfile "establishfile",
 			modifyfile "modifyfile",
 			insertdate "insertdate",
-			inserttime "inserttime",
-			updatedate "updatedate",
-			updatetime "updatetime",
-			source "source"
-		from cas.organ_info
+			inserttime "inserttime"
+		from cas.organ_info_change
 		where 
 			customerno = #{customerno}
+			and version = #{version}
 		for update
 	]]>
 	</select>
-	<!--企业基本信息表organ_info 按主键查询-->
-	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoKey" 
-	resultType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity">
+	<!--企业基本信息变更记录表organ_info_change 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoChangeKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 	<![CDATA[
 		select
 			customerno "customerno",
@@ -65,7 +62,6 @@
 			membername "membername",
 			organtype "organtype",
 			organclass "organclass",
-			organstatus "organstatus",
 			startcustomerno "startcustomerno",
 			servicecustomerno "servicecustomerno",
 			dealflow "dealflow",
@@ -97,17 +93,15 @@
 			establishfile "establishfile",
 			modifyfile "modifyfile",
 			insertdate "insertdate",
-			inserttime "inserttime",
-			updatedate "updatedate",
-			updatetime "updatetime",
-			source "source"
-		from cas.organ_info
+			inserttime "inserttime"
+		from cas.organ_info_change
 		where 
 			customerno = #{customerno}
+			and version = #{version}
 	]]>
 	</select>
-	<!--企业基本信息表organ_info 按主键查询-->
-	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoKey" 
+	<!--企业基本信息变更记录表organ_info_change 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoChangeKey" 
 	resultType="java.util.LinkedHashMap">
 	<![CDATA[
 		select
@@ -116,7 +110,6 @@
 			membername "membername",
 			organtype "organtype",
 			organclass "organclass",
-			organstatus "organstatus",
 			startcustomerno "startcustomerno",
 			servicecustomerno "servicecustomerno",
 			dealflow "dealflow",
@@ -148,18 +141,16 @@
 			establishfile "establishfile",
 			modifyfile "modifyfile",
 			insertdate "insertdate",
-			inserttime "inserttime",
-			updatedate "updatedate",
-			updatetime "updatetime",
-			source "source"
-		from cas.organ_info
+			inserttime "inserttime"
+		from cas.organ_info_change
 		where 
 			customerno = #{customerno}
+			and version = #{version}
 	]]>
 	</select>
-	<!--企业基本信息表organ_info 按实体查询锁表-->
-	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity" 
-	resultType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity">
+	<!--企业基本信息变更记录表organ_info_change 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 	<![CDATA[
 		select
 			customerno "customerno",
@@ -167,7 +158,6 @@
 			membername "membername",
 			organtype "organtype",
 			organclass "organclass",
-			organstatus "organstatus",
 			startcustomerno "startcustomerno",
 			servicecustomerno "servicecustomerno",
 			dealflow "dealflow",
@@ -199,11 +189,8 @@
 			establishfile "establishfile",
 			modifyfile "modifyfile",
 			insertdate "insertdate",
-			inserttime "inserttime",
-			updatedate "updatedate",
-			updatetime "updatetime",
-			source "source"
-		from cas.organ_info
+			inserttime "inserttime"
+		from cas.organ_info_change
 	]]>
 	<where>
 		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
@@ -211,7 +198,6 @@
 		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
 		<if test="organtype != null and organtype!= '' "><![CDATA[ and organtype=#{organtype}]]></if>
 		<if test="organclass != null and organclass!= '' "><![CDATA[ and organclass=#{organclass}]]></if>
-		<if test="organstatus != null and organstatus!= '' "><![CDATA[ and organstatus=#{organstatus}]]></if>
 		<if test="startcustomerno != null and startcustomerno!= '' "><![CDATA[ and startcustomerno=#{startcustomerno}]]></if>
 		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
 		<if test="dealflow != null and dealflow!= '' "><![CDATA[ and dealflow=#{dealflow}]]></if>
@@ -244,15 +230,12 @@
 		<if test="modifyfile != null and modifyfile!= '' "><![CDATA[ and modifyfile=#{modifyfile}]]></if>
 		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
-		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
-		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
-		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
 	</where>
 	<![CDATA[for update ]]>
 	</select>
-	<!--企业基本信息表organ_info 按实体查询-->
-	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity" 
-	resultType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity">
+	<!--企业基本信息变更记录表organ_info_change 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 	<![CDATA[
 		select
 			customerno "customerno",
@@ -260,7 +243,6 @@
 			membername "membername",
 			organtype "organtype",
 			organclass "organclass",
-			organstatus "organstatus",
 			startcustomerno "startcustomerno",
 			servicecustomerno "servicecustomerno",
 			dealflow "dealflow",
@@ -292,11 +274,8 @@
 			establishfile "establishfile",
 			modifyfile "modifyfile",
 			insertdate "insertdate",
-			inserttime "inserttime",
-			updatedate "updatedate",
-			updatetime "updatetime",
-			source "source"
-		from cas.organ_info
+			inserttime "inserttime"
+		from cas.organ_info_change
 	]]>
 	<where>
 		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
@@ -304,7 +283,6 @@
 		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
 		<if test="organtype != null and organtype!= '' "><![CDATA[ and organtype=#{organtype}]]></if>
 		<if test="organclass != null and organclass!= '' "><![CDATA[ and organclass=#{organclass}]]></if>
-		<if test="organstatus != null and organstatus!= '' "><![CDATA[ and organstatus=#{organstatus}]]></if>
 		<if test="startcustomerno != null and startcustomerno!= '' "><![CDATA[ and startcustomerno=#{startcustomerno}]]></if>
 		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
 		<if test="dealflow != null and dealflow!= '' "><![CDATA[ and dealflow=#{dealflow}]]></if>
@@ -337,13 +315,10 @@
 		<if test="modifyfile != null and modifyfile!= '' "><![CDATA[ and modifyfile=#{modifyfile}]]></if>
 		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
-		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
-		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
-		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
 	</where>
 	</select>
-	<!--企业基本信息表organ_info 按实体查询-->
-	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity" 
+	<!--企业基本信息变更记录表organ_info_change 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" 
 	resultType="java.util.LinkedHashMap">
 	<![CDATA[
 		select
@@ -352,7 +327,6 @@
 			membername "membername",
 			organtype "organtype",
 			organclass "organclass",
-			organstatus "organstatus",
 			startcustomerno "startcustomerno",
 			servicecustomerno "servicecustomerno",
 			dealflow "dealflow",
@@ -384,11 +358,8 @@
 			establishfile "establishfile",
 			modifyfile "modifyfile",
 			insertdate "insertdate",
-			inserttime "inserttime",
-			updatedate "updatedate",
-			updatetime "updatetime",
-			source "source"
-		from cas.organ_info
+			inserttime "inserttime"
+		from cas.organ_info_change
 	]]>
 	<where>
 		<if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
@@ -396,7 +367,6 @@
 		<if test="membername != null and membername!= '' "><![CDATA[ and membername=#{membername}]]></if>
 		<if test="organtype != null and organtype!= '' "><![CDATA[ and organtype=#{organtype}]]></if>
 		<if test="organclass != null and organclass!= '' "><![CDATA[ and organclass=#{organclass}]]></if>
-		<if test="organstatus != null and organstatus!= '' "><![CDATA[ and organstatus=#{organstatus}]]></if>
 		<if test="startcustomerno != null and startcustomerno!= '' "><![CDATA[ and startcustomerno=#{startcustomerno}]]></if>
 		<if test="servicecustomerno != null and servicecustomerno!= '' "><![CDATA[ and servicecustomerno=#{servicecustomerno}]]></if>
 		<if test="dealflow != null and dealflow!= '' "><![CDATA[ and dealflow=#{dealflow}]]></if>
@@ -429,70 +399,63 @@
 		<if test="modifyfile != null and modifyfile!= '' "><![CDATA[ and modifyfile=#{modifyfile}]]></if>
 		<if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
-		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
-		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
-		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
 	</where>
 	</select>
-	<!--企业基本信息表organ_info 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity" databaseId="mysql">
+	<!--企业基本信息变更记录表organ_info_change 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" databaseId="mysql">
 	<![CDATA[
-		insert into cas.organ_info(
+		insert into cas.organ_info_change(
 			customerno,version,membername,organtype,organclass,
-			organstatus,startcustomerno,servicecustomerno,dealflow,managelimit,
-			paydatelimit,registerprovince,registercity,registercounty,registertreet,
-			realprovince,realcity,realcounty,realtreet,businessscope,
-			partnertype,partnername,regicapital,regicapitalbz,isboard,
-			issupervision,sparecontactname,sparecontactmobile,establishdate,companyintro,
-			hanginfo,companymodel,investsource,businessfile,establishfile,
-			modifyfile,insertdate,inserttime,updatedate,updatetime,
-			source
+			startcustomerno,servicecustomerno,dealflow,managelimit,paydatelimit,
+			registerprovince,registercity,registercounty,registertreet,realprovince,
+			realcity,realcounty,realtreet,businessscope,partnertype,
+			partnername,regicapital,regicapitalbz,isboard,issupervision,
+			sparecontactname,sparecontactmobile,establishdate,companyintro,hanginfo,
+			companymodel,investsource,businessfile,establishfile,modifyfile,
+			insertdate,inserttime
 		) values(
 			#{customerno, jdbcType=VARCHAR},#{version, jdbcType=INTEGER},#{membername, jdbcType=VARCHAR},#{organtype, jdbcType=VARCHAR},#{organclass, jdbcType=VARCHAR},
-			#{organstatus, jdbcType=VARCHAR},#{startcustomerno, jdbcType=VARCHAR},#{servicecustomerno, jdbcType=VARCHAR},#{dealflow, jdbcType=VARCHAR},#{managelimit, jdbcType=VARCHAR},
-			#{paydatelimit, jdbcType=VARCHAR},#{registerprovince, jdbcType=VARCHAR},#{registercity, jdbcType=VARCHAR},#{registercounty, jdbcType=VARCHAR},#{registertreet, jdbcType=VARCHAR},
-			#{realprovince, jdbcType=VARCHAR},#{realcity, jdbcType=VARCHAR},#{realcounty, jdbcType=VARCHAR},#{realtreet, jdbcType=VARCHAR},#{businessscope, jdbcType=CLOB},
-			#{partnertype, jdbcType=VARCHAR},#{partnername, jdbcType=CLOB},#{regicapital, jdbcType=VARCHAR},#{regicapitalbz, jdbcType=VARCHAR},#{isboard, jdbcType=VARCHAR},
-			#{issupervision, jdbcType=VARCHAR},#{sparecontactname, jdbcType=VARCHAR},#{sparecontactmobile, jdbcType=VARCHAR},#{establishdate, jdbcType=VARCHAR},#{companyintro, jdbcType=CLOB},
-			#{hanginfo, jdbcType=VARCHAR},#{companymodel, jdbcType=VARCHAR},#{investsource, jdbcType=VARCHAR},#{businessfile, jdbcType=CLOB},#{establishfile, jdbcType=CLOB},
-			#{modifyfile, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},
-			#{source, jdbcType=VARCHAR}
+			#{startcustomerno, jdbcType=VARCHAR},#{servicecustomerno, jdbcType=VARCHAR},#{dealflow, jdbcType=VARCHAR},#{managelimit, jdbcType=VARCHAR},#{paydatelimit, jdbcType=VARCHAR},
+			#{registerprovince, jdbcType=VARCHAR},#{registercity, jdbcType=VARCHAR},#{registercounty, jdbcType=VARCHAR},#{registertreet, jdbcType=VARCHAR},#{realprovince, jdbcType=VARCHAR},
+			#{realcity, jdbcType=VARCHAR},#{realcounty, jdbcType=VARCHAR},#{realtreet, jdbcType=VARCHAR},#{businessscope, jdbcType=CLOB},#{partnertype, jdbcType=VARCHAR},
+			#{partnername, jdbcType=CLOB},#{regicapital, jdbcType=VARCHAR},#{regicapitalbz, jdbcType=VARCHAR},#{isboard, jdbcType=VARCHAR},#{issupervision, jdbcType=VARCHAR},
+			#{sparecontactname, jdbcType=VARCHAR},#{sparecontactmobile, jdbcType=VARCHAR},#{establishdate, jdbcType=VARCHAR},#{companyintro, jdbcType=CLOB},#{hanginfo, jdbcType=VARCHAR},
+			#{companymodel, jdbcType=VARCHAR},#{investsource, jdbcType=VARCHAR},#{businessfile, jdbcType=CLOB},#{establishfile, jdbcType=CLOB},#{modifyfile, jdbcType=CLOB},
+			#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR}
 	)]]>
 	</insert>
-	<!--企业基本信息表organ_info 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity" databaseId="mysql">
+	<!--企业基本信息变更记录表organ_info_change 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" databaseId="mysql">
 	<![CDATA[
-		insert into cas.organ_info(
+		insert into cas.organ_info_change(
 			customerno,version,membername,organtype,organclass,
-			organstatus,startcustomerno,servicecustomerno,dealflow,managelimit,
-			paydatelimit,registerprovince,registercity,registercounty,registertreet,
-			realprovince,realcity,realcounty,realtreet,businessscope,
-			partnertype,partnername,regicapital,regicapitalbz,isboard,
-			issupervision,sparecontactname,sparecontactmobile,establishdate,companyintro,
-			hanginfo,companymodel,investsource,businessfile,establishfile,
-			modifyfile,insertdate,inserttime,updatedate,updatetime,
-			source
+			startcustomerno,servicecustomerno,dealflow,managelimit,paydatelimit,
+			registerprovince,registercity,registercounty,registertreet,realprovince,
+			realcity,realcounty,realtreet,businessscope,partnertype,
+			partnername,regicapital,regicapitalbz,isboard,issupervision,
+			sparecontactname,sparecontactmobile,establishdate,companyintro,hanginfo,
+			companymodel,investsource,businessfile,establishfile,modifyfile,
+			insertdate,inserttime
 		)
 		values
 	]]>
 		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
 			(
 				#{item.customerno, jdbcType=VARCHAR},#{item.version, jdbcType=INTEGER},#{item.membername, jdbcType=VARCHAR},#{item.organtype, jdbcType=VARCHAR},#{item.organclass, jdbcType=VARCHAR},
-				#{item.organstatus, jdbcType=VARCHAR},#{item.startcustomerno, jdbcType=VARCHAR},#{item.servicecustomerno, jdbcType=VARCHAR},#{item.dealflow, jdbcType=VARCHAR},#{item.managelimit, jdbcType=VARCHAR},
-				#{item.paydatelimit, jdbcType=VARCHAR},#{item.registerprovince, jdbcType=VARCHAR},#{item.registercity, jdbcType=VARCHAR},#{item.registercounty, jdbcType=VARCHAR},#{item.registertreet, jdbcType=VARCHAR},
-				#{item.realprovince, jdbcType=VARCHAR},#{item.realcity, jdbcType=VARCHAR},#{item.realcounty, jdbcType=VARCHAR},#{item.realtreet, jdbcType=VARCHAR},#{item.businessscope, jdbcType=CLOB},
-				#{item.partnertype, jdbcType=VARCHAR},#{item.partnername, jdbcType=CLOB},#{item.regicapital, jdbcType=VARCHAR},#{item.regicapitalbz, jdbcType=VARCHAR},#{item.isboard, jdbcType=VARCHAR},
-				#{item.issupervision, jdbcType=VARCHAR},#{item.sparecontactname, jdbcType=VARCHAR},#{item.sparecontactmobile, jdbcType=VARCHAR},#{item.establishdate, jdbcType=VARCHAR},#{item.companyintro, jdbcType=CLOB},
-				#{item.hanginfo, jdbcType=VARCHAR},#{item.companymodel, jdbcType=VARCHAR},#{item.investsource, jdbcType=VARCHAR},#{item.businessfile, jdbcType=CLOB},#{item.establishfile, jdbcType=CLOB},
-				#{item.modifyfile, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},
-				#{item.source, jdbcType=VARCHAR}
+				#{item.startcustomerno, jdbcType=VARCHAR},#{item.servicecustomerno, jdbcType=VARCHAR},#{item.dealflow, jdbcType=VARCHAR},#{item.managelimit, jdbcType=VARCHAR},#{item.paydatelimit, jdbcType=VARCHAR},
+				#{item.registerprovince, jdbcType=VARCHAR},#{item.registercity, jdbcType=VARCHAR},#{item.registercounty, jdbcType=VARCHAR},#{item.registertreet, jdbcType=VARCHAR},#{item.realprovince, jdbcType=VARCHAR},
+				#{item.realcity, jdbcType=VARCHAR},#{item.realcounty, jdbcType=VARCHAR},#{item.realtreet, jdbcType=VARCHAR},#{item.businessscope, jdbcType=CLOB},#{item.partnertype, jdbcType=VARCHAR},
+				#{item.partnername, jdbcType=CLOB},#{item.regicapital, jdbcType=VARCHAR},#{item.regicapitalbz, jdbcType=VARCHAR},#{item.isboard, jdbcType=VARCHAR},#{item.issupervision, jdbcType=VARCHAR},
+				#{item.sparecontactname, jdbcType=VARCHAR},#{item.sparecontactmobile, jdbcType=VARCHAR},#{item.establishdate, jdbcType=VARCHAR},#{item.companyintro, jdbcType=CLOB},#{item.hanginfo, jdbcType=VARCHAR},
+				#{item.companymodel, jdbcType=VARCHAR},#{item.investsource, jdbcType=VARCHAR},#{item.businessfile, jdbcType=CLOB},#{item.establishfile, jdbcType=CLOB},#{item.modifyfile, jdbcType=CLOB},
+				#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR}
 			)
 		</foreach>
 	</insert>
-	<!--企业基本信息表organ_info 按实体更新记录-->
-	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity">
+	<!--企业基本信息变更记录表organ_info_change 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 	<![CDATA[
-		update cas.organ_info
+		update cas.organ_info_change
 	]]>
 	<set>
 		 <if test="customerno != null and customerno != '' "><![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
@@ -500,7 +463,6 @@
 		 <if test="membername != null and membername != '' "><![CDATA[membername=#{membername, jdbcType=VARCHAR},]]></if>
 		 <if test="organtype != null and organtype != '' "><![CDATA[organtype=#{organtype, jdbcType=VARCHAR},]]></if>
 		 <if test="organclass != null and organclass != '' "><![CDATA[organclass=#{organclass, jdbcType=VARCHAR},]]></if>
-		 <if test="organstatus != null and organstatus != '' "><![CDATA[organstatus=#{organstatus, jdbcType=VARCHAR},]]></if>
 		 <if test="startcustomerno != null and startcustomerno != '' "><![CDATA[startcustomerno=#{startcustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="servicecustomerno != null and servicecustomerno != '' "><![CDATA[servicecustomerno=#{servicecustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="dealflow != null and dealflow != '' "><![CDATA[dealflow=#{dealflow, jdbcType=VARCHAR},]]></if>
@@ -533,24 +495,20 @@
 		 <if test="modifyfile != null and modifyfile != '' "><![CDATA[modifyfile=#{modifyfile, jdbcType=CLOB},]]></if>
 		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
-		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
-		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
-		 <if test="source != null and source != '' "><![CDATA[source=#{source, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where customerno = #{customerno}
+	<![CDATA[ where customerno = #{customerno} and version = #{version}
 	]]>
 	</update>
-	<!--企业基本信息表organ_info 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity" databaseId="mysql">
+	<!--企业基本信息变更记录表organ_info_change 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" databaseId="mysql">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
-			update cas.organ_info
+			update cas.organ_info_change
 		<set>
 		 <if test="item.customerno != null and item.customerno != '' "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.version != null and item.version != '' or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
 		 <if test="item.membername != null and item.membername != '' "><![CDATA[membername=#{item.membername, jdbcType=VARCHAR},]]></if>
 		 <if test="item.organtype != null and item.organtype != '' "><![CDATA[organtype=#{item.organtype, jdbcType=VARCHAR},]]></if>
 		 <if test="item.organclass != null and item.organclass != '' "><![CDATA[organclass=#{item.organclass, jdbcType=VARCHAR},]]></if>
-		 <if test="item.organstatus != null and item.organstatus != '' "><![CDATA[organstatus=#{item.organstatus, jdbcType=VARCHAR},]]></if>
 		 <if test="item.startcustomerno != null and item.startcustomerno != '' "><![CDATA[startcustomerno=#{item.startcustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.servicecustomerno != null and item.servicecustomerno != '' "><![CDATA[servicecustomerno=#{item.servicecustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.dealflow != null and item.dealflow != '' "><![CDATA[dealflow=#{item.dealflow, jdbcType=VARCHAR},]]></if>
@@ -583,18 +541,15 @@
 		 <if test="item.modifyfile != null and item.modifyfile != '' "><![CDATA[modifyfile=#{item.modifyfile, jdbcType=CLOB},]]></if>
 		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
-		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
-		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
-		 <if test="item.source != null and item.source != '' "><![CDATA[source=#{item.source, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where customerno = #{item.customerno}
+			<![CDATA[ where customerno = #{item.customerno} and version = #{item.version}
 			]]>
 		</foreach>
 	</update>
-	<!--企业基本信息表organ_info 按实体更新记录-->
-	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity">
+	<!--企业基本信息变更记录表organ_info_change 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 	<![CDATA[
-		update cas.organ_info
+		update cas.organ_info_change
 	]]>
 	<set>
 		 <if test="customerno != null "> <![CDATA[customerno=#{customerno, jdbcType=VARCHAR},]]></if>
@@ -602,7 +557,6 @@
 		 <if test="membername != null "> <![CDATA[membername=#{membername, jdbcType=VARCHAR},]]></if>
 		 <if test="organtype != null "> <![CDATA[organtype=#{organtype, jdbcType=VARCHAR},]]></if>
 		 <if test="organclass != null "> <![CDATA[organclass=#{organclass, jdbcType=VARCHAR},]]></if>
-		 <if test="organstatus != null "> <![CDATA[organstatus=#{organstatus, jdbcType=VARCHAR},]]></if>
 		 <if test="startcustomerno != null "> <![CDATA[startcustomerno=#{startcustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="servicecustomerno != null "> <![CDATA[servicecustomerno=#{servicecustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="dealflow != null "> <![CDATA[dealflow=#{dealflow, jdbcType=VARCHAR},]]></if>
@@ -635,24 +589,20 @@
 		 <if test="modifyfile != null "> <![CDATA[modifyfile=#{modifyfile, jdbcType=CLOB},]]></if>
 		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
-		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
-		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
-		 <if test="source != null "> <![CDATA[source=#{source, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where customerno = #{customerno}
+	<![CDATA[ where customerno = #{customerno} and version = #{version}
 	]]>
 	</update>
-	<!--企业基本信息表organ_info 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoEntity" databaseId="mysql">
+	<!--企业基本信息变更记录表organ_info_change 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" databaseId="mysql">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
-			update cas.organ_info
+			update cas.organ_info_change
 		<set>
 		 <if test="item.customerno != null "><![CDATA[customerno=#{item.customerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.version != null or version == 0 "><![CDATA[version=#{item.version, jdbcType=INTEGER},]]></if>
 		 <if test="item.membername != null "><![CDATA[membername=#{item.membername, jdbcType=VARCHAR},]]></if>
 		 <if test="item.organtype != null "><![CDATA[organtype=#{item.organtype, jdbcType=VARCHAR},]]></if>
 		 <if test="item.organclass != null "><![CDATA[organclass=#{item.organclass, jdbcType=VARCHAR},]]></if>
-		 <if test="item.organstatus != null "><![CDATA[organstatus=#{item.organstatus, jdbcType=VARCHAR},]]></if>
 		 <if test="item.startcustomerno != null "><![CDATA[startcustomerno=#{item.startcustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.servicecustomerno != null "><![CDATA[servicecustomerno=#{item.servicecustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.dealflow != null "><![CDATA[dealflow=#{item.dealflow, jdbcType=VARCHAR},]]></if>
@@ -685,27 +635,24 @@
 		 <if test="item.modifyfile != null "><![CDATA[modifyfile=#{item.modifyfile, jdbcType=CLOB},]]></if>
 		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
-		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
-		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
-		 <if test="item.source != null "><![CDATA[source=#{item.source, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where customerno = #{item.customerno}
+			<![CDATA[ where customerno = #{item.customerno} and version = #{item.version}
 			]]>
 		</foreach>
 	</update>
-	<!--企业基本信息表organ_info 按主键删除记录-->
-	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoKey">
+	<!--企业基本信息变更记录表organ_info_change 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoChangeKey">
 	<![CDATA[
-		delete from cas.organ_info
+		delete from cas.organ_info_change
 		where
-			customerno = #{customerno}
+			customerno = #{customerno} and version = #{version}
 	]]>
 	</delete>
-	<!--企业基本信息表organ_info 根据主键批量删除记录  -->
-	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoKey">
-		delete from cas.organ_info where
+	<!--企业基本信息变更记录表organ_info_change 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoChangeKey">
+		delete from cas.organ_info_change where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ customerno = #{item.customerno}
+			<![CDATA[ customerno = #{item.customerno} and version = #{item.version}
 			]]>
 		</foreach>
 	</delete>

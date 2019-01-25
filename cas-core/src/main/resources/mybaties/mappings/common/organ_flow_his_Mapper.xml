@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganFlowHisDao" >
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.OrganFlowHisDao">
 	<!--企业业务流程历史记录表organ_flow_his 按实体查询锁表-->
 	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity" 
 	resultType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity">

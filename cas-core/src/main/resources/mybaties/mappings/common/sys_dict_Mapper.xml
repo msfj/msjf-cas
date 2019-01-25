@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.msjf.finance.cas.common.dao.persistence.SysDictDao" >
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.SysDictDao">
 	<!--系统字典表sys_dict 按主键查询锁表-->
 	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.SysDictKey" 
 	resultType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">

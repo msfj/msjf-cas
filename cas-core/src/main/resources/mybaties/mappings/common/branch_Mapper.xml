@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.msjf.finance.cas.common.dao.persistence.BranchDao" >
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.BranchDao">
 	<!--分支表branch 按主键查询锁表-->
 	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.BranchKey" 
 	resultType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
@@ -156,7 +156,7 @@
 	</where>
 	</select>
 	<!--分支表branch 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" databaseId="mysql">
 	<![CDATA[
 		insert into cas.branch(
 			branchid,branchname,parentid,branchtype,province,
@@ -278,28 +278,4 @@
 			]]>
 		</foreach>
 	</delete>
-
-	<select id="queryBranch" parameterType="java.util.Map"
-			resultType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
-		<![CDATA[
-		select
-			branchid "branchid",
-			branchname "branchname",
-			parentid "parentid",
-			province "province",
-			branchtype "branchtype",
-			city "city",
-			county "county",
-			stertreet "stertreet",
-			showorder "showorder",
-			curnumber "curnumber"
-		from cas.branch
-		]]>
-
-		<where>
-			<if test="branchid != null and branchid != '' "><![CDATA[ and branchid=#{branchid}]]></if>
-			<if test="branchname != null and branchname != '' "><![CDATA[ and branchname like concat(concat('%', #{branchname}),'%') ]]></if>
-			<if test="parentid != null and parentid != '' "><![CDATA[ and parentid =#{parentid} ]]></if>
-		</where>
-	</select>
 </mapper>
