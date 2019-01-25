@@ -1,4 +1,6 @@
-package com.msjf.finance.cas.common.dao;
+package com.msjf.finance.cas.common.dao.entity;
+
+import com.msjf.finance.cas.common.dao.IBaseEntity;
 
 public class SysCertificationConfigEntity extends IBaseEntity {
     private String messagecode;

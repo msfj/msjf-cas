@@ -1,15 +1,17 @@
 package com.msjf.finance.cas.modules.organ.service.impl;
 
 import com.msjf.finance.cas.common.dao.entity.CustEntity;
-import com.msjf.finance.cas.common.dao.persistence.CustDao;
-import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
+import com.msjf.finance.cas.common.dao.entity.OrganFlowEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.dao.persistence.CustDao;
+import com.msjf.finance.cas.common.dao.persistence.OrganFlowDao;
+import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
 import com.msjf.finance.cas.common.utils.CheckUtil;
 import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.IDUtils;
+import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.cas.modules.organ.service.BaseService;
 import com.msjf.finance.cas.modules.organ.service.OrganPlanBuildApplyService;
-import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 
@@ -81,6 +83,10 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
     @Resource
     OrganInfoDao organInfoDao;
 
+    @Resource
+    OrganFlowDao organFlowDao;
+
+
     /**
      * 添加拟设立
      *
@@ -130,13 +136,15 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
         addOrganInfo(rs);
         //写客户信息表
         addCifCust(rs);
+        //写企业业务流程信息表
+        addFlow(rs);
         //返回新增信息
-        HashMap reqmap=new HashMap(4);
-        reqmap.put("orgcustomerno",orgcustomerno);
-        reqmap.put("organtype",organtype);
-        reqmap.put("organclass",organclass);
-        reqmap.put("membername",membername);
-        rs.success("cas","新增成功", reqmap);
+        HashMap reqmap = new HashMap(4);
+        reqmap.put("orgcustomerno", orgcustomerno);
+        reqmap.put("organtype", organtype);
+        reqmap.put("organclass", organclass);
+        reqmap.put("membername", membername);
+        rs.success("cas", "新增成功", reqmap);
 
     }
 
@@ -183,6 +191,7 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
             custEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
             custEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
             custEntity.setUpdatetime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
+            custDao.insEntity(custEntity);
         } catch (Exception e) {
             rs.fail("cas", "cif_cust表写失败");
             throw new RuntimeException("cif_cust表写失败", e);
@@ -192,24 +201,23 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
     /**
      * 写企业业务流程信息表
      */
-    private void addFlow() {
-/*        try {
+    private void addFlow(Response rs) {
+        try {
             OrganFlowEntity cifOrganFlowEntity = new OrganFlowEntity();
             cifOrganFlowEntity.setOrgcustomerno(orgcustomerno);
             cifOrganFlowEntity.setCustomerno(customerno);
             cifOrganFlowEntity.setType(FLOW_TYPE_NAME);
-            cifOrganFlowEntity.setStatus(FLOW_STATUS_STATUS);
+            cifOrganFlowEntity.setStatus(MacroDefine.AUDIT_STATUS.AUDIT_STATUS_INIT.getValue());
             cifOrganFlowEntity.setIsreturn(NO);
-            cifOrganFlowEntity.setInsertdate(DateUtil.getUserDate(DATE_FMT_DATE));
-            cifOrganFlowEntity.setInserttime(DateUtil.getUserDate(DATE_FMT_TIME));
-            cifOrganFlowEntity.setUpdatedate(DateUtil.getUserDate(DATE_FMT_DATE));
-            cifOrganFlowEntity.setUpdatetime(DateUtil.getUserDate(DATE_FMT_TIME));
-            CifOrganFlowPersistence flowPersistence = PersistenceUtil.getPersistence(CifOrganFlowPersistence.class);
-            flowPersistence.insert(cifOrganFlowEntity);
+            cifOrganFlowEntity.setInsertdate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
+            cifOrganFlowEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
+            cifOrganFlowEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
+            cifOrganFlowEntity.setUpdatetime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
+            organFlowDao.insEntity(cifOrganFlowEntity);
         } catch (Exception e) {
-            LogUtil.error(e);
-            throw new WsRuntimeException("cif_organ_flow表写失败");
-        }*/
+            rs.fail("cas", "cif_organ_flow表写失败");
+            throw new RuntimeException("cif_organ_flow表写失败", e);
+        }
     }
 
 
