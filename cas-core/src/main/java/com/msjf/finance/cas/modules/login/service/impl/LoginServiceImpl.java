@@ -313,6 +313,10 @@ public class LoginServiceImpl extends Account implements LoginService {
             rs.fail(LoginEnum.LOGIN_SOURCE_NULL);
             return false;
         }
+        if (StringUtils.isEmpty(loginName)) {
+            rs.fail(LoginEnum.LOGIN_NAME_NULL);
+            return false;
+        }
         return true;
     }
 
