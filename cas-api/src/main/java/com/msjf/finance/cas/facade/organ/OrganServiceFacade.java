@@ -12,19 +12,20 @@ import java.util.HashMap;
  * @author 95494
  * @create 2019-01-22 19:01
  */
-public interface OrganBuildApplyFacade {
+public interface OrganServiceFacade {
     /**
-     * 企业设立申请
+     * 添加拟设立-第一步
      *
      * @param mapParam 入参
      * @return Response 返回结果
      */
-    Response organBuildApply(HashMap<String, Object> mapParam);
+    Response addApplyFirst(HashMap<String, Object> mapParam);
 
     /**
-     * 添加拟设立
+     * 添加拟设立-第二步
      * @param mapParam 入参
+     * @return Response 返回结果
      */
-    Response addApply(HashMap<String, Object> mapParam);
+    Response addApplySecond(HashMap<String, Object> mapParam);
 
 }

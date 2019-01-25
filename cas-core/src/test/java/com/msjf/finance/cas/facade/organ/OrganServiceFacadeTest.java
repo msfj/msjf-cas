@@ -15,19 +15,21 @@ import java.util.HashMap;
  * @author 95494
  * @create 2019-01-23 16:09
  */
-public class OrganBuildApplyFacadeTest extends SpringTestCase {
+public class OrganServiceFacadeTest extends SpringTestCase {
 
 
     @Resource
-    OrganBuildApplyFacade organBuildApplyFacade;
+    OrganServiceFacade organBuildApplyFacade;
 
     @Test
-    public void organBuildApply() {
+    public void addApplyFirst() {
+        Response rs = organBuildApplyFacade.addApplyFirst(new HashMap<>());
+        System.out.println(rs);
     }
 
     @Test
-    public void addApply() {
-        Response rs = organBuildApplyFacade.addApply(new HashMap<>());
+    public void addApplySecond() {
+        Response rs = organBuildApplyFacade.addApplySecond(new HashMap<>());
         System.out.println(rs);
     }
 }

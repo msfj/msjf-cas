@@ -11,7 +11,6 @@ import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.IDUtils;
 import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.cas.modules.organ.service.BaseService;
-import com.msjf.finance.cas.modules.organ.service.OrganPlanBuildApplyService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +21,13 @@ import java.util.List;
 /**
  * <pre>
  * 描述:
- *    服务平台拟设立新增申请
+ *    服务平台拟设立新增申请第一步
  *  <pre/>
  * @author 95494
  * @create 2019-01-22 8:37
  */
 @Service
-public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements OrganPlanBuildApplyService {
+public class OrganPlanPlanBuildApplyFirstImpl extends BaseService  {
 
 
     /**
@@ -76,6 +75,9 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
      */
     private String organclass;
 
+    /** 版本号 由1开始累加  ++*/
+    private static final int INIT_VERSION = 1;
+
 
     @Resource
     CustDao custDao;
@@ -94,7 +96,7 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
      * @param rs       返回结果
      */
     @Override
-    public void addApply(HashMap<String, Object> mapParam, Response rs) {
+    public void addApplyFirst(HashMap<String, Object> mapParam, Response rs) {
 
         String customerNo = String.valueOf(mapParam.get("customerno"));
         membername = String.valueOf(mapParam.get("membername"));
@@ -185,7 +187,7 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
             CustEntity custEntity = new CustEntity();
             custEntity.setCustomerno(orgcustomerno);
             //用户类型 字典102 0-个人 1-企业
-            custEntity.setMembertype(YES);
+            custEntity.setMembertype(MacroDefine.YES);
             custEntity.setStatus(MacroDefine.CUST_STATUS.NORMAL.getValue());
             custEntity.setInsertdate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
             custEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
@@ -206,9 +208,9 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
             OrganFlowEntity cifOrganFlowEntity = new OrganFlowEntity();
             cifOrganFlowEntity.setOrgcustomerno(orgcustomerno);
             cifOrganFlowEntity.setCustomerno(customerno);
-            cifOrganFlowEntity.setType(FLOW_TYPE_NAME);
+            cifOrganFlowEntity.setType(MacroDefine.FLOW_TYPE.NAME.getValue());
             cifOrganFlowEntity.setStatus(MacroDefine.AUDIT_STATUS.AUDIT_STATUS_INIT.getValue());
-            cifOrganFlowEntity.setIsreturn(NO);
+            cifOrganFlowEntity.setIsreturn(MacroDefine.NO);
             cifOrganFlowEntity.setInsertdate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
             cifOrganFlowEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
             cifOrganFlowEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
@@ -218,19 +220,6 @@ public class OrganPlanPlanBuildApplyServiceImpl extends BaseService implements O
             rs.fail("cas", "cif_organ_flow表写失败");
             throw new RuntimeException("cif_organ_flow表写失败", e);
         }
-    }
-
-
-    /**
-     * 企业设立申请
-     *
-     * @param mapParam 入参
-     * @return Response 返回结果
-     */
-
-    @Override
-    public void organBuildApply(HashMap<String, Object> mapParam, Response rs) {
-
     }
 
 
