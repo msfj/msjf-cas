@@ -349,6 +349,14 @@
                 <includes>
                     <include>**/*.xml</include>
                     <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <!--recources文件夹下的certs直接复制，防止证书被过滤-->
+            <resource>
+                <targetPath>${project.build.directory}/classes/certs</targetPath>
+                <directory>src/main/resources/certs</directory>
+                <filtering>false</filtering>
+                <includes>
                     <include>**/*.cer</include>
                     <include>**/*.jks</include>
                 </includes>
