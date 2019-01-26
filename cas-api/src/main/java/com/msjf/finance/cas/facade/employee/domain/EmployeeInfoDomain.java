@@ -8,7 +8,7 @@ import com.msjf.finance.msjf.core.domian.BaseDomain;
  */
 public class EmployeeInfoDomain extends BaseDomain {
     private String employeename;  //员工名称
-    private String loginname;  //登录账号
+    private String name;  //登录账号
 
     private String certificateno;  //证件号码
 
@@ -20,12 +20,12 @@ public class EmployeeInfoDomain extends BaseDomain {
         this.employeename = employeename;
     }
 
-    public String getLoginname() {
-        return loginname;
+    public String getName() {
+        return name;
     }
 
-    public void setLoginname(String loginname) {
-        this.loginname = loginname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCertificateno() {

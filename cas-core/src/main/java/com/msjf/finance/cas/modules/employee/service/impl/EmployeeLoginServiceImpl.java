@@ -96,7 +96,7 @@ public class EmployeeLoginServiceImpl extends Account implements EmployeeLoginSe
         }
         updAuthone(rs);
         EmployeeInfoDomain employeeInfoDomain=new EmployeeInfoDomain();
-        employeeInfoDomain.setLoginname(loginName);
+        employeeInfoDomain.setName(loginName);
         employeeInfoDomain.setCertificateno(certificateno);
 //        HashMap<String, Object> rsmap = new HashMap<String, Object>();
 //        rsmap.put("customerno", customerno);
