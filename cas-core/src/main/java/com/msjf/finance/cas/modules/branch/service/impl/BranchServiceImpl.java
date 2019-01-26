@@ -11,6 +11,7 @@ import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.modules.branch.service.BranchService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
@@ -27,6 +28,7 @@ import static com.msjf.finance.cas.modules.Account.Account.BRANCH_TYPE_JG;
  */
 
 @Service("branchService")
+@Transactional
 public class BranchServiceImpl implements BranchService {
 
     @Resource
