@@ -11,7 +11,7 @@ import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.facade.login.domain.LoginDomain;
 import com.msjf.finance.cas.modules.Account.Account;
-import com.msjf.finance.cas.modules.Account.AccountDao;
+import com.msjf.finance.cas.common.joindao.persistence.AccountJoinDao;
 import com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao;
 import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.common.dao.persistence.OrganAppendDao;
@@ -89,7 +89,7 @@ public class LoginServiceImpl extends Account implements LoginService {
     @Resource
     OrganAppendDao organAppendDao;
     @Resource
-    AccountDao accountDao;
+    AccountJoinDao accountJoinDao;
     @Resource
     SpringContextUtil springContextUtil;
     /**
@@ -284,7 +284,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         }
         HashMap reqmap=new HashMap();
         reqmap.put("mobile",mobile);
-        List<Map> list=accountDao.selectOrganInfoByMobile(reqmap);
+        List<Map> list= accountJoinDao.selectOrganInfoByMobile(reqmap);
         if(ObjectUtils.isEmpty(list)){
             return rs.fail(LoginEnum.CORPORATION_QUERY_NULL);
         }

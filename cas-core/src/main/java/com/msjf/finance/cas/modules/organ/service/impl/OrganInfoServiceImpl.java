@@ -1,7 +1,7 @@
 package com.msjf.finance.cas.modules.organ.service.impl;
 
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
-import com.msjf.finance.cas.modules.Account.AccountDao;
+import com.msjf.finance.cas.common.joindao.persistence.AccountJoinDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
 import com.msjf.finance.cas.modules.organ.service.OrganInfoService;
@@ -24,7 +24,7 @@ public class OrganInfoServiceImpl implements OrganInfoService {
     @Resource
     OrganInfoDao organInfoDao;
     @Resource
-    AccountDao accountDao;
+    AccountJoinDao accountJoinDao;
     private String customerno;
 
     @Override

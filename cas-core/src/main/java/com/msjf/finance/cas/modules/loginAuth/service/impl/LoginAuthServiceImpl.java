@@ -1,7 +1,7 @@
 package com.msjf.finance.cas.modules.loginAuth.service.impl;
 
 import com.msjf.finance.cas.facade.loginAuth.domain.LoginAuthDomain;
-import com.msjf.finance.cas.modules.Account.AccountDao;
+import com.msjf.finance.cas.common.joindao.persistence.AccountJoinDao;
 import com.msjf.finance.cas.modules.loginAuth.emun.LoginAuthEmun;
 import com.msjf.finance.cas.modules.loginAuth.service.LoginAuthService;
 import com.msjf.finance.cas.modules.util.CommonUtil;
@@ -18,7 +18,7 @@ import java.util.Map;
 @Service("loginAuthService")
 public class LoginAuthServiceImpl implements LoginAuthService {
     @Resource
-    AccountDao accountDao;
+    AccountJoinDao accountJoinDao;
 
     @Override
     public Response<LoginAuthDomain> selectLoginInfo(HashMap<String, Object> mapParam) {
@@ -34,14 +34,14 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         // 2.企业或个人证件号码获取
         if ("0".equals( mapParam.get("loginPlat"))) {
             if(isMobile){
-                list =accountDao.selectPersonInfoByMob(reqMap);
+                list = accountJoinDao.selectPersonInfoByMob(reqMap);
             }else{
-                list = accountDao.selectLoginInfo(reqMap);
+                list = accountJoinDao.selectLoginInfo(reqMap);
             }
             //管理平台获取
             //通过登陆名获取信息
         } else if ("1".equals(mapParam.get("loginPlat"))) {
-            list = accountDao.selectEmployeeInfo(reqMap);
+            list = accountJoinDao.selectEmployeeInfo(reqMap);
         }
         if (CollectionUtils.isEmpty(list)) {
             //日志
