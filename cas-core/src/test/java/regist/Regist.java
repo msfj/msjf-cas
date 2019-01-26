@@ -29,15 +29,18 @@ public class Regist extends SpringTestCase {
     @Test
     public  void  queryOrganInfoList(){
         EmployeeDomain e = new EmployeeDomain();
-        /*e.setBranchid("ab1e12c6bb064890bf2e1e92ea2bfd98");
+        e.setBranchid("ab1e12c6bb064890bf2e1e92ea2bfd98");
         e.setCertificateno("12313223212");
         e.setEmail("123@qq.com");
         e.setEmployeename("ces1233");
         e.setLoginname("21232");
         e.setMobile("12331242142");
-        e.setCustomerno("3a24b82c202b4860a80d61237842f8db");*/
-        e.setPageNum(1);
-        e.setPageSize(1);
-        mangerFacade.queryEmployee(e);
+        e.setCustomerno("167336ee75eb45259f63e523d9c43c0e");
+        mangerFacade.delEmployee(e);
+        /*BranchDomain b = new BranchDomain();
+        b.setBranchid("bd82473c8609496685341dfd5a092277");
+        b.setBranchname("121");
+        b.setParentid("1");
+        branchFacade.updBranchInfo(b);*/
     }
 }
