@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.SysCertificationConfigDao">
+	<!--实名认证平安一账通接口配置表sys_certification_config 按主键查询锁表-->
+	<select id="getEntityKeyLock" parameterType="com.msjf.finance.cas.common.dao.key.SysCertificationConfigKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+	<![CDATA[
+		select
+			isopen "isopen",
+			orgcode "orgcode",
+			chnlid "chnlid",
+			authcode "authcode",
+			authdate "authdate",
+			username "username",
+			userpassword "userpassword",
+			nettype "nettype",
+			transname "transname",
+			productid "productid",
+			apiver "apiver",
+			messagecode "messagecode",
+			cer_check_code "cerCheckCode",
+			storealias "storealias",
+			storepassword "storepassword",
+			url "url"
+		from cas.sys_certification_config
+		where 
+			messagecode = #{messagecode}
+		for update
+	]]>
+	</select>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按主键查询-->
+	<select id="getEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysCertificationConfigKey" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+	<![CDATA[
+		select
+			isopen "isopen",
+			orgcode "orgcode",
+			chnlid "chnlid",
+			authcode "authcode",
+			authdate "authdate",
+			username "username",
+			userpassword "userpassword",
+			nettype "nettype",
+			transname "transname",
+			productid "productid",
+			apiver "apiver",
+			messagecode "messagecode",
+			cer_check_code "cerCheckCode",
+			storealias "storealias",
+			storepassword "storepassword",
+			url "url"
+		from cas.sys_certification_config
+		where 
+			messagecode = #{messagecode}
+	]]>
+	</select>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按主键查询-->
+	<select id="getHashMapKey" parameterType="com.msjf.finance.cas.common.dao.key.SysCertificationConfigKey" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			isopen "isopen",
+			orgcode "orgcode",
+			chnlid "chnlid",
+			authcode "authcode",
+			authdate "authdate",
+			username "username",
+			userpassword "userpassword",
+			nettype "nettype",
+			transname "transname",
+			productid "productid",
+			apiver "apiver",
+			messagecode "messagecode",
+			cer_check_code "cerCheckCode",
+			storealias "storealias",
+			storepassword "storepassword",
+			url "url"
+		from cas.sys_certification_config
+		where 
+			messagecode = #{messagecode}
+	]]>
+	</select>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按实体查询锁表-->
+	<select id="getListEntityLock" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+	<![CDATA[
+		select
+			isopen "isopen",
+			orgcode "orgcode",
+			chnlid "chnlid",
+			authcode "authcode",
+			authdate "authdate",
+			username "username",
+			userpassword "userpassword",
+			nettype "nettype",
+			transname "transname",
+			productid "productid",
+			apiver "apiver",
+			messagecode "messagecode",
+			cer_check_code "cerCheckCode",
+			storealias "storealias",
+			storepassword "storepassword",
+			url "url"
+		from cas.sys_certification_config
+	]]>
+	<where>
+		<if test="isopen != null and isopen!= '' "><![CDATA[ and isopen=#{isopen}]]></if>
+		<if test="orgcode != null and orgcode!= '' "><![CDATA[ and orgcode=#{orgcode}]]></if>
+		<if test="chnlid != null and chnlid!= '' "><![CDATA[ and chnlid=#{chnlid}]]></if>
+		<if test="authcode != null and authcode!= '' "><![CDATA[ and authcode=#{authcode}]]></if>
+		<if test="authdate != null and authdate!= '' "><![CDATA[ and authdate=#{authdate}]]></if>
+		<if test="username != null and username!= '' "><![CDATA[ and username=#{username}]]></if>
+		<if test="userpassword != null and userpassword!= '' "><![CDATA[ and userpassword=#{userpassword}]]></if>
+		<if test="nettype != null and nettype!= '' "><![CDATA[ and nettype=#{nettype}]]></if>
+		<if test="transname != null and transname!= '' "><![CDATA[ and transname=#{transname}]]></if>
+		<if test="productid != null and productid!= '' "><![CDATA[ and productid=#{productid}]]></if>
+		<if test="apiver != null and apiver!= '' "><![CDATA[ and apiver=#{apiver}]]></if>
+		<if test="messagecode != null and messagecode!= '' "><![CDATA[ and messagecode=#{messagecode}]]></if>
+		<if test="cerCheckCode != null and cerCheckCode!= '' "><![CDATA[ and cer_check_code=#{cerCheckCode}]]></if>
+		<if test="storealias != null and storealias!= '' "><![CDATA[ and storealias=#{storealias}]]></if>
+		<if test="storepassword != null and storepassword!= '' "><![CDATA[ and storepassword=#{storepassword}]]></if>
+		<if test="url != null and url!= '' "><![CDATA[ and url=#{url}]]></if>
+	</where>
+	<![CDATA[for update ]]>
+	</select>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按实体查询-->
+	<select id="getListEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity" 
+	resultType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+	<![CDATA[
+		select
+			isopen "isopen",
+			orgcode "orgcode",
+			chnlid "chnlid",
+			authcode "authcode",
+			authdate "authdate",
+			username "username",
+			userpassword "userpassword",
+			nettype "nettype",
+			transname "transname",
+			productid "productid",
+			apiver "apiver",
+			messagecode "messagecode",
+			cer_check_code "cerCheckCode",
+			storealias "storealias",
+			storepassword "storepassword",
+			url "url"
+		from cas.sys_certification_config
+	]]>
+	<where>
+		<if test="isopen != null and isopen!= '' "><![CDATA[ and isopen=#{isopen}]]></if>
+		<if test="orgcode != null and orgcode!= '' "><![CDATA[ and orgcode=#{orgcode}]]></if>
+		<if test="chnlid != null and chnlid!= '' "><![CDATA[ and chnlid=#{chnlid}]]></if>
+		<if test="authcode != null and authcode!= '' "><![CDATA[ and authcode=#{authcode}]]></if>
+		<if test="authdate != null and authdate!= '' "><![CDATA[ and authdate=#{authdate}]]></if>
+		<if test="username != null and username!= '' "><![CDATA[ and username=#{username}]]></if>
+		<if test="userpassword != null and userpassword!= '' "><![CDATA[ and userpassword=#{userpassword}]]></if>
+		<if test="nettype != null and nettype!= '' "><![CDATA[ and nettype=#{nettype}]]></if>
+		<if test="transname != null and transname!= '' "><![CDATA[ and transname=#{transname}]]></if>
+		<if test="productid != null and productid!= '' "><![CDATA[ and productid=#{productid}]]></if>
+		<if test="apiver != null and apiver!= '' "><![CDATA[ and apiver=#{apiver}]]></if>
+		<if test="messagecode != null and messagecode!= '' "><![CDATA[ and messagecode=#{messagecode}]]></if>
+		<if test="cerCheckCode != null and cerCheckCode!= '' "><![CDATA[ and cer_check_code=#{cerCheckCode}]]></if>
+		<if test="storealias != null and storealias!= '' "><![CDATA[ and storealias=#{storealias}]]></if>
+		<if test="storepassword != null and storepassword!= '' "><![CDATA[ and storepassword=#{storepassword}]]></if>
+		<if test="url != null and url!= '' "><![CDATA[ and url=#{url}]]></if>
+	</where>
+	</select>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按实体查询-->
+	<select id="getListMap" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity" 
+	resultType="java.util.LinkedHashMap">
+	<![CDATA[
+		select
+			isopen "isopen",
+			orgcode "orgcode",
+			chnlid "chnlid",
+			authcode "authcode",
+			authdate "authdate",
+			username "username",
+			userpassword "userpassword",
+			nettype "nettype",
+			transname "transname",
+			productid "productid",
+			apiver "apiver",
+			messagecode "messagecode",
+			cer_check_code "cerCheckCode",
+			storealias "storealias",
+			storepassword "storepassword",
+			url "url"
+		from cas.sys_certification_config
+	]]>
+	<where>
+		<if test="isopen != null and isopen!= '' "><![CDATA[ and isopen=#{isopen}]]></if>
+		<if test="orgcode != null and orgcode!= '' "><![CDATA[ and orgcode=#{orgcode}]]></if>
+		<if test="chnlid != null and chnlid!= '' "><![CDATA[ and chnlid=#{chnlid}]]></if>
+		<if test="authcode != null and authcode!= '' "><![CDATA[ and authcode=#{authcode}]]></if>
+		<if test="authdate != null and authdate!= '' "><![CDATA[ and authdate=#{authdate}]]></if>
+		<if test="username != null and username!= '' "><![CDATA[ and username=#{username}]]></if>
+		<if test="userpassword != null and userpassword!= '' "><![CDATA[ and userpassword=#{userpassword}]]></if>
+		<if test="nettype != null and nettype!= '' "><![CDATA[ and nettype=#{nettype}]]></if>
+		<if test="transname != null and transname!= '' "><![CDATA[ and transname=#{transname}]]></if>
+		<if test="productid != null and productid!= '' "><![CDATA[ and productid=#{productid}]]></if>
+		<if test="apiver != null and apiver!= '' "><![CDATA[ and apiver=#{apiver}]]></if>
+		<if test="messagecode != null and messagecode!= '' "><![CDATA[ and messagecode=#{messagecode}]]></if>
+		<if test="cerCheckCode != null and cerCheckCode!= '' "><![CDATA[ and cer_check_code=#{cerCheckCode}]]></if>
+		<if test="storealias != null and storealias!= '' "><![CDATA[ and storealias=#{storealias}]]></if>
+		<if test="storepassword != null and storepassword!= '' "><![CDATA[ and storepassword=#{storepassword}]]></if>
+		<if test="url != null and url!= '' "><![CDATA[ and url=#{url}]]></if>
+	</where>
+	</select>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按实体新增记录 mysql-->
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+	<![CDATA[
+		insert into cas.sys_certification_config(
+			isopen,orgcode,chnlid,authcode,authdate,
+			username,userpassword,nettype,transname,productid,
+			apiver,messagecode,cer_check_code,storealias,storepassword,
+			url
+		) values(
+			#{isopen, jdbcType=VARCHAR},#{orgcode, jdbcType=VARCHAR},#{chnlid, jdbcType=VARCHAR},#{authcode, jdbcType=VARCHAR},#{authdate, jdbcType=VARCHAR},
+			#{username, jdbcType=VARCHAR},#{userpassword, jdbcType=VARCHAR},#{nettype, jdbcType=VARCHAR},#{transname, jdbcType=VARCHAR},#{productid, jdbcType=VARCHAR},
+			#{apiver, jdbcType=VARCHAR},#{messagecode, jdbcType=VARCHAR},#{cerCheckCode, jdbcType=VARCHAR},#{storealias, jdbcType=VARCHAR},#{storepassword, jdbcType=VARCHAR},
+			#{url, jdbcType=VARCHAR}
+	)]]>
+	</insert>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按批量实体新增记录mysql-->
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+	<![CDATA[
+		insert into cas.sys_certification_config(
+			isopen,orgcode,chnlid,authcode,authdate,
+			username,userpassword,nettype,transname,productid,
+			apiver,messagecode,cer_check_code,storealias,storepassword,
+			url
+		)
+		values
+	]]>
+		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
+			(
+				#{item.isopen, jdbcType=VARCHAR},#{item.orgcode, jdbcType=VARCHAR},#{item.chnlid, jdbcType=VARCHAR},#{item.authcode, jdbcType=VARCHAR},#{item.authdate, jdbcType=VARCHAR},
+				#{item.username, jdbcType=VARCHAR},#{item.userpassword, jdbcType=VARCHAR},#{item.nettype, jdbcType=VARCHAR},#{item.transname, jdbcType=VARCHAR},#{item.productid, jdbcType=VARCHAR},
+				#{item.apiver, jdbcType=VARCHAR},#{item.messagecode, jdbcType=VARCHAR},#{item.cerCheckCode, jdbcType=VARCHAR},#{item.storealias, jdbcType=VARCHAR},#{item.storepassword, jdbcType=VARCHAR},
+				#{item.url, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按实体更新记录-->
+	<update id="updEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+	<![CDATA[
+		update cas.sys_certification_config
+	]]>
+	<set>
+		 <if test="isopen != null and isopen != '' "><![CDATA[isopen=#{isopen, jdbcType=VARCHAR},]]></if>
+		 <if test="orgcode != null and orgcode != '' "><![CDATA[orgcode=#{orgcode, jdbcType=VARCHAR},]]></if>
+		 <if test="chnlid != null and chnlid != '' "><![CDATA[chnlid=#{chnlid, jdbcType=VARCHAR},]]></if>
+		 <if test="authcode != null and authcode != '' "><![CDATA[authcode=#{authcode, jdbcType=VARCHAR},]]></if>
+		 <if test="authdate != null and authdate != '' "><![CDATA[authdate=#{authdate, jdbcType=VARCHAR},]]></if>
+		 <if test="username != null and username != '' "><![CDATA[username=#{username, jdbcType=VARCHAR},]]></if>
+		 <if test="userpassword != null and userpassword != '' "><![CDATA[userpassword=#{userpassword, jdbcType=VARCHAR},]]></if>
+		 <if test="nettype != null and nettype != '' "><![CDATA[nettype=#{nettype, jdbcType=VARCHAR},]]></if>
+		 <if test="transname != null and transname != '' "><![CDATA[transname=#{transname, jdbcType=VARCHAR},]]></if>
+		 <if test="productid != null and productid != '' "><![CDATA[productid=#{productid, jdbcType=VARCHAR},]]></if>
+		 <if test="apiver != null and apiver != '' "><![CDATA[apiver=#{apiver, jdbcType=VARCHAR},]]></if>
+		 <if test="messagecode != null and messagecode != '' "><![CDATA[messagecode=#{messagecode, jdbcType=VARCHAR},]]></if>
+		 <if test="cerCheckCode != null and cerCheckCode != '' "><![CDATA[cer_check_code=#{cerCheckCode, jdbcType=VARCHAR},]]></if>
+		 <if test="storealias != null and storealias != '' "><![CDATA[storealias=#{storealias, jdbcType=VARCHAR},]]></if>
+		 <if test="storepassword != null and storepassword != '' "><![CDATA[storepassword=#{storepassword, jdbcType=VARCHAR},]]></if>
+		 <if test="url != null and url != '' "><![CDATA[url=#{url, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where messagecode = #{messagecode}
+	]]>
+	</update>
+	<!--实名认证平安一账通接口配置表sys_certification_config 批量实体更新记录 mysql-->
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.sys_certification_config
+		<set>
+		 <if test="item.isopen != null and item.isopen != '' "><![CDATA[isopen=#{item.isopen, jdbcType=VARCHAR},]]></if>
+		 <if test="item.orgcode != null and item.orgcode != '' "><![CDATA[orgcode=#{item.orgcode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.chnlid != null and item.chnlid != '' "><![CDATA[chnlid=#{item.chnlid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.authcode != null and item.authcode != '' "><![CDATA[authcode=#{item.authcode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.authdate != null and item.authdate != '' "><![CDATA[authdate=#{item.authdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.username != null and item.username != '' "><![CDATA[username=#{item.username, jdbcType=VARCHAR},]]></if>
+		 <if test="item.userpassword != null and item.userpassword != '' "><![CDATA[userpassword=#{item.userpassword, jdbcType=VARCHAR},]]></if>
+		 <if test="item.nettype != null and item.nettype != '' "><![CDATA[nettype=#{item.nettype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.transname != null and item.transname != '' "><![CDATA[transname=#{item.transname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.productid != null and item.productid != '' "><![CDATA[productid=#{item.productid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.apiver != null and item.apiver != '' "><![CDATA[apiver=#{item.apiver, jdbcType=VARCHAR},]]></if>
+		 <if test="item.messagecode != null and item.messagecode != '' "><![CDATA[messagecode=#{item.messagecode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.cerCheckCode != null and item.cerCheckCode != '' "><![CDATA[cer_check_code=#{item.cerCheckCode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.storealias != null and item.storealias != '' "><![CDATA[storealias=#{item.storealias, jdbcType=VARCHAR},]]></if>
+		 <if test="item.storepassword != null and item.storepassword != '' "><![CDATA[storepassword=#{item.storepassword, jdbcType=VARCHAR},]]></if>
+		 <if test="item.url != null and item.url != '' "><![CDATA[url=#{item.url, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where messagecode = #{item.messagecode}
+			]]>
+		</foreach>
+	</update>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按实体更新记录-->
+	<update id="updAllowEmptyEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+	<![CDATA[
+		update cas.sys_certification_config
+	]]>
+	<set>
+		 <if test="isopen != null "> <![CDATA[isopen=#{isopen, jdbcType=VARCHAR},]]></if>
+		 <if test="orgcode != null "> <![CDATA[orgcode=#{orgcode, jdbcType=VARCHAR},]]></if>
+		 <if test="chnlid != null "> <![CDATA[chnlid=#{chnlid, jdbcType=VARCHAR},]]></if>
+		 <if test="authcode != null "> <![CDATA[authcode=#{authcode, jdbcType=VARCHAR},]]></if>
+		 <if test="authdate != null "> <![CDATA[authdate=#{authdate, jdbcType=VARCHAR},]]></if>
+		 <if test="username != null "> <![CDATA[username=#{username, jdbcType=VARCHAR},]]></if>
+		 <if test="userpassword != null "> <![CDATA[userpassword=#{userpassword, jdbcType=VARCHAR},]]></if>
+		 <if test="nettype != null "> <![CDATA[nettype=#{nettype, jdbcType=VARCHAR},]]></if>
+		 <if test="transname != null "> <![CDATA[transname=#{transname, jdbcType=VARCHAR},]]></if>
+		 <if test="productid != null "> <![CDATA[productid=#{productid, jdbcType=VARCHAR},]]></if>
+		 <if test="apiver != null "> <![CDATA[apiver=#{apiver, jdbcType=VARCHAR},]]></if>
+		 <if test="messagecode != null "> <![CDATA[messagecode=#{messagecode, jdbcType=VARCHAR},]]></if>
+		 <if test="cerCheckCode != null "> <![CDATA[cer_check_code=#{cerCheckCode, jdbcType=VARCHAR},]]></if>
+		 <if test="storealias != null "> <![CDATA[storealias=#{storealias, jdbcType=VARCHAR},]]></if>
+		 <if test="storepassword != null "> <![CDATA[storepassword=#{storepassword, jdbcType=VARCHAR},]]></if>
+		 <if test="url != null "> <![CDATA[url=#{url, jdbcType=VARCHAR},]]></if>
+	</set>
+	<![CDATA[ where messagecode = #{messagecode}
+	]]>
+	</update>
+	<!--实名认证平安一账通接口配置表sys_certification_config 批量实体更新记录 mysql-->
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysCertificationConfigEntity">
+		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
+			update cas.sys_certification_config
+		<set>
+		 <if test="item.isopen != null "><![CDATA[isopen=#{item.isopen, jdbcType=VARCHAR},]]></if>
+		 <if test="item.orgcode != null "><![CDATA[orgcode=#{item.orgcode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.chnlid != null "><![CDATA[chnlid=#{item.chnlid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.authcode != null "><![CDATA[authcode=#{item.authcode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.authdate != null "><![CDATA[authdate=#{item.authdate, jdbcType=VARCHAR},]]></if>
+		 <if test="item.username != null "><![CDATA[username=#{item.username, jdbcType=VARCHAR},]]></if>
+		 <if test="item.userpassword != null "><![CDATA[userpassword=#{item.userpassword, jdbcType=VARCHAR},]]></if>
+		 <if test="item.nettype != null "><![CDATA[nettype=#{item.nettype, jdbcType=VARCHAR},]]></if>
+		 <if test="item.transname != null "><![CDATA[transname=#{item.transname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.productid != null "><![CDATA[productid=#{item.productid, jdbcType=VARCHAR},]]></if>
+		 <if test="item.apiver != null "><![CDATA[apiver=#{item.apiver, jdbcType=VARCHAR},]]></if>
+		 <if test="item.messagecode != null "><![CDATA[messagecode=#{item.messagecode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.cerCheckCode != null "><![CDATA[cer_check_code=#{item.cerCheckCode, jdbcType=VARCHAR},]]></if>
+		 <if test="item.storealias != null "><![CDATA[storealias=#{item.storealias, jdbcType=VARCHAR},]]></if>
+		 <if test="item.storepassword != null "><![CDATA[storepassword=#{item.storepassword, jdbcType=VARCHAR},]]></if>
+		 <if test="item.url != null "><![CDATA[url=#{item.url, jdbcType=VARCHAR},]]></if>
+			</set>
+			<![CDATA[ where messagecode = #{item.messagecode}
+			]]>
+		</foreach>
+	</update>
+	<!--实名认证平安一账通接口配置表sys_certification_config 按主键删除记录-->
+	<delete id="delEntityKey" parameterType="com.msjf.finance.cas.common.dao.key.SysCertificationConfigKey">
+	<![CDATA[
+		delete from cas.sys_certification_config
+		where
+			messagecode = #{messagecode}
+	]]>
+	</delete>
+	<!--实名认证平安一账通接口配置表sys_certification_config 根据主键批量删除记录  -->
+	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.SysCertificationConfigKey">
+		delete from cas.sys_certification_config where
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
+			<![CDATA[ messagecode = #{item.messagecode}
+			]]>
+		</foreach>
+	</delete>
+</mapper>
