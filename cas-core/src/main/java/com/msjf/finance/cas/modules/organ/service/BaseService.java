@@ -1,10 +1,11 @@
 package com.msjf.finance.cas.modules.organ.service;
 
-import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
-import com.msjf.finance.cas.common.dao.persistence.OrganRollinDao;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganRollinEntity;
+import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
+import com.msjf.finance.cas.common.dao.persistence.OrganRollinDao;
 import com.msjf.finance.cas.common.utils.CheckUtil;
+import com.msjf.finance.cas.modules.IApp;
 import com.msjf.finance.cas.modules.util.SpringContextUtil;
 import com.msjf.finance.msjf.core.response.Response;
 
@@ -20,14 +21,13 @@ import java.util.Map;
  * @author 95494
  * @create 2019-01-22 8:42
  */
-public class BaseService extends IBaseService{
-
+public class BaseService extends IBaseService  {
 
     /**
      * 企业名称唯一性检查
      *
      * @param organName 企业名称
-     * @param rs 结果集
+     * @param rs        结果集
      * @return false 失败  true 成功
      */
     public static boolean checkOrganName(String organName, Response rs) {
@@ -40,8 +40,8 @@ public class BaseService extends IBaseService{
         OrganInfoEntity c = new OrganInfoEntity();
         c.setMembername(organName);
         List<OrganInfoEntity> clist = organInfoDao.getListEntity(c);
-        if (clist!= null || clist.size() > 0) {
-            rs.fail("cas","企业名称已存在");
+        if (clist != null || clist.size() > 0) {
+            rs.fail("cas", "企业名称已存在");
             return false;
         }
 
@@ -51,7 +51,7 @@ public class BaseService extends IBaseService{
         //todo 此处需修改
         List<Map<String, Object>> checkListMap = null;//organInfoDao.checkExistCompanynameInChange(mapParam);
         if (!CheckUtil.isNull(checkListMap)) {
-            rs.fail("cas","企业名称已存在");
+            rs.fail("cas", "企业名称已存在");
             return false;
         }
 
@@ -60,7 +60,7 @@ public class BaseService extends IBaseService{
         rollinEntity.setCompanyname(organName);
         List<OrganRollinEntity> organRollinEntityList = organRollinDao.getListEntity(rollinEntity);
         if (!CheckUtil.isNull(organRollinEntityList)) {
-            rs.fail("cas","企业名称已存在");
+            rs.fail("cas", "企业名称已存在");
             return false;
         }
         return true;
