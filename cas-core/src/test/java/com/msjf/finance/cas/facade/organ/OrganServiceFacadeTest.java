@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <pre>
@@ -23,7 +24,13 @@ public class OrganServiceFacadeTest extends SpringTestCase {
 
     @Test
     public void addApplyFirst() {
-        Response rs = organBuildApplyFacade.addApplyFirst(new HashMap<>());
+
+        HashMap parmap = new HashMap();
+        parmap.put("customerno", "20e82fa7095f4eeaa21155de44a13fa6");
+        parmap.put("membername","测试用在");
+        parmap.put("organtype","1");
+        parmap.put("organclass","1");
+        Response rs = organBuildApplyFacade.addApplyFirst(parmap);
         System.out.println(rs);
     }
 

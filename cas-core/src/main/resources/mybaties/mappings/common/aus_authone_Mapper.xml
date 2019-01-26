@@ -178,7 +178,7 @@
 	)]]>
 	</insert>
 	<!--登录认证表aus_authone 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" >
 	<![CDATA[
 		insert into cas.aus_authone(
 			customerno,password,failcount,registersource,insertdate,

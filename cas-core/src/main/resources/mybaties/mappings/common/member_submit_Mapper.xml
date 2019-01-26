@@ -237,7 +237,7 @@
 	</where>
 	</select>
 	<!--企业成员申报信息表member_submit 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity">
 	<![CDATA[
 		insert into cas.member_submit(
 			serialno,customerno,version,username,certificatetype,
@@ -252,7 +252,7 @@
 	)]]>
 	</insert>
 	<!--企业成员申报信息表member_submit 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity">
 	<![CDATA[
 		insert into cas.member_submit(
 			serialno,customerno,version,username,certificatetype,
@@ -301,7 +301,7 @@
 	]]>
 	</update>
 	<!--企业成员申报信息表member_submit 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.member_submit
 		<set>
@@ -359,7 +359,7 @@
 	]]>
 	</update>
 	<!--企业成员申报信息表member_submit 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.member_submit
 		<set>

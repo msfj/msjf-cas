@@ -156,7 +156,7 @@
 	</where>
 	</select>
 	<!--申请流水表apply 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
 	<![CDATA[
 		insert into cas.apply(
 			serialno,customerno,businesscode,content,status,
@@ -167,7 +167,7 @@
 	)]]>
 	</insert>
 	<!--申请流水表apply 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
 	<![CDATA[
 		insert into cas.apply(
 			serialno,customerno,businesscode,content,status,
@@ -203,7 +203,7 @@
 	]]>
 	</update>
 	<!--申请流水表apply 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.apply
 		<set>
@@ -243,7 +243,7 @@
 	]]>
 	</update>
 	<!--申请流水表apply 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.ApplyEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.apply
 		<set>

@@ -192,7 +192,7 @@
 	</where>
 	</select>
 	<!--邀请码信息表invite_code 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
 	<![CDATA[
 		insert into cas.invite_code(
 			serialno,customerno,orgcustomerno,certificatetype,certificateno,
@@ -205,7 +205,7 @@
 	)]]>
 	</insert>
 	<!--邀请码信息表invite_code 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
 	<![CDATA[
 		insert into cas.invite_code(
 			serialno,customerno,orgcustomerno,certificatetype,certificateno,
@@ -247,7 +247,7 @@
 	]]>
 	</update>
 	<!--邀请码信息表invite_code 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.invite_code
 		<set>
@@ -295,7 +295,7 @@
 	]]>
 	</update>
 	<!--邀请码信息表invite_code 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.InviteCodeEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.invite_code
 		<set>

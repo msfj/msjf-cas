@@ -210,7 +210,7 @@
 	</where>
 	</select>
 	<!--nullcas_register_info 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.CasRegisterInfoEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.CasRegisterInfoEntity">
 	<![CDATA[
 		insert into cas.cas_register_info(
 			id,membertype,registersource,certificatetype,certificateno,
@@ -225,7 +225,7 @@
 	)]]>
 	</insert>
 	<!--nullcas_register_info 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.CasRegisterInfoEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.CasRegisterInfoEntity">
 	<![CDATA[
 		insert into cas.cas_register_info(
 			id,membertype,registersource,certificatetype,certificateno,
@@ -271,7 +271,7 @@
 	]]>
 	</update>
 	<!--nullcas_register_info 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.CasRegisterInfoEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.CasRegisterInfoEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.cas_register_info
 		<set>
@@ -323,7 +323,7 @@
 	]]>
 	</update>
 	<!--nullcas_register_info 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.CasRegisterInfoEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.CasRegisterInfoEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.cas_register_info
 		<set>

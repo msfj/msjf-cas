@@ -95,7 +95,7 @@
 	</where>
 	</select>
 	<!--企业业务流程历史记录表organ_flow_his 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity">
 	<![CDATA[
 		insert into cas.organ_flow_his(
 			orgcustomerno,customerno,type,status,processid,
@@ -106,7 +106,7 @@
 	)]]>
 	</insert>
 	<!--企业业务流程历史记录表organ_flow_his 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowHisEntity">
 	<![CDATA[
 		insert into cas.organ_flow_his(
 			orgcustomerno,customerno,type,status,processid,

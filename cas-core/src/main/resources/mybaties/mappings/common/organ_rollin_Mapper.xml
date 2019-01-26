@@ -228,7 +228,7 @@
 	</where>
 	</select>
 	<!--企业迁入基本信息表organ_rollin 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
 	<![CDATA[
 		insert into cas.organ_rollin(
 			serialno,customerno,companyname,businessno,leader,
@@ -243,7 +243,7 @@
 	)]]>
 	</insert>
 	<!--企业迁入基本信息表organ_rollin 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
 	<![CDATA[
 		insert into cas.organ_rollin(
 			serialno,customerno,companyname,businessno,leader,
@@ -291,7 +291,7 @@
 	]]>
 	</update>
 	<!--企业迁入基本信息表organ_rollin 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_rollin
 		<set>
@@ -347,7 +347,7 @@
 	]]>
 	</update>
 	<!--企业迁入基本信息表organ_rollin 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganRollinEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_rollin
 		<set>

@@ -192,7 +192,7 @@
 	</where>
 	</select>
 	<!--员工基本信息历史表employee_his 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
 	<![CDATA[
 		insert into cas.employee_his(
 			customerno,employeename,loginname,branchid,certificatetype,
@@ -205,7 +205,7 @@
 	)]]>
 	</insert>
 	<!--员工基本信息历史表employee_his 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
 	<![CDATA[
 		insert into cas.employee_his(
 			customerno,employeename,loginname,branchid,certificatetype,
@@ -247,7 +247,7 @@
 	]]>
 	</update>
 	<!--员工基本信息历史表employee_his 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.employee_his
 		<set>
@@ -295,7 +295,7 @@
 	]]>
 	</update>
 	<!--员工基本信息历史表employee_his 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeHisEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.employee_his
 		<set>

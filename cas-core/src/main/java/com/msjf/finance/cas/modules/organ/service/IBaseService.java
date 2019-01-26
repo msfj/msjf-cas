@@ -17,10 +17,9 @@ public class IBaseService implements OrganService, IApp {
 
 
     /**
-     * 添加拟设立
+     * 添加拟设立-第一步
      *
      * @param mapParam 入参
-     * @param rs       结果集
      */
     @Override
     public void addApplyFirst(HashMap<String, Object> mapParam, Response rs) {
@@ -28,10 +27,9 @@ public class IBaseService implements OrganService, IApp {
     }
 
     /**
-     * 企业设立申请
+     * 服务平台拟设立新增申请第二步
      *
      * @param mapParam 入参
-     * @param rs       结果集
      */
     @Override
     public void addApplySecond(HashMap<String, Object> mapParam, Response rs) {
@@ -48,7 +46,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean preCheck(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -60,7 +58,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean cache(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -72,7 +70,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean check(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -84,7 +82,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean before(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -96,7 +94,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean clear(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -108,6 +106,6 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean after(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 }

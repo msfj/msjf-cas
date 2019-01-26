@@ -105,7 +105,7 @@
 	</where>
 	</select>
 	<!--成员菜单权限表organ_member_menulimit 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
 	<![CDATA[
 		insert into cas.organ_member_menulimit(
 			memberid,customerno,certificateno,menulimit
@@ -114,7 +114,7 @@
 	)]]>
 	</insert>
 	<!--成员菜单权限表organ_member_menulimit 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
 	<![CDATA[
 		insert into cas.organ_member_menulimit(
 			memberid,customerno,certificateno,menulimit
@@ -142,7 +142,7 @@
 	]]>
 	</update>
 	<!--成员菜单权限表organ_member_menulimit 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_member_menulimit
 		<set>
@@ -170,7 +170,7 @@
 	]]>
 	</update>
 	<!--成员菜单权限表organ_member_menulimit 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganMemberMenulimitEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_member_menulimit
 		<set>

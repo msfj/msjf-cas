@@ -18,8 +18,8 @@
 			dict_comment "dictComment"
 		from cas.sys_dict
 		where 
-			dict_key = #{dictKey}
-			and dict_id = #{dictId}
+			dict_id = #{dictId}
+			and dict_key = #{dictKey}
 		for update
 	]]>
 	</select>
@@ -38,8 +38,8 @@
 			dict_comment "dictComment"
 		from cas.sys_dict
 		where 
-			dict_key = #{dictKey}
-			and dict_id = #{dictId}
+			dict_id = #{dictId}
+			and dict_key = #{dictKey}
 	]]>
 	</select>
 	<!--系统字典表sys_dict 按主键查询-->
@@ -57,8 +57,8 @@
 			dict_comment "dictComment"
 		from cas.sys_dict
 		where 
-			dict_key = #{dictKey}
-			and dict_id = #{dictId}
+			dict_id = #{dictId}
+			and dict_key = #{dictKey}
 	]]>
 	</select>
 	<!--系统字典表sys_dict 按实体查询锁表-->
@@ -141,7 +141,7 @@
 	</where>
 	</select>
 	<!--系统字典表sys_dict 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
 	<![CDATA[
 		insert into cas.sys_dict(
 			dict_id,dict_name,dict_key,dict_value,ref_dict_key,
@@ -152,7 +152,7 @@
 	)]]>
 	</insert>
 	<!--系统字典表sys_dict 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
 	<![CDATA[
 		insert into cas.sys_dict(
 			dict_id,dict_name,dict_key,dict_value,ref_dict_key,
@@ -182,11 +182,11 @@
 		 <if test="isUsed != null and isUsed != '' "><![CDATA[is_used=#{isUsed, jdbcType=VARCHAR},]]></if>
 		 <if test="dictComment != null and dictComment != '' "><![CDATA[dict_comment=#{dictComment, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where dict_key = #{dictKey} and dict_id = #{dictId}
+	<![CDATA[ where dict_id = #{dictId} and dict_key = #{dictKey}
 	]]>
 	</update>
 	<!--系统字典表sys_dict 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.sys_dict
 		<set>
@@ -199,7 +199,7 @@
 		 <if test="item.isUsed != null and item.isUsed != '' "><![CDATA[is_used=#{item.isUsed, jdbcType=VARCHAR},]]></if>
 		 <if test="item.dictComment != null and item.dictComment != '' "><![CDATA[dict_comment=#{item.dictComment, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where dict_key = #{item.dictKey} and dict_id = #{item.dictId}
+			<![CDATA[ where dict_id = #{item.dictId} and dict_key = #{item.dictKey}
 			]]>
 		</foreach>
 	</update>
@@ -218,11 +218,11 @@
 		 <if test="isUsed != null "> <![CDATA[is_used=#{isUsed, jdbcType=VARCHAR},]]></if>
 		 <if test="dictComment != null "> <![CDATA[dict_comment=#{dictComment, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where dict_key = #{dictKey} and dict_id = #{dictId}
+	<![CDATA[ where dict_id = #{dictId} and dict_key = #{dictKey}
 	]]>
 	</update>
 	<!--系统字典表sys_dict 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysDictEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.sys_dict
 		<set>
@@ -235,7 +235,7 @@
 		 <if test="item.isUsed != null "><![CDATA[is_used=#{item.isUsed, jdbcType=VARCHAR},]]></if>
 		 <if test="item.dictComment != null "><![CDATA[dict_comment=#{item.dictComment, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where dict_key = #{item.dictKey} and dict_id = #{item.dictId}
+			<![CDATA[ where dict_id = #{item.dictId} and dict_key = #{item.dictKey}
 			]]>
 		</foreach>
 	</update>
@@ -244,14 +244,14 @@
 	<![CDATA[
 		delete from cas.sys_dict
 		where
-			dict_key = #{dictKey} and dict_id = #{dictId}
+			dict_id = #{dictId} and dict_key = #{dictKey}
 	]]>
 	</delete>
 	<!--系统字典表sys_dict 根据主键批量删除记录  -->
 	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.SysDictKey">
 		delete from cas.sys_dict where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ dict_key = #{item.dictKey} and dict_id = #{item.dictId}
+			<![CDATA[ dict_id = #{item.dictId} and dict_key = #{item.dictKey}
 			]]>
 		</foreach>
 	</delete>

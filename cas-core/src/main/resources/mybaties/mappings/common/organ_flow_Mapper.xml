@@ -20,8 +20,8 @@
 			updatetime "updatetime"
 		from cas.organ_flow
 		where 
-			orgcustomerno = #{orgcustomerno}
-			and type = #{type}
+			type = #{type}
+			and orgcustomerno = #{orgcustomerno}
 		for update
 	]]>
 	</select>
@@ -42,8 +42,8 @@
 			updatetime "updatetime"
 		from cas.organ_flow
 		where 
-			orgcustomerno = #{orgcustomerno}
-			and type = #{type}
+			type = #{type}
+			and orgcustomerno = #{orgcustomerno}
 	]]>
 	</select>
 	<!--企业业务流程信息表organ_flow 按主键查询-->
@@ -63,8 +63,8 @@
 			updatetime "updatetime"
 		from cas.organ_flow
 		where 
-			orgcustomerno = #{orgcustomerno}
-			and type = #{type}
+			type = #{type}
+			and orgcustomerno = #{orgcustomerno}
 	]]>
 	</select>
 	<!--企业业务流程信息表organ_flow 按实体查询锁表-->
@@ -159,7 +159,7 @@
 	</where>
 	</select>
 	<!--企业业务流程信息表organ_flow 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity">
 	<![CDATA[
 		insert into cas.organ_flow(
 			orgcustomerno,customerno,type,status,processid,
@@ -170,7 +170,7 @@
 	)]]>
 	</insert>
 	<!--企业业务流程信息表organ_flow 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity">
 	<![CDATA[
 		insert into cas.organ_flow(
 			orgcustomerno,customerno,type,status,processid,
@@ -202,11 +202,11 @@
 		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where orgcustomerno = #{orgcustomerno} and type = #{type}
+	<![CDATA[ where type = #{type} and orgcustomerno = #{orgcustomerno}
 	]]>
 	</update>
 	<!--企业业务流程信息表organ_flow 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_flow
 		<set>
@@ -221,7 +221,7 @@
 		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and type = #{item.type}
+			<![CDATA[ where type = #{item.type} and orgcustomerno = #{item.orgcustomerno}
 			]]>
 		</foreach>
 	</update>
@@ -242,11 +242,11 @@
 		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where orgcustomerno = #{orgcustomerno} and type = #{type}
+	<![CDATA[ where type = #{type} and orgcustomerno = #{orgcustomerno}
 	]]>
 	</update>
 	<!--企业业务流程信息表organ_flow 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganFlowEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_flow
 		<set>
@@ -261,7 +261,7 @@
 		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and type = #{item.type}
+			<![CDATA[ where type = #{item.type} and orgcustomerno = #{item.orgcustomerno}
 			]]>
 		</foreach>
 	</update>
@@ -270,14 +270,14 @@
 	<![CDATA[
 		delete from cas.organ_flow
 		where
-			orgcustomerno = #{orgcustomerno} and type = #{type}
+			type = #{type} and orgcustomerno = #{orgcustomerno}
 	]]>
 	</delete>
 	<!--企业业务流程信息表organ_flow 根据主键批量删除记录  -->
 	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganFlowKey">
 		delete from cas.organ_flow where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ orgcustomerno = #{item.orgcustomerno} and type = #{item.type}
+			<![CDATA[ type = #{item.type} and orgcustomerno = #{item.orgcustomerno}
 			]]>
 		</foreach>
 	</delete>

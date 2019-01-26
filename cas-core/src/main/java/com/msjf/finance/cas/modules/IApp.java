@@ -22,48 +22,54 @@ public interface IApp {
 
     /**
      * 入参检查
+     *
      * @param mapParam 入参
-     * @param rs 结果集
+     * @param rs       结果集
      * @return false 失败 true 成功
      */
     boolean preCheck(HashMap<String, Object> mapParam, Response rs);
 
     /**
      * 缓存数据
+     *
      * @param mapParam 入参
-     * @param rs 结果集
+     * @param rs       结果集
      * @return false 失败 true 成功
      */
     boolean cache(HashMap<String, Object> mapParam, Response rs);
 
     /**
      * 业务参数检查
+     *
      * @param mapParam 入参
-     * @param rs 结果集
+     * @param rs       结果集
      * @return false 失败 true 成功
      */
     boolean check(HashMap<String, Object> mapParam, Response rs);
 
     /**
      * 业务处理前操作
+     *
      * @param mapParam 入参
-     * @param rs 结果集
+     * @param rs       结果集
      * @return false 失败 true 成功
      */
     boolean before(HashMap<String, Object> mapParam, Response rs);
 
     /**
      * 业务处理
+     *
      * @param mapParam 入参
-     * @param rs 结果集
+     * @param rs       结果集
      * @return false 失败 true 成功
      */
     boolean clear(HashMap<String, Object> mapParam, Response rs);
 
     /**
      * 业务处理后操作
+     *
      * @param mapParam 入参
-     * @param rs 结果集
+     * @param rs       结果集
      * @return false 失败 true 成功
      */
     boolean after(HashMap<String, Object> mapParam, Response rs);
