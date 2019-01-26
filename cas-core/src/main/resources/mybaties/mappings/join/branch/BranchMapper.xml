@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.dao.persistence.BranchDao" >
+
+    <select id="queryBranch" parameterType="java.util.Map"
+            resultType="com.msjf.finance.cas.common.dao.entity.BranchEntity">
+        <![CDATA[
+		select
+			branchid "branchid",
+			branchname "branchname",
+			parentid "parentid",
+			province "province",
+			branchtype "branchtype",
+			city "city",
+			county "county",
+			stertreet "stertreet",
+			showorder "showorder",
+			curnumber "curnumber"
+		from cas.branch
+		]]>
+
+        <where>
+            <if test="branchid != null and branchid != '' "><![CDATA[ and branchid=#{branchid}]]></if>
+            <if test="branchname != null and branchname != '' "><![CDATA[ and branchname like concat(concat('%', #{branchname}),'%') ]]></if>
+            <if test="parentid != null and parentid != '' "><![CDATA[ and parentid =#{parentid} ]]></if>
+        </where>
+    </select>
+</mapper>
