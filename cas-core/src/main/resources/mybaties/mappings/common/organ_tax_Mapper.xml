@@ -27,8 +27,8 @@
 			updatetime "updatetime"
 		from cas.organ_tax
 		where 
-			reportperiod = #{reportperiod}
-			and customerno = #{customerno}
+			customerno = #{customerno}
+			and reportperiod = #{reportperiod}
 		for update
 	]]>
 	</select>
@@ -56,8 +56,8 @@
 			updatetime "updatetime"
 		from cas.organ_tax
 		where 
-			reportperiod = #{reportperiod}
-			and customerno = #{customerno}
+			customerno = #{customerno}
+			and reportperiod = #{reportperiod}
 	]]>
 	</select>
 	<!--税收收入测算表organ_tax 按主键查询-->
@@ -84,8 +84,8 @@
 			updatetime "updatetime"
 		from cas.organ_tax
 		where 
-			reportperiod = #{reportperiod}
-			and customerno = #{customerno}
+			customerno = #{customerno}
+			and reportperiod = #{reportperiod}
 	]]>
 	</select>
 	<!--税收收入测算表organ_tax 按实体查询锁表-->
@@ -222,7 +222,7 @@
 	</where>
 	</select>
 	<!--税收收入测算表organ_tax 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
 	<![CDATA[
 		insert into cas.organ_tax(
 			customerno,reportperiod,relatename,zzfee,xffee,
@@ -237,7 +237,7 @@
 	)]]>
 	</insert>
 	<!--税收收入测算表organ_tax 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
 	<![CDATA[
 		insert into cas.organ_tax(
 			customerno,reportperiod,relatename,zzfee,xffee,
@@ -280,11 +280,11 @@
 		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where reportperiod = #{reportperiod} and customerno = #{customerno}
+	<![CDATA[ where customerno = #{customerno} and reportperiod = #{reportperiod}
 	]]>
 	</update>
 	<!--税收收入测算表organ_tax 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_tax
 		<set>
@@ -306,7 +306,7 @@
 		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where reportperiod = #{item.reportperiod} and customerno = #{item.customerno}
+			<![CDATA[ where customerno = #{item.customerno} and reportperiod = #{item.reportperiod}
 			]]>
 		</foreach>
 	</update>
@@ -334,11 +334,11 @@
 		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where reportperiod = #{reportperiod} and customerno = #{customerno}
+	<![CDATA[ where customerno = #{customerno} and reportperiod = #{reportperiod}
 	]]>
 	</update>
 	<!--税收收入测算表organ_tax 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganTaxEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_tax
 		<set>
@@ -360,7 +360,7 @@
 		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where reportperiod = #{item.reportperiod} and customerno = #{item.customerno}
+			<![CDATA[ where customerno = #{item.customerno} and reportperiod = #{item.reportperiod}
 			]]>
 		</foreach>
 	</update>
@@ -369,14 +369,14 @@
 	<![CDATA[
 		delete from cas.organ_tax
 		where
-			reportperiod = #{reportperiod} and customerno = #{customerno}
+			customerno = #{customerno} and reportperiod = #{reportperiod}
 	]]>
 	</delete>
 	<!--税收收入测算表organ_tax 根据主键批量删除记录  -->
 	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganTaxKey">
 		delete from cas.organ_tax where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ reportperiod = #{item.reportperiod} and customerno = #{item.customerno}
+			<![CDATA[ customerno = #{item.customerno} and reportperiod = #{item.reportperiod}
 			]]>
 		</foreach>
 	</delete>

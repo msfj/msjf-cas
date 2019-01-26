@@ -15,6 +15,7 @@ import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.modules.organ.service.BaseService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -43,24 +44,21 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
     private String orgcustomerno;
 
     /**
-     * 企业地区 注册地址(省) dict101021
-     */
-    private String registerprovince;
-
+     * 实际地址(省) dict101021
+     **/
+    private String realprovince;
     /**
-     * 企业地区 注册地址(市) dict101022
-     */
-    private String registercity;
-
+     * 实际地址(市) dict101022
+     **/
+    private String realcity;
     /**
-     * 企业地区 注册地址(区/县) dict101023
-     */
-    private String registercounty;
-
+     * 实际地址(区/县) dict101023
+     **/
+    private String realcounty;
     /**
-     * 企业地区 注册地址(街道)
-     */
-    private String registertreet;
+     * 实际地址(街道)
+     **/
+    private String realtreet;
 
     /**
      * 企业名称
@@ -104,6 +102,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
      * @param mapParam 入参
      * @param rs       返回结果
      */
+    @Transactional(timeout = 30)
     @Override
     public void addApplyFirst(HashMap<String, Object> mapParam, Response rs) {
         rs.fail("cas", "操作失败");
@@ -119,7 +118,11 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
      */
     private void getParam(HashMap<String, Object> mapParam, Response rs) {
         customerno = StringUtil.valueOf(mapParam.get("customerno"));
-        customerno = StringUtil.valueOf(mapParam.get("customerno"));
+        orgcustomerno = StringUtil.valueOf(mapParam.get("orgcustomerno"));
+        realprovince = StringUtil.valueOf(mapParam.get("realprovince"));
+        realcity = StringUtil.valueOf(mapParam.get("realcity"));
+        realcounty = StringUtil.valueOf(mapParam.get("realcounty"));
+        realtreet = StringUtil.valueOf(mapParam.get("realtreet"));
         membername = StringUtil.valueOf(mapParam.get("membername"));
         organtype = StringUtil.valueOf(mapParam.get("organtype"));
         organclass = StringUtil.valueOf(mapParam.get("organclass"));
@@ -134,16 +137,20 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
      */
     @Override
     public boolean preCheck(HashMap<String, Object> mapParam, Response rs) {
+        if (CheckUtil.isNull(customerno)) {
+            rs.fail("cas", "发起人客户代码不能为空");
+            return false;
+        }
         if (CheckUtil.isNull(membername)) {
-            rs.fail("cas", "企业名称为空");
+            rs.fail("cas", "企业名称不能为空");
             return false;
         }
         if (CheckUtil.isNull(organtype)) {
-            rs.fail("cas", "企业类型为空");
+            rs.fail("cas", "企业类型不能为空");
             return false;
         }
         if (CheckUtil.isNull(organclass)) {
-            rs.fail("cas", "企业分类为空");
+            rs.fail("cas", "企业分类不能为空");
             return false;
         }
         return super.preCheck(mapParam, rs);
@@ -154,8 +161,8 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
         //1-检查发起人账户信息不存在
         CustEntity custEntity = new CustEntity();
         custEntity.setCustomerno(customerno);
-        List<CustEntity> custEntityList = custDao.getListEntity(custEntity);
-        if (CheckUtil.isNull(custEntityList)) {
+        List<CustEntity> customerEntityList = custDao.getListEntity(custEntity);
+        if (CheckUtil.isNull(customerEntityList)) {
             rs.fail("cas", "发起人账户信息不存在");
             return false;
         }
@@ -171,10 +178,14 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
             isInsert = Boolean.FALSE;
         }
         //4-如果为修改则检查企业信息是否存在
-        if (Boolean.FALSE == isInsert) {
+        if (isInsert) {
             OrganInfoKey organInfoKey = new OrganInfoKey();
             organInfoKey.setKey(orgcustomerno);
-            organInfoDao.getEntityKey(organInfoKey);
+            OrganInfoEntity organInfoEntity = organInfoDao.getEntityKey(organInfoKey);
+            if(CheckUtil.isNull(organInfoEntity)){
+                rs.fail("cas","企业基本信息不存在");
+                return false;
+            }
         }
         return super.check(mapParam, rs);
     }

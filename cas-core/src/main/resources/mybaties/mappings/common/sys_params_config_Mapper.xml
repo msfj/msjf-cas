@@ -18,9 +18,9 @@
 			sort_no "sortNo"
 		from cas.sys_params_config
 		where 
-			param_type = #{paramType}
+			param_id = #{paramId}
+			and param_type = #{paramType}
 			and exchange_id = #{exchangeId}
-			and param_id = #{paramId}
 			and distributor_id = #{distributorId}
 		for update
 	]]>
@@ -40,9 +40,9 @@
 			sort_no "sortNo"
 		from cas.sys_params_config
 		where 
-			param_type = #{paramType}
+			param_id = #{paramId}
+			and param_type = #{paramType}
 			and exchange_id = #{exchangeId}
-			and param_id = #{paramId}
 			and distributor_id = #{distributorId}
 	]]>
 	</select>
@@ -61,9 +61,9 @@
 			sort_no "sortNo"
 		from cas.sys_params_config
 		where 
-			param_type = #{paramType}
+			param_id = #{paramId}
+			and param_type = #{paramType}
 			and exchange_id = #{exchangeId}
-			and param_id = #{paramId}
 			and distributor_id = #{distributorId}
 	]]>
 	</select>
@@ -147,7 +147,7 @@
 	</where>
 	</select>
 	<!--nullsys_params_config 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
 	<![CDATA[
 		insert into cas.sys_params_config(
 			exchange_id,distributor_id,param_type,param_id,param_value,
@@ -158,7 +158,7 @@
 	)]]>
 	</insert>
 	<!--nullsys_params_config 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
 	<![CDATA[
 		insert into cas.sys_params_config(
 			exchange_id,distributor_id,param_type,param_id,param_value,
@@ -188,11 +188,11 @@
 		 <if test="paramStatus != null and paramStatus != '' or paramStatus == 0 "><![CDATA[param_status=#{paramStatus, jdbcType=INTEGER},]]></if>
 		 <if test="sortNo != null and sortNo != '' or sortNo == 0 "><![CDATA[sort_no=#{sortNo, jdbcType=INTEGER},]]></if>
 	</set>
-	<![CDATA[ where param_type = #{paramType} and exchange_id = #{exchangeId} and param_id = #{paramId} and distributor_id = #{distributorId}
+	<![CDATA[ where param_id = #{paramId} and param_type = #{paramType} and exchange_id = #{exchangeId} and distributor_id = #{distributorId}
 	]]>
 	</update>
 	<!--nullsys_params_config 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.sys_params_config
 		<set>
@@ -205,7 +205,7 @@
 		 <if test="item.paramStatus != null and item.paramStatus != '' or paramStatus == 0 "><![CDATA[param_status=#{item.paramStatus, jdbcType=INTEGER},]]></if>
 		 <if test="item.sortNo != null and item.sortNo != '' or sortNo == 0 "><![CDATA[sort_no=#{item.sortNo, jdbcType=INTEGER},]]></if>
 			</set>
-			<![CDATA[ where param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and param_id = #{item.paramId} and distributor_id = #{item.distributorId}
+			<![CDATA[ where param_id = #{item.paramId} and param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and distributor_id = #{item.distributorId}
 			]]>
 		</foreach>
 	</update>
@@ -224,11 +224,11 @@
 		 <if test="paramStatus != null or paramStatus == 0 "><![CDATA[param_status=#{paramStatus, jdbcType=INTEGER},]]></if>
 		 <if test="sortNo != null or sortNo == 0 "><![CDATA[sort_no=#{sortNo, jdbcType=INTEGER},]]></if>
 	</set>
-	<![CDATA[ where param_type = #{paramType} and exchange_id = #{exchangeId} and param_id = #{paramId} and distributor_id = #{distributorId}
+	<![CDATA[ where param_id = #{paramId} and param_type = #{paramType} and exchange_id = #{exchangeId} and distributor_id = #{distributorId}
 	]]>
 	</update>
 	<!--nullsys_params_config 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.sys_params_config
 		<set>
@@ -241,7 +241,7 @@
 		 <if test="item.paramStatus != null or paramStatus == 0 "><![CDATA[param_status=#{item.paramStatus, jdbcType=INTEGER},]]></if>
 		 <if test="item.sortNo != null or sortNo == 0 "><![CDATA[sort_no=#{item.sortNo, jdbcType=INTEGER},]]></if>
 			</set>
-			<![CDATA[ where param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and param_id = #{item.paramId} and distributor_id = #{item.distributorId}
+			<![CDATA[ where param_id = #{item.paramId} and param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and distributor_id = #{item.distributorId}
 			]]>
 		</foreach>
 	</update>
@@ -250,14 +250,14 @@
 	<![CDATA[
 		delete from cas.sys_params_config
 		where
-			param_type = #{paramType} and exchange_id = #{exchangeId} and param_id = #{paramId} and distributor_id = #{distributorId}
+			param_id = #{paramId} and param_type = #{paramType} and exchange_id = #{exchangeId} and distributor_id = #{distributorId}
 	]]>
 	</delete>
 	<!--nullsys_params_config 根据主键批量删除记录  -->
 	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.SysParamsConfigKey">
 		delete from cas.sys_params_config where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and param_id = #{item.paramId} and distributor_id = #{item.distributorId}
+			<![CDATA[ param_id = #{item.paramId} and param_type = #{item.paramType} and exchange_id = #{item.exchangeId} and distributor_id = #{item.distributorId}
 			]]>
 		</foreach>
 	</delete>

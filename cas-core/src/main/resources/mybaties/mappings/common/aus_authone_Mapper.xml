@@ -165,7 +165,7 @@
 	</where>
 	</select>
 	<!--登录认证表aus_authone 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
 	<![CDATA[
 		insert into cas.aus_authone(
 			customerno,password,failcount,registersource,insertdate,
@@ -178,7 +178,7 @@
 	)]]>
 	</insert>
 	<!--登录认证表aus_authone 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
 	<![CDATA[
 		insert into cas.aus_authone(
 			customerno,password,failcount,registersource,insertdate,
@@ -217,7 +217,7 @@
 	]]>
 	</update>
 	<!--登录认证表aus_authone 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.aus_authone
 		<set>
@@ -259,7 +259,7 @@
 	]]>
 	</update>
 	<!--登录认证表aus_authone 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.aus_authone
 		<set>

@@ -3,6 +3,7 @@ package com.msjf.finance.cas.modules;
 import com.msjf.finance.msjf.core.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;

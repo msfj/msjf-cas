@@ -444,7 +444,7 @@
 	</where>
 	</select>
 	<!--企业附属信息表organ_append 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 	<![CDATA[
 		insert into cas.organ_append(
 			customerno,version,isfiling,registerno,employeenum,
@@ -469,7 +469,7 @@
 	)]]>
 	</insert>
 	<!--企业附属信息表organ_append 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 	<![CDATA[
 		insert into cas.organ_append(
 			customerno,version,isfiling,registerno,employeenum,
@@ -551,7 +551,7 @@
 	]]>
 	</update>
 	<!--企业附属信息表organ_append 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_append
 		<set>
@@ -655,7 +655,7 @@
 	]]>
 	</update>
 	<!--企业附属信息表organ_append 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganAppendEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_append
 		<set>

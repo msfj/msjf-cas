@@ -47,8 +47,8 @@
 			inserttime "inserttime"
 		from cas.organ_info_change
 		where 
-			customerno = #{customerno}
-			and version = #{version}
+			version = #{version}
+			and customerno = #{customerno}
 		for update
 	]]>
 	</select>
@@ -96,8 +96,8 @@
 			inserttime "inserttime"
 		from cas.organ_info_change
 		where 
-			customerno = #{customerno}
-			and version = #{version}
+			version = #{version}
+			and customerno = #{customerno}
 	]]>
 	</select>
 	<!--企业基本信息变更记录表organ_info_change 按主键查询-->
@@ -144,8 +144,8 @@
 			inserttime "inserttime"
 		from cas.organ_info_change
 		where 
-			customerno = #{customerno}
-			and version = #{version}
+			version = #{version}
+			and customerno = #{customerno}
 	]]>
 	</select>
 	<!--企业基本信息变更记录表organ_info_change 按实体查询锁表-->
@@ -402,7 +402,7 @@
 	</where>
 	</select>
 	<!--企业基本信息变更记录表organ_info_change 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 	<![CDATA[
 		insert into cas.organ_info_change(
 			customerno,version,membername,organtype,organclass,
@@ -425,7 +425,7 @@
 	)]]>
 	</insert>
 	<!--企业基本信息变更记录表organ_info_change 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 	<![CDATA[
 		insert into cas.organ_info_change(
 			customerno,version,membername,organtype,organclass,
@@ -496,11 +496,11 @@
 		 <if test="insertdate != null and insertdate != '' "><![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where customerno = #{customerno} and version = #{version}
+	<![CDATA[ where version = #{version} and customerno = #{customerno}
 	]]>
 	</update>
 	<!--企业基本信息变更记录表organ_info_change 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_info_change
 		<set>
@@ -542,7 +542,7 @@
 		 <if test="item.insertdate != null and item.insertdate != '' "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where customerno = #{item.customerno} and version = #{item.version}
+			<![CDATA[ where version = #{item.version} and customerno = #{item.customerno}
 			]]>
 		</foreach>
 	</update>
@@ -590,11 +590,11 @@
 		 <if test="insertdate != null "> <![CDATA[insertdate=#{insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where customerno = #{customerno} and version = #{version}
+	<![CDATA[ where version = #{version} and customerno = #{customerno}
 	]]>
 	</update>
 	<!--企业基本信息变更记录表organ_info_change 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_info_change
 		<set>
@@ -636,7 +636,7 @@
 		 <if test="item.insertdate != null "><![CDATA[insertdate=#{item.insertdate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where customerno = #{item.customerno} and version = #{item.version}
+			<![CDATA[ where version = #{item.version} and customerno = #{item.customerno}
 			]]>
 		</foreach>
 	</update>
@@ -645,14 +645,14 @@
 	<![CDATA[
 		delete from cas.organ_info_change
 		where
-			customerno = #{customerno} and version = #{version}
+			version = #{version} and customerno = #{customerno}
 	]]>
 	</delete>
 	<!--企业基本信息变更记录表organ_info_change 根据主键批量删除记录  -->
 	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.OrganInfoChangeKey">
 		delete from cas.organ_info_change where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ customerno = #{item.customerno} and version = #{item.version}
+			<![CDATA[ version = #{item.version} and customerno = #{item.customerno}
 			]]>
 		</foreach>
 	</delete>

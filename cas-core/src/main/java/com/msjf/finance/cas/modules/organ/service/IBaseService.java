@@ -48,7 +48,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean preCheck(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -60,7 +60,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean cache(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -72,7 +72,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean check(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -84,7 +84,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean before(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -96,7 +96,7 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean clear(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 
     /**
@@ -108,6 +108,6 @@ public class IBaseService implements OrganService, IApp {
      */
     @Override
     public boolean after(HashMap<String, Object> mapParam, Response rs) {
-        return false;
+        return true;
     }
 }

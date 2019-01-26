@@ -13,8 +13,8 @@
 			status "status"
 		from cas.employee_organ
 		where 
-			orgcustomerno = #{orgcustomerno}
-			and customerno = #{customerno}
+			customerno = #{customerno}
+			and orgcustomerno = #{orgcustomerno}
 		for update
 	]]>
 	</select>
@@ -28,8 +28,8 @@
 			status "status"
 		from cas.employee_organ
 		where 
-			orgcustomerno = #{orgcustomerno}
-			and customerno = #{customerno}
+			customerno = #{customerno}
+			and orgcustomerno = #{orgcustomerno}
 	]]>
 	</select>
 	<!--员工关注企业信息表employee_organ 按主键查询-->
@@ -42,8 +42,8 @@
 			status "status"
 		from cas.employee_organ
 		where 
-			orgcustomerno = #{orgcustomerno}
-			and customerno = #{customerno}
+			customerno = #{customerno}
+			and orgcustomerno = #{orgcustomerno}
 	]]>
 	</select>
 	<!--员工关注企业信息表employee_organ 按实体查询锁表-->
@@ -96,7 +96,7 @@
 	</where>
 	</select>
 	<!--员工关注企业信息表employee_organ 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
 	<![CDATA[
 		insert into cas.employee_organ(
 			customerno,orgcustomerno,status
@@ -105,7 +105,7 @@
 	)]]>
 	</insert>
 	<!--员工关注企业信息表employee_organ 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
 	<![CDATA[
 		insert into cas.employee_organ(
 			customerno,orgcustomerno,status
@@ -128,11 +128,11 @@
 		 <if test="orgcustomerno != null and orgcustomerno != '' "><![CDATA[orgcustomerno=#{orgcustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="status != null and status != '' "><![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where orgcustomerno = #{orgcustomerno} and customerno = #{customerno}
+	<![CDATA[ where customerno = #{customerno} and orgcustomerno = #{orgcustomerno}
 	]]>
 	</update>
 	<!--员工关注企业信息表employee_organ 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.employee_organ
 		<set>
@@ -140,7 +140,7 @@
 		 <if test="item.orgcustomerno != null and item.orgcustomerno != '' "><![CDATA[orgcustomerno=#{item.orgcustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.status != null and item.status != '' "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and customerno = #{item.customerno}
+			<![CDATA[ where customerno = #{item.customerno} and orgcustomerno = #{item.orgcustomerno}
 			]]>
 		</foreach>
 	</update>
@@ -154,11 +154,11 @@
 		 <if test="orgcustomerno != null "> <![CDATA[orgcustomerno=#{orgcustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="status != null "> <![CDATA[status=#{status, jdbcType=VARCHAR},]]></if>
 	</set>
-	<![CDATA[ where orgcustomerno = #{orgcustomerno} and customerno = #{customerno}
+	<![CDATA[ where customerno = #{customerno} and orgcustomerno = #{orgcustomerno}
 	]]>
 	</update>
 	<!--员工关注企业信息表employee_organ 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.EmployeeOrganEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.employee_organ
 		<set>
@@ -166,7 +166,7 @@
 		 <if test="item.orgcustomerno != null "><![CDATA[orgcustomerno=#{item.orgcustomerno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.status != null "><![CDATA[status=#{item.status, jdbcType=VARCHAR},]]></if>
 			</set>
-			<![CDATA[ where orgcustomerno = #{item.orgcustomerno} and customerno = #{item.customerno}
+			<![CDATA[ where customerno = #{item.customerno} and orgcustomerno = #{item.orgcustomerno}
 			]]>
 		</foreach>
 	</update>
@@ -175,14 +175,14 @@
 	<![CDATA[
 		delete from cas.employee_organ
 		where
-			orgcustomerno = #{orgcustomerno} and customerno = #{customerno}
+			customerno = #{customerno} and orgcustomerno = #{orgcustomerno}
 	]]>
 	</delete>
 	<!--员工关注企业信息表employee_organ 根据主键批量删除记录  -->
 	<delete id="delEntityKeyBatch" parameterType="com.msjf.finance.cas.common.dao.key.EmployeeOrganKey">
 		delete from cas.employee_organ where
 		<foreach item="item" index="index" collection="list" open="(" close=")" separator="or">
-			<![CDATA[ orgcustomerno = #{item.orgcustomerno} and customerno = #{item.customerno}
+			<![CDATA[ customerno = #{item.customerno} and orgcustomerno = #{item.orgcustomerno}
 			]]>
 		</foreach>
 	</delete>

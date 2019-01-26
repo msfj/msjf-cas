@@ -129,7 +129,7 @@
 	</where>
 	</select>
 	<!--税收补助申请表organ_grant 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
 	<![CDATA[
 		insert into cas.organ_grant(
 			id,granturl,status,insertdate,inserttime,
@@ -140,7 +140,7 @@
 	)]]>
 	</insert>
 	<!--税收补助申请表organ_grant 按批量实体新增记录mysql-->
-	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" databaseId="mysql">
+	<insert id="insEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
 	<![CDATA[
 		insert into cas.organ_grant(
 			id,granturl,status,insertdate,inserttime,
@@ -173,7 +173,7 @@
 	]]>
 	</update>
 	<!--税收补助申请表organ_grant 批量实体更新记录 mysql-->
-	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" databaseId="mysql">
+	<update id="updEntityBatch" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_grant
 		<set>
@@ -207,7 +207,7 @@
 	]]>
 	</update>
 	<!--税收补助申请表organ_grant 批量实体更新记录 mysql-->
-	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity" databaseId="mysql">
+	<update id="updAllowEmptyBatchEntity" parameterType="com.msjf.finance.cas.common.dao.entity.OrganGrantEntity">
 		<foreach item="item" index="index" collection="list" open="" close=";" separator=";">
 			update cas.organ_grant
 		<set>
