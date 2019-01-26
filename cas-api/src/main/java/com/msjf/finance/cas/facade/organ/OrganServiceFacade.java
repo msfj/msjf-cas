@@ -19,13 +19,13 @@ public interface OrganServiceFacade {
      * @param mapParam 入参
      * @return Response 返回结果
      */
-    Response addApplyFirst(HashMap<String, Object> mapParam);
+    Response setAddApplyFirst(HashMap<String, Object> mapParam);
 
     /**
      * 添加拟设立-第二步
      * @param mapParam 入参
      * @return Response 返回结果
      */
-    Response addApplySecond(HashMap<String, Object> mapParam);
+    Response setAddApplySecond(HashMap<String, Object> mapParam);
 
 }

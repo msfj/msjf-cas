@@ -30,7 +30,9 @@
 			corname "corname",
 			corcardtype "corcardtype",
 			corcardno "corcardno",
-			cormob "cormob"
+			cormob "cormob",
+			docking_people "dockingPeople",
+			app_docking_people "appDockingPeople"
 		from cas.cust
 		where 
 			customerno = #{customerno}
@@ -64,7 +66,9 @@
 			corname "corname",
 			corcardtype "corcardtype",
 			corcardno "corcardno",
-			cormob "cormob"
+			cormob "cormob",
+			docking_people "dockingPeople",
+			app_docking_people "appDockingPeople"
 		from cas.cust
 		where 
 			customerno = #{customerno}
@@ -97,7 +101,9 @@
 			corname "corname",
 			corcardtype "corcardtype",
 			corcardno "corcardno",
-			cormob "cormob"
+			cormob "cormob",
+			docking_people "dockingPeople",
+			app_docking_people "appDockingPeople"
 		from cas.cust
 		where 
 			customerno = #{customerno}
@@ -130,7 +136,9 @@
 			corname "corname",
 			corcardtype "corcardtype",
 			corcardno "corcardno",
-			cormob "cormob"
+			cormob "cormob",
+			docking_people "dockingPeople",
+			app_docking_people "appDockingPeople"
 		from cas.cust
 	]]>
 	<where>
@@ -157,6 +165,8 @@
 		<if test="corcardtype != null and corcardtype!= '' "><![CDATA[ and corcardtype=#{corcardtype}]]></if>
 		<if test="corcardno != null and corcardno!= '' "><![CDATA[ and corcardno=#{corcardno}]]></if>
 		<if test="cormob != null and cormob!= '' "><![CDATA[ and cormob=#{cormob}]]></if>
+		<if test="dockingPeople != null and dockingPeople!= '' "><![CDATA[ and docking_people=#{dockingPeople}]]></if>
+		<if test="appDockingPeople != null and appDockingPeople!= '' "><![CDATA[ and app_docking_people=#{appDockingPeople}]]></if>
 	</where>
 	<![CDATA[for update ]]>
 	</select>
@@ -187,7 +197,9 @@
 			corname "corname",
 			corcardtype "corcardtype",
 			corcardno "corcardno",
-			cormob "cormob"
+			cormob "cormob",
+			docking_people "dockingPeople",
+			app_docking_people "appDockingPeople"
 		from cas.cust
 	]]>
 	<where>
@@ -214,6 +226,8 @@
 		<if test="corcardtype != null and corcardtype!= '' "><![CDATA[ and corcardtype=#{corcardtype}]]></if>
 		<if test="corcardno != null and corcardno!= '' "><![CDATA[ and corcardno=#{corcardno}]]></if>
 		<if test="cormob != null and cormob!= '' "><![CDATA[ and cormob=#{cormob}]]></if>
+		<if test="dockingPeople != null and dockingPeople!= '' "><![CDATA[ and docking_people=#{dockingPeople}]]></if>
+		<if test="appDockingPeople != null and appDockingPeople!= '' "><![CDATA[ and app_docking_people=#{appDockingPeople}]]></if>
 	</where>
 	</select>
 	<!--用户基本信息表cust 按实体查询-->
@@ -243,7 +257,9 @@
 			corname "corname",
 			corcardtype "corcardtype",
 			corcardno "corcardno",
-			cormob "cormob"
+			cormob "cormob",
+			docking_people "dockingPeople",
+			app_docking_people "appDockingPeople"
 		from cas.cust
 	]]>
 	<where>
@@ -270,6 +286,8 @@
 		<if test="corcardtype != null and corcardtype!= '' "><![CDATA[ and corcardtype=#{corcardtype}]]></if>
 		<if test="corcardno != null and corcardno!= '' "><![CDATA[ and corcardno=#{corcardno}]]></if>
 		<if test="cormob != null and cormob!= '' "><![CDATA[ and cormob=#{cormob}]]></if>
+		<if test="dockingPeople != null and dockingPeople!= '' "><![CDATA[ and docking_people=#{dockingPeople}]]></if>
+		<if test="appDockingPeople != null and appDockingPeople!= '' "><![CDATA[ and app_docking_people=#{appDockingPeople}]]></if>
 	</where>
 	</select>
 	<!--用户基本信息表cust 按实体新增记录 mysql-->
@@ -280,13 +298,13 @@
 			certificateno,linkmanname,mobile,cardno,bank,
 			companyname,email,status,insertdate,inserttime,
 			updatedate,updatetime,issave,source,corname,
-			corcardtype,corcardno,cormob
+			corcardtype,corcardno,cormob,docking_people,app_docking_people
 		) values(
 			#{customerno, jdbcType=VARCHAR},#{loginname, jdbcType=VARCHAR},#{registersource, jdbcType=VARCHAR},#{membertype, jdbcType=VARCHAR},#{certificatetype, jdbcType=VARCHAR},
 			#{certificateno, jdbcType=VARCHAR},#{linkmanname, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},#{cardno, jdbcType=VARCHAR},#{bank, jdbcType=VARCHAR},
 			#{companyname, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
 			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{issave, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR},#{corname, jdbcType=VARCHAR},
-			#{corcardtype, jdbcType=VARCHAR},#{corcardno, jdbcType=VARCHAR},#{cormob, jdbcType=VARCHAR}
+			#{corcardtype, jdbcType=VARCHAR},#{corcardno, jdbcType=VARCHAR},#{cormob, jdbcType=VARCHAR},#{dockingPeople, jdbcType=VARCHAR},#{appDockingPeople, jdbcType=VARCHAR}
 	)]]>
 	</insert>
 	<!--用户基本信息表cust 按批量实体新增记录mysql-->
@@ -297,7 +315,7 @@
 			certificateno,linkmanname,mobile,cardno,bank,
 			companyname,email,status,insertdate,inserttime,
 			updatedate,updatetime,issave,source,corname,
-			corcardtype,corcardno,cormob
+			corcardtype,corcardno,cormob,docking_people,app_docking_people
 		)
 		values
 	]]>
@@ -307,7 +325,7 @@
 				#{item.certificateno, jdbcType=VARCHAR},#{item.linkmanname, jdbcType=VARCHAR},#{item.mobile, jdbcType=VARCHAR},#{item.cardno, jdbcType=VARCHAR},#{item.bank, jdbcType=VARCHAR},
 				#{item.companyname, jdbcType=VARCHAR},#{item.email, jdbcType=VARCHAR},#{item.status, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},
 				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},#{item.issave, jdbcType=VARCHAR},#{item.source, jdbcType=VARCHAR},#{item.corname, jdbcType=VARCHAR},
-				#{item.corcardtype, jdbcType=VARCHAR},#{item.corcardno, jdbcType=VARCHAR},#{item.cormob, jdbcType=VARCHAR}
+				#{item.corcardtype, jdbcType=VARCHAR},#{item.corcardno, jdbcType=VARCHAR},#{item.cormob, jdbcType=VARCHAR},#{item.dockingPeople, jdbcType=VARCHAR},#{item.appDockingPeople, jdbcType=VARCHAR}
 			)
 		</foreach>
 	</insert>
@@ -340,6 +358,8 @@
 		 <if test="corcardtype != null and corcardtype != '' "><![CDATA[corcardtype=#{corcardtype, jdbcType=VARCHAR},]]></if>
 		 <if test="corcardno != null and corcardno != '' "><![CDATA[corcardno=#{corcardno, jdbcType=VARCHAR},]]></if>
 		 <if test="cormob != null and cormob != '' "><![CDATA[cormob=#{cormob, jdbcType=VARCHAR},]]></if>
+		 <if test="dockingPeople != null and dockingPeople != '' "><![CDATA[docking_people=#{dockingPeople, jdbcType=VARCHAR},]]></if>
+		 <if test="appDockingPeople != null and appDockingPeople != '' "><![CDATA[app_docking_people=#{appDockingPeople, jdbcType=VARCHAR},]]></if>
 	</set>
 	<![CDATA[ where customerno = #{customerno}
 	]]>
@@ -372,6 +392,8 @@
 		 <if test="item.corcardtype != null and item.corcardtype != '' "><![CDATA[corcardtype=#{item.corcardtype, jdbcType=VARCHAR},]]></if>
 		 <if test="item.corcardno != null and item.corcardno != '' "><![CDATA[corcardno=#{item.corcardno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.cormob != null and item.cormob != '' "><![CDATA[cormob=#{item.cormob, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dockingPeople != null and item.dockingPeople != '' "><![CDATA[docking_people=#{item.dockingPeople, jdbcType=VARCHAR},]]></if>
+		 <if test="item.appDockingPeople != null and item.appDockingPeople != '' "><![CDATA[app_docking_people=#{item.appDockingPeople, jdbcType=VARCHAR},]]></if>
 			</set>
 			<![CDATA[ where customerno = #{item.customerno}
 			]]>
@@ -406,6 +428,8 @@
 		 <if test="corcardtype != null "> <![CDATA[corcardtype=#{corcardtype, jdbcType=VARCHAR},]]></if>
 		 <if test="corcardno != null "> <![CDATA[corcardno=#{corcardno, jdbcType=VARCHAR},]]></if>
 		 <if test="cormob != null "> <![CDATA[cormob=#{cormob, jdbcType=VARCHAR},]]></if>
+		 <if test="dockingPeople != null "> <![CDATA[docking_people=#{dockingPeople, jdbcType=VARCHAR},]]></if>
+		 <if test="appDockingPeople != null "> <![CDATA[app_docking_people=#{appDockingPeople, jdbcType=VARCHAR},]]></if>
 	</set>
 	<![CDATA[ where customerno = #{customerno}
 	]]>
@@ -438,6 +462,8 @@
 		 <if test="item.corcardtype != null "><![CDATA[corcardtype=#{item.corcardtype, jdbcType=VARCHAR},]]></if>
 		 <if test="item.corcardno != null "><![CDATA[corcardno=#{item.corcardno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.cormob != null "><![CDATA[cormob=#{item.cormob, jdbcType=VARCHAR},]]></if>
+		 <if test="item.dockingPeople != null "><![CDATA[docking_people=#{item.dockingPeople, jdbcType=VARCHAR},]]></if>
+		 <if test="item.appDockingPeople != null "><![CDATA[app_docking_people=#{item.appDockingPeople, jdbcType=VARCHAR},]]></if>
 			</set>
 			<![CDATA[ where customerno = #{item.customerno}
 			]]>

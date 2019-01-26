@@ -1,7 +1,7 @@
 package com.msjf.finance.cas.common.dao.entity;
 import com.msjf.finance.cas.common.dao.key.CustKey;
 /***
-  *CustEntity
+  *insertCustEntity
   *用户基本信息表
   */
 public class CustEntity extends CustKey {
@@ -49,6 +49,10 @@ public class CustEntity extends CustKey {
 	private String corcardno;
 	/**法人电话号码	**/
 	private String cormob;
+	/**所属招商对接人	**/
+	private String dockingPeople;
+	/**拟变更招商对接人	**/
+	private String appDockingPeople;
 	public void init() {
 	}
 	/**客户代码	**/
@@ -234,5 +238,21 @@ public class CustEntity extends CustKey {
 	/**法人电话号码	**/
 	public void setCormob(String cormob) {
 		this.cormob = cormob;
+	}
+	/**所属招商对接人	**/
+	public String getDockingPeople() {
+		return this.dockingPeople;
+	}
+	/**所属招商对接人	**/
+	public void setDockingPeople(String dockingPeople) {
+		this.dockingPeople = dockingPeople;
+	}
+	/**拟变更招商对接人	**/
+	public String getAppDockingPeople() {
+		return this.appDockingPeople;
+	}
+	/**拟变更招商对接人	**/
+	public void setAppDockingPeople(String appDockingPeople) {
+		this.appDockingPeople = appDockingPeople;
 	}
 }

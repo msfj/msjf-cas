@@ -427,4 +427,62 @@ public class MacroDefine {
     }
 
 
+    /**
+     * 企业设立办理流程 字典120 0-现场 1-半电子 2-全电子
+     */
+    public enum DEAL_FLOW {
+        DEAL_FLOW_0("0", "现场"), DEAL_FLOW_1("1", "半电子"), DEAL_FLOW_2("2", "全电子");
+
+        private String value;
+        private String name;
+
+        DEAL_FLOW(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        /**
+         * 根据值获取名称
+         * @param value
+         * @return
+         */
+        public static String getEnumName(String value) {
+            for (DEAL_FLOW p : DEAL_FLOW.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 检查值是否存在
+         * @param value
+         * @return
+         */
+        public static boolean isExistsEnum(String value) {
+            for (DEAL_FLOW p : DEAL_FLOW.values()) {
+                if (p.value.equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value.toString();
+        }
+
+    }
+
+
 }

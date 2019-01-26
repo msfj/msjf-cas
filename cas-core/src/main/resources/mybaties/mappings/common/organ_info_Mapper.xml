@@ -48,7 +48,9 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime",
-			source "source"
+			source "source",
+			organ_phone "organPhone",
+			organ_email "organEmail"
 		from cas.organ_info
 		where 
 			customerno = #{customerno}
@@ -100,7 +102,9 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime",
-			source "source"
+			source "source",
+			organ_phone "organPhone",
+			organ_email "organEmail"
 		from cas.organ_info
 		where 
 			customerno = #{customerno}
@@ -151,7 +155,9 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime",
-			source "source"
+			source "source",
+			organ_phone "organPhone",
+			organ_email "organEmail"
 		from cas.organ_info
 		where 
 			customerno = #{customerno}
@@ -202,7 +208,9 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime",
-			source "source"
+			source "source",
+			organ_phone "organPhone",
+			organ_email "organEmail"
 		from cas.organ_info
 	]]>
 	<where>
@@ -247,6 +255,8 @@
 		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
 		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
 		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+		<if test="organPhone != null and organPhone!= '' "><![CDATA[ and organ_phone=#{organPhone}]]></if>
+		<if test="organEmail != null and organEmail!= '' "><![CDATA[ and organ_email=#{organEmail}]]></if>
 	</where>
 	<![CDATA[for update ]]>
 	</select>
@@ -295,7 +305,9 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime",
-			source "source"
+			source "source",
+			organ_phone "organPhone",
+			organ_email "organEmail"
 		from cas.organ_info
 	]]>
 	<where>
@@ -340,6 +352,8 @@
 		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
 		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
 		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+		<if test="organPhone != null and organPhone!= '' "><![CDATA[ and organ_phone=#{organPhone}]]></if>
+		<if test="organEmail != null and organEmail!= '' "><![CDATA[ and organ_email=#{organEmail}]]></if>
 	</where>
 	</select>
 	<!--企业基本信息表organ_info 按实体查询-->
@@ -387,7 +401,9 @@
 			inserttime "inserttime",
 			updatedate "updatedate",
 			updatetime "updatetime",
-			source "source"
+			source "source",
+			organ_phone "organPhone",
+			organ_email "organEmail"
 		from cas.organ_info
 	]]>
 	<where>
@@ -432,6 +448,8 @@
 		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
 		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
 		<if test="source != null and source!= '' "><![CDATA[ and source=#{source}]]></if>
+		<if test="organPhone != null and organPhone!= '' "><![CDATA[ and organ_phone=#{organPhone}]]></if>
+		<if test="organEmail != null and organEmail!= '' "><![CDATA[ and organ_email=#{organEmail}]]></if>
 	</where>
 	</select>
 	<!--企业基本信息表organ_info 按实体新增记录 mysql-->
@@ -446,7 +464,7 @@
 			issupervision,sparecontactname,sparecontactmobile,establishdate,companyintro,
 			hanginfo,companymodel,investsource,businessfile,establishfile,
 			modifyfile,insertdate,inserttime,updatedate,updatetime,
-			source
+			source,organ_phone,organ_email
 		) values(
 			#{customerno, jdbcType=VARCHAR},#{version, jdbcType=INTEGER},#{membername, jdbcType=VARCHAR},#{organtype, jdbcType=VARCHAR},#{organclass, jdbcType=VARCHAR},
 			#{organstatus, jdbcType=VARCHAR},#{startcustomerno, jdbcType=VARCHAR},#{servicecustomerno, jdbcType=VARCHAR},#{dealflow, jdbcType=VARCHAR},#{managelimit, jdbcType=VARCHAR},
@@ -456,7 +474,7 @@
 			#{issupervision, jdbcType=VARCHAR},#{sparecontactname, jdbcType=VARCHAR},#{sparecontactmobile, jdbcType=VARCHAR},#{establishdate, jdbcType=VARCHAR},#{companyintro, jdbcType=CLOB},
 			#{hanginfo, jdbcType=VARCHAR},#{companymodel, jdbcType=VARCHAR},#{investsource, jdbcType=VARCHAR},#{businessfile, jdbcType=CLOB},#{establishfile, jdbcType=CLOB},
 			#{modifyfile, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},
-			#{source, jdbcType=VARCHAR}
+			#{source, jdbcType=VARCHAR},#{organPhone, jdbcType=VARCHAR},#{organEmail, jdbcType=VARCHAR}
 	)]]>
 	</insert>
 	<!--企业基本信息表organ_info 按批量实体新增记录mysql-->
@@ -471,7 +489,7 @@
 			issupervision,sparecontactname,sparecontactmobile,establishdate,companyintro,
 			hanginfo,companymodel,investsource,businessfile,establishfile,
 			modifyfile,insertdate,inserttime,updatedate,updatetime,
-			source
+			source,organ_phone,organ_email
 		)
 		values
 	]]>
@@ -485,7 +503,7 @@
 				#{item.issupervision, jdbcType=VARCHAR},#{item.sparecontactname, jdbcType=VARCHAR},#{item.sparecontactmobile, jdbcType=VARCHAR},#{item.establishdate, jdbcType=VARCHAR},#{item.companyintro, jdbcType=CLOB},
 				#{item.hanginfo, jdbcType=VARCHAR},#{item.companymodel, jdbcType=VARCHAR},#{item.investsource, jdbcType=VARCHAR},#{item.businessfile, jdbcType=CLOB},#{item.establishfile, jdbcType=CLOB},
 				#{item.modifyfile, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},
-				#{item.source, jdbcType=VARCHAR}
+				#{item.source, jdbcType=VARCHAR},#{item.organPhone, jdbcType=VARCHAR},#{item.organEmail, jdbcType=VARCHAR}
 			)
 		</foreach>
 	</insert>
@@ -536,6 +554,8 @@
 		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 		 <if test="source != null and source != '' "><![CDATA[source=#{source, jdbcType=VARCHAR},]]></if>
+		 <if test="organPhone != null and organPhone != '' "><![CDATA[organ_phone=#{organPhone, jdbcType=VARCHAR},]]></if>
+		 <if test="organEmail != null and organEmail != '' "><![CDATA[organ_email=#{organEmail, jdbcType=VARCHAR},]]></if>
 	</set>
 	<![CDATA[ where customerno = #{customerno}
 	]]>
@@ -586,6 +606,8 @@
 		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 		 <if test="item.source != null and item.source != '' "><![CDATA[source=#{item.source, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organPhone != null and item.organPhone != '' "><![CDATA[organ_phone=#{item.organPhone, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organEmail != null and item.organEmail != '' "><![CDATA[organ_email=#{item.organEmail, jdbcType=VARCHAR},]]></if>
 			</set>
 			<![CDATA[ where customerno = #{item.customerno}
 			]]>
@@ -638,6 +660,8 @@
 		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
 		 <if test="source != null "> <![CDATA[source=#{source, jdbcType=VARCHAR},]]></if>
+		 <if test="organPhone != null "> <![CDATA[organ_phone=#{organPhone, jdbcType=VARCHAR},]]></if>
+		 <if test="organEmail != null "> <![CDATA[organ_email=#{organEmail, jdbcType=VARCHAR},]]></if>
 	</set>
 	<![CDATA[ where customerno = #{customerno}
 	]]>
@@ -688,6 +712,8 @@
 		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
 		 <if test="item.source != null "><![CDATA[source=#{item.source, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organPhone != null "><![CDATA[organ_phone=#{item.organPhone, jdbcType=VARCHAR},]]></if>
+		 <if test="item.organEmail != null "><![CDATA[organ_email=#{item.organEmail, jdbcType=VARCHAR},]]></if>
 			</set>
 			<![CDATA[ where customerno = #{item.customerno}
 			]]>
