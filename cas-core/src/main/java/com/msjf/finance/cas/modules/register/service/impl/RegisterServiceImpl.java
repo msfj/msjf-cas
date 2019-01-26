@@ -94,7 +94,7 @@ public class RegisterServiceImpl implements RegisterService {
     private String membername;
 
     /**
-     * 证件类型 0-身份证 1-护照 A-营业执照
+     * 证件类型 0-身份证 1-护照 2-港澳通行证或台胞证 A-营业执照
      */
     private String certificatetype;
 
