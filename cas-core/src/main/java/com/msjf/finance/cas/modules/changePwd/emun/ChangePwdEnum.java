@@ -5,6 +5,8 @@ import com.msjf.finance.msjf.core.emun.ResponseService;
 public enum ChangePwdEnum implements ResponseService {
     MSG_PARAM_ERROR("CAS0001", "入参不合法"),
     MSG_USER_NULL("CAS0002", "查询用户信息为空"),
+    MSG_STEP_NULL("CAS0002", "步骤不能为空"),
+    MSG_CERTIFICATENO_NULL("CAS0002", "证件号码不能为空"),
     MSG_USER_EXCEPTION("CAS0003", "获取用户信息异常"),
     TEMPLE_ID_NULL("CAS0004", "模板ID不能为空"),
     MOBILE_NULL("CAS0005", "手机号码不能为空"),
