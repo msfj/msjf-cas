@@ -127,6 +127,9 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
                 return  new Response().fail("0","当前员工信息不存在");
             }
             dao.delEntityKey(key);
+            AusAuthoneKey authoneKey = new AusAuthoneKey();
+            authoneKey.setKey(key.getCustomerno());
+            authoneDao.delEntityKey(authoneKey);
             response.success("1","删除成功","");
         }catch (Exception e){
             e.printStackTrace();

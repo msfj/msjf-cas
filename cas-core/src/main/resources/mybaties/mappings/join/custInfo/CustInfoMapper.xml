@@ -87,7 +87,7 @@
     </select>
 
     <!--用户基本信息表cust 按实体新增记录 mysql-->
-    <insert id="insCust" parameterType="java.util.Map">
+    <insert id="insCustMap" parameterType="java.util.Map">
     <![CDATA[
 		insert into cas.cust(
 			customerno,loginname,registersource,membertype,

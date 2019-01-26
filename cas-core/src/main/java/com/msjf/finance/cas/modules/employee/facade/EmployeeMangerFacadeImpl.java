@@ -68,6 +68,7 @@ public class EmployeeMangerFacadeImpl implements EmployeeMangerFacade{
         map.put("email",employeeDomain.getEmail());
         map.put("pageNum",employeeDomain.getPageNum());
         map.put("pageSize",employeeDomain.getPageSize());
+        map.put("branchid",employeeDomain.getBranchid());
         return employeeMangerService.queryEmployee(map);
     }
 }
