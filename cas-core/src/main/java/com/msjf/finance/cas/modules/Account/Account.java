@@ -65,6 +65,8 @@ public abstract class Account {
     public static final String SMS_CHANGE_MOBILE_TYPE = "3";
     public static final String SMS_SERVICE_LOGIN_TYPE = "4";
 
+    public static final String CERTIFICATETYPE_0="0";
+
     /** 业务类型 服务平台注册 */
     public static final String BUSINESSCODE_0 = "0";
 
@@ -130,6 +132,9 @@ public abstract class Account {
 
     /** 管理平台用户初始密码*/
     public static final String SYS_PARAM_ID_INIT_PASSWORD = "manage_init_password";
+
+    /** 管理平台用户初始密码:q111111*/
+    public static final String SYS_INIT_PASSWORD = "D19592FA1AF0BDF95710D12A20A413C2";
 
     /** 税收测算报送状态 0-未报送 */
     public static final String TAX_SUB_0 = "0";

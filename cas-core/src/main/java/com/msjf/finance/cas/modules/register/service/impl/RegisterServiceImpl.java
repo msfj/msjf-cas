@@ -5,6 +5,9 @@ import com.msjf.finance.cas.common.dao.entity.OrganInfoChangeEntity;
 import com.msjf.finance.cas.common.dao.persistence.CasRegisterInfoDao;
 import com.msjf.finance.cas.common.dao.persistence.CustDao;
 import com.msjf.finance.cas.common.dao.persistence.PersonInfoDao;
+import com.msjf.finance.cas.common.joindao.persistence.CasRegisterInfoJoinDao;
+import com.msjf.finance.cas.common.joindao.persistence.CustJoinDao;
+import com.msjf.finance.cas.common.joindao.persistence.PersonInfoJoinDao;
 import com.msjf.finance.cas.facade.register.domain.RegisterDomain;
 import com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganInfoChangeDao;
@@ -57,6 +60,15 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Resource
     CasRegisterInfoDao casRegisterDao;
+
+    @Resource
+    CasRegisterInfoJoinDao joinDao;
+
+    @Resource
+    PersonInfoJoinDao personInfoJoinDao;
+
+    @Resource
+    CustJoinDao custJoinDao;
 
 
     @Resource
@@ -391,7 +403,7 @@ public class RegisterServiceImpl implements RegisterService {
         try {
             CustEntity c = new CustEntity();
             c.setCertificateno(certificateno);
-            List<CustEntity> clist = custDao.checkCustCertificatenoIsExist(c);
+            List<CustEntity> clist = custJoinDao.checkCustCertificatenoIsExist(c);
             if(!ObjectUtils.isEmpty(clist)){
                 rs.fail("0","证件号码已经使用");//证件号码已经使用
                 return false;
@@ -416,7 +428,7 @@ public class RegisterServiceImpl implements RegisterService {
         }else {
             entity.put("mobile",mobile);
         }
-        List<Map> list = casRegisterDao.queryCasRegisterList(entity);
+        List<Map> list = joinDao.queryCasRegisterList(entity);
         if(ObjectUtils.isEmpty(list)){
             return null;
         }
@@ -431,7 +443,7 @@ public class RegisterServiceImpl implements RegisterService {
         try{
             CustEntity d = new CustEntity();
             d.setLoginname(certificateno);
-            List<CustEntity> dlist =  custDao.queryCustEntityList(d);
+            List<CustEntity> dlist =  custJoinDao.queryCustEntityList(d);
             if(!ObjectUtils.isEmpty(dlist)){
                 return new Response<>().fail("0","证件号码已经使用");//证件号码已经使用
             }
@@ -449,7 +461,7 @@ public class RegisterServiceImpl implements RegisterService {
             CustEntity f = new CustEntity();
             f.setMembertype(membertype);
             f.setMobile(mobile);
-            List<CustEntity> flist = custDao.queryCustEntityList(f);
+            List<CustEntity> flist = custJoinDao.queryCustEntityList(f);
             if(!ObjectUtils.isEmpty(flist)){
                 if (person.equals(membertype) && flist.size() >= init_phone_count_person) {
                     rs.fail("0","手机号已使用");//手机号已使用
@@ -518,7 +530,7 @@ public class RegisterServiceImpl implements RegisterService {
             mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
             mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
             mapParam.put("status","0");
-            custDao.insCustMap(mapParam);
+            custJoinDao.insCustMap(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
             throw  new RuntimeException("注册失败");
@@ -536,7 +548,7 @@ public class RegisterServiceImpl implements RegisterService {
             mapParam.put("inserttime",DateUtils.getUserDate(DATE_FMT_TIME));
             mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATE));
             mapParam.put("updatetime",DateUtils.getUserDate(DATE_FMT_TIME));
-            personInfoDao.insPersonInfo(mapParam);
+            personInfoJoinDao.insPersonInfo(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
             throw  new RuntimeException("注册失败");
@@ -555,7 +567,7 @@ public class RegisterServiceImpl implements RegisterService {
         }else {
             entity.put("mobile",mobile);
         }
-        List<Map> list = casRegisterDao.queryCasRegisterList(entity);
+        List<Map> list = joinDao.queryCasRegisterList(entity);
         return list;
     }
 
@@ -577,7 +589,7 @@ public class RegisterServiceImpl implements RegisterService {
                 entity.put("mobile",mobile);
             }
             entity.put("insertdate",DateUtils.getUserDate(DATE_FMT_DATETIME));
-            casRegisterDao.insCasRegister(entity);
+            joinDao.insCasRegister(entity);
         } catch (Exception e) {
             e.printStackTrace();
             throw  new RuntimeException("注册失败");
@@ -592,7 +604,7 @@ public class RegisterServiceImpl implements RegisterService {
     private void updCasRegisterInfo(Map<String, Object> mapParam){
         try {
             mapParam.put("updatedate",DateUtils.getUserDate(DATE_FMT_DATETIME));
-            casRegisterDao.updCasRegister(mapParam);
+            joinDao.updCasRegister(mapParam);
         } catch (Exception e) {
             e.printStackTrace();
             throw  new RuntimeException("注册失败");

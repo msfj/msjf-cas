@@ -6,6 +6,7 @@ import com.msjf.finance.cas.common.dao.entity.EmployeeEntity;
 import com.msjf.finance.cas.common.dao.key.BranchKey;
 import com.msjf.finance.cas.common.dao.persistence.BranchDao;
 import com.msjf.finance.cas.common.dao.persistence.EmployeeDao;
+import com.msjf.finance.cas.common.joindao.persistence.BranchJoinDao;
 import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.modules.branch.service.BranchService;
 import com.msjf.finance.msjf.core.response.Response;
@@ -33,6 +34,9 @@ public class BranchServiceImpl implements BranchService {
 
     @Resource
     EmployeeDao employeeInfoDao;
+
+    @Resource
+    BranchJoinDao branchJoinDao;
 
     @Override
     public Response insBranchInfo(BranchEntity branchEntity) throws RuntimeException{
@@ -94,16 +98,25 @@ public class BranchServiceImpl implements BranchService {
     @Override
     public Response updBranchInfo(BranchEntity branchEntity) throws RuntimeException{
         Response re = new Response();
+        if(ObjectUtils.isEmpty(branchEntity.getBranchname())){
+            return new Response().fail("0","部门名称不能为空");
+        }
         try {
-            BranchEntity b =new BranchEntity();
-            b.setBranchid(branchEntity.getBranchid());
-            List<BranchEntity> list = branchDao.getListEntity(b);
+            BranchEntity a =new BranchEntity();
+            a.setBranchname(branchEntity.getBranchname());
+            List<BranchEntity> namelist = branchDao.getListEntity(a);
             Integer i = 0;
-            if(ObjectUtils.isEmpty(list)){
+            if(ObjectUtils.isEmpty(branchEntity.getBranchid())){
+                if(!ObjectUtils.isEmpty(namelist)){
+                    return new Response().fail("0","当前部门名称已存在");
+                }
                 branchEntity.setBranchid(StringUtil.getUUID());
                 branchEntity.setBranchtype(BRANCH_TYPE_BM);
                 i= branchDao.insEntity(branchEntity);
             }else{
+                if(!ObjectUtils.isEmpty(namelist)&&!namelist.get(0).getBranchid().equals(branchEntity.getBranchid())){
+                    return new Response().fail("0","当前部门名称已存在");
+                }
                 i=branchDao.updEntity(branchEntity);
             }
             re.success("1","操作成功",i);
@@ -119,7 +132,7 @@ public class BranchServiceImpl implements BranchService {
     public Response queryBranch(Map<String, Object> mapParams) throws RuntimeException{
         Response re = new Response();
         try {
-            List<BranchEntity> list = branchDao.queryBranch(mapParams);
+            List<BranchEntity> list = branchJoinDao.queryBranch(mapParams);
             re.success("1","操作成功",list);
         }catch (Exception e){
             e.printStackTrace();
