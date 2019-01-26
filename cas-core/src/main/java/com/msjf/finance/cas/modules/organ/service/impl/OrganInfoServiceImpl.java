@@ -1,10 +1,13 @@
 package com.msjf.finance.cas.modules.organ.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.common.joindao.persistence.AccountJoinDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
 import com.msjf.finance.cas.modules.organ.service.OrganInfoService;
+import com.msjf.finance.msjf.core.page.Page;
+import com.msjf.finance.msjf.core.page.PageUtils;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Scope;
@@ -17,6 +20,7 @@ import java.util.List;
 
 /**
  * Created by 11509 on 2018/12/18.
+ * 分页案例
  */
 @Service("organInfoService")
 @Scope("prototype")
@@ -25,11 +29,10 @@ public class OrganInfoServiceImpl implements OrganInfoService {
     OrganInfoDao organInfoDao;
     @Resource
     AccountJoinDao accountJoinDao;
-    private String customerno;
-
     @Override
-    public List queryOrganInfoList() {
+    public Page<OrganInfoDomain>  queryOrganInfoList(OrganInfoDomain organInfoRequest) {
         try {
+            PageHelper.startPage(organInfoRequest.getPageNum(),organInfoRequest.getPageSize());  //TODO 设置分页
             List<OrganInfoEntity> organInfoEntityList = organInfoDao.getListEntity(new OrganInfoEntity());
             List<OrganInfoDomain> organInfoDomainList = new ArrayList();
             organInfoEntityList.stream().forEach(organInfoEntity -> {
@@ -37,7 +40,8 @@ public class OrganInfoServiceImpl implements OrganInfoService {
                 BeanUtils.copyProperties(organInfoEntity, organInfoDomain);
                 organInfoDomainList.add(organInfoDomain);
             });
-            return organInfoDomainList;
+            Page<OrganInfoDomain> organInfoEntityPage = PageUtils.toPage(organInfoDomainList, (OrganInfoDomain organInfoDomain) -> organInfoDomain); //TODO 分页转换
+            return organInfoEntityPage;
         } catch (Exception e) {
             //打印错误日志
             e.printStackTrace();

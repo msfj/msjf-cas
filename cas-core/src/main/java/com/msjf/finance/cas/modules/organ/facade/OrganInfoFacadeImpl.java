@@ -4,6 +4,7 @@ import com.msjf.finance.cas.facade.organ.OrganInfoFacade;
 import com.msjf.finance.cas.facade.organ.domain.OrganInfoDomain;
 import com.msjf.finance.cas.modules.organ.emun.OrganInfoEmun;
 import com.msjf.finance.cas.modules.organ.service.OrganInfoService;
+import com.msjf.finance.msjf.core.page.Page;
 import com.msjf.finance.msjf.core.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,14 +28,14 @@ public class OrganInfoFacadeImpl implements OrganInfoFacade {
     OrganInfoService organInfoService;
 
     @Override
-    public Response<List<OrganInfoDomain>> queryOrganInfoList(OrganInfoDomain organInfoDomain) {
+    public Response<Page<OrganInfoDomain>> queryOrganInfoList(OrganInfoDomain  organInfoDomain) {
         logger.info("开始查询机构信息 organInfoDomain={}", organInfoDomain);
         try {
             if (ObjectUtils.isEmpty(organInfoDomain)) {
                 logger.warn("入参不能为空 organInfoDomain={}", organInfoDomain);
                 return new Response<>().fail(OrganInfoEmun.MSG_PARAM_ERROR);
             }
-            List<OrganInfoDomain> organInfoDomainList = organInfoService.queryOrganInfoList();
+            Page<OrganInfoDomain> organInfoDomainList = organInfoService.queryOrganInfoList(organInfoDomain);
             logger.warn("查询机构信息成功 organInfoDomain={}，organInfoDomainList={}", organInfoDomain, organInfoDomainList);
             return new Response<>().success(organInfoDomainList);
         } catch (Exception e) {
