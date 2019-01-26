@@ -8,6 +8,24 @@ import com.msjf.finance.msjf.core.domian.BaseDomain;
 public class EchoMobileDomain extends BaseDomain {
     private String mobile;
     private String certificateno;
+    private String seqNum;
+    private String activeSeconds;
+
+    public String getSeqNum() {
+        return seqNum;
+    }
+
+    public void setSeqNum(String seqNum) {
+        this.seqNum = seqNum;
+    }
+
+    public String getActiveSeconds() {
+        return activeSeconds;
+    }
+
+    public void setActiveSeconds(String activeSeconds) {
+        this.activeSeconds = activeSeconds;
+    }
 
     public String getMobile() {
         return mobile;
