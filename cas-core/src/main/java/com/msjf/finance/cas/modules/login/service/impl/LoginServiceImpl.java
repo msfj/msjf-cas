@@ -6,13 +6,13 @@ import com.msjf.finance.cas.common.dao.key.OrganAppendKey;
 import com.msjf.finance.cas.common.dao.key.PersonInfoKey;
 import com.msjf.finance.cas.common.dao.persistence.CustDao;
 import com.msjf.finance.cas.common.dao.persistence.PersonInfoDao;
+import com.msjf.finance.cas.common.joindao.persistence.AccountJoinDao;
 import com.msjf.finance.cas.common.joindao.persistence.CustJoinDao;
 import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.facade.login.domain.LoginDomain;
 import com.msjf.finance.cas.modules.Account.Account;
-import com.msjf.finance.cas.modules.Account.AccountDao;
 import com.msjf.finance.cas.common.dao.persistence.AusAuthoneDao;
 import com.msjf.finance.cas.modules.login.emun.LoginEnum;
 import com.msjf.finance.cas.common.dao.persistence.OrganAppendDao;
@@ -89,8 +89,9 @@ public class LoginServiceImpl extends Account implements LoginService {
     OrganInfoDao organInfoDao;
     @Resource
     OrganAppendDao organAppendDao;
+
     @Resource
-    AccountDao accountDao;
+    AccountJoinDao accountDao;
 
     @Resource
     CustJoinDao custJoinDao;
