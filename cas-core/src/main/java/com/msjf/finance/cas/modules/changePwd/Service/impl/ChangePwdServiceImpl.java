@@ -126,7 +126,9 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
             echoMobileDomain.setMobile(mobile);
             return rs.success(ChangePwdEnum.QUERY_SUCCESS,echoMobileDomain);
         }else {
-            return rs.success(ChangePwdEnum.SMS_SEND_ERROR);
+            rs.fail();
+            rs.setMsg(mcsRs.getMsg());
+            return rs;
         }
     }
 }
