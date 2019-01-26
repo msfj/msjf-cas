@@ -6,6 +6,7 @@ import com.msjf.finance.cas.common.dao.key.OrganAppendKey;
 import com.msjf.finance.cas.common.dao.key.PersonInfoKey;
 import com.msjf.finance.cas.common.dao.persistence.CustDao;
 import com.msjf.finance.cas.common.dao.persistence.PersonInfoDao;
+import com.msjf.finance.cas.common.joindao.persistence.CustJoinDao;
 import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.cas.common.utils.StringUtil;
@@ -90,6 +91,10 @@ public class LoginServiceImpl extends Account implements LoginService {
     OrganAppendDao organAppendDao;
     @Resource
     AccountDao accountDao;
+
+    @Resource
+    CustJoinDao custJoinDao;
+
     @Resource
     SpringContextUtil springContextUtil;
     /**
@@ -118,11 +123,11 @@ public class LoginServiceImpl extends Account implements LoginService {
             mobile=loginName;
             entity.setMobile(mobile);
             entity.setMembertype(person);
-            entitys = custDao.queryCustEntityList(entity);
+            entitys = custJoinDao.queryCustEntityList(entity);
         }else{
             certificateno=loginName;
             entity.setCertificateno(certificateno);
-            entitys = custDao.queryCustEntityList(entity);
+            entitys = custJoinDao.queryCustEntityList(entity);
         }
         if (ObjectUtils.isEmpty(entitys)) {
             return rs.fail(LoginEnum.MSG_USER_NULL);
@@ -240,7 +245,7 @@ public class LoginServiceImpl extends Account implements LoginService {
         CustEntity entity = new CustEntity();
         entity.setCertificateno(certificateno);
         entity.setMembertype(company);
-        List<CustEntity> custEntityList = custDao.queryCustEntityList(entity);
+        List<CustEntity> custEntityList = custJoinDao.queryCustEntityList(entity);
         if(ObjectUtils.isEmpty(custEntityList)){
             return rs.fail(LoginEnum.MSG_USER_NULL);
         }
@@ -397,7 +402,7 @@ public class LoginServiceImpl extends Account implements LoginService {
                 c.setStatus(MacroDefine.CUST_STATUS.LOCK.getValue());
                 c.setUpdatedate(DateUtils.getUserDate(CommonUtil.DATE_FMT_DATE));
                 c.setUpdatetime(DateUtils.getUserDate(CommonUtil.DATE_FMT_TIME));
-                custDao.update(c);
+                custJoinDao.update(c);
             } else {
                 ausAuthoneEntity.setFailcount(failCount + 1);
             }

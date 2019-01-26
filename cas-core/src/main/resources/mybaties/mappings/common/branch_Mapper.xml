@@ -156,7 +156,7 @@
 	</where>
 	</select>
 	<!--分支表branch 按实体新增记录 mysql-->
-	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" databaseId="mysql">
+	<insert id="insEntity" parameterType="com.msjf.finance.cas.common.dao.entity.BranchEntity" >
 	<![CDATA[
 		insert into cas.branch(
 			branchid,branchname,parentid,branchtype,province,

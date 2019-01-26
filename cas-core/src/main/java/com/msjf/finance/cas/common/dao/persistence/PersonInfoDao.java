@@ -12,18 +12,5 @@ import java.util.Map;
  */
 @MyBatisDao
 public interface PersonInfoDao extends IBaseDao<PersonInfoEntity,PersonInfoKey> {
-    /**
-     * 写企业基本信息表
-     */
-    void insPersonInfo(Map<String, Object> mapParams);
-    /**
-     * 查询实体
-     */
-    PersonInfoEntity selectByKey(PersonInfoKey personInfoKey);
 
-    /**
-     * 查询个人基本信息
-     * @return
-     */
-    List queryPersonInfoList();
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.msjf.finance.cas.common.dao.persistence.EmployeeMapper">
+<mapper namespace="com.msjf.finance.cas.common.joindao.persistence.EmployeeJoinDao">
   <resultMap id="BaseResultMap" type="com.msjf.finance.cas.common.dao.entity.EmployeeEntity">
     <id column="customerno" jdbcType="VARCHAR" property="customerno" />
     <result column="employeename" jdbcType="VARCHAR" property="employeename" />
@@ -248,4 +248,48 @@
       <if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
     </where>
   </select>
+
+  <!--员工基本信息表employee 按map查询-->
+  <select id="selectByMap" parameterType="java.util.Map"
+          resultType="com.msjf.finance.cas.common.dao.entity.EmployeeEntity">
+    <![CDATA[
+		select
+			customerno "customerno",
+			employeename "employeename",
+			loginname "loginname",
+			branchid "branchid",
+			certificatetype "certificatetype",
+			certificateno "certificateno",
+			mobile "mobile",
+			email "email",
+			status "status",
+			province "province",
+			city "city",
+			county "county",
+			insertdate "insertdate",
+			inserttime "inserttime",
+			updatedate "updatedate",
+			updatetime "updatetime"
+		from cas.employee
+	]]>
+    <where>
+      <if test="customerno != null and customerno!= '' "><![CDATA[ and customerno=#{customerno}]]></if>
+      <if test="employeename != null and employeename!= '' "><![CDATA[ and employeename like concat(concat('%', #{employeename}),'%')]]></if>
+      <if test="loginname != null and loginname!= '' "><![CDATA[ and loginname like concat(concat('%', #{loginname}),'%')]]></if>
+      <if test="branchid != null and branchid!= '' "><![CDATA[ and branchid=#{branchid}]]></if>
+      <if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
+      <if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno like concat(concat('%', #{certificateno}),'%')]]></if>
+      <if test="mobile != null and mobile!= '' "><![CDATA[ and mobile like concat(concat('%', #{mobile}),'%')]]></if>
+      <if test="email != null and email!= '' "><![CDATA[ and email like concat(concat('%', #{email}),'%')]]></if>
+      <if test="status != null and status!= '' "><![CDATA[ and status=#{status}]]></if>
+      <if test="province != null and province!= '' "><![CDATA[ and province=#{province}]]></if>
+      <if test="city != null and city!= '' "><![CDATA[ and city=#{city}]]></if>
+      <if test="county != null and county!= '' "><![CDATA[ and county=#{county}]]></if>
+      <if test="insertdate != null and insertdate!= '' "><![CDATA[ and insertdate=#{insertdate}]]></if>
+      <if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
+      <if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
+      <if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+    </where>
+  </select>
+
 </mapper>

@@ -2,6 +2,7 @@ package com.msjf.finance.cas.modules.changePwd.Service.impl;
 import com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity;
 import com.msjf.finance.cas.common.dao.entity.CustEntity;
 import com.msjf.finance.cas.common.dao.persistence.CustDao;
+import com.msjf.finance.cas.common.joindao.persistence.CustJoinDao;
 import com.msjf.finance.cas.facade.changePwd.domain.ChangePwdDomain;
 import com.msjf.finance.cas.facade.changePwd.domain.EchoMobileDomain;
 import com.msjf.finance.cas.facade.changePwd.domain.RequestChangePwdDomain;
@@ -29,6 +30,8 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
     CustDao custDao;
     @Resource
     AusAuthoneDao ausAuthoneDao;
+    @Resource
+    CustJoinDao custJoinDao;
 
     private String mobile;
 
@@ -52,7 +55,7 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         }
         CustEntity custEntity=new CustEntity();
         custEntity.setCertificateno(certificateno);
-        List<CustEntity> custEntityList= custDao.queryCustEntityList(custEntity);
+        List<CustEntity> custEntityList= custJoinDao.queryCustEntityList(custEntity);
         if(ObjectUtils.isEmpty(custEntityList)){
             return rs.fail(ChangePwdEnum.MSG_USER_NULL);
         }
@@ -106,7 +109,7 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         }
         CustEntity custEntity=new CustEntity();
         custEntity.setCertificateno(certificateno);
-        List<CustEntity> custEntityList= custDao.queryCustEntityList(custEntity);
+        List<CustEntity> custEntityList= custJoinDao.queryCustEntityList(custEntity);
         if(ObjectUtils.isEmpty(custEntityList)){
             return rs.fail(ChangePwdEnum.MSG_USER_NULL);
         }
