@@ -83,8 +83,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
     /**
      * 新增修改标记（默认新增）
      */
-    private boolean isInsert = Boolean.TRUE;
-
+    private boolean isUpdate;
 
     @Resource
     private CustDao custDao;
@@ -102,7 +101,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
      * @param mapParam 入参
      * @param rs       返回结果
      */
-    @Transactional(timeout = 30)
+    @Transactional//(timeout = 30)
     @Override
     public void addApplyFirst(HashMap<String, Object> mapParam, Response rs) {
         rs.fail("cas", "操作失败");
@@ -116,15 +115,16 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
      * @param mapParam 入参
      */
     private void getParam(HashMap<String, Object> mapParam) {
-        customerNo = StringUtil.valueOf(mapParam.get("customerNo"));
-        orgCustomerNo = StringUtil.valueOf(mapParam.get("orgCustomerNo"));
-        realProvince = StringUtil.valueOf(mapParam.get("realProvince"));
-        realCity = StringUtil.valueOf(mapParam.get("realCity"));
-        realCounty = StringUtil.valueOf(mapParam.get("realCounty"));
-        realTreet = StringUtil.valueOf(mapParam.get("realTreet"));
-        memberName = StringUtil.valueOf(mapParam.get("memberName"));
-        organType = StringUtil.valueOf(mapParam.get("organType"));
-        organClass = StringUtil.valueOf(mapParam.get("organClass"));
+        customerNo = StringUtil.valueOf(mapParam.get("customerno"));
+        orgCustomerNo = StringUtil.valueOf(mapParam.get("orgcustomerno"));
+        realProvince = StringUtil.valueOf(mapParam.get("realprovince"));
+        realCity = StringUtil.valueOf(mapParam.get("realcity"));
+        realCounty = StringUtil.valueOf(mapParam.get("realcounty"));
+        realTreet = StringUtil.valueOf(mapParam.get("realtreet"));
+        memberName = StringUtil.valueOf(mapParam.get("membername"));
+        organType = StringUtil.valueOf(mapParam.get("organtype"));
+        organClass = StringUtil.valueOf(mapParam.get("organclass"));
+        isUpdate = Boolean.FALSE;
     }
 
     /**
@@ -174,15 +174,16 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
         if (CheckUtil.isNull(orgCustomerNo)) {
             //生成企业ID
             orgCustomerNo = String.valueOf(IDUtils.genItemId());
-            isInsert = Boolean.FALSE;
+        } else {
+            isUpdate = Boolean.TRUE;
         }
         //4-如果为修改则检查企业信息是否存在
-        if (isInsert) {
+        if (isUpdate) {
             OrganInfoKey organInfoKey = new OrganInfoKey();
             organInfoKey.setKey(orgCustomerNo);
             OrganInfoEntity organInfoEntity = organInfoDao.getEntityKey(organInfoKey);
-            if(CheckUtil.isNull(organInfoEntity)){
-                rs.fail("cas","企业基本信息不存在");
+            if (CheckUtil.isNull(organInfoEntity)) {
+                rs.fail("cas", "企业基本信息不存在");
                 return false;
             }
         }
@@ -198,7 +199,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
         //3-写企业业务流程信息表
         addFlow(rs);
         //4-返回新增信息
-        HashMap<String,Object> map = new HashMap(4);
+        HashMap<String, Object> map = new HashMap(4);
         map.put("orgCustomerNo", orgCustomerNo);
         map.put("organType", organType);
         map.put("organClass", organClass);
@@ -215,6 +216,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
     private void addOrganInfo(Response rs) {
         try {
             OrganInfoEntity organInfoEntity = new OrganInfoEntity();
+            organInfoEntity.setVersion(INIT_VERSION);
             organInfoEntity.setCustomerno(orgCustomerNo);
             organInfoEntity.setStartcustomerno(customerNo);
             organInfoEntity.setRealprovince(realProvince);
@@ -230,14 +232,14 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
             organInfoEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
             organInfoEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
             organInfoEntity.setUpdatetime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
-            if(isInsert){
-                organInfoDao.insEntity(organInfoEntity);
-            }else {
-                organInfoDao.updEntity(organInfoEntity);
+
+            Integer row = isUpdate ? organInfoDao.updEntity(organInfoEntity) : organInfoDao.insEntity(organInfoEntity);
+            if (row != 1) {
+                throw new RuntimeException("organ_info操作失败");
             }
         } catch (Exception e) {
             rs.fail("cas", "organ_info表写失败");
-            logger.error("cas", "organ_info表写失败",e);
+            logger.error("cas", "organ_info表写失败", e);
             throw new RuntimeException("organ_info表写失败", e);
         }
     }
@@ -258,14 +260,14 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
             custEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
             custEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
             custEntity.setUpdatetime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
-            if(isInsert){
-                custDao.insEntity(custEntity);
-            }else {
-                custDao.updEntity(custEntity);
+
+            Integer row = isUpdate ? custDao.updEntity(custEntity) : custDao.insEntity(custEntity);
+            if (row != 1) {
+                throw new RuntimeException("cif_cust操作失败");
             }
         } catch (Exception e) {
             rs.fail("cas", "cif_cust表写失败");
-            logger.error("cas", "cif_cust表写失败",e);
+            logger.error("cas", "cif_cust表写失败", e);
             throw new RuntimeException("cif_cust表写失败", e);
         }
     }
@@ -287,14 +289,15 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
             cifOrganFlowEntity.setInserttime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
             cifOrganFlowEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
             cifOrganFlowEntity.setUpdatetime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
-            if(isInsert){
-                organFlowDao.insEntity(cifOrganFlowEntity);
-            }else {
-                organFlowDao.updEntity(cifOrganFlowEntity);
+
+            Integer row = isUpdate ? organFlowDao.updEntity(cifOrganFlowEntity) : organFlowDao.insEntity
+                    (cifOrganFlowEntity);
+            if (row != 1) {
+                throw new RuntimeException("cif_cust操作失败");
             }
         } catch (Exception e) {
             rs.fail("cas", "cif_organ_flow表写失败");
-            logger.error("cas", "cif_organ_flow表写失败",e);
+            logger.error("cas", "cif_organ_flow表写失败", e);
             throw new RuntimeException("cif_organ_flow表写失败", e);
         }
     }
