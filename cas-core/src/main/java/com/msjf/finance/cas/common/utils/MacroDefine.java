@@ -235,9 +235,9 @@ public class MacroDefine {
             return this.value;
         }
 
-        public static String getAcctStatusName(String statusCode) {
+        public static String getAcctStatusName(String value) {
             for (CUST_STATUS p : CUST_STATUS.values()) {
-                if (p.value.equals(statusCode)) {
+                if (p.value.equals(value)) {
                     return p.name;
                 }
             }
@@ -249,7 +249,8 @@ public class MacroDefine {
      * 流程类型 字典118 0-企业预核名 1-企业设立 2-企业变更 3-企业注销 4-企业迁入
      */
     public enum FLOW_TYPE {
-        NAME("0", "拟申请企业设立"), BUILD("1", "企业设立"), MODIFY("2", "企业变更"), CANCLE("3", "企业注销"), IN("4", "企业迁入");
+        FLOW_TYPE_0("0", "拟申请企业设立"), FLOW_TYPE_1("1", "企业设立"), FLOW_TYPE_2("2", "企业变更"), FLOW_TYPE_3("3", "企业注销"),
+        FLOW_TYPE_4("4", "企业迁入");
 
         private String value;
 
@@ -281,9 +282,143 @@ public class MacroDefine {
             return this.value;
         }
 
-        public static String getAcctStatusName(String statusCode) {
+        public static String getAcctStatusName(String value) {
             for (FLOW_TYPE p : FLOW_TYPE.values()) {
-                if (p.value.equals(statusCode)) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+    }
+
+
+    /**
+     * 企业状态 字典 106 0-企业设立中 1-企业已注册 2-企业已注销
+     */
+    public enum ORGAN_STATUS {
+        ORGAN_STATUS_0("0", "企业设立中"), ORGAN_STATUS_1("1", "企业已注册"), ORGAN_STATUS_2("2", "企业已注销");
+        private String value;
+
+        private String name;
+
+        ORGAN_STATUS(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        public static String getAcctStatusName(String value) {
+            for (ORGAN_STATUS p : ORGAN_STATUS.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+    }
+
+    /**
+     * 用户类型 字典 102 0-个人 1-企业
+     */
+    public enum MEMBER_TYPE {
+        MEMBER_TYPE_0("0", "个人"), MEMBER_TYPE_1("1", "企业");
+        private String value;
+
+        private String name;
+
+        MEMBER_TYPE(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        public static String getAcctStatusName(String value) {
+            for (MEMBER_TYPE p : MEMBER_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+    }
+
+    /**
+     * 是否申请退回 0否 1是
+     */
+    public enum IS_RETURN {
+        IS_RETURN_0("0", "否"), IS_RETURN_1("1", "是");
+        private String value;
+
+        private String name;
+
+        IS_RETURN(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        /**
+         * 根据值获取名称
+         *
+         * @param value 值
+         * @return 名称
+         */
+        public static String getAcctStatusName(String value) {
+            for (IS_RETURN p : IS_RETURN.values()) {
+                if (p.value.equals(value)) {
                     return p.name;
                 }
             }
