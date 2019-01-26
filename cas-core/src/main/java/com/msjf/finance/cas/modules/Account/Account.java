@@ -1,12 +1,16 @@
 package com.msjf.finance.cas.modules.Account;
 
+import com.msjf.finance.cas.modules.IApp;
+import com.msjf.finance.msjf.core.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.HashMap;
 
 /**
  * Created by lzp on 2018/12/27.
  */
-public abstract class Account {
+public abstract class Account implements IApp {
     /**
      * 日志记录类
      */
@@ -215,4 +219,76 @@ public abstract class Account {
 
     /** 员工持股平台类   */
     public static final String ORGCLASS_TYPE_6  = "6";
+
+    /**
+     * 入参检查
+     *
+     * @param mapParam 入参
+     * @param rs       结果集
+     * @return false 失败 true 成功
+     */
+    @Override
+    public boolean preCheck(HashMap<String, Object> mapParam, Response rs) {
+        return true;
+    }
+
+    /**
+     * 缓存数据
+     *
+     * @param mapParam 入参
+     * @param rs       结果集
+     * @return false 失败 true 成功
+     */
+    @Override
+    public boolean cache(HashMap<String, Object> mapParam, Response rs) {
+        return true;
+    }
+
+    /**
+     * 业务参数检查
+     *
+     * @param mapParam 入参
+     * @param rs       结果集
+     * @return false 失败 true 成功
+     */
+    @Override
+    public boolean check(HashMap<String, Object> mapParam, Response rs) {
+        return true;
+    }
+
+    /**
+     * 业务处理前操作
+     *
+     * @param mapParam 入参
+     * @param rs       结果集
+     * @return false 失败 true 成功
+     */
+    @Override
+    public boolean before(HashMap<String, Object> mapParam, Response rs) {
+        return true;
+    }
+
+    /**
+     * 业务处理
+     *
+     * @param mapParam 入参
+     * @param rs       结果集
+     * @return false 失败 true 成功
+     */
+    @Override
+    public boolean clear(HashMap<String, Object> mapParam, Response rs) {
+        return true;
+    }
+
+    /**
+     * 业务处理后操作
+     *
+     * @param mapParam 入参
+     * @param rs       结果集
+     * @return false 失败 true 成功
+     */
+    @Override
+    public boolean after(HashMap<String, Object> mapParam, Response rs) {
+        return true;
+    }
 }
