@@ -4,7 +4,7 @@ package com.msjf.finance.cas.modules.util;
 import com.msjf.finance.cas.common.dao.key.SysParamsConfigKey;
 import com.msjf.finance.cas.common.dao.persistence.SysDictDao;
 import com.msjf.finance.cas.common.dao.persistence.SysParamsConfigDao;
-import com.msjf.finance.cas.modules.Account.AccountDao;
+import com.msjf.finance.cas.common.joindao.persistence.AccountJoinDao;
 import com.msjf.finance.cas.common.dao.entity.SysParamsConfigEntity;
 import com.msjf.finance.cas.common.dao.entity.SysDictEntity;
 import com.msjf.finance.cas.common.dao.key.SysDictKey;
@@ -516,8 +516,8 @@ public final class CommonUtil {
             sysDictKeyList.add(sysEntity);
         }
         try {
-            AccountDao accountDao=SpringContextUtil.getBean("accountDao");
-            List<SysDictEntity> ls = accountDao.selectSysdictlistByKey(sysDictKeyList);
+            AccountJoinDao accountJoinDao =SpringContextUtil.getBean("accountDao");
+            List<SysDictEntity> ls = accountJoinDao.selectSysdictlistByKey(sysDictKeyList);
             StringBuffer sb = new StringBuffer();
             int i = 1;
             for (SysDictEntity en : ls) {

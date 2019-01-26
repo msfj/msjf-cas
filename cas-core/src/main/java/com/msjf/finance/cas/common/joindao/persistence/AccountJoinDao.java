@@ -1,4 +1,4 @@
-package com.msjf.finance.cas.modules.Account;
+package com.msjf.finance.cas.common.joindao.persistence;
 
 
 import com.msjf.finance.cas.common.dao.entity.SysDictEntity;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @MyBatisDao
-public interface AccountDao {
+public interface AccountJoinDao {
 
     List selectOrganInfoByMobile(HashMap map);
 

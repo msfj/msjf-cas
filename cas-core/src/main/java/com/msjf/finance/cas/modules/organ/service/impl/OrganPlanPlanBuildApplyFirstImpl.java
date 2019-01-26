@@ -3,6 +3,7 @@ package com.msjf.finance.cas.modules.organ.service.impl;
 import com.msjf.finance.cas.common.dao.entity.CustEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganFlowEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
+import com.msjf.finance.cas.common.dao.key.OrganInfoKey;
 import com.msjf.finance.cas.common.dao.persistence.CustDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganFlowDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
@@ -10,6 +11,7 @@ import com.msjf.finance.cas.common.utils.CheckUtil;
 import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.IDUtils;
 import com.msjf.finance.cas.common.utils.MacroDefine;
+import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.modules.organ.service.BaseService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
@@ -21,13 +23,13 @@ import java.util.List;
 /**
  * <pre>
  * 描述:
- *    服务平台拟设立新增申请第一步
+ *    服务平台拟设立新增申请第一步(新增+修改)
  *  <pre/>
  * @author 95494
  * @create 2019-01-22 8:37
  */
 @Service
-public class OrganPlanPlanBuildApplyFirstImpl extends BaseService  {
+public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
 
 
     /**
@@ -75,8 +77,15 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService  {
      */
     private String organclass;
 
-    /** 版本号 由1开始累加  ++*/
+    /**
+     * 版本号 由1开始累加  ++
+     */
     private static final int INIT_VERSION = 1;
+
+    /**
+     * 新增修改标记（默认新增）
+     */
+    private boolean isInsert = Boolean.TRUE;
 
 
     @Resource
@@ -97,59 +106,96 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService  {
      */
     @Override
     public void addApplyFirst(HashMap<String, Object> mapParam, Response rs) {
+        rs.fail("cas", "操作失败");
+        getParam(mapParam, rs);
+        doSingleService(mapParam, rs);
+    }
 
-        String customerNo = String.valueOf(mapParam.get("customerno"));
-        membername = String.valueOf(mapParam.get("membername"));
-        organtype = String.valueOf(mapParam.get("organtype"));
-        organclass = String.valueOf(mapParam.get("organclass"));
+    /**
+     * 获取入参
+     *
+     * @param mapParam
+     * @param rs
+     */
+    private void getParam(HashMap<String, Object> mapParam, Response rs) {
+        customerno = StringUtil.valueOf(mapParam.get("customerno"));
+        customerno = StringUtil.valueOf(mapParam.get("customerno"));
+        membername = StringUtil.valueOf(mapParam.get("membername"));
+        organtype = StringUtil.valueOf(mapParam.get("organtype"));
+        organclass = StringUtil.valueOf(mapParam.get("organclass"));
+    }
 
-        //检查发起人账户信息不存在
-        CustEntity custEntity = new CustEntity();
-        custEntity.setCustomerno(customerNo);
-        List<CustEntity> custEntityList = custDao.getListEntity(custEntity);
-        if (CheckUtil.isNull(custEntityList)) {
-            rs.fail("cas", "发起人账户信息不存在");
-            return;
-        }
+    /**
+     * 入参检查
+     *
+     * @param mapParam
+     * @param rs
+     * @return
+     */
+    @Override
+    public boolean preCheck(HashMap<String, Object> mapParam, Response rs) {
         if (CheckUtil.isNull(membername)) {
             rs.fail("cas", "企业名称为空");
-            return;
+            return false;
         }
         if (CheckUtil.isNull(organtype)) {
             rs.fail("cas", "企业类型为空");
-            return;
+            return false;
         }
         if (CheckUtil.isNull(organclass)) {
             rs.fail("cas", "企业分类为空");
-            return;
+            return false;
+        }
+        return super.preCheck(mapParam, rs);
+    }
+
+    @Override
+    public boolean check(HashMap<String, Object> mapParam, Response rs) {
+        //1-检查发起人账户信息不存在
+        CustEntity custEntity = new CustEntity();
+        custEntity.setCustomerno(customerno);
+        List<CustEntity> custEntityList = custDao.getListEntity(custEntity);
+        if (CheckUtil.isNull(custEntityList)) {
+            rs.fail("cas", "发起人账户信息不存在");
+            return false;
         }
 
-        //企业名称唯一性检查
+        //2-企业名称唯一性检查
         if (!checkOrganName(membername, rs)) {
-            return;
+            return false;
         }
+        //3-检查是否传机构代码，有传则代表是修改,没有则代码是新增(新增是生成企业ID)
+        if (CheckUtil.isNull(orgcustomerno)) {
+            //生成企业ID
+            orgcustomerno = String.valueOf(IDUtils.genItemId());
+            isInsert = Boolean.FALSE;
+        }
+        //4-如果为修改则检查企业信息是否存在
+        if (Boolean.FALSE == isInsert) {
+            OrganInfoKey organInfoKey = new OrganInfoKey();
+            organInfoKey.setKey(orgcustomerno);
+            organInfoDao.getEntityKey(organInfoKey);
+        }
+        return super.check(mapParam, rs);
+    }
 
-        //查询随机分配的服务人员(查询金服人员失败)
-
-        //生成企业ID
-        orgcustomerno = String.valueOf(IDUtils.genItemId());
-
-        //写企业基本信息表
+    @Override
+    public boolean clear(HashMap<String, Object> mapParam, Response rs) {
+        //1-写企业基本信息表
         addOrganInfo(rs);
-        //写客户信息表
+        //2-写客户信息表
         addCifCust(rs);
-        //写企业业务流程信息表
+        //3-写企业业务流程信息表
         addFlow(rs);
-        //返回新增信息
+        //4-返回新增信息
         HashMap reqmap = new HashMap(4);
         reqmap.put("orgcustomerno", orgcustomerno);
         reqmap.put("organtype", organtype);
         reqmap.put("organclass", organclass);
         reqmap.put("membername", membername);
-        rs.success("cas", "新增成功", reqmap);
-
+        rs.success("cas", "操作成功", reqmap);
+        return super.clear(mapParam, rs);
     }
-
 
     /**
      * 写企业基本信息表
