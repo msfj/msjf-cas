@@ -67,6 +67,8 @@ public abstract class Account {
 
     public static final String CERTIFICATETYPE_0="0";
 
+    public static final String STATUS_0="0";
+
     /** 业务类型 服务平台注册 */
     public static final String BUSINESSCODE_0 = "0";
 
