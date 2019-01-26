@@ -40,7 +40,6 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
 
     @Override
     public Response<ChangePwdDomain> changePwd(RequestChangePwdDomain requestChangePwdDomain) {
-        ChangePwdDomain changePwdDomain=new ChangePwdDomain();
         Response<ChangePwdDomain> rs=new Response();
         rs.fail();
         String certificateno= requestChangePwdDomain.getCertificateno();
@@ -48,10 +47,10 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         String step= requestChangePwdDomain.getStep();
         String password=requestChangePwdDomain.getPassword();
         if(StringUtils.isEmpty(step)){
-            return rs.fail(ChangePwdEnum.MSG_PARAM_ERROR);
+            return rs.fail(ChangePwdEnum.MSG_STEP_NULL);
         }
         if(StringUtils.isEmpty(certificateno)){
-            return  rs.fail(ChangePwdEnum.MSG_PARAM_ERROR);
+            return  rs.fail(ChangePwdEnum.MSG_CERTIFICATENO_NULL);
         }
         CustEntity custEntity=new CustEntity();
         custEntity.setCertificateno(certificateno);
@@ -59,28 +58,26 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         if(ObjectUtils.isEmpty(custEntityList)){
             return rs.fail(ChangePwdEnum.MSG_USER_NULL);
         }
+        if(StringUtils.isEmpty(msgCode)){
+            return rs.fail(ChangePwdEnum.MSG_PARAM_ERROR);
+        }
         if(company.equals(custEntityList.get(0).getMembertype())){
             mobile=custEntityList.get(0).getCormob();
         }else{
             mobile=custEntityList.get(0).getMobile();
         }
+        if(StringUtils.isEmpty(mobile)){
+            return rs.fail(ChangePwdEnum.MSG_PARAM_ERROR);
+        }
         customerno=custEntityList.get(0).getCustomerno();
         if(step.equals(step_1)){
-            Response<VerificationCodeDomain> mcsRs= CommonUtil.sendVerificationCode(SMS_CHANGE_PWD_TYPE,mobile);
-            if(mcsRs.checkIfSuccess()){
-                String SeqNum=mcsRs.getData().getSeqNum();
-                String ActiveSeconds=mcsRs.getData().getActiveSeconds();
-                changePwdDomain.setActiveSeconds(ActiveSeconds);
-                changePwdDomain.setSeqNum(SeqNum);
-                return rs.success(ChangePwdEnum.SMS_SEND_SUCCESS,changePwdDomain);
-            }else {
-                return rs.success(ChangePwdEnum.SMS_SEND_ERROR);
+            Boolean flag=CommonUtil.checkVerificationCode(CommonUtil.SMS_CHANGE_PWD_TYPE, mobile,msgCode);
+            if(flag){
+                return rs.success(ChangePwdEnum.VERIFICATION_SUCCESS);
+            }else{
+                return rs.fail(ChangePwdEnum.VERIFICATION_FAILED);
             }
-        }
-        else if(step.equals(step_2)){
-            if(StringUtils.isEmpty(msgCode)){
-                return rs.fail(ChangePwdEnum.MSG_PARAM_ERROR);
-            }
+        }else if(step.equals(step_2)){
             if(StringUtils.isEmpty(password)){
                 return rs.fail(ChangePwdEnum.MSG_PARAM_ERROR);
             }
@@ -118,9 +115,18 @@ public class ChangePwdServiceImpl extends Account implements ChangePwdService {
         }else{
             mobile=custEntityList.get(0).getMobile();
         }
+        Response<VerificationCodeDomain> mcsRs= CommonUtil.sendVerificationCode(SMS_CHANGE_PWD_TYPE,mobile);
         mobile=mobile.replaceAll("(\\d{3})\\d{6}(\\d{2})", "$1****$2");
-        echoMobileDomain.setCertificateno(certificateno);
-        echoMobileDomain.setMobile(mobile);
-        return rs.success(ChangePwdEnum.QUERY_SUCCESS,echoMobileDomain);
+        if(mcsRs.checkIfSuccess()){
+            String SeqNum=mcsRs.getData().getSeqNum();
+            String ActiveSeconds=mcsRs.getData().getActiveSeconds();
+            echoMobileDomain.setActiveSeconds(ActiveSeconds);
+            echoMobileDomain.setSeqNum(SeqNum);
+            echoMobileDomain.setCertificateno(certificateno);
+            echoMobileDomain.setMobile(mobile);
+            return rs.success(ChangePwdEnum.QUERY_SUCCESS,echoMobileDomain);
+        }else {
+            return rs.success(ChangePwdEnum.SMS_SEND_ERROR);
+        }
     }
 }
