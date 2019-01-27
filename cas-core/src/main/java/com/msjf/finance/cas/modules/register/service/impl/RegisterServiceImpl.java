@@ -226,11 +226,11 @@ public class RegisterServiceImpl implements RegisterService {
                 realNameAuthDomain.setMobileNo(mobile);
                 realNameAuthDomain.setIdType(certificatetype);
             }
-            Response<ResRealNameAuthDomain> authDomainResponse = authService.postHttpsRequest(realNameAuthDomain);
+            /*Response<ResRealNameAuthDomain> authDomainResponse = authService.postHttpsRequest(realNameAuthDomain);
             if(!authDomainResponse.checkIfSuccess()){
                 return new Response().fail("0","实名认证失败"+authDomainResponse.getMsg());
             }
-            bank = authDomainResponse.getData().getBankName();
+            bank = authDomainResponse.getData().getBankName();*/
             Map<String,Object> entity = new HashMap<>();
             entity = getCasRegister();
             if(ObjectUtils.isEmpty(entity)){
