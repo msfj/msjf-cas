@@ -136,4 +136,40 @@
         <![CDATA[ where customerno = #{customerno}
 	]]>
     </update>
+
+
+    <!--用户基本信息表cif_cust 按实体查询-->
+    <select id="queryCustList" parameterType="java.util.Map"
+            resultType="com.msjf.finance.cas.facade.custManger.domain.CustOutDomain">
+        <![CDATA[
+		SELECT CONCAT_WS(',',t1.`membername`,t2.`membername`) 'custname',
+        t.`certificatetype` 'certificatetype',
+        t.`customerno` 'custno',
+        CONCAT_WS(',',t3.`dict_value`,t4.`dict_value`) 'certificatetypeName',
+        t.`certificateno` 'certificateno',
+        t.`mobile` 'mobile',
+        t.`email` 'email',
+        t.`loginname` 'loginname',
+        t.`membertype` 'membertype',
+        t5.`dict_value` 'membertypeName',
+        t.`status` 'status',
+        t6.`dict_value` 'statusName'
+         FROM cas.`cust` t
+          LEFT JOIN cas.`organ_info` t1 ON t.`customerno` = t1.`customerno`
+          LEFT JOIN cas.`person_info` t2 ON t.`customerno` = t2.`customerno`
+          LEFT JOIN cas.`sys_dict` t3 ON t3.`dict_id`='1011' AND t3.`dict_key`=t.`certificatetype`
+          LEFT JOIN cas.`sys_dict` t4 ON t4.`dict_id`='1012' AND t4.`dict_key`=t.`certificatetype`
+          LEFT JOIN cas.`sys_dict` t5 ON t5.`dict_id`='102' AND t5.`dict_key`=t.`membertype`
+          LEFT JOIN cas.`sys_dict` t6 ON t6.`dict_id`='103' AND t6.`dict_key`=t.`status`
+	]]>
+        <where>
+            <if test="loginname != null and loginname!= '' "><![CDATA[ and t.loginname like concat(concat('%', #{loginname}),'%')]]></if>
+            <if test="certificateno != null and certificateno!= '' "><![CDATA[ and t.certificateno like concat(concat('%', #{certificateno}),'%')]]></if>
+            <if test="mobile != null and mobile!= '' "><![CDATA[ and t.mobile like concat(concat('%', #{mobile}),'%')]]></if>
+            <if test="email != null and email!= '' "><![CDATA[ and t.email like concat(concat('%', #{email}),'%')]]></if>
+            <if test="status != null and status!= '' "><![CDATA[ and t.status=#{status}]]></if>
+            <if test="membername != null and membername!= '' "><![CDATA[ and (t1.`membername` like concat(concat('%', #{membername}),'%') OR t2.`membername` like concat(concat('%', #{membername}),'%'))]]></if>
+        </where>
+    </select>
+
 </mapper>

@@ -1,6 +1,7 @@
 package com.msjf.finance.cas.common.joindao.persistence;
 
 import com.msjf.finance.cas.common.dao.entity.CustEntity;
+import com.msjf.finance.cas.facade.custManger.domain.CustOutDomain;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.List;
@@ -30,4 +31,6 @@ public interface CustJoinDao {
      * 按实体更新
      */
     void update(CustEntity custEntity);
+
+    List<CustOutDomain> queryCustList(Map<String, Object> mapParams);
 }

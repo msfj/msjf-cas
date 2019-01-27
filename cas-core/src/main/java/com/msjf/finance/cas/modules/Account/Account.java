@@ -220,6 +220,9 @@ public abstract class Account implements IApp {
     /** 员工持股平台类   */
     public static final String ORGCLASS_TYPE_6  = "6";
 
+    /** 企业状态已注册   */
+    public static final String ORGSTATUS_1  = "1";
+
     /**
      * 入参检查
      *
