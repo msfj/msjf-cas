@@ -109,6 +109,7 @@ public class CustMangerServiceImpl implements CustMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }
@@ -144,6 +145,7 @@ public class CustMangerServiceImpl implements CustMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }
@@ -207,6 +209,7 @@ public class CustMangerServiceImpl implements CustMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }

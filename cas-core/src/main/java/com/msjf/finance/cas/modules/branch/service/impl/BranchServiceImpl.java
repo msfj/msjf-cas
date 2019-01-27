@@ -49,6 +49,7 @@ public class BranchServiceImpl implements BranchService {
         }catch (Exception e){
             e.printStackTrace();
             re.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
 
         return re;
@@ -92,6 +93,7 @@ public class BranchServiceImpl implements BranchService {
         }catch (Exception e){
             e.printStackTrace();
             re.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
 
         return re;
@@ -125,6 +127,7 @@ public class BranchServiceImpl implements BranchService {
         }catch (Exception e){
             e.printStackTrace();
             re.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
 
         return re;

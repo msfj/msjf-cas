@@ -84,6 +84,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","新增失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
 
         return response;
@@ -133,6 +134,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","删除失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }
@@ -163,6 +165,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
 
         return response;
@@ -192,6 +195,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }
@@ -224,6 +228,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }
@@ -246,7 +251,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
             response.success("1","查询成功",pageInfo);
         }catch (Exception e){
             e.printStackTrace();
-            response.fail("0","删除失败");
+            response.fail("0","查询失败");
         }
         return response;
     }
