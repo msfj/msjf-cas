@@ -35,7 +35,7 @@ public class Regist extends SpringTestCase {
         e.setEmployeename("ces1233");
         e.setLoginname("21232");
         e.setMobile("12331242142");
-        e.setCustomerno("167336ee75eb45259f63e523d9c43c0e");
+        e.setCustno("167336ee75eb45259f63e523d9c43c0e");
         mangerFacade.delEmployee(e);
         /*BranchDomain b = new BranchDomain();
         b.setBranchid("bd82473c8609496685341dfd5a092277");

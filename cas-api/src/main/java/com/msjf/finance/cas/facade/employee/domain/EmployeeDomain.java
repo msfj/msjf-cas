@@ -8,7 +8,7 @@ import com.msjf.finance.msjf.core.domian.BaseDomain;
 public class EmployeeDomain extends BaseDomain{
 
     /**客户代码	**/
-    protected String customerno;
+    protected String custno;
 
     /**员工名称	**/
     private String employeename;
@@ -33,12 +33,12 @@ public class EmployeeDomain extends BaseDomain{
     /**部门所在区/县	**/
     private String county;
 
-    public String getCustomerno() {
-        return customerno;
+    public String getCustno() {
+        return custno;
     }
 
-    public void setCustomerno(String customerno) {
-        this.customerno = customerno;
+    public void setCustno(String custno) {
+        this.custno = custno;
     }
 
     public String getEmployeename() {
