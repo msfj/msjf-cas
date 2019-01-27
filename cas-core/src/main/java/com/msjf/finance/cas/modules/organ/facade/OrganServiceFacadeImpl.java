@@ -14,7 +14,7 @@ import java.util.HashMap;
 /**
  * <pre>
  * 描述:
- *    ${DESCRIPTION}
+ *    企业服务
  *  <pre/>
  * @author 95494
  * @create 2019-01-22 14:48
@@ -31,7 +31,7 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
      * @return Response 返回结果
      */
     @Override
-    public Response addApplyFirst(HashMap<String, Object> mapParam) {
+    public Response setAddApplyFirst(HashMap<String, Object> mapParam) {
         logger.log(Level.DEBUG, "cas", mapParam);
         //获取：服务
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyFirstImpl");
@@ -48,7 +48,7 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
      * @return Response 结果集
      */
     @Override
-    public Response addApplySecond(HashMap<String, Object> mapParam) {
+    public Response setAddApplySecond(HashMap<String, Object> mapParam) {
         logger.log(Level.DEBUG, "cas", mapParam);
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplySecondImpl");
         Response rs = new Response();

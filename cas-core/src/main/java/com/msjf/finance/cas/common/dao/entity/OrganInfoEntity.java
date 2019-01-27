@@ -85,6 +85,10 @@ public class OrganInfoEntity extends OrganInfoKey {
 	private String updatetime;
 	/**来源：1-企业注册服务平台；2-企业三方会签	**/
 	private String source;
+	/**企业电话	**/
+	private String organPhone;
+	/**企业邮箱	**/
+	private String organEmail;
 	public void init() {
 	}
 	/**企业客户代码	**/
@@ -414,5 +418,21 @@ public class OrganInfoEntity extends OrganInfoKey {
 	/**来源：1-企业注册服务平台；2-企业三方会签	**/
 	public void setSource(String source) {
 		this.source = source;
+	}
+	/**企业电话	**/
+	public String getOrganPhone() {
+		return this.organPhone;
+	}
+	/**企业电话	**/
+	public void setOrganPhone(String organPhone) {
+		this.organPhone = organPhone;
+	}
+	/**企业邮箱	**/
+	public String getOrganEmail() {
+		return this.organEmail;
+	}
+	/**企业邮箱	**/
+	public void setOrganEmail(String organEmail) {
+		this.organEmail = organEmail;
 	}
 }
