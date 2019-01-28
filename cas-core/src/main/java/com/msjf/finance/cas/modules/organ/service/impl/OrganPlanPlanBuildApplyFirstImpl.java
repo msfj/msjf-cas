@@ -11,8 +11,11 @@ import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.IDUtils;
 import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.cas.common.utils.StringUtil;
+import com.msjf.finance.cas.modules.organ.facade.OrganServiceFacadeImpl;
 import com.msjf.finance.cas.modules.organ.service.BaseService;
 import com.msjf.finance.msjf.core.response.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +34,7 @@ import java.util.List;
 @Service
 public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
 
+    private static final Logger logger = LogManager.getLogger(OrganServiceFacadeImpl.class);
 
     /**
      * 发起人客户代码
@@ -160,11 +164,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
     @Override
     public boolean check(HashMap<String, Object> mapParam, Response rs) {
         //1-检查发起人账户信息不存在
-        CustEntity custEntity = new CustEntity();
-        custEntity.setCustomerno(customerno);
-        List<CustEntity> customerEntityList = custDao.getListEntity(custEntity);
-        if (CheckUtil.isNull(customerEntityList)) {
-            rs.fail("cas", "发起人账户信息不存在");
+        if (!CheckCustomerInfo(customerno, rs)) {
             return false;
         }
 

@@ -11,6 +11,7 @@ import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganRollinDao;
 import com.msjf.finance.cas.common.joindao.persistence.OrganInfoJoinDao;
 import com.msjf.finance.cas.common.utils.CheckUtil;
+import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.cas.modules.util.SpringContextUtil;
 import com.msjf.finance.msjf.core.response.Response;
 
@@ -48,7 +49,7 @@ public class BaseService extends IBaseService {
         OrganInfoEntity organInfoEntity = new OrganInfoEntity();
         organInfoEntity.setMembername(organName);
         List<OrganInfoEntity> organInfoEntityList = organInfoDao.getListEntity(organInfoEntity);
-        if (!CheckUtil.isNull(organInfoEntityList)&&organInfoEntityList.size()>1) {
+        if (!CheckUtil.isNull(organInfoEntityList) && organInfoEntityList.size() > 1) {
             rs.fail("cas", "企业名称已存在");
             return false;
         }
@@ -185,7 +186,7 @@ public class BaseService extends IBaseService {
      * 根据实体更新organ_flow表数据
      *
      * @param organFlowEntity 实体
-     * @param rs     结果集
+     * @param rs              结果集
      * @return false 失败  true 成功
      */
     protected boolean updateOrganFlowEntity(OrganFlowEntity organFlowEntity, Response rs) {
@@ -224,4 +225,73 @@ public class BaseService extends IBaseService {
             throw new RuntimeException("organ_flow新增失败", e);
         }
     }
+
+    /**
+     * 根据客户代码检查客户信息是否存在
+     *
+     * @param rs
+     * @return
+     */
+    protected boolean CheckCustomerInfo(String customerNo, Response rs) {
+        CustDao custDao = SpringContextUtil.getBean("custDao");
+        CustEntity custEntity = new CustEntity();
+        custEntity.setCustomerno(customerNo);
+        List<CustEntity> customerEntityList = custDao.getListEntity(custEntity);
+        if (CheckUtil.isNull(customerEntityList)) {
+            rs.fail("cas", "发起人账户信息不存在");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 检查企业设立/变更申请下 成员信息是否存在空白字段
+     *
+     * @param memberList 投资人/合伙人信息
+     * @param rs         结果集
+     * @return false 失败 true 成功
+     */
+    protected static boolean checkOrganMemberParam(List<HashMap> memberList, Response rs) {
+        for (HashMap<String, Object> a : memberList) {
+            //成员信息检查
+            if (CheckUtil.checkNull(a.get("username"), serviceName, "成员信息[姓名]", rs)) {
+                return false;
+            }
+            if (CheckUtil.checkNull(a.get("certificatetype"), serviceName, "成员信息[证件类型]", rs)) {
+                return false;
+            }
+            if (CheckUtil.checkNull(a.get("certificateno"), serviceName, "成员信息[证件号]", rs)) {
+                return false;
+            }
+            if (CheckUtil.checkNull(a.get("mobile"), serviceName, "成员信息[手机号码]", rs) && (MacroDefine.POSITION_TYPE
+                    .POSITION_TYPE_0.getValue().equals(a.get("position")) || MacroDefine.POSITION_TYPE
+                    .POSITION_TYPE_1.getValue().equals(a.get("position")))) {
+                rs.fail(serviceName, "联络员和财务负责人[手机号码]不能为空");
+                return false;
+            }
+            if (CheckUtil.checkNull(a.get("position"), serviceName, "成员信息[身份类型]", rs)) {
+                return false;
+            }
+            //10-股东 即投资人 合伙人流表数据
+            if (MacroDefine.POSITION_TYPE.POSITION_TYPE_10.getValue().equals(a.get("position"))) {
+                if (CheckUtil.checkNull(a.get("dutyway"), serviceName, "成员信息[承担责任方式]", rs)) {
+                    return false;
+                }
+                if (CheckUtil.checkNull(a.get("dutyway"), serviceName, "成员信息[出资方式]", rs)) {
+                    return false;
+                }
+                if (CheckUtil.checkNull(a.get("amount"), serviceName, "成员信息[认缴出资额]", rs)) {
+                    return false;
+                }
+                if (CheckUtil.checkNull(a.get("paydatelimit"), serviceName, "成员信息[缴付期限]", rs)) {
+                    return false;
+                }
+                if (CheckUtil.checkNull(a.get("address"), serviceName, "成员信息[住所]", rs)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }

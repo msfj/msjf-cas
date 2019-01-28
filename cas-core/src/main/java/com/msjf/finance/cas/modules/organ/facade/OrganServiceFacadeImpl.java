@@ -32,12 +32,12 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
      */
     @Override
     public Response setAddApplyFirst(HashMap<String, Object> mapParam) {
-        logger.log(Level.DEBUG, "cas", mapParam);
         //获取：服务
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyFirstImpl");
         Response rs = new Response();
+        logger.debug( "cas","=====调用业务开始=====", mapParam);
         organService.addApplyFirst(mapParam, rs);
-        logger.log(Level.DEBUG, "cas", rs);
+        logger.debug( "cas", "=====调用业务结束=====",rs);
         return rs;
     }
 
@@ -49,11 +49,28 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
      */
     @Override
     public Response setAddApplySecond(HashMap<String, Object> mapParam) {
-        logger.log(Level.DEBUG, "cas", mapParam);
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplySecondImpl");
         Response rs = new Response();
+        logger.debug( "cas","=====调用业务开始=====", mapParam);
         organService.addApplySecond(mapParam, rs);
-        logger.log(Level.DEBUG, "cas", rs);
+        logger.debug( "cas", "=====调用业务结束=====",rs);
+        return rs;
+    }
+
+    /**
+     * 添加拟设立-第三步
+     *
+     * @param mapParam 入参
+     * @return Response 返回结果
+     */
+    @Override
+    public Response setAddApplyThirdly(HashMap<String, Object> mapParam) {
+        Response rs = new Response();
+        //调用业务
+        OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyThirdlyImpl");
+        logger.debug( "cas","=====调用业务开始=====", mapParam);
+        organService.addApplyThirdly(mapParam,rs);
+        logger.debug( "cas", "=====调用业务结束=====",rs);
         return rs;
     }
 }

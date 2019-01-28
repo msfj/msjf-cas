@@ -28,4 +28,12 @@ public interface OrganService {
      * @return Response 返回结果
      */
     void addApplySecond(HashMap<String, Object> mapParam, Response rs);
+
+    /**
+     * 添加拟设立-第三步
+     *
+     * @param mapParam 入参
+     * @return Response 返回结果
+     */
+    void addApplyThirdly(HashMap<String, Object> mapParam, Response rs);
 }

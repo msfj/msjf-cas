@@ -443,6 +443,7 @@ public class MacroDefine {
 
         /**
          * 根据值获取名称
+         *
          * @param value
          * @return
          */
@@ -457,6 +458,7 @@ public class MacroDefine {
 
         /**
          * 检查值是否存在
+         *
          * @param value
          * @return
          */
@@ -483,6 +485,188 @@ public class MacroDefine {
         }
 
     }
+
+    /**
+     * 执行事务合伙人类型 字典 107  0-个人 1-公司 -合伙企业属性
+     */
+    public enum PARTNER_TYPE {
+        PARTNER_TYPE_0("0", "个人"), PARTNER_TYPE_1("1", "公司"), PARTNER_TYPE_2("2", "合伙企业属性");
+
+        private String value;
+        private String name;
+
+        PARTNER_TYPE(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        /**
+         * 根据值获取名称
+         *
+         * @param value
+         * @return
+         */
+        public static String getEnumName(String value) {
+            for (PARTNER_TYPE p : PARTNER_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 检查值是否存在
+         *
+         * @param value
+         * @return 值的名称
+         */
+        public static boolean isExistsEnum(String value) {
+            for (PARTNER_TYPE p : PARTNER_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value.toString();
+        }
+
+    }
+
+    /**
+     * 身份类型 字典 117  0-联络员 1-财务负责人 2-执行董事 3-董事长 4-董事 5-法定代表人/执行事务合伙人/委托代表
+     * 6-监事长 7-监事 8-经理 9-其他成员 10-股东
+     */
+    public enum POSITION_TYPE {
+        POSITION_TYPE_0("0", "联络员"),POSITION_TYPE_1("1", "财务负责人"), POSITION_TYPE_2("2", "执行董事"),
+        POSITION_TYPE_3("3", "董事长"),POSITION_TYPE_4("4", "董事"), POSITION_TYPE_5("5", "法定代表人/执行事务合伙人/委托代表"),
+        POSITION_TYPE_6("6", "监事长"), POSITION_TYPE_7("7", "监事"), POSITION_TYPE_8("8", "经理"),
+        POSITION_TYPE_9("9", "其他成员"),POSITION_TYPE_10("10", "股东");
+
+        private String value;
+        private String name;
+
+        POSITION_TYPE(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        /**
+         * 根据值获取名称
+         *
+         * @param value
+         * @return
+         */
+        public static String getEnumName(String value) {
+            for (POSITION_TYPE p : POSITION_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 检查值是否存在
+         *
+         * @param value
+         * @return 值的名称
+         */
+        public static boolean isExistsEnum(String value) {
+            for (POSITION_TYPE p : POSITION_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value.toString();
+        }
+
+    }
+
+    /**
+     * 企业类型 字典 104  0-有限公司 1-合伙企业
+     */
+    public enum ORGAN_TYPE {
+        ORGAN_TYPE_0("0", "有限公司"), ORGAN_TYPE_1("1", "合伙企业");
+
+        private String value;
+        private String name;
+
+        ORGAN_TYPE(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        /**
+         * 根据值获取名称
+         *
+         * @param value
+         * @return
+         */
+        public static String getEnumName(String value) {
+            for (ORGAN_TYPE p : ORGAN_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 检查值是否存在
+         *
+         * @param value
+         * @return 值的名称
+         */
+        public static boolean isExistsEnum(String value) {
+            for (ORGAN_TYPE p : ORGAN_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value.toString();
+        }
+
+    }
+
 
 
 }

@@ -13,8 +13,12 @@ import java.util.HashMap;
  * @author kevin
  * @create 2019-01-25 9:53
  */
-public class IBaseService implements OrganService, IApp {
+public abstract class IBaseService implements OrganService, IApp {
 
+    /**
+     * 服务名称
+     */
+    protected final static String serviceName = "cas";
 
     /**
      * 添加拟设立-第一步
@@ -36,6 +40,17 @@ public class IBaseService implements OrganService, IApp {
 
     }
 
+    /**
+     * 添加拟设立-第三步
+     *
+     * @param mapParam 入参
+     * @param rs
+     * @return Response 返回结果
+     */
+    @Override
+    public void addApplyThirdly(HashMap<String, Object> mapParam, Response rs) {
+
+    }
 
     /**
      * 入参检查

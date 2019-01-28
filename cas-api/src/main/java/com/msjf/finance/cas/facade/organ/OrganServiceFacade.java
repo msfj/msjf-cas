@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * <pre>
  * 描述:
- *    ${DESCRIPTION}
+ *    对外开放的接口
  *  <pre/>
  * @author 95494
  * @create 2019-01-22 19:01
@@ -27,5 +27,11 @@ public interface OrganServiceFacade {
      * @return Response 返回结果
      */
     Response setAddApplySecond(HashMap<String, Object> mapParam);
+    /**
+     * 添加拟设立-第三步
+     * @param mapParam 入参
+     * @return Response 返回结果
+     */
+    Response setAddApplyThirdly(HashMap<String, Object> mapParam);
 
 }

@@ -1,5 +1,7 @@
 package com.msjf.finance.cas.common.utils;
 
+import com.msjf.finance.msjf.core.response.Response;
+
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +14,28 @@ import java.util.Map;
  * @create 2019-01-23 14:53
  */
 public class CheckUtil {
+
+
+    /**
+     * @author keivn
+     * @Title: checkNoNull
+     * @Description: 检查参数是否为空
+     */
+    public static boolean checkNull(Object b,String serviceName, String errMsg, Response rs) {
+        boolean flag = true;
+        if (b != null) {
+            if (b instanceof String) {
+                String str = (String) b;
+                flag = ("").equals(str) ? true : ("null".equalsIgnoreCase(str) ? true : false);
+            } else {
+                flag = false;
+            }
+        }
+        if (flag) {
+            rs.fail(serviceName,errMsg + "不能为空");
+        }
+        return flag;
+    }
 
     /**
      * 字符是否为空或"null"

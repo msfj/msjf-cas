@@ -8,6 +8,7 @@ import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.modules.organ.service.BaseService;
 import com.msjf.finance.msjf.core.response.Response;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 
@@ -94,7 +95,7 @@ public class OrganPlanPlanBuildApplySecondImpl extends BaseService {
      *
      * @param mapParam 入参
      */
-
+    @Transactional
     @Override
     public void addApplySecond(HashMap<String, Object> mapParam, Response rs) {
         rs.fail("cas", "操作失败");
