@@ -4,6 +4,7 @@ import com.msjf.finance.cas.common.dao.entity.CustEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganFlowEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganRollinEntity;
+import com.msjf.finance.cas.common.dao.key.OrganFlowKey;
 import com.msjf.finance.cas.common.dao.key.OrganInfoKey;
 import com.msjf.finance.cas.common.dao.persistence.CustDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganFlowDao;
@@ -292,6 +293,19 @@ public class BaseService extends IBaseService {
             }
         }
         return true;
+    }
+
+    /**
+     * 根据 企业客户代码和流程类型查询流程信息
+     * @param orgCustomerNo 企业客户代码
+     * @param flowType 流程类型
+     * @return OrganFlowEntity 企业业务流程信息表
+     */
+    protected OrganFlowEntity getOrganFlowEntity(String orgCustomerNo,String flowType) {
+        OrganFlowDao organFlowDao = SpringContextUtil.getBean(OrganFlowDao.class);
+        OrganFlowKey organFlowKey = new OrganFlowKey();
+        organFlowKey.setKey(orgCustomerNo, flowType);
+        return organFlowDao.getEntityKey(organFlowKey);
     }
 
 }

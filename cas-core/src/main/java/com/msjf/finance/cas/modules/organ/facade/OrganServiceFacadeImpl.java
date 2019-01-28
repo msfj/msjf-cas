@@ -73,4 +73,21 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
         logger.debug( "cas", "=====调用业务结束=====",rs);
         return rs;
     }
+
+    /**
+     * 添加拟设立-第四步-其它信息
+     *
+     * @param mapParam 入参
+     * @return Response 返回结果
+     */
+    @Override
+    public Response setAddApplyFourthly(HashMap<String, Object> mapParam) {
+        Response rs = new Response();
+        //调用业务
+        OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyFourthlyImpl");
+        logger.debug( "cas","=====调用业务开始=====", mapParam);
+        organService.addApplyFourthly(mapParam,rs);
+        logger.debug( "cas", "=====调用业务结束=====",rs);
+        return rs;
+    }
 }

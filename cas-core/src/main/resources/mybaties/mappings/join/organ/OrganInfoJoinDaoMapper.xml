@@ -18,5 +18,14 @@
 	]]>
 	</select>
 
+	<!--根据企业代码删除企业迁入信息(企业成员申报信息表) -->
+	<delete id="delMemberSubmitByCustomerNo" parameterType="com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity">
+	<![CDATA[
+		delete from kpfsp.cif_member_submit
+		where
+			customerno = #{customerno}
+	]]>
+	</delete>
+
 
 </mapper>

@@ -33,5 +33,11 @@ public interface OrganServiceFacade {
      * @return Response 返回结果
      */
     Response setAddApplyThirdly(HashMap<String, Object> mapParam);
+    /**
+     * 添加拟设立-第四步-其它信息
+     * @param mapParam 入参
+     * @return Response 返回结果
+     */
+    Response setAddApplyFourthly(HashMap<String, Object> mapParam);
 
 }

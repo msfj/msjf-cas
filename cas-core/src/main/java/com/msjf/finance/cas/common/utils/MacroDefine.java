@@ -154,12 +154,12 @@ public class MacroDefine {
     }
 
     /**
-     * 审核状态
+     * 审核状态->流程状态 字典122 0-未提交 1-审核中 2-办理完成 3-审核不通过 4-已暂存
      **/
     public enum AUDIT_STATUS {
 
-        AUDIT_STATUS_INIT("0", "初始状态"), AUDIT_STATUS_APPLY("1", "未审核"), AUDIT_STATUS_PASS("2", "审核通过"),
-        AUDIT_STATUS_FAIL("3", "审核不通过");
+        AUDIT_STATUS_INIT("0", "初始状态"), AUDIT_STATUS_APPLY("1", "审核中"), AUDIT_STATUS_PASS("2", "审核通过"),
+        AUDIT_STATUS_FAIL("3", "审核不通过"),AUDIT_STATUS_4("4", "已暂存");
         private String value;
         private String name;
 
@@ -250,7 +250,7 @@ public class MacroDefine {
      */
     public enum FLOW_TYPE {
         FLOW_TYPE_0("0", "拟申请企业设立"), FLOW_TYPE_1("1", "企业设立"), FLOW_TYPE_2("2", "企业变更"), FLOW_TYPE_3("3", "企业注销"),
-        FLOW_TYPE_4("4", "企业迁入");
+        FLOW_TYPE_4("4", "企业迁入"),FLOW_TYPE_5("5", "招商对接人变更");
 
         private String value;
 
@@ -487,10 +487,10 @@ public class MacroDefine {
     }
 
     /**
-     * 执行事务合伙人类型 字典 107  0-个人 1-公司 -合伙企业属性
+     * 合伙企业属性：执行事务合伙人类型 字典 107  0-个人 1-公司
      */
     public enum PARTNER_TYPE {
-        PARTNER_TYPE_0("0", "个人"), PARTNER_TYPE_1("1", "公司"), PARTNER_TYPE_2("2", "合伙企业属性");
+        PARTNER_TYPE_0("0", "个人"), PARTNER_TYPE_1("1", "公司");
 
         private String value;
         private String name;
@@ -667,6 +667,64 @@ public class MacroDefine {
 
     }
 
+    /**
+     * 承担责任方式 字典 115  0-有限责任 1-无限责任
+     */
+    public enum DUTY_WAY_TYPE {
+        DUTY_WAY_TYPE_0("0", "有限责任"), DUTY_WAY_TYPE_1("1", "无限责任");
+
+        private String value;
+        private String name;
+
+        DUTY_WAY_TYPE(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        /**
+         * 根据值获取名称
+         *
+         * @param value
+         * @return
+         */
+        public static String getEnumName(String value) {
+            for (DUTY_WAY_TYPE p : DUTY_WAY_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 检查值是否存在
+         *
+         * @param value
+         * @return 值的名称
+         */
+        public static boolean isExistsEnum(String value) {
+            for (DUTY_WAY_TYPE p : DUTY_WAY_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value.toString();
+        }
+
+    }
 
 
 }

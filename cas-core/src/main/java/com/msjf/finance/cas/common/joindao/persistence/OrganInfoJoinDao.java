@@ -1,5 +1,6 @@
 package com.msjf.finance.cas.common.joindao.persistence;
 
+import com.msjf.finance.cas.common.dao.entity.MemberSubmitEntity;
 import com.msjf.finance.msjf.core.dao.MyBatisDao;
 
 import java.util.HashMap;
@@ -23,5 +24,13 @@ public interface OrganInfoJoinDao {
      * @return List<Map<String,Object>>
      */
     List<Map<String,Object>> checkExistCompanyNameInChange(HashMap<String,Object> mapParam);
+
+
+    /**
+     * 根据企业代码删除企业迁入信息(企业成员申报信息表)
+     * @param memberSubmitEntity  企业成员申报信息实体
+     * @return Integer 删除条数
+     */
+    Integer delMemberSubmitByCustomerNo(MemberSubmitEntity memberSubmitEntity);
 
 }

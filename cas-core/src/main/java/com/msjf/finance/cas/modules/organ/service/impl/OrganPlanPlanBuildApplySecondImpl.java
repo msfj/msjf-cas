@@ -95,7 +95,7 @@ public class OrganPlanPlanBuildApplySecondImpl extends BaseService {
      *
      * @param mapParam 入参
      */
-    @Transactional
+    @Transactional(rollbackFor=Exception.class,timeout = 300)
     @Override
     public void addApplySecond(HashMap<String, Object> mapParam, Response rs) {
         rs.fail("cas", "操作失败");
@@ -207,6 +207,7 @@ public class OrganPlanPlanBuildApplySecondImpl extends BaseService {
         if (!UpdateOranInfo(rs)) {
             return false;
         }
+        rs.success( "操作成功");
         return super.clear(mapParam, rs);
     }
 

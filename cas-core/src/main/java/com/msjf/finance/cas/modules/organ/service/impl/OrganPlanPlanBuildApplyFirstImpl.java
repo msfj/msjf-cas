@@ -107,7 +107,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
      * @param mapParam 入参
      * @param rs       返回结果
      */
-    @Transactional//(timeout = 30)
+    @Transactional(rollbackFor=Exception.class,timeout = 300)
     @Override
     public void addApplyFirst(HashMap<String, Object> mapParam, Response rs) {
         rs.fail("cas", "操作失败");

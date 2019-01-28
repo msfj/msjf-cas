@@ -33,7 +33,7 @@ public class OrganServiceFacadeTest extends SpringTestCase {
     public void addApplyFirst() {
 
         HashMap parmap = new HashMap();
-        parmap.put("orgcustomerno", "154848745158416");
+        //home data parmap.put("orgcustomerno", "154848745158416");
         parmap.put("customerno", "20e82fa7095f4eeaa21155de44a13fa6");
         parmap.put("membername","测试用在");
         parmap.put("organtype","1");
@@ -54,4 +54,7 @@ public class OrganServiceFacadeTest extends SpringTestCase {
     }
 
 
+    @Test
+    public void setAddApplyThirdly() {
+    }
 }
