@@ -14,7 +14,7 @@ import java.util.HashMap;
 /**
  * <pre>
  * 描述:
- *    ${DESCRIPTION}
+ *    企业服务
  *  <pre/>
  * @author 95494
  * @create 2019-01-22 14:48
@@ -31,13 +31,13 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
      * @return Response 返回结果
      */
     @Override
-    public Response addApplyFirst(HashMap<String, Object> mapParam) {
-        logger.log(Level.DEBUG, "cas", mapParam);
+    public Response setAddApplyFirst(HashMap<String, Object> mapParam) {
         //获取：服务
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyFirstImpl");
         Response rs = new Response();
+        logger.debug( "cas","=====调用业务开始=====", mapParam);
         organService.addApplyFirst(mapParam, rs);
-        logger.log(Level.DEBUG, "cas", rs);
+        logger.debug( "cas", "=====调用业务结束=====",rs);
         return rs;
     }
 
@@ -48,12 +48,46 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
      * @return Response 结果集
      */
     @Override
-    public Response addApplySecond(HashMap<String, Object> mapParam) {
-        logger.log(Level.DEBUG, "cas", mapParam);
+    public Response setAddApplySecond(HashMap<String, Object> mapParam) {
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplySecondImpl");
         Response rs = new Response();
+        logger.debug( "cas","=====调用业务开始=====", mapParam);
         organService.addApplySecond(mapParam, rs);
-        logger.log(Level.DEBUG, "cas", rs);
+        logger.debug( "cas", "=====调用业务结束=====",rs);
+        return rs;
+    }
+
+    /**
+     * 添加拟设立-第三步
+     *
+     * @param mapParam 入参
+     * @return Response 返回结果
+     */
+    @Override
+    public Response setAddApplyThirdly(HashMap<String, Object> mapParam) {
+        Response rs = new Response();
+        //调用业务
+        OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyThirdlyImpl");
+        logger.debug( "cas","=====调用业务开始=====", mapParam);
+        organService.addApplyThirdly(mapParam,rs);
+        logger.debug( "cas", "=====调用业务结束=====",rs);
+        return rs;
+    }
+
+    /**
+     * 添加拟设立-第四步-其它信息
+     *
+     * @param mapParam 入参
+     * @return Response 返回结果
+     */
+    @Override
+    public Response setAddApplyFourthly(HashMap<String, Object> mapParam) {
+        Response rs = new Response();
+        //调用业务
+        OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyFourthlyImpl");
+        logger.debug( "cas","=====调用业务开始=====", mapParam);
+        organService.addApplyFourthly(mapParam,rs);
+        logger.debug( "cas", "=====调用业务结束=====",rs);
         return rs;
     }
 }

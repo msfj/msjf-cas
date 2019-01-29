@@ -27,17 +27,13 @@ public class Regist extends SpringTestCase {
     EmployeeMangerFacade mangerFacade;
 
     @Test
-    public  void  queryOrganInfoList(){
-        EmployeeDomain e = new EmployeeDomain();
-        /*e.setBranchid("ab1e12c6bb064890bf2e1e92ea2bfd98");
-        e.setCertificateno("12313223212");
-        e.setEmail("123@qq.com");
-        e.setEmployeename("ces1233");
-        e.setLoginname("21232");
-        e.setMobile("12331242142");
-        e.setCustomerno("3a24b82c202b4860a80d61237842f8db");*/
-        e.setPageNum(1);
-        e.setPageSize(1);
-        mangerFacade.queryEmployee(e);
+    public  void  queryOrganInfoList() throws Exception {
+       RegisterDomain registerDomain =new RegisterDomain();
+       registerDomain.setStep("1");
+       registerDomain.setMobile("17190308842");
+       registerDomain.setRegistersource("0");
+        registerDomain.setMembertype("0");
+        registerDomain.setMsgcode("111");
+        registerFacade.inserRegister(registerDomain);
     }
 }

@@ -1,8 +1,7 @@
 package com.msjf.finance.cas.modules.employee.service.impl;
 
-import com.github.pagehelper.Page;
+
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.msjf.finance.cas.common.dao.entity.AusAuthoneEntity;
 import com.msjf.finance.cas.common.dao.entity.EmployeeEntity;
 import com.msjf.finance.cas.common.dao.key.AusAuthoneKey;
@@ -14,9 +13,9 @@ import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.modules.employee.service.EmployeeMangerService;
 import com.msjf.finance.cas.modules.util.CommonUtil;
+import com.msjf.finance.msjf.core.page.Page;
 import com.msjf.finance.msjf.core.page.PageUtils;
 import com.msjf.finance.msjf.core.response.Response;
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
@@ -85,6 +84,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","新增失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
 
         return response;
@@ -127,10 +127,14 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
                 return  new Response().fail("0","当前员工信息不存在");
             }
             dao.delEntityKey(key);
+            AusAuthoneKey authoneKey = new AusAuthoneKey();
+            authoneKey.setKey(key.getCustomerno());
+            authoneDao.delEntityKey(authoneKey);
             response.success("1","删除成功","");
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","删除失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }
@@ -157,9 +161,11 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
             employeeEntity.setUpdatedate(DateUtils.getUserDate(DATE_FMT_DATE));
             employeeEntity.setUpdatetime(DateUtils.getUserDate(DATE_FMT_TIME));
             dao.updEntity(employeeEntity);
+            response.success("1","操作成功",employeeEntity.getCustomerno());
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
 
         return response;
@@ -189,6 +195,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }
@@ -221,6 +228,7 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         }catch (Exception e){
             e.printStackTrace();
             response.fail("0","操作失败");
+            throw new RuntimeException(e.getMessage(),e);
         }
         return response;
     }
@@ -239,11 +247,11 @@ public class EmployeeMangerServiceImpl implements EmployeeMangerService {
         PageHelper.startPage(pagNub,pagSize);
         try {
             List<EmployeeEntity> list = joinDao.selectByMap(map);
-            PageInfo<EmployeeEntity> pageInfo = new PageInfo<>(list);
+            Page<EmployeeEntity> pageInfo = PageUtils.toPage(list,(EmployeeEntity em) -> em);
             response.success("1","查询成功",pageInfo);
         }catch (Exception e){
             e.printStackTrace();
-            response.fail("0","删除失败");
+            response.fail("0","查询失败");
         }
         return response;
     }

@@ -21,4 +21,5 @@
 
 	<dubbo:service interface="com.msjf.finance.cas.facade.branch.BranchFacade" ref="branchFacade" />
 	<dubbo:service interface="com.msjf.finance.cas.facade.employee.EmployeeMangerFacade" ref="employeeMangerFacade" />
+	<dubbo:service interface="com.msjf.finance.cas.facade.custManger.CustMangerFacade" ref="custMangerFacade" />
 </beans>

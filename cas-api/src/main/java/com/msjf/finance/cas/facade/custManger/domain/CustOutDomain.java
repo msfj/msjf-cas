@@ -1,37 +1,36 @@
-package com.msjf.finance.cas.facade.employee.domain;
+package com.msjf.finance.cas.facade.custManger.domain;
 
 import com.msjf.finance.msjf.core.domian.BaseDomain;
 
-/**
- * Created by cheng on 2019/1/25.
- */
-public class EmployeeDomain extends BaseDomain{
+import java.io.Serializable;
 
+public class CustOutDomain implements Serializable {
     /**客户代码	**/
-    protected String custno;
+    private String custno;
 
-    /**员工名称	**/
-    private String employeename;
-    /**登录账号	**/
+    /**客户名称	**/
+    private String custname;
+    /**登录名	**/
     private String loginname;
-    /**所属部门编号	**/
-    private String branchid;
-    /**证件类型	**/
+    /**用户类型 字典102 0-个人 1-企业	**/
+    private String membertype;
+
+    private String membertypeName;
+
+    /**证件类型 字典1011 0-身份证 1-护照 1012 A-营业执照	**/
     private String certificatetype;
+
+    private String certificatetypeName;
     /**证件号码	**/
     private String certificateno;
     /**手机号码	**/
     private String mobile;
-    /**邮箱地址	**/
+    /**联系邮箱	**/
     private String email;
     /**账户状态 字典103 *-销户 0-正常 1-冻结 2-锁定	**/
     private String status;
-    /**部门所在省	**/
-    private String province;
-    /**部门所在市	**/
-    private String city;
-    /**部门所在区/县	**/
-    private String county;
+
+    private String statusName;
 
     public String getCustno() {
         return custno;
@@ -41,12 +40,12 @@ public class EmployeeDomain extends BaseDomain{
         this.custno = custno;
     }
 
-    public String getEmployeename() {
-        return employeename;
+    public String getCustname() {
+        return custname;
     }
 
-    public void setEmployeename(String employeename) {
-        this.employeename = employeename;
+    public void setCustname(String custname) {
+        this.custname = custname;
     }
 
     public String getLoginname() {
@@ -57,12 +56,20 @@ public class EmployeeDomain extends BaseDomain{
         this.loginname = loginname;
     }
 
-    public String getBranchid() {
-        return branchid;
+    public String getMembertype() {
+        return membertype;
     }
 
-    public void setBranchid(String branchid) {
-        this.branchid = branchid;
+    public void setMembertype(String membertype) {
+        this.membertype = membertype;
+    }
+
+    public String getMembertypeName() {
+        return membertypeName;
+    }
+
+    public void setMembertypeName(String membertypeName) {
+        this.membertypeName = membertypeName;
     }
 
     public String getCertificatetype() {
@@ -71,6 +78,14 @@ public class EmployeeDomain extends BaseDomain{
 
     public void setCertificatetype(String certificatetype) {
         this.certificatetype = certificatetype;
+    }
+
+    public String getCertificatetypeName() {
+        return certificatetypeName;
+    }
+
+    public void setCertificatetypeName(String certificatetypeName) {
+        this.certificatetypeName = certificatetypeName;
     }
 
     public String getCertificateno() {
@@ -105,27 +120,11 @@ public class EmployeeDomain extends BaseDomain{
         this.status = status;
     }
 
-    public String getProvince() {
-        return province;
+    public String getStatusName() {
+        return statusName;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCounty() {
-        return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county;
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.msjf.finance.cas.common.joindao.persistence.OrgJoinDao">
+
+    <!--查询企业基本信息和相关联信息 -->
+    <select id="getOrganInfoRelateList" parameterType="java.util.HashMap"
+            resultType="java.util.LinkedHashMap">
+        <![CDATA[
+		SELECT
+			t.customerno "orgCustomerno",
+			t1.membername "membername",
+			t2.`status` "status",
+			t2.type "type"
+		FROM
+			cas.cust t
+		INNER JOIN cas.organ_info t1 ON t.customerno = t1.customerno
+		INNER JOIN cas.organ_flow t2 ON t.customerno = t2.customerno
+		where t.membertype = '1'
+	]]>
+        <if test="membername != null and membername!= '' ">
+            <![CDATA[ and t1.membername like '%' || #{membername} || '%']]>
+        </if>
+        <![CDATA[  ORDER BY t.updatedate ]]>
+    </select>
+
+
+</mapper>

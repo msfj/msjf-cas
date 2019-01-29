@@ -15,6 +15,8 @@ import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganRollinDao;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganRollinEntity;
+import com.msjf.finance.cas.modules.register.dimain.ReqRealNameAuthDomain;
+import com.msjf.finance.cas.modules.register.dimain.ResRealNameAuthDomain;
 import com.msjf.finance.cas.modules.register.service.RegisterService;
 import com.msjf.finance.cas.modules.util.CommonUtil;
 import com.msjf.finance.cas.common.utils.DateUtils;
@@ -69,6 +71,9 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Resource
     CustJoinDao custJoinDao;
+
+    @Resource
+    RealNameAuthServiceImpl authService;
 
 
     @Resource
@@ -200,6 +205,7 @@ public class RegisterServiceImpl implements RegisterService {
                 addCasRegisterInfo(id);//写用户注册基本信息表
             }
         }else if(step.equals(step_2)){
+            ReqRealNameAuthDomain realNameAuthDomain = new ReqRealNameAuthDomain();
             if (membertype.equals(company)) {
                 /**
                  * 需校验验证码
@@ -208,7 +214,23 @@ public class RegisterServiceImpl implements RegisterService {
                 if(!flag){
                     return new Response().fail("0","短信验证码验证不通过！");
                 }
+                realNameAuthDomain.setIdNo(corcardno);
+                realNameAuthDomain.setBankCardNo(cardno);
+                realNameAuthDomain.setName(corname);
+                realNameAuthDomain.setMobileNo(mobile);
+                realNameAuthDomain.setIdType(corcardtype);
+            }else{
+                realNameAuthDomain.setIdNo(certificateno);
+                realNameAuthDomain.setBankCardNo(cardno);
+                realNameAuthDomain.setName(membername);
+                realNameAuthDomain.setMobileNo(mobile);
+                realNameAuthDomain.setIdType(certificatetype);
             }
+            /*Response<ResRealNameAuthDomain> authDomainResponse = authService.postHttpsRequest(realNameAuthDomain);
+            if(!authDomainResponse.checkIfSuccess()){
+                return new Response().fail("0","实名认证失败"+authDomainResponse.getMsg());
+            }
+            bank = authDomainResponse.getData().getBankName();*/
             Map<String,Object> entity = new HashMap<>();
             entity = getCasRegister();
             if(ObjectUtils.isEmpty(entity)){

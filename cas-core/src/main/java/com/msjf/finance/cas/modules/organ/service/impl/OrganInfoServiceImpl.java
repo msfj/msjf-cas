@@ -44,14 +44,15 @@ public class OrganInfoServiceImpl extends Account implements OrganInfoService {
         try {
             PageHelper.startPage(organInfoRequest.getPageNum(),organInfoRequest.getPageSize());  //TODO 设置分页
             List<OrganInfoEntity> organInfoEntityList = organInfoDao.getListEntity(new OrganInfoEntity());
+            Page<OrganInfoEntity> organInfoEntityPage = PageUtils.toPage(organInfoEntityList, (OrganInfoEntity organInfoEntity) -> organInfoEntity);//TODO 分页转换
             List<OrganInfoDomain> organInfoDomainList = new ArrayList();
             organInfoEntityList.stream().forEach(organInfoEntity -> {
                 OrganInfoDomain organInfoDomain = new OrganInfoDomain();
                 BeanUtils.copyProperties(organInfoEntity, organInfoDomain);
                 organInfoDomainList.add(organInfoDomain);
             });
-            Page<OrganInfoDomain> organInfoEntityPage = PageUtils.toPage(organInfoDomainList, (OrganInfoDomain organInfoDomain) -> organInfoDomain); //TODO 分页转换
-            return organInfoEntityPage;
+            Page<OrganInfoDomain> organInfoDomainPage = PageUtils.toPageDomain(organInfoDomainList,organInfoEntityPage);//TODO 转换domain
+            return organInfoDomainPage;
         } catch (Exception e) {
             //打印错误日志
             e.printStackTrace();
