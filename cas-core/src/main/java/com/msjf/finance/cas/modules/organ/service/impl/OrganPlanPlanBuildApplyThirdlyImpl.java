@@ -38,7 +38,7 @@ import java.util.List;
 @Service
 public class OrganPlanPlanBuildApplyThirdlyImpl extends BaseService {
 
-    private static final Logger logger = LogManager.getLogger(OrganServiceFacadeImpl.class);
+    private static final Logger logger = LogManager.getLogger(OrganPlanPlanBuildApplyThirdlyImpl.class);
 
     /**
      * 发起人客户代码
@@ -98,7 +98,6 @@ public class OrganPlanPlanBuildApplyThirdlyImpl extends BaseService {
      */
     @Transactional(rollbackFor = Exception.class, timeout = 30000)
     @Override
-
     public void addApplyThirdly(HashMap<String, Object> mapParam, Response rs) {
 
         rs.fail("cas", "操作失败");

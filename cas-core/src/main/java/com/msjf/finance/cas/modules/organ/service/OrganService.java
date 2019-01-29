@@ -44,4 +44,14 @@ public interface OrganService {
      * @param rs 返回结果
      */
     void addApplyFourthly(HashMap<String, Object> mapParam, Response rs);
+
+
+
+    /**
+     * 查询企业设立列表信息
+     * @param mapParam 入参
+     * @param rs 返回结果
+     */
+    void getOrganInfoList(HashMap<String, Object> mapParam, Response rs);
+
 }

@@ -51,7 +51,7 @@ public class BaseService extends IBaseService {
         organInfoEntity.setMembername(organName);
         List<OrganInfoEntity> organInfoEntityList = organInfoDao.getListEntity(organInfoEntity);
         if (!CheckUtil.isNull(organInfoEntityList) && organInfoEntityList.size() > 1) {
-            rs.fail("cas", "企业名称已存在");
+            rs.fail(serviceName, "企业名称已存在");
             return false;
         }
 
@@ -60,7 +60,7 @@ public class BaseService extends IBaseService {
         mapParam.put("memberName", organName);
         List<Map<String, Object>> checkListMap = organInfoJoinDao.checkExistCompanyNameInChange(mapParam);
         if (!CheckUtil.isNull(checkListMap)) {
-            rs.fail("cas", "企业名称已存在");
+            rs.fail(serviceName, "企业名称已存在");
             return false;
         }
 
@@ -69,7 +69,7 @@ public class BaseService extends IBaseService {
         rollinEntity.setCompanyname(organName);
         List<OrganRollinEntity> organRollinEntityList = organRollinDao.getListEntity(rollinEntity);
         if (!CheckUtil.isNull(organRollinEntityList)) {
-            rs.fail("cas", "企业名称已存在");
+            rs.fail(serviceName, "企业名称已存在");
             return false;
         }
         return true;
@@ -89,7 +89,7 @@ public class BaseService extends IBaseService {
         organInfoKey.setKey(orgCustomerNo);
         OrganInfoEntity organInfoEntity = organInfoDao.getEntityKey(organInfoKey);
         if (CheckUtil.isNull(organInfoEntity)) {
-            rs.fail("cas", "企业基本信息不存在");
+            rs.fail(serviceName, "企业基本信息不存在");
             return false;
         }
         return true;
@@ -111,8 +111,8 @@ public class BaseService extends IBaseService {
             }
             return true;
         } catch (Exception e) {
-            rs.fail("cas", "organ_info更新失败");
-            logger.error("cas", "organ_info更新失败", e);
+            rs.fail(serviceName, "organ_info更新失败");
+            logger.error(serviceName, "organ_info更新失败", e);
             throw new RuntimeException("organ_info更新失败", e);
         }
     }
@@ -133,8 +133,8 @@ public class BaseService extends IBaseService {
             }
             return true;
         } catch (Exception e) {
-            rs.fail("cas", "organ_info新增失败");
-            logger.error("cas", "organ_info新增失败", e);
+            rs.fail(serviceName, "organ_info新增失败");
+            logger.error(serviceName, "organ_info新增失败", e);
             throw new RuntimeException("organ_info新增失败", e);
         }
     }
@@ -155,8 +155,8 @@ public class BaseService extends IBaseService {
             }
             return true;
         } catch (Exception e) {
-            rs.fail("cas", "cus更新失败");
-            logger.error("cas", "cus更新失败", e);
+            rs.fail(serviceName, "cus更新失败");
+            logger.error(serviceName, "cus更新失败", e);
             throw new RuntimeException("cus更新失败", e);
         }
     }
@@ -177,8 +177,8 @@ public class BaseService extends IBaseService {
             }
             return true;
         } catch (Exception e) {
-            rs.fail("cas", "cus新增失败");
-            logger.error("cas", "cus新增失败", e);
+            rs.fail(serviceName, "cus新增失败");
+            logger.error(serviceName, "cus新增失败", e);
             throw new RuntimeException("cus新增失败", e);
         }
     }
@@ -199,8 +199,8 @@ public class BaseService extends IBaseService {
             }
             return true;
         } catch (Exception e) {
-            rs.fail("cas", "organ_flow更新失败");
-            logger.error("cas", "organ_flow更新失败", e);
+            rs.fail(serviceName, "organ_flow更新失败");
+            logger.error(serviceName, "organ_flow更新失败", e);
             throw new RuntimeException("organ_flow更新失败", e);
         }
     }
@@ -221,8 +221,8 @@ public class BaseService extends IBaseService {
             }
             return true;
         } catch (Exception e) {
-            rs.fail("cas", "organ_flow新增失败");
-            logger.error("cas", "organ_flow新增失败", e);
+            rs.fail(serviceName, "organ_flow新增失败");
+            logger.error(serviceName, "organ_flow新增失败", e);
             throw new RuntimeException("organ_flow新增失败", e);
         }
     }
@@ -239,7 +239,7 @@ public class BaseService extends IBaseService {
         custEntity.setCustomerno(customerNo);
         List<CustEntity> customerEntityList = custDao.getListEntity(custEntity);
         if (CheckUtil.isNull(customerEntityList)) {
-            rs.fail("cas", "发起人账户信息不存在");
+            rs.fail(serviceName, "发起人账户信息不存在");
             return false;
         }
         return true;

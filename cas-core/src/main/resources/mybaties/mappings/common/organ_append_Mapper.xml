@@ -49,7 +49,13 @@
 			insertdate "insertdate",
 			inserttime "inserttime",
 			updatedate "updatedate",
-			updatetime "updatetime"
+			updatetime "updatetime",
+			mployed_people_numbere "mployedPeopleNumbere",
+			industry_market_type "industryMarketType",
+			focus_project_phase "focusProjectPhase",
+			return_investment "returnInvestment",
+			adjunct "adjunct",
+			remarks "remarks"
 		from cas.organ_append
 		where 
 			customerno = #{customerno}
@@ -102,7 +108,13 @@
 			insertdate "insertdate",
 			inserttime "inserttime",
 			updatedate "updatedate",
-			updatetime "updatetime"
+			updatetime "updatetime",
+			mployed_people_numbere "mployedPeopleNumbere",
+			industry_market_type "industryMarketType",
+			focus_project_phase "focusProjectPhase",
+			return_investment "returnInvestment",
+			adjunct "adjunct",
+			remarks "remarks"
 		from cas.organ_append
 		where 
 			customerno = #{customerno}
@@ -154,7 +166,13 @@
 			insertdate "insertdate",
 			inserttime "inserttime",
 			updatedate "updatedate",
-			updatetime "updatetime"
+			updatetime "updatetime",
+			mployed_people_numbere "mployedPeopleNumbere",
+			industry_market_type "industryMarketType",
+			focus_project_phase "focusProjectPhase",
+			return_investment "returnInvestment",
+			adjunct "adjunct",
+			remarks "remarks"
 		from cas.organ_append
 		where 
 			customerno = #{customerno}
@@ -206,7 +224,13 @@
 			insertdate "insertdate",
 			inserttime "inserttime",
 			updatedate "updatedate",
-			updatetime "updatetime"
+			updatetime "updatetime",
+			mployed_people_numbere "mployedPeopleNumbere",
+			industry_market_type "industryMarketType",
+			focus_project_phase "focusProjectPhase",
+			return_investment "returnInvestment",
+			adjunct "adjunct",
+			remarks "remarks"
 		from cas.organ_append
 	]]>
 	<where>
@@ -252,6 +276,12 @@
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
 		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
 		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="mployedPeopleNumbere != null and mployedPeopleNumbere!= '' "><![CDATA[ and mployed_people_numbere=#{mployedPeopleNumbere}]]></if>
+		<if test="industryMarketType != null and industryMarketType!= '' "><![CDATA[ and industry_market_type=#{industryMarketType}]]></if>
+		<if test="focusProjectPhase != null and focusProjectPhase!= '' "><![CDATA[ and focus_project_phase=#{focusProjectPhase}]]></if>
+		<if test="returnInvestment != null and returnInvestment!= '' "><![CDATA[ and return_investment=#{returnInvestment}]]></if>
+		<if test="adjunct != null and adjunct!= '' "><![CDATA[ and adjunct=#{adjunct}]]></if>
+		<if test="remarks != null and remarks!= '' "><![CDATA[ and remarks=#{remarks}]]></if>
 	</where>
 	<![CDATA[for update ]]>
 	</select>
@@ -301,7 +331,13 @@
 			insertdate "insertdate",
 			inserttime "inserttime",
 			updatedate "updatedate",
-			updatetime "updatetime"
+			updatetime "updatetime",
+			mployed_people_numbere "mployedPeopleNumbere",
+			industry_market_type "industryMarketType",
+			focus_project_phase "focusProjectPhase",
+			return_investment "returnInvestment",
+			adjunct "adjunct",
+			remarks "remarks"
 		from cas.organ_append
 	]]>
 	<where>
@@ -347,6 +383,12 @@
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
 		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
 		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="mployedPeopleNumbere != null and mployedPeopleNumbere!= '' "><![CDATA[ and mployed_people_numbere=#{mployedPeopleNumbere}]]></if>
+		<if test="industryMarketType != null and industryMarketType!= '' "><![CDATA[ and industry_market_type=#{industryMarketType}]]></if>
+		<if test="focusProjectPhase != null and focusProjectPhase!= '' "><![CDATA[ and focus_project_phase=#{focusProjectPhase}]]></if>
+		<if test="returnInvestment != null and returnInvestment!= '' "><![CDATA[ and return_investment=#{returnInvestment}]]></if>
+		<if test="adjunct != null and adjunct!= '' "><![CDATA[ and adjunct=#{adjunct}]]></if>
+		<if test="remarks != null and remarks!= '' "><![CDATA[ and remarks=#{remarks}]]></if>
 	</where>
 	</select>
 	<!--企业附属信息表organ_append 按实体查询-->
@@ -395,7 +437,13 @@
 			insertdate "insertdate",
 			inserttime "inserttime",
 			updatedate "updatedate",
-			updatetime "updatetime"
+			updatetime "updatetime",
+			mployed_people_numbere "mployedPeopleNumbere",
+			industry_market_type "industryMarketType",
+			focus_project_phase "focusProjectPhase",
+			return_investment "returnInvestment",
+			adjunct "adjunct",
+			remarks "remarks"
 		from cas.organ_append
 	]]>
 	<where>
@@ -441,6 +489,12 @@
 		<if test="inserttime != null and inserttime!= '' "><![CDATA[ and inserttime=#{inserttime}]]></if>
 		<if test="updatedate != null and updatedate!= '' "><![CDATA[ and updatedate=#{updatedate}]]></if>
 		<if test="updatetime != null and updatetime!= '' "><![CDATA[ and updatetime=#{updatetime}]]></if>
+		<if test="mployedPeopleNumbere != null and mployedPeopleNumbere!= '' "><![CDATA[ and mployed_people_numbere=#{mployedPeopleNumbere}]]></if>
+		<if test="industryMarketType != null and industryMarketType!= '' "><![CDATA[ and industry_market_type=#{industryMarketType}]]></if>
+		<if test="focusProjectPhase != null and focusProjectPhase!= '' "><![CDATA[ and focus_project_phase=#{focusProjectPhase}]]></if>
+		<if test="returnInvestment != null and returnInvestment!= '' "><![CDATA[ and return_investment=#{returnInvestment}]]></if>
+		<if test="adjunct != null and adjunct!= '' "><![CDATA[ and adjunct=#{adjunct}]]></if>
+		<if test="remarks != null and remarks!= '' "><![CDATA[ and remarks=#{remarks}]]></if>
 	</where>
 	</select>
 	<!--企业附属信息表organ_append 按实体新增记录 mysql-->
@@ -455,7 +509,8 @@
 			investnum,projecttrade,projectintro,blocname,classify,
 			businesstype,objecttype,specificbusinesstype,profitmodel,capitalsource,
 			mainworkexp,othersintro,partnerintro,insertdate,inserttime,
-			updatedate,updatetime
+			updatedate,updatetime,mployed_people_numbere,industry_market_type,focus_project_phase,
+			return_investment,adjunct,remarks
 		) values(
 			#{customerno, jdbcType=VARCHAR},#{version, jdbcType=INTEGER},#{isfiling, jdbcType=VARCHAR},#{registerno, jdbcType=VARCHAR},#{employeenum, jdbcType=VARCHAR},
 			#{caremarkettype, jdbcType=VARCHAR},#{projectphase, jdbcType=VARCHAR},#{profittype, jdbcType=CLOB},#{isfundfiling, jdbcType=VARCHAR},#{fundfilingno, jdbcType=VARCHAR},
@@ -465,7 +520,8 @@
 			#{investnum, jdbcType=VARCHAR},#{projecttrade, jdbcType=VARCHAR},#{projectintro, jdbcType=CLOB},#{blocname, jdbcType=VARCHAR},#{classify, jdbcType=VARCHAR},
 			#{businesstype, jdbcType=VARCHAR},#{objecttype, jdbcType=VARCHAR},#{specificbusinesstype, jdbcType=VARCHAR},#{profitmodel, jdbcType=VARCHAR},#{capitalsource, jdbcType=VARCHAR},
 			#{mainworkexp, jdbcType=CLOB},#{othersintro, jdbcType=CLOB},#{partnerintro, jdbcType=CLOB},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
-			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR}
+			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{mployedPeopleNumbere, jdbcType=VARCHAR},#{industryMarketType, jdbcType=VARCHAR},#{focusProjectPhase, jdbcType=VARCHAR},
+			#{returnInvestment, jdbcType=VARCHAR},#{adjunct, jdbcType=VARCHAR},#{remarks, jdbcType=VARCHAR}
 	)]]>
 	</insert>
 	<!--企业附属信息表organ_append 按批量实体新增记录mysql-->
@@ -480,7 +536,8 @@
 			investnum,projecttrade,projectintro,blocname,classify,
 			businesstype,objecttype,specificbusinesstype,profitmodel,capitalsource,
 			mainworkexp,othersintro,partnerintro,insertdate,inserttime,
-			updatedate,updatetime
+			updatedate,updatetime,mployed_people_numbere,industry_market_type,focus_project_phase,
+			return_investment,adjunct,remarks
 		)
 		values
 	]]>
@@ -494,7 +551,8 @@
 				#{item.investnum, jdbcType=VARCHAR},#{item.projecttrade, jdbcType=VARCHAR},#{item.projectintro, jdbcType=CLOB},#{item.blocname, jdbcType=VARCHAR},#{item.classify, jdbcType=VARCHAR},
 				#{item.businesstype, jdbcType=VARCHAR},#{item.objecttype, jdbcType=VARCHAR},#{item.specificbusinesstype, jdbcType=VARCHAR},#{item.profitmodel, jdbcType=VARCHAR},#{item.capitalsource, jdbcType=VARCHAR},
 				#{item.mainworkexp, jdbcType=CLOB},#{item.othersintro, jdbcType=CLOB},#{item.partnerintro, jdbcType=CLOB},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},
-				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR}
+				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},#{item.mployedPeopleNumbere, jdbcType=VARCHAR},#{item.industryMarketType, jdbcType=VARCHAR},#{item.focusProjectPhase, jdbcType=VARCHAR},
+				#{item.returnInvestment, jdbcType=VARCHAR},#{item.adjunct, jdbcType=VARCHAR},#{item.remarks, jdbcType=VARCHAR}
 			)
 		</foreach>
 	</insert>
@@ -546,6 +604,12 @@
 		 <if test="inserttime != null and inserttime != '' "><![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
 		 <if test="updatedate != null and updatedate != '' "><![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null and updatetime != '' "><![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="mployedPeopleNumbere != null and mployedPeopleNumbere != '' "><![CDATA[mployed_people_numbere=#{mployedPeopleNumbere, jdbcType=VARCHAR},]]></if>
+		 <if test="industryMarketType != null and industryMarketType != '' "><![CDATA[industry_market_type=#{industryMarketType, jdbcType=VARCHAR},]]></if>
+		 <if test="focusProjectPhase != null and focusProjectPhase != '' "><![CDATA[focus_project_phase=#{focusProjectPhase, jdbcType=VARCHAR},]]></if>
+		 <if test="returnInvestment != null and returnInvestment != '' "><![CDATA[return_investment=#{returnInvestment, jdbcType=VARCHAR},]]></if>
+		 <if test="adjunct != null and adjunct != '' "><![CDATA[adjunct=#{adjunct, jdbcType=VARCHAR},]]></if>
+		 <if test="remarks != null and remarks != '' "><![CDATA[remarks=#{remarks, jdbcType=VARCHAR},]]></if>
 	</set>
 	<![CDATA[ where customerno = #{customerno}
 	]]>
@@ -597,6 +661,12 @@
 		 <if test="item.inserttime != null and item.inserttime != '' "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatedate != null and item.updatedate != '' "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null and item.updatetime != '' "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mployedPeopleNumbere != null and item.mployedPeopleNumbere != '' "><![CDATA[mployed_people_numbere=#{item.mployedPeopleNumbere, jdbcType=VARCHAR},]]></if>
+		 <if test="item.industryMarketType != null and item.industryMarketType != '' "><![CDATA[industry_market_type=#{item.industryMarketType, jdbcType=VARCHAR},]]></if>
+		 <if test="item.focusProjectPhase != null and item.focusProjectPhase != '' "><![CDATA[focus_project_phase=#{item.focusProjectPhase, jdbcType=VARCHAR},]]></if>
+		 <if test="item.returnInvestment != null and item.returnInvestment != '' "><![CDATA[return_investment=#{item.returnInvestment, jdbcType=VARCHAR},]]></if>
+		 <if test="item.adjunct != null and item.adjunct != '' "><![CDATA[adjunct=#{item.adjunct, jdbcType=VARCHAR},]]></if>
+		 <if test="item.remarks != null and item.remarks != '' "><![CDATA[remarks=#{item.remarks, jdbcType=VARCHAR},]]></if>
 			</set>
 			<![CDATA[ where customerno = #{item.customerno}
 			]]>
@@ -650,6 +720,12 @@
 		 <if test="inserttime != null "> <![CDATA[inserttime=#{inserttime, jdbcType=VARCHAR},]]></if>
 		 <if test="updatedate != null "> <![CDATA[updatedate=#{updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="updatetime != null "> <![CDATA[updatetime=#{updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="mployedPeopleNumbere != null "> <![CDATA[mployed_people_numbere=#{mployedPeopleNumbere, jdbcType=VARCHAR},]]></if>
+		 <if test="industryMarketType != null "> <![CDATA[industry_market_type=#{industryMarketType, jdbcType=VARCHAR},]]></if>
+		 <if test="focusProjectPhase != null "> <![CDATA[focus_project_phase=#{focusProjectPhase, jdbcType=VARCHAR},]]></if>
+		 <if test="returnInvestment != null "> <![CDATA[return_investment=#{returnInvestment, jdbcType=VARCHAR},]]></if>
+		 <if test="adjunct != null "> <![CDATA[adjunct=#{adjunct, jdbcType=VARCHAR},]]></if>
+		 <if test="remarks != null "> <![CDATA[remarks=#{remarks, jdbcType=VARCHAR},]]></if>
 	</set>
 	<![CDATA[ where customerno = #{customerno}
 	]]>
@@ -701,6 +777,12 @@
 		 <if test="item.inserttime != null "><![CDATA[inserttime=#{item.inserttime, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatedate != null "><![CDATA[updatedate=#{item.updatedate, jdbcType=VARCHAR},]]></if>
 		 <if test="item.updatetime != null "><![CDATA[updatetime=#{item.updatetime, jdbcType=VARCHAR},]]></if>
+		 <if test="item.mployedPeopleNumbere != null "><![CDATA[mployed_people_numbere=#{item.mployedPeopleNumbere, jdbcType=VARCHAR},]]></if>
+		 <if test="item.industryMarketType != null "><![CDATA[industry_market_type=#{item.industryMarketType, jdbcType=VARCHAR},]]></if>
+		 <if test="item.focusProjectPhase != null "><![CDATA[focus_project_phase=#{item.focusProjectPhase, jdbcType=VARCHAR},]]></if>
+		 <if test="item.returnInvestment != null "><![CDATA[return_investment=#{item.returnInvestment, jdbcType=VARCHAR},]]></if>
+		 <if test="item.adjunct != null "><![CDATA[adjunct=#{item.adjunct, jdbcType=VARCHAR},]]></if>
+		 <if test="item.remarks != null "><![CDATA[remarks=#{item.remarks, jdbcType=VARCHAR},]]></if>
 			</set>
 			<![CDATA[ where customerno = #{item.customerno}
 			]]>

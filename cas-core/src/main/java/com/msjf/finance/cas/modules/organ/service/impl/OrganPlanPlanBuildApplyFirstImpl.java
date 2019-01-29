@@ -91,15 +91,6 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
      */
     private boolean isUpdate;
 
-    @Resource
-    private CustDao custDao;
-
-    @Resource
-    private OrganInfoDao organInfoDao;
-
-    @Resource
-    private OrganFlowDao organFlowDao;
-
 
     /**
      * 添加拟设立
@@ -154,8 +145,8 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
             rs.fail("cas", "企业类型不能为空");
             return false;
         }
-        if (CheckUtil.isNull(organclass)) {
-            rs.fail("cas", "企业分类不能为空");
+        if(!MacroDefine.ORGAN_CLASS_TYPE.isExistsEnum(organclass)){
+            rs.fail("cas", "暂不支持该企业分类");
             return false;
         }
         return super.preCheck(mapParam, rs);
@@ -200,10 +191,6 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
             return false;
         }
         //3-写企业业务流程信息表
-        if (!addFlow(rs)) {
-            return false;
-        }
-        //4-写企业业务流程信息表
         if (!addFlow(rs)) {
             return false;
         }

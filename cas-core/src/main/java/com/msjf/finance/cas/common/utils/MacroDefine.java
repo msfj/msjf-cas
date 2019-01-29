@@ -1,5 +1,8 @@
 package com.msjf.finance.cas.common.utils;
 
+/**
+ * @author kevin
+ */
 public class MacroDefine {
 
 
@@ -159,7 +162,7 @@ public class MacroDefine {
     public enum AUDIT_STATUS {
 
         AUDIT_STATUS_INIT("0", "初始状态"), AUDIT_STATUS_APPLY("1", "审核中"), AUDIT_STATUS_PASS("2", "审核通过"),
-        AUDIT_STATUS_FAIL("3", "审核不通过"),AUDIT_STATUS_4("4", "已暂存");
+        AUDIT_STATUS_FAIL("3", "审核不通过"), AUDIT_STATUS_4("4", "已暂存");
         private String value;
         private String name;
 
@@ -250,7 +253,7 @@ public class MacroDefine {
      */
     public enum FLOW_TYPE {
         FLOW_TYPE_0("0", "拟申请企业设立"), FLOW_TYPE_1("1", "企业设立"), FLOW_TYPE_2("2", "企业变更"), FLOW_TYPE_3("3", "企业注销"),
-        FLOW_TYPE_4("4", "企业迁入"),FLOW_TYPE_5("5", "招商对接人变更");
+        FLOW_TYPE_4("4", "企业迁入"), FLOW_TYPE_5("5", "招商对接人变更");
 
         private String value;
 
@@ -550,10 +553,10 @@ public class MacroDefine {
      * 6-监事长 7-监事 8-经理 9-其他成员 10-股东
      */
     public enum POSITION_TYPE {
-        POSITION_TYPE_0("0", "联络员"),POSITION_TYPE_1("1", "财务负责人"), POSITION_TYPE_2("2", "执行董事"),
-        POSITION_TYPE_3("3", "董事长"),POSITION_TYPE_4("4", "董事"), POSITION_TYPE_5("5", "法定代表人/执行事务合伙人/委托代表"),
-        POSITION_TYPE_6("6", "监事长"), POSITION_TYPE_7("7", "监事"), POSITION_TYPE_8("8", "经理"),
-        POSITION_TYPE_9("9", "其他成员"),POSITION_TYPE_10("10", "股东");
+        POSITION_TYPE_0("0", "联络员"), POSITION_TYPE_1("1", "财务负责人"), POSITION_TYPE_2("2", "执行董事"), POSITION_TYPE_3
+                ("3", "董事长"), POSITION_TYPE_4("4", "董事"), POSITION_TYPE_5("5", "法定代表人/执行事务合伙人/委托代表"), POSITION_TYPE_6
+                ("6", "监事长"), POSITION_TYPE_7("7", "监事"), POSITION_TYPE_8("8", "经理"), POSITION_TYPE_9("9", "其他成员"),
+        POSITION_TYPE_10("10", "股东");
 
         private String value;
         private String name;
@@ -704,6 +707,67 @@ public class MacroDefine {
          */
         public static boolean isExistsEnum(String value) {
             for (DUTY_WAY_TYPE p : DUTY_WAY_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value.toString();
+        }
+
+    }
+
+    /**
+     * 企业分类 字典105 0-基金管理人企业 1-基金项目产品企业 2-个人自有资金投资平台类企业 3-企业自有资金投资平台类企业 4-融资租赁企业 5-其他企业
+     */
+    public enum ORGAN_CLASS_TYPE {
+        ORGAN_CLASS_TYPE_0("0", "基金管理人企业"), ORGAN_CLASS_TYPE_1("1", "基金项目产品企业"), ORGAN_CLASS_TYPE_2("2",
+                "个人自有资金投资平台类企业"), ORGAN_CLASS_TYPE_3("3", "企业自有资金投资平台类企业"), ORGAN_CLASS_TYPE_4("4", "融资租赁企业"),
+        ORGAN_CLASS_TYPE_5("5", "其他企业");
+
+        private String value;
+        private String name;
+
+        ORGAN_CLASS_TYPE(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        /**
+         * 根据值获取名称
+         *
+         * @param value
+         * @return
+         */
+        public static String getEnumName(String value) {
+            for (ORGAN_CLASS_TYPE p : ORGAN_CLASS_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 检查值是否存在
+         *
+         * @param value
+         * @return 值的名称
+         */
+        public static boolean isExistsEnum(String value) {
+            for (ORGAN_CLASS_TYPE p : ORGAN_CLASS_TYPE.values()) {
                 if (p.value.equals(value)) {
                     return true;
                 }

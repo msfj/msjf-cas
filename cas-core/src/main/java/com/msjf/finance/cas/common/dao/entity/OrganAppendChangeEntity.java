@@ -81,6 +81,18 @@ public class OrganAppendChangeEntity extends OrganAppendChangeKey {
 	private String insertdate;
 	/**插入时间	**/
 	private String inserttime;
+	/**从业人数数量	**/
+	private String mployedPeopleNumbere;
+	/**投资所关注行业市场类型	**/
+	private String industryMarketType;
+	/**关注的项目阶段	**/
+	private String focusProjectPhase;
+	/**投资获得收益方式	**/
+	private String returnInvestment;
+	/**附件	**/
+	private String adjunct;
+	/**备注	**/
+	private String remarks;
 	public void init() {
 	}
 	/**企业客户代码	**/
@@ -402,5 +414,53 @@ public class OrganAppendChangeEntity extends OrganAppendChangeKey {
 	/**插入时间	**/
 	public void setInserttime(String inserttime) {
 		this.inserttime = inserttime;
+	}
+	/**从业人数数量	**/
+	public String getMployedPeopleNumbere() {
+		return this.mployedPeopleNumbere;
+	}
+	/**从业人数数量	**/
+	public void setMployedPeopleNumbere(String mployedPeopleNumbere) {
+		this.mployedPeopleNumbere = mployedPeopleNumbere;
+	}
+	/**投资所关注行业市场类型	**/
+	public String getIndustryMarketType() {
+		return this.industryMarketType;
+	}
+	/**投资所关注行业市场类型	**/
+	public void setIndustryMarketType(String industryMarketType) {
+		this.industryMarketType = industryMarketType;
+	}
+	/**关注的项目阶段	**/
+	public String getFocusProjectPhase() {
+		return this.focusProjectPhase;
+	}
+	/**关注的项目阶段	**/
+	public void setFocusProjectPhase(String focusProjectPhase) {
+		this.focusProjectPhase = focusProjectPhase;
+	}
+	/**投资获得收益方式	**/
+	public String getReturnInvestment() {
+		return this.returnInvestment;
+	}
+	/**投资获得收益方式	**/
+	public void setReturnInvestment(String returnInvestment) {
+		this.returnInvestment = returnInvestment;
+	}
+	/**附件	**/
+	public String getAdjunct() {
+		return this.adjunct;
+	}
+	/**附件	**/
+	public void setAdjunct(String adjunct) {
+		this.adjunct = adjunct;
+	}
+	/**备注	**/
+	public String getRemarks() {
+		return this.remarks;
+	}
+	/**备注	**/
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 }
