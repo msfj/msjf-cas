@@ -14,14 +14,14 @@ public enum RealNameAuthEnum implements ResponseService {
     PWD_ENCRYPT_ERROR("CAS0009", "密码加密对比失败"),
     CHECK_FILED("CAS0010", "验证码校验失败"),
     IMAGE_CODE_NULL("CAS0011", "图形验证码不能为空"),
-    PWD_NULL("CAS0012", "密码不能为空"),
-    LOGIN_NAME_NULL("CAS0013", "登录账号不能为空"),
-    CORPORATION_QUERY_NULL("CAS0014", "查无该法人企业信息"),
+    CERTIFICATENO_NULL("CAS0012", "证件号码不能为空"),
+    CERTIFICATENO_TYPE_NULL("CAS0013", "登录账号不能为空"),
+    NAME_NULL("CAS0014", "查无该法人企业信息"),
     PWD_ERROR_LOCK("CAS0015", "用户名或密码错误,账户已锁定"),
     AUTH__FAILED("CAS0016", "认证失败"),
     DICT_QUERY_NULL("CAS0017", "企业分类字典值不存在字典中"),
     AUTH_SUCCESS("CAS0018", "认证成功"),
-    LOGIN_TYPE_NULL("CAS0019", "登陆方式不能为空"),
+    BANKCARD_NULL("CAS0019", "银行卡号不能为空"),
     AUTH__EXCEPTION("CAS0019", "认证异常"),
     QUERY_COMPANY_SUCCESS("CAS0018", "查询法人企业信息成功");
     private String errorCode;

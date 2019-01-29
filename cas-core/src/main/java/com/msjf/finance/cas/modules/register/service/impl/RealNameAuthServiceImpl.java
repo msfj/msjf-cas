@@ -92,11 +92,39 @@ public class RealNameAuthServiceImpl extends Account {
         bankCardNo=reqRealNameAuthDomain.getBankCardNo();
     }
 
+    public Boolean preCheck(ReqRealNameAuthDomain reqRealNameAuthDomain,Response rs) {
+        if(StringUtils.isEmpty(idNo)){
+            rs.fail(RealNameAuthEnum.CERTIFICATENO_NULL);
+            return false;
+        }
+        if(StringUtils.isEmpty(idType)){
+            rs.fail(RealNameAuthEnum.CERTIFICATENO_TYPE_NULL);
+            return false;
+        }
+        if(StringUtils.isEmpty(name)){
+            rs.fail(RealNameAuthEnum.NAME_NULL);
+            return false;
+        }
+        if(StringUtils.isEmpty(mobileNo)){
+            rs.fail(RealNameAuthEnum.MOBILE_NULL);
+            return false;
+        }
+        if(StringUtils.isEmpty(bankCardNo)){
+            rs.fail(RealNameAuthEnum.BANKCARD_NULL);
+            return false;
+        }
+        return true;
+    }
+
     public Response<ResRealNameAuthDomain> postHttpsRequest(ReqRealNameAuthDomain reqRealNameAuthDomain)
     {
+        Response<ResRealNameAuthDomain> rs=new Response();
         ResRealNameAuthDomain resRealNameAuthDomain=new ResRealNameAuthDomain();
         getParam(reqRealNameAuthDomain);
         dealCertificate(idType,reqRealNameAuthDomain);
+        if(!preCheck(reqRealNameAuthDomain,rs)){
+            return rs;
+        }
         try {
         SysCertificationConfigKey sysCertificationConfigKey=new SysCertificationConfigKey();
         sysCertificationConfigKey.setKey("MSC8169");

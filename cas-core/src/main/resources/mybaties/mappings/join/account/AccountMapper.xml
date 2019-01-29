@@ -39,6 +39,50 @@
 	]]>
     </select>
 
+    <select id="selectCompanyPersonInfo" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
+		SELECT a.customerno "customerno",b.membername "membername",a.certificatetype "certificatetype",
+		t6.dict_value "certificatetypename",a.certificateno "certificateno",b.organclass,f5.dict_value "organclassname",
+		a.dockingpeople "dockingpeople",c.employeename  "dockingpeoplename",c.customerno "dockingpeoplecode",b.organtype,f6.dict_value "organtypename",
+		a.linkmanname "linkmanname",a.mobile "mobile",b.regicapital "regicapital",ifnull(b.regicapitalbz,'') "regicapitalbz",
+			ifnull((SELECT xx.dict_value FROM  kpfsp.sys_dict xx WHERE xx.dict_id='dict9002002' AND xx.dict_key=b.regicapitalbz),'')
+			"regicapitalbzname",b.businessscope "businessscope",
+		b.companyintro "companyintro",b.establishdate "establishdate",b.sparecontactname "sparecontactname",
+		b.sparecontactmobile "sparecontactmobile",b.registerprovince "registerprovince",t3.dict_value "registerprovincename",
+		b.registercity "registercity",t4.dict_value "registercityname" ,b.businessfile "businessfile",
+		b.registercounty "registercounty",t5.dict_value "registercountyname",b.registertreet "registertreet",
+		b.realprovince "realprovince",t.dict_value "realprovincename",b.realcity "realcity",t1.dict_value "realcityname",
+		b.realcounty,t2.dict_value "realcountyname",b.realtreet,b.hanginfo,t7.dict_value "hanginfoname",
+		b.companymodel "companymodel",t8.dict_value "companymodelname",b.investsource, t9.dict_value "investsourcename",
+		<if test=' organclass != null and organclass !="" and organclass =="0" '>
+		d.isfiling,d.registerno,
+		 </if>
+		<if test=' organclass != null and organclass !="" and organclass =="1" '>
+		d.isfundfiling "isfundfiling",d.fundfilingno "fundfilingno",
+		</if>
+		d.caremarkettype "caremarkettype",d.projectphase "projectphase",d.companytrade,d.projecttrade,
+		d.fundprojecttrade,d.fundprojectphase,d.classify,f4.dict_value "classifyname",d.fundmanagername,d.fundmanagerno,d.employeenum,d.profittype,
+		d.projectintro,d.blocname,d.companyname,d.companyinfo,d.investnum,
+		d.businesstype,d.objecttype,d.specificbusinesstype,d.profitmodel,d.capitalsource
+		FROM
+		(SELECT customerno,certificatetype,certificateno,linkmanname,mobile,dockingpeople FROM cas.cust
+		WHERE customerno = #{customerno}) a
+		LEFT JOIN cas.organ_info b ON a.customerno = b.customerno
+		LEFT JOIN cas.employee c ON a.dockingpeople = c.customerno
+		LEFT JOIN cas.sys_dict t  ON t.dict_id = 'dict101021' AND t.dict_key = b.realprovince
+		LEFT JOIN cas.sys_dict t1 ON t1.dict_id = 'dict101022' AND t1.dict_key = b.realcity
+		LEFT JOIN cas.sys_dict t2 ON t2.dict_id = 'dict101023' AND t2.dict_key = b.realcounty
+		LEFT JOIN cas.sys_dict t3  ON t3.dict_id = 'dict101021' AND t3.dict_key = b.registerprovince
+		LEFT JOIN cas.sys_dict t4 ON t4.dict_id = 'dict101022' AND t4.dict_key = b.registercity
+		LEFT JOIN cas.sys_dict t5 ON t5.dict_id = 'dict101023' AND t5.dict_key = b.registercounty
+		LEFT JOIN cas.sys_dict t6 ON t6.dict_id = '1012' AND t6.dict_key = a.certificatetype
+		LEFT JOIN cas.sys_dict t7 ON t7.dict_id = '112' AND t7.dict_key = b.hanginfo
+		LEFT JOIN cas.sys_dict t8 ON t8.dict_id = '113' AND t8.dict_key = b.companymodel
+		LEFT JOIN cas.sys_dict t9 ON t9.dict_id = '114' AND t9.dict_key = b.investsource
+		LEFT JOIN cas.organ_append d ON d.customerno = a.customerno
+		LEFT JOIN cas.sys_dict f4 ON f4.dict_id = '121' AND f4.dict_key = d.classify
+		LEFT JOIN cas.sys_dict f5 ON f5.dict_id = '105' AND f5.dict_key = b.organclass
+		LEFT JOIN cas.sys_dict f6 ON f6.dict_id = '104' AND f6.dict_key = b.organtype
+    </select>
     <select id="selectEmployeeInfo" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
         <![CDATA[
             SELECT
