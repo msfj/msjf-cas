@@ -11,6 +11,12 @@ import java.util.HashMap;
  * Created by lzp on 2018/12/27.
  */
 public abstract class Account implements IApp {
+
+
+    /**
+     * 服务名称
+     */
+    protected final static String serviceName = "cas";
     /**
      * 日志记录类
      */
