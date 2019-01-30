@@ -1,0 +1,14 @@
+{
+  "name": "api-cas-doc",
+  "version": "0.1.0",
+  "description": "cas系统接口文档",
+  "title": "Custom apiDoc browser title",
+  "url" : "http://49.4.91.18:8181/gws/msjf",
+  "sampleUrl" : "http://49.4.91.18:8181/gws/msjf",
+  "header": {
+    "Content-Type" : "application/x-www-form-urlencoded",
+    "Access-Control-Allow-Origin" : "*",
+    "Access-Control-Allow-Headers" : "content-type",
+    "Access-Control-Allow-Methods" : "POST,GET,OPTIONS,DELETE"
+  }
+}

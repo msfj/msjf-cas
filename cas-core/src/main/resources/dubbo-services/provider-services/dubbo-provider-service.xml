@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="GBK"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	   xmlns="http://www.springframework.org/schema/beans"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-   <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganInfoFacade" ref="organInfoFacade" timeout="12000" />
-	<!--<dubbo:service interface="com.msjf.finance.cas.facade.person.PersonInfoFacade" ref="personFacade" timeout="12000" />-->
-	<dubbo:service interface="com.msjf.finance.cas.facade.register.RegisterFacade" ref="registerFacade" />
+    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganInfoFacade" ref="organInfoFacade" timeout="12000"/>
+    <!--<dubbo:service interface="com.msjf.finance.cas.facade.person.PersonInfoFacade" ref="personFacade" timeout="12000" />-->
+    <dubbo:service interface="com.msjf.finance.cas.facade.register.RegisterFacade" ref="registerFacade"/>
 
-	<dubbo:service interface="com.msjf.finance.cas.facade.login.LoginFacade" ref="loginFacade" />
+    <dubbo:service interface="com.msjf.finance.cas.facade.login.LoginFacade" ref="loginFacade"/>
 
-	<dubbo:service interface="com.msjf.finance.cas.facade.imagevalidcode.ImageValidcodeFacade" ref="imageValidcodeFacade" />
+    <dubbo:service interface="com.msjf.finance.cas.facade.imagevalidcode.ImageValidcodeFacade"
+                   ref="imageValidcodeFacade"/>
 
-	<dubbo:service interface="com.msjf.finance.cas.facade.loginAuth.LoginAuthFacade" ref="loginAuthFacade" />
+    <dubbo:service interface="com.msjf.finance.cas.facade.loginAuth.LoginAuthFacade" ref="loginAuthFacade"/>
 
-	<dubbo:service interface="com.msjf.finance.cas.facade.changePwd.ChangePwdFacade" ref="changePwdFacade" />
+    <dubbo:service interface="com.msjf.finance.cas.facade.changePwd.ChangePwdFacade" ref="changePwdFacade"/>
 
-	<dubbo:service interface="com.msjf.finance.cas.facade.employee.EmployeeLoginFacade" ref="employeeLoginFacade" />
+    <dubbo:service interface="com.msjf.finance.cas.facade.employee.EmployeeLoginFacade" ref="employeeLoginFacade"/>
 
-	<dubbo:service interface="com.msjf.finance.cas.facade.branch.BranchFacade" ref="branchFacade" />
-	<dubbo:service interface="com.msjf.finance.cas.facade.employee.EmployeeMangerFacade" ref="employeeMangerFacade" />
-	<dubbo:service interface="com.msjf.finance.cas.facade.custManger.CustMangerFacade" ref="custMangerFacade" />
+    <dubbo:service interface="com.msjf.finance.cas.facade.branch.BranchFacade" ref="branchFacade"/>
+    <dubbo:service interface="com.msjf.finance.cas.facade.employee.EmployeeMangerFacade" ref="employeeMangerFacade"/>
+    <dubbo:service interface="com.msjf.finance.cas.facade.custManger.CustMangerFacade" ref="custMangerFacade"/>
+
+    <!--添加拟设立-第一步-->
+    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <dubbo:method name="setAddApplyFirst"/>
+    </dubbo:service>
+    <!--添加拟设立-第二步-->
+    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <dubbo:method name="setAddApplySecond"/>
+    </dubbo:service>
+    <!--添加拟设立-第三步-->
+    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <dubbo:method name="setAddApplyThirdly"/>
+    </dubbo:service>
+    <!--添加拟设立-第四步-其它信息-->
+    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <dubbo:method name="setAddApplyFourthly"/>
+    </dubbo:service>
+    <!--查询企业设立列表信息-->
+    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <dubbo:method name="getOrganInfoList"/>
+    </dubbo:service>
+
 </beans>

@@ -15,7 +15,7 @@ import java.util.Map;
  * @create 2019-01-29 17:49
  */
 @MyBatisDao
-public interface OrgJoinDao {
+public interface OrganJoinDao {
 
     /**
      * 查询企业基本信息和相关联信息

@@ -4,7 +4,6 @@ import com.msjf.finance.cas.facade.organ.OrganServiceFacade;
 import com.msjf.finance.cas.modules.organ.service.OrganService;
 import com.msjf.finance.cas.modules.util.SpringContextUtil;
 import com.msjf.finance.msjf.core.response.Response;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -19,10 +18,11 @@ import java.util.HashMap;
  * @author 95494
  * @create 2019-01-22 14:48
  */
-@Service
+@Service("organServiceFacade")
 public class OrganServiceFacadeImpl implements OrganServiceFacade {
 
     private static final Logger logger = LogManager.getLogger(OrganServiceFacadeImpl.class);
+
 
     /**
      * 添加拟设立-第一步
@@ -35,9 +35,9 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
         //获取：服务
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyFirstImpl");
         Response rs = new Response();
-        logger.debug( "cas","=====调用业务开始=====", mapParam);
+        logger.debug("cas", "=====调用业务开始=====", mapParam);
         organService.addApplyFirst(mapParam, rs);
-        logger.debug( "cas", "=====调用业务结束=====",rs);
+        logger.debug("cas", "=====调用业务结束=====", rs);
         return rs;
     }
 
@@ -51,9 +51,9 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
     public Response setAddApplySecond(HashMap<String, Object> mapParam) {
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplySecondImpl");
         Response rs = new Response();
-        logger.debug( "cas","=====调用业务开始=====", mapParam);
+        logger.debug("cas", "=====调用业务开始=====", mapParam);
         organService.addApplySecond(mapParam, rs);
-        logger.debug( "cas", "=====调用业务结束=====",rs);
+        logger.debug("cas", "=====调用业务结束=====", rs);
         return rs;
     }
 
@@ -68,9 +68,9 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
         Response rs = new Response();
         //调用业务
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyThirdlyImpl");
-        logger.debug( "cas","=====调用业务开始=====", mapParam);
-        organService.addApplyThirdly(mapParam,rs);
-        logger.debug( "cas", "=====调用业务结束=====",rs);
+        logger.debug("cas", "=====调用业务开始=====", mapParam);
+        organService.addApplyThirdly(mapParam, rs);
+        logger.debug("cas", "=====调用业务结束=====", rs);
         return rs;
     }
 
@@ -85,9 +85,26 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
         Response rs = new Response();
         //调用业务
         OrganService organService = SpringContextUtil.getBean("organPlanPlanBuildApplyFourthlyImpl");
-        logger.debug( "cas","=====调用业务开始=====", mapParam);
-        organService.addApplyFourthly(mapParam,rs);
-        logger.debug( "cas", "=====调用业务结束=====",rs);
+        logger.debug("cas", "=====调用业务开始=====", mapParam);
+        organService.addApplyFourthly(mapParam, rs);
+        logger.debug("cas", "=====调用业务结束=====", rs);
+        return rs;
+    }
+
+    /**
+     * 查询企业设立列表信息
+     *
+     * @param mapParam 入参
+     * @return Response 返回结果
+     */
+    @Override
+    public Response getOrganInfoList(HashMap<String, Object> mapParam) {
+        Response rs = new Response();
+        //调用业务
+        OrganService organService = SpringContextUtil.getBean("getOrganInfoListImpl");
+        logger.debug("cas", "=====调用业务开始=====", mapParam);
+        organService.getOrganInfoList(mapParam, rs);
+        logger.debug("cas", "=====调用业务结束=====", rs);
         return rs;
     }
 }
