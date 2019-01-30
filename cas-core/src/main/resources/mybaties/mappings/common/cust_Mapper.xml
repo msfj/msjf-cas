@@ -15,6 +15,7 @@
 			certificatetype "certificatetype",
 			certificateno "certificateno",
 			linkmanname "linkmanname",
+			linkman_certificateno "linkmanCertificateno",
 			mobile "mobile",
 			cardno "cardno",
 			bank "bank",
@@ -51,6 +52,7 @@
 			certificatetype "certificatetype",
 			certificateno "certificateno",
 			linkmanname "linkmanname",
+			linkman_certificateno "linkmanCertificateno",
 			mobile "mobile",
 			cardno "cardno",
 			bank "bank",
@@ -86,6 +88,7 @@
 			certificatetype "certificatetype",
 			certificateno "certificateno",
 			linkmanname "linkmanname",
+			linkman_certificateno "linkmanCertificateno",
 			mobile "mobile",
 			cardno "cardno",
 			bank "bank",
@@ -121,6 +124,7 @@
 			certificatetype "certificatetype",
 			certificateno "certificateno",
 			linkmanname "linkmanname",
+			linkman_certificateno "linkmanCertificateno",
 			mobile "mobile",
 			cardno "cardno",
 			bank "bank",
@@ -149,6 +153,7 @@
 		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
 		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
 		<if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+		<if test="linkmanCertificateno != null and linkmanCertificateno!= '' "><![CDATA[ and linkman_certificateno=#{linkmanCertificateno}]]></if>
 		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
 		<if test="cardno != null and cardno!= '' "><![CDATA[ and cardno=#{cardno}]]></if>
 		<if test="bank != null and bank!= '' "><![CDATA[ and bank=#{bank}]]></if>
@@ -182,6 +187,7 @@
 			certificatetype "certificatetype",
 			certificateno "certificateno",
 			linkmanname "linkmanname",
+			linkman_certificateno "linkmanCertificateno",
 			mobile "mobile",
 			cardno "cardno",
 			bank "bank",
@@ -210,6 +216,7 @@
 		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
 		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
 		<if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+		<if test="linkmanCertificateno != null and linkmanCertificateno!= '' "><![CDATA[ and linkman_certificateno=#{linkmanCertificateno}]]></if>
 		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
 		<if test="cardno != null and cardno!= '' "><![CDATA[ and cardno=#{cardno}]]></if>
 		<if test="bank != null and bank!= '' "><![CDATA[ and bank=#{bank}]]></if>
@@ -242,6 +249,7 @@
 			certificatetype "certificatetype",
 			certificateno "certificateno",
 			linkmanname "linkmanname",
+			linkman_certificateno "linkmanCertificateno",
 			mobile "mobile",
 			cardno "cardno",
 			bank "bank",
@@ -270,6 +278,7 @@
 		<if test="certificatetype != null and certificatetype!= '' "><![CDATA[ and certificatetype=#{certificatetype}]]></if>
 		<if test="certificateno != null and certificateno!= '' "><![CDATA[ and certificateno=#{certificateno}]]></if>
 		<if test="linkmanname != null and linkmanname!= '' "><![CDATA[ and linkmanname=#{linkmanname}]]></if>
+		<if test="linkmanCertificateno != null and linkmanCertificateno!= '' "><![CDATA[ and linkman_certificateno=#{linkmanCertificateno}]]></if>
 		<if test="mobile != null and mobile!= '' "><![CDATA[ and mobile=#{mobile}]]></if>
 		<if test="cardno != null and cardno!= '' "><![CDATA[ and cardno=#{cardno}]]></if>
 		<if test="bank != null and bank!= '' "><![CDATA[ and bank=#{bank}]]></if>
@@ -295,16 +304,18 @@
 	<![CDATA[
 		insert into cas.cust(
 			customerno,loginname,registersource,membertype,certificatetype,
-			certificateno,linkmanname,mobile,cardno,bank,
-			companyname,email,status,insertdate,inserttime,
-			updatedate,updatetime,issave,source,corname,
-			corcardtype,corcardno,cormob,docking_people,app_docking_people
+			certificateno,linkmanname,linkman_certificateno,mobile,cardno,
+			bank,companyname,email,status,insertdate,
+			inserttime,updatedate,updatetime,issave,source,
+			corname,corcardtype,corcardno,cormob,docking_people,
+			app_docking_people
 		) values(
 			#{customerno, jdbcType=VARCHAR},#{loginname, jdbcType=VARCHAR},#{registersource, jdbcType=VARCHAR},#{membertype, jdbcType=VARCHAR},#{certificatetype, jdbcType=VARCHAR},
-			#{certificateno, jdbcType=VARCHAR},#{linkmanname, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},#{cardno, jdbcType=VARCHAR},#{bank, jdbcType=VARCHAR},
-			#{companyname, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},#{inserttime, jdbcType=VARCHAR},
-			#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{issave, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR},#{corname, jdbcType=VARCHAR},
-			#{corcardtype, jdbcType=VARCHAR},#{corcardno, jdbcType=VARCHAR},#{cormob, jdbcType=VARCHAR},#{dockingPeople, jdbcType=VARCHAR},#{appDockingPeople, jdbcType=VARCHAR}
+			#{certificateno, jdbcType=VARCHAR},#{linkmanname, jdbcType=VARCHAR},#{linkmanCertificateno, jdbcType=VARCHAR},#{mobile, jdbcType=VARCHAR},#{cardno, jdbcType=VARCHAR},
+			#{bank, jdbcType=VARCHAR},#{companyname, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{insertdate, jdbcType=VARCHAR},
+			#{inserttime, jdbcType=VARCHAR},#{updatedate, jdbcType=VARCHAR},#{updatetime, jdbcType=VARCHAR},#{issave, jdbcType=VARCHAR},#{source, jdbcType=VARCHAR},
+			#{corname, jdbcType=VARCHAR},#{corcardtype, jdbcType=VARCHAR},#{corcardno, jdbcType=VARCHAR},#{cormob, jdbcType=VARCHAR},#{dockingPeople, jdbcType=VARCHAR},
+			#{appDockingPeople, jdbcType=VARCHAR}
 	)]]>
 	</insert>
 	<!--用户基本信息表cust 按批量实体新增记录mysql-->
@@ -312,20 +323,22 @@
 	<![CDATA[
 		insert into cas.cust(
 			customerno,loginname,registersource,membertype,certificatetype,
-			certificateno,linkmanname,mobile,cardno,bank,
-			companyname,email,status,insertdate,inserttime,
-			updatedate,updatetime,issave,source,corname,
-			corcardtype,corcardno,cormob,docking_people,app_docking_people
+			certificateno,linkmanname,linkman_certificateno,mobile,cardno,
+			bank,companyname,email,status,insertdate,
+			inserttime,updatedate,updatetime,issave,source,
+			corname,corcardtype,corcardno,cormob,docking_people,
+			app_docking_people
 		)
 		values
 	]]>
 		<foreach item="item" index="index" collection="list" open="" close="" separator=",">
 			(
 				#{item.customerno, jdbcType=VARCHAR},#{item.loginname, jdbcType=VARCHAR},#{item.registersource, jdbcType=VARCHAR},#{item.membertype, jdbcType=VARCHAR},#{item.certificatetype, jdbcType=VARCHAR},
-				#{item.certificateno, jdbcType=VARCHAR},#{item.linkmanname, jdbcType=VARCHAR},#{item.mobile, jdbcType=VARCHAR},#{item.cardno, jdbcType=VARCHAR},#{item.bank, jdbcType=VARCHAR},
-				#{item.companyname, jdbcType=VARCHAR},#{item.email, jdbcType=VARCHAR},#{item.status, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},#{item.inserttime, jdbcType=VARCHAR},
-				#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},#{item.issave, jdbcType=VARCHAR},#{item.source, jdbcType=VARCHAR},#{item.corname, jdbcType=VARCHAR},
-				#{item.corcardtype, jdbcType=VARCHAR},#{item.corcardno, jdbcType=VARCHAR},#{item.cormob, jdbcType=VARCHAR},#{item.dockingPeople, jdbcType=VARCHAR},#{item.appDockingPeople, jdbcType=VARCHAR}
+				#{item.certificateno, jdbcType=VARCHAR},#{item.linkmanname, jdbcType=VARCHAR},#{item.linkmanCertificateno, jdbcType=VARCHAR},#{item.mobile, jdbcType=VARCHAR},#{item.cardno, jdbcType=VARCHAR},
+				#{item.bank, jdbcType=VARCHAR},#{item.companyname, jdbcType=VARCHAR},#{item.email, jdbcType=VARCHAR},#{item.status, jdbcType=VARCHAR},#{item.insertdate, jdbcType=VARCHAR},
+				#{item.inserttime, jdbcType=VARCHAR},#{item.updatedate, jdbcType=VARCHAR},#{item.updatetime, jdbcType=VARCHAR},#{item.issave, jdbcType=VARCHAR},#{item.source, jdbcType=VARCHAR},
+				#{item.corname, jdbcType=VARCHAR},#{item.corcardtype, jdbcType=VARCHAR},#{item.corcardno, jdbcType=VARCHAR},#{item.cormob, jdbcType=VARCHAR},#{item.dockingPeople, jdbcType=VARCHAR},
+				#{item.appDockingPeople, jdbcType=VARCHAR}
 			)
 		</foreach>
 	</insert>
@@ -342,6 +355,7 @@
 		 <if test="certificatetype != null and certificatetype != '' "><![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
 		 <if test="certificateno != null and certificateno != '' "><![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
 		 <if test="linkmanname != null and linkmanname != '' "><![CDATA[linkmanname=#{linkmanname, jdbcType=VARCHAR},]]></if>
+		 <if test="linkmanCertificateno != null and linkmanCertificateno != '' "><![CDATA[linkman_certificateno=#{linkmanCertificateno, jdbcType=VARCHAR},]]></if>
 		 <if test="mobile != null and mobile != '' "><![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
 		 <if test="cardno != null and cardno != '' "><![CDATA[cardno=#{cardno, jdbcType=VARCHAR},]]></if>
 		 <if test="bank != null and bank != '' "><![CDATA[bank=#{bank, jdbcType=VARCHAR},]]></if>
@@ -376,6 +390,7 @@
 		 <if test="item.certificatetype != null and item.certificatetype != '' "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
 		 <if test="item.certificateno != null and item.certificateno != '' "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.linkmanname != null and item.linkmanname != '' "><![CDATA[linkmanname=#{item.linkmanname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.linkmanCertificateno != null and item.linkmanCertificateno != '' "><![CDATA[linkman_certificateno=#{item.linkmanCertificateno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.mobile != null and item.mobile != '' "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
 		 <if test="item.cardno != null and item.cardno != '' "><![CDATA[cardno=#{item.cardno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.bank != null and item.bank != '' "><![CDATA[bank=#{item.bank, jdbcType=VARCHAR},]]></if>
@@ -412,6 +427,7 @@
 		 <if test="certificatetype != null "> <![CDATA[certificatetype=#{certificatetype, jdbcType=VARCHAR},]]></if>
 		 <if test="certificateno != null "> <![CDATA[certificateno=#{certificateno, jdbcType=VARCHAR},]]></if>
 		 <if test="linkmanname != null "> <![CDATA[linkmanname=#{linkmanname, jdbcType=VARCHAR},]]></if>
+		 <if test="linkmanCertificateno != null "> <![CDATA[linkman_certificateno=#{linkmanCertificateno, jdbcType=VARCHAR},]]></if>
 		 <if test="mobile != null "> <![CDATA[mobile=#{mobile, jdbcType=VARCHAR},]]></if>
 		 <if test="cardno != null "> <![CDATA[cardno=#{cardno, jdbcType=VARCHAR},]]></if>
 		 <if test="bank != null "> <![CDATA[bank=#{bank, jdbcType=VARCHAR},]]></if>
@@ -446,6 +462,7 @@
 		 <if test="item.certificatetype != null "><![CDATA[certificatetype=#{item.certificatetype, jdbcType=VARCHAR},]]></if>
 		 <if test="item.certificateno != null "><![CDATA[certificateno=#{item.certificateno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.linkmanname != null "><![CDATA[linkmanname=#{item.linkmanname, jdbcType=VARCHAR},]]></if>
+		 <if test="item.linkmanCertificateno != null "><![CDATA[linkman_certificateno=#{item.linkmanCertificateno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.mobile != null "><![CDATA[mobile=#{item.mobile, jdbcType=VARCHAR},]]></if>
 		 <if test="item.cardno != null "><![CDATA[cardno=#{item.cardno, jdbcType=VARCHAR},]]></if>
 		 <if test="item.bank != null "><![CDATA[bank=#{item.bank, jdbcType=VARCHAR},]]></if>

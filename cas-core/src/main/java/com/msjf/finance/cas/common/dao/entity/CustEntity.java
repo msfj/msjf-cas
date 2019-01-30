@@ -1,7 +1,7 @@
 package com.msjf.finance.cas.common.dao.entity;
 import com.msjf.finance.cas.common.dao.key.CustKey;
 /***
-  *insertCustEntity
+  *CustEntity
   *用户基本信息表
   */
 public class CustEntity extends CustKey {
@@ -17,6 +17,8 @@ public class CustEntity extends CustKey {
 	private String certificateno;
 	/**主要联系人	**/
 	private String linkmanname;
+	/**联系人证件号码	**/
+	private String linkmanCertificateno;
 	/**手机号码	**/
 	private String mobile;
 	/**银行卡号	**/
@@ -110,6 +112,14 @@ public class CustEntity extends CustKey {
 	/**主要联系人	**/
 	public void setLinkmanname(String linkmanname) {
 		this.linkmanname = linkmanname;
+	}
+	/**联系人证件号码	**/
+	public String getLinkmanCertificateno() {
+		return this.linkmanCertificateno;
+	}
+	/**联系人证件号码	**/
+	public void setLinkmanCertificateno(String linkmanCertificateno) {
+		this.linkmanCertificateno = linkmanCertificateno;
 	}
 	/**手机号码	**/
 	public String getMobile() {
