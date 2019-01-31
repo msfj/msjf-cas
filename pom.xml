@@ -13,6 +13,39 @@
         <module>cas-api</module>
         <module>cas-core</module>
     </modules>
+
+    <!--私服仓库-->
+    <repositories>
+        <repository>
+            <id>aliyun-repos</id>
+            <name>aliyun Repository</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>msjf-releases</id>
+            <name>msjf Snapshot Repository</name>
+            <url>http://49.4.91.18:8081/nexus/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>msjf-releases</id>
+            <name>msjf Snapshot Repository</name>
+            <url>http://49.4.91.18:8081/nexus/content/repositories/snapshots/</url>
+            <releases><enabled>true</enabled><updatePolicy>never</updatePolicy></releases>
+            <snapshots><enabled>true</enabled><updatePolicy>always</updatePolicy></snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+
     <!-- api才需要打包上传   私服仓库地址 -->
     <distributionManagement>
         <repository>
