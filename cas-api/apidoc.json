@@ -1,8 +1,8 @@
 {
-  "name": "api-cas-doc",
+  "name": "cas-Api文档",
   "version": "0.1.0",
   "description": "cas系统接口文档",
-  "title": "Custom apiDoc browser title",
+  "title": "Api文档",
   "url" : "http://49.4.91.18:8181/gws/msjf",
   "sampleUrl" : "http://49.4.91.18:8181/gws/msjf",
   "header": {
