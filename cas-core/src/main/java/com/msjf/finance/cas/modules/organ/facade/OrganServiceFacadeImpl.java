@@ -107,4 +107,21 @@ public class OrganServiceFacadeImpl implements OrganServiceFacade {
         logger.debug("cas", "=====调用业务结束=====", rs);
         return rs;
     }
+
+    /**
+     * 删除未提交确认设立的企业设立信息
+     *
+     * @param mapParam 入参
+     * @return 返回结果
+     */
+    @Override
+    public Response setDeleteOrgan(HashMap<String, Object> mapParam) {
+        Response rs = new Response();
+        //调用业务
+        OrganService organService = SpringContextUtil.getBean("setDeleteOrgan");
+        logger.debug("cas", "=====调用业务开始=====", mapParam);
+        organService.getOrganInfoList(mapParam, rs);
+        logger.debug("cas", "=====调用业务结束=====", rs);
+        return rs;
+    }
 }

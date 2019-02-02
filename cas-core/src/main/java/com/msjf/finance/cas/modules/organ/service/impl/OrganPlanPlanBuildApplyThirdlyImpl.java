@@ -100,7 +100,7 @@ public class OrganPlanPlanBuildApplyThirdlyImpl extends BaseService {
     @Override
     public void addApplyThirdly(HashMap<String, Object> mapParam, Response rs) {
 
-        rs.fail("cas", "操作失败");
+        rs.fail(serviceName, "操作失败");
         getParam(mapParam);
         doSingleService(mapParam, rs);
     }

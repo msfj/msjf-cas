@@ -1,12 +1,14 @@
 package com.msjf.finance.cas.modules.organ.service.impl;
 
 import com.msjf.finance.cas.common.dao.entity.OrganAppendEntity;
+import com.msjf.finance.cas.common.dao.entity.OrganFlowEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
 import com.msjf.finance.cas.common.dao.key.OrganAppendKey;
 import com.msjf.finance.cas.common.dao.key.OrganInfoKey;
 import com.msjf.finance.cas.common.dao.persistence.OrganAppendDao;
 import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
 import com.msjf.finance.cas.common.utils.CheckUtil;
+import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.MacroDefine;
 import com.msjf.finance.cas.common.utils.StringUtil;
 import com.msjf.finance.cas.modules.organ.service.BaseService;
@@ -80,6 +82,11 @@ public class OrganPlanPlanBuildApplyFourthlyImpl extends BaseService {
      * 备注
      **/
     private String remarks;
+
+    /**
+     * 操作类型(0 保存 1 提交)
+     **/
+    private String operationTpye;
 
 
     /**
@@ -169,10 +176,30 @@ public class OrganPlanPlanBuildApplyFourthlyImpl extends BaseService {
      */
     @Override
     public boolean clear(HashMap<String, Object> mapParam, Response rs) {
-        //更新企业其他信息
+        //1-更新企业其他信息
         if (!updateOrganAppend(rs)) {
             return false;
         }
+
+        //2-当操作类型为提交时，拟设立申请流程
+        if(MacroDefine.OPERATION_TYPE.OPERATION_TYPE_1.getValue().equals(operationTpye)){
+            //TODO 2.1-获取流程发起服务
+
+
+
+            //2.2-根据流程发起返回状态判断是否发起成功
+
+            //2.3-发起成功,更新流程状态为审核中
+            OrganFlowEntity OrganFlowEntity = new OrganFlowEntity();
+            OrganFlowEntity.setOrgcustomerno(orgcustomerno);
+            OrganFlowEntity.setStatus(MacroDefine.AUDIT_STATUS.AUDIT_STATUS_APPLY.getValue());
+            OrganFlowEntity.setUpdatedate(DateUtils.getUserDate(DateUtils.DATE_FMT_DATE));
+            OrganFlowEntity.setUpdatetime(DateUtils.getUserDate(DateUtils.DATE_FMT_TIME));
+            if(!updateOrganFlowEntity(OrganFlowEntity, rs)){
+                return false;
+            }
+        }
+
         rs.success("更新成功");
         return super.clear(mapParam, rs);
     }

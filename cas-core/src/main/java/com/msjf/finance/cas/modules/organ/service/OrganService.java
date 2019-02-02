@@ -45,6 +45,12 @@ public interface OrganService {
      */
     void addApplyFourthly(HashMap<String, Object> mapParam, Response rs);
 
+    /**
+     * 确认设立
+     * @param mapParam 入参
+     * @param rs 返回结果
+     */
+    void setApplyConfirm(HashMap<String, Object> mapParam, Response rs);
 
 
     /**
@@ -53,5 +59,17 @@ public interface OrganService {
      * @param rs 返回结果
      */
     void getOrganInfoList(HashMap<String, Object> mapParam, Response rs);
+    /**
+     * 查询企业详情
+     * @param mapParam 入参
+     * @param rs 返回结果
+     */
+    void getOrganInfoDetails(HashMap<String, Object> mapParam, Response rs);
+    /**
+     * 删除未提交确认设立的企业设立信息
+     * @param mapParam 入参
+     * @param rs 返回结果
+     */
+    void setDeleteOrgan(HashMap<String, Object> mapParam, Response rs);
 
 }

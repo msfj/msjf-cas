@@ -137,6 +137,17 @@ public abstract class IBaseService implements OrganService, IApp {
     }
 
     /**
+     * 确认设立
+     *
+     * @param mapParam 入参
+     * @param rs       返回结果
+     */
+    @Override
+    public void setApplyConfirm(HashMap<String, Object> mapParam, Response rs) {
+
+    }
+
+    /**
      * 查询企业设立列表信息
      *
      * @param mapParam 入参
@@ -144,6 +155,28 @@ public abstract class IBaseService implements OrganService, IApp {
      */
     @Override
     public void getOrganInfoList(HashMap<String, Object> mapParam, Response rs) {
+
+    }
+
+    /**
+     * 查询企业详情
+     *
+     * @param mapParam 入参
+     * @param rs       返回结果
+     */
+    @Override
+    public void getOrganInfoDetails(HashMap<String, Object> mapParam, Response rs) {
+
+    }
+
+    /**
+     * 删除未提交确认设立的企业设立信息
+     *
+     * @param mapParam 入参
+     * @param rs       返回结果
+     */
+    @Override
+    public void setDeleteOrgan(HashMap<String, Object> mapParam, Response rs) {
 
     }
 }

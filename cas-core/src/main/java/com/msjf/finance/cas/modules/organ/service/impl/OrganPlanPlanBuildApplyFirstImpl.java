@@ -3,9 +3,6 @@ package com.msjf.finance.cas.modules.organ.service.impl;
 import com.msjf.finance.cas.common.dao.entity.CustEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganFlowEntity;
 import com.msjf.finance.cas.common.dao.entity.OrganInfoEntity;
-import com.msjf.finance.cas.common.dao.persistence.CustDao;
-import com.msjf.finance.cas.common.dao.persistence.OrganFlowDao;
-import com.msjf.finance.cas.common.dao.persistence.OrganInfoDao;
 import com.msjf.finance.cas.common.utils.CheckUtil;
 import com.msjf.finance.cas.common.utils.DateUtils;
 import com.msjf.finance.cas.common.utils.IDUtils;
@@ -19,9 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * <pre>
@@ -98,7 +93,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
      * @param mapParam 入参
      * @param rs       返回结果
      */
-    @Transactional(rollbackFor=Exception.class,timeout = 300)
+    @Transactional(rollbackFor = Exception.class, timeout = 300)
     @Override
     public void addApplyFirst(HashMap<String, Object> mapParam, Response rs) {
         rs.fail("cas", "操作失败");
@@ -145,7 +140,7 @@ public class OrganPlanPlanBuildApplyFirstImpl extends BaseService {
             rs.fail("cas", "企业类型不能为空");
             return false;
         }
-        if(!MacroDefine.ORGAN_CLASS_TYPE.isExistsEnum(organclass)){
+        if (!MacroDefine.ORGAN_CLASS_TYPE.isExistsEnum(organclass)) {
             rs.fail("cas", "暂不支持该企业分类");
             return false;
         }

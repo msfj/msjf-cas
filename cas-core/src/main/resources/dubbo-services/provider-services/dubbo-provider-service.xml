@@ -24,25 +24,20 @@
     <dubbo:service interface="com.msjf.finance.cas.facade.employee.EmployeeMangerFacade" ref="employeeMangerFacade"/>
     <dubbo:service interface="com.msjf.finance.cas.facade.custManger.CustMangerFacade" ref="custMangerFacade"/>
 
-    <!--添加拟设立-第一步-->
+    <!--企业设立相关服务-->
     <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <!--添加拟设立-第一步-->
         <dubbo:method name="setAddApplyFirst"/>
-    </dubbo:service>
-    <!--添加拟设立-第二步-->
-    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <!--添加拟设立-第二步-->
         <dubbo:method name="setAddApplySecond"/>
-    </dubbo:service>
-    <!--添加拟设立-第三步-->
-    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <!--添加拟设立-第三步-->
         <dubbo:method name="setAddApplyThirdly"/>
-    </dubbo:service>
-    <!--添加拟设立-第四步-其它信息-->
-    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <!--添加拟设立-第四步-其它信息-->
         <dubbo:method name="setAddApplyFourthly"/>
-    </dubbo:service>
-    <!--查询企业设立列表信息-->
-    <dubbo:service interface="com.msjf.finance.cas.facade.organ.OrganServiceFacade" ref="organServiceFacade">
+        <!--查询企业设立列表信息-->
         <dubbo:method name="getOrganInfoList"/>
+        <!--删除未提交确认设立的企业设立信息-->
+        <dubbo:method name="setDeleteOrgan"/>
     </dubbo:service>
 
 </beans>

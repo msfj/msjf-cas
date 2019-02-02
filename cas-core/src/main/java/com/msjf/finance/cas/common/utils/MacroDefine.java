@@ -790,5 +790,64 @@ public class MacroDefine {
 
     }
 
+    /**
+     * 操作类型(0 保存 1 提交)
+     */
+    public enum OPERATION_TYPE {
+        OPERATION_TYPE_0("0", "保存"), OPERATION_TYPE_1("1", "提交)");
+
+        private String value;
+        private String name;
+
+        OPERATION_TYPE(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        /**
+         * 根据值获取名称
+         *
+         * @param value
+         * @return
+         */
+        public static String getEnumName(String value) {
+            for (OPERATION_TYPE p : OPERATION_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return p.name;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 检查值是否存在
+         *
+         * @param value
+         * @return 值的名称
+         */
+        public static boolean isExistsEnum(String value) {
+            for (OPERATION_TYPE p : OPERATION_TYPE.values()) {
+                if (p.value.equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value.toString();
+        }
+
+    }
+
 
 }
